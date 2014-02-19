@@ -1,3 +1,4 @@
 /home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------336.893 ms
 /home/emnababd/Desktop/PAPPLI/PAPPL/samples/metazoan.ph----------249.846 ms
 /home/emnababd/Desktop/PAPPLI/PAPPL/samples/tcrsig40.ph----------103.97 ms
+/home/emnababd/Desktop/PAPPLI/PAPPL/samples/metazoan.ph----------74.9057 ms

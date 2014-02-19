@@ -12,6 +12,7 @@
 #include <QPoint>
 #include <QSize>
 #include <cmath>
+#include <QtGui>
 #include "GSort.h"
 
 
@@ -158,6 +159,7 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
         QMenu menu;
 	QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
 	QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
+    QAction* switchColor = menu.addAction("switch sort color");
 
 	QAction* selectedAction = menu.exec(QCursor::pos());
 
@@ -166,7 +168,9 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 			changeOrientation();
 		}else if(QString::compare(selectedAction->text(),switchDisplay->text())==0){
 			changeDisplayState();
-		}
+        }else if(QString::compare(selectedAction->text(),switchColor->text())==0){
+            changeColor();
+        }
 	}	
     }
 }
@@ -263,6 +267,19 @@ void GSort::changeOrientation(){
 	changeOrientationRect();
 	changeOrientationGProcess();
 	dynamic_cast<PHScene*>(scene())->updateActions();
+}
+
+void GSort::changeColor(){
+    // open a color dialog and get the color chosen
+    QColor color = QColorDialog::getColor();
+
+    if (!color.isValid()) {
+        return ;
+    } else {
+            // for all the current GSort set the brush
+            this->getRect()->setBrush(QBrush(QColor(color)));
+
+    }
 
 }
 

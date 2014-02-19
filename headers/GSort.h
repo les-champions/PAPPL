@@ -339,6 +339,11 @@ class GSort : public QGraphicsRectItem {
           *
           */
 	void changeOrientation();
+    /**
+      * @brief change the color of the GSort
+      *
+      */
+    void changeColor();
 
         /**
           * @brief change the orientation of the GSort rectangle
