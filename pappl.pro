@@ -32,7 +32,8 @@ HEADERS 	= 	headers/Action.h 		\
     headers/FuncFrame.h \
     headers/FunctionForm.h \
     headers/test/ChoixLigne.h \
-    headers/GVSkeletonGraph.h
+    headers/GVSkeletonGraph.h \
+    headers/EditorSettings.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 
@@ -58,6 +59,7 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
     src/ui/FuncFrame.cpp \
     src/ui/FunctionForm.cpp \
     src/ui/ChoixLigne.cpp \
+    src/ui/EditorSettings.cpp
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x

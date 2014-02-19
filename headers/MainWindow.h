@@ -5,10 +5,12 @@
 #include "ConnectionSettings.h"
 #include <vector>
 #include "FunctionForm.h"
+#include "EditorSettings.h"
+#include <QWidget>
 
 /**
   * @file MainWindow.h
-  * @brief header for the MainWindow class
+  * @brief header for the Main class
   * @author PAPPL_2012
   *
   */
@@ -20,7 +22,7 @@
   * extends QMainWindow
   *
   */
-class MainWindow : public QMainWindow{
+class MainWindow : public QMainWindow {
 
     Q_OBJECT
 
@@ -84,6 +86,7 @@ protected:
     QMdiArea* centraleArea;
     ConnectionSettings* ConnectionSettingsWindow;
     FunctionForm* FunctionFormWindow;
+    EditorSettings* EditorSettingsWindow;
 
     // QMenu
     QMenu *menuFile;
@@ -101,6 +104,7 @@ protected:
     QMenu   *menuExport;
     QAction *actionPng;
     QAction *actionDot;
+    QAction *actionExportTikzData;
     QAction *actionExportXMLData;
     QMenu   *menuImport;
     QAction *actionForimport;
@@ -153,6 +157,7 @@ protected:
 private :
 
     int displayMode;
+    QPushButton *BtnCancel;
 
 signals:
 
@@ -191,6 +196,12 @@ public slots:
       *
       */
     void exportDot();
+
+    /**
+      * @brief open the editor before generating the tikZ file
+      *
+      */
+    void openEditor();
 
     /**
       * @brief exports style and layout data to XML format
@@ -301,6 +312,12 @@ public slots:
     void computeReachability();
 
     /**
+      * @brief executes pint program: ph-reach
+      *
+      */
+    void EditTikzData();
+
+    /**
       * @brief executes pint program: ph-exec
       *
       */
@@ -339,6 +356,7 @@ public slots:
       */
 
     void openConnection();
+
 
     void openConnectionForm();
 
