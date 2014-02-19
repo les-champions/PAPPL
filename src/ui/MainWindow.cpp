@@ -10,7 +10,7 @@
 #include "IO.h"
 #include <QThread>
 #include <sstream>
-#include <time.h>
+#include <time.h> 
 #include <fstream>
 #include <QWidget>
 
@@ -38,13 +38,13 @@ MainWindow::MainWindow()
     setMinimumHeight(400);
 
     // menu
-    menuFile = menuBar()->addMenu("&File");
-    menuEdit = menuBar()->addMenu("&Edit");
-    menuView = menuBar()->addMenu("&View");
-    menuStyles = menuBar()->addMenu("&Styles");
-    menuWindow = menuBar()->addMenu("&Window");
-    menuComputation = menuBar()->addMenu("&Computation");
-    menuHelp = menuBar()->addMenu("&Help");
+    menuFile =          menuBar()->addMenu("&File");
+    menuEdit =          menuBar()->addMenu("&Edit");
+    menuView =          menuBar()->addMenu("&View");
+    menuStyles =        menuBar()->addMenu("&Styles");
+    menuWindow =        menuBar()->addMenu("&Window");
+    menuComputation =   menuBar()->addMenu("&Computation");
+    menuHelp =          menuBar()->addMenu("&Help");
 
     // actions for the menus:
 
@@ -70,19 +70,19 @@ MainWindow::MainWindow()
 
 
     // shortcuts for the menu File
-    actionNew->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_N));
-    actionOpen->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_O));
-    actionSaveas->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_S));
-    actionQuit->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_Q));
-    actionForimport->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_I));
+    actionNew->setShortcut(     QKeySequence(Qt::CTRL + Qt::Key_N));
+    actionOpen->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_O));
+    actionSaveas->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_S));
+    actionQuit->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_Q));
+    actionForimport->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_I));
 
 
     // connect the menu File
-    QObject::connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-    QObject::connect(actionOpen, SIGNAL(triggered()), this, SLOT(openTab()));
-    QObject::connect(actionSaveas, SIGNAL(triggered()), this, SLOT(save()));
-    QObject::connect(actionPng, SIGNAL(triggered()), this, SLOT(exportPng()));
-    QObject::connect(actionClose, SIGNAL(triggered()), this, SLOT(closeTab()));
+    QObject::connect(actionQuit,    SIGNAL(triggered()), qApp, SLOT(quit()));
+    QObject::connect(actionOpen,    SIGNAL(triggered()), this, SLOT(openTab()));
+    QObject::connect(actionSaveas,  SIGNAL(triggered()), this, SLOT(save()));
+    QObject::connect(actionPng,     SIGNAL(triggered()), this, SLOT(exportPng()));
+    QObject::connect(actionClose,   SIGNAL(triggered()), this, SLOT(closeTab()));
     QObject::connect(actionExportXMLData, SIGNAL(triggered()), this, SLOT(exportXMLMetadata()));
     QObject::connect(actionDot, SIGNAL(triggered()), this, SLOT(exportDot()));
     QObject::connect(actionForimport, SIGNAL(triggered()), this, SLOT(importXMLMetadata()));
@@ -112,15 +112,15 @@ MainWindow::MainWindow()
     actionHighlight->setCheckable(true);
 
     // connect to the menu View
-    QObject::connect(actionAdjust, SIGNAL(triggered()), this, SLOT(adjust()));
+    QObject::connect(actionAdjust,    SIGNAL(triggered()), this, SLOT(adjust()));
     QObject::connect(actionZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
     QObject::connect(actionZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
     QObject::connect(actionSimplifiedModel, SIGNAL(triggered()), this, SLOT(switchToSimplifiedModel()));
     QObject::connect(actionDetailledModel, SIGNAL(triggered()), this, SLOT(switchToDetailledModel()));
     // shortcuts for the menu View
-    actionAdjust->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_L));
-    actionZoomIn->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_Plus));
-    actionZoomOut->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_Minus));
+    actionAdjust->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_L));
+    actionZoomIn->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Plus));
+    actionZoomOut->setShortcut(  QKeySequence(Qt::CTRL + Qt::Key_Minus));
 
     // disable what does not work well
     actionShowInit->setEnabled(false);
@@ -135,7 +135,7 @@ MainWindow::MainWindow()
     menuDefaultStyles = menuStyles->addMenu("Default Styles");
     actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
-    actionPrintStyle = menuDefaultStyles->addAction("Print");
+    actionPrintStyle = menuDefaultStyles->addAction("Print");    
 
     //connect to the menu Styles
     QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
@@ -180,7 +180,7 @@ MainWindow::MainWindow()
     QObject::connect(actionNewConnection, SIGNAL(triggered()), this, SLOT(openConnection()));
     //QObject::connect(menuComputation, SIGNAL(hovered(QAction*)), this, SLOT(openConnection()));
 
-    actionConnection->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_C));
+    actionConnection->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_C));
 
     // action for the menu Help
     actionHelp = menuHelp->addAction("Help !");
@@ -208,10 +208,10 @@ MainWindow::MainWindow()
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
-this->actionSimplifiedModel->setEnabled(false);
-this->actionDetailledModel->setEnabled(false);
-this->actionSimplifiedModel->setEnabled(false);
-this->actionDetailledModel->setEnabled(false);
+	this->actionSimplifiedModel->setEnabled(false);
+	this->actionDetailledModel->setEnabled(false);
+	this->actionSimplifiedModel->setEnabled(false);
+	this->actionDetailledModel->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
         this->actionSortColor->setEnabled(false);
         this->actionNaturalStyle->setEnabled(false);
@@ -297,7 +297,7 @@ MyArea* MainWindow::openTab() {
                 mb->open();
 
                 //need a std::string instead of a QString
-                std::string path =	file.toStdString();
+                std::string path =	file.toStdString();                
 
                 // parse file
                 Area *area = new Area(this, QString::fromStdString(path));
@@ -330,7 +330,7 @@ MyArea* MainWindow::openTab() {
                     QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);
                     QString fileName(pathInfo.fileName());
                     theNewTab->setWindowTitle(fileName);
-                    this->enableMenu();
+                    this->enableMenu();                    
 
                     mb->close();
                     this->setWindowState(Qt::WindowMaximized);
@@ -369,7 +369,7 @@ void MainWindow::closeTab() {
 
     // if there is at least one subwindow, close the current one
     if(!this->getCentraleArea()->subWindowList().isEmpty()) {
-        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
+        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();        
         subWindow->close();
     } else {
         QMessageBox::critical(this, "Error", "No file opened!");
@@ -427,7 +427,7 @@ void MainWindow::save() {
 // export methods
 
 void MainWindow::exportPng() {
-
+	
     if(!this->getCentraleArea()->subWindowList().isEmpty()){
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
@@ -439,10 +439,10 @@ void MainWindow::exportPng() {
         PHPtr ph= ((Area*) subWindow->widget())->myArea->getPHPtr();
 
         // save as PNG
-PHIO::exportToPNG(ph, fichier);
-
+		PHIO::exportToPNG(ph, fichier);
+		
     } else QMessageBox::critical(this, "Error", "No file opened!");
-
+	
 }
 
 void MainWindow::exportDot() {
@@ -713,7 +713,7 @@ void MainWindow::importXMLMetadata(QString tempXML){
 
                         while (stream.name()=="process")
                         {
-                         int noprocess = stream.attributes().first().value().toString().toInt();
+                        	int noprocess = stream.attributes().first().value().toString().toInt();
                             stream.readNext();
                             while (stream.isStartElement()==false)
                             {
@@ -772,7 +772,7 @@ void MainWindow::importXMLMetadata(QString tempXML){
 
                 myarea->getPHPtr()->getGraphicsScene()->updateActions();
 //TODO what is the use of updateForImport() ?
-// myarea->getPHPtr()->getGraphicsScene()->updateForImport();
+//                myarea->getPHPtr()->getGraphicsScene()->updateForImport();
             }
 
 
@@ -1163,14 +1163,14 @@ void MainWindow::findFixpoints() {
 
 void MainWindow::EditTikzData(){
 /*
-//ask the user the state which is tested
-bool ok = false;
-QString state = QInputDialog::getText(this, "editor", "Which sorts do you want to edit ?", QLineEdit::Normal, QString(), &ok);
+    //ask the user the state which is tested
+    bool ok = false;
+    QString state = QInputDialog::getText(this, "editor", "Which sorts do you want to edit ?", QLineEdit::Normal, QString(), &ok);
 
-//Button Generate and Cancel
-bool ok = false;
-BtnCancel = new QPushButton("&Cancel");
-*/
+    //Button Generate and Cancel
+    bool ok = false;
+    BtnCancel = new QPushButton("&Cancel");
+    */
 
 }
 
@@ -1295,8 +1295,11 @@ void MainWindow::openConnection(){
 
 //open Editor window
 void MainWindow::openEditor(){
-
-    EditorSettingsWindow = new EditorSettings();
+    // get the widget in the centrale area
+    Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+    // get the treeArea (left) part and call the method associated to search a sort
+    view->treeArea->searchSort();
+    EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
     EditorSettingsWindow->show();
 }
 

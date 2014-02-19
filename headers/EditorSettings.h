@@ -2,6 +2,11 @@
 #define EDITORSETTINGS_H
 #include <iostream>
 #include <QtGui>
+#include <QGraphicsScene>
+#include <map>
+#include <string>
+#include "GAction.h"
+
 
 class EditorSettings : public QDialog
 {
@@ -9,9 +14,8 @@ class EditorSettings : public QDialog
 
 public:
     //constructor , destructor
-    EditorSettings();
+    EditorSettings(PHPtr);
     ~EditorSettings();
-
 
 private:
 
@@ -22,8 +26,7 @@ private:
     QWidget *widget;
     QGroupBox *choiceBox;
 
-    QRadioButton *ch1;
-    QRadioButton *ch2;
+    QRadioButton *sort_Name;
 
     //Mise en page générale
     QVBoxLayout *globalLayout;
@@ -33,10 +36,12 @@ private:
 
     //button
     QPushButton *Generate;
-    QPushButton *Cancel;
+    QPushButton *Annuler;
     QPushButton *Edit;
 
     QScrollArea *area;
+
+
 
 };
 

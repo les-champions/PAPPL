@@ -1,33 +1,34 @@
 #include "EditorSettings.h"
 #include "MainWindow.h"
+#include "PH.h"
+#include "PHIO.h"
 #include <QtGui>
 #include "Area.h"
 
-EditorSettings::EditorSettings(): QDialog()
+EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 {
-
-
-
-
     choiceBox = new QGroupBox("Exclusive checkBox");
-    ch1 = new QRadioButton("Radio button &1");
-    ch2 =new QRadioButton("Radio button &2");
-
-    ch1->setChecked("true");
 
     groupLayout = new QVBoxLayout;
-    groupLayout->addWidget(ch1);
-    groupLayout->addWidget(ch2);
 
+    // Get all the sorts of the PH file
+    list<SortPtr> allSorts = myPHPtr->getSorts();
+    for(SortPtr &s : allSorts){
 
-    //Button Generate
+    sort_Name = new QRadioButton(QString::fromStdString(s->getName()));
+    // Insert the item at the end of the layout: sorts
+    groupLayout->addWidget(sort_Name);
+
+    }
+
+    //Buttons
     Generate = new QPushButton("Generate");
-    Cancel = new QPushButton("Cancel");
+    Annuler = new QPushButton("Cancel");
     Edit = new QPushButton("Edit");
 
 
     btnLayout = new QHBoxLayout;
-    btnLayout->addWidget(Cancel);
+    btnLayout->addWidget(Annuler);
     btnLayout->addWidget(Edit);
     btnLayout->addWidget(Generate);
 
@@ -57,4 +58,3 @@ EditorSettings::EditorSettings(): QDialog()
 }
     //Detroyer
     EditorSettings::~EditorSettings(){}
-
