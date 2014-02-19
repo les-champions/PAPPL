@@ -61,13 +61,13 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 
  list<std::string> EditorSettings::getSelectedSorts(){
 
-//     list<std::string> vect=new list<std::string> ;
+     list<std::string> vect=new list<std::string> ;
 
-//    for(QCheckBox &s : this->tabSorts){
-//        if(s.isChecked())
-//            vect.push_back(s.accessibleName());
-//    }
-//    return vect;
+    for(QCheckBox &s : this->tabSorts){
+        if(s.isChecked())
+            vect.push_back(s.accessibleName());
+    }
+    return vect;
 
 }
 
