@@ -1296,8 +1296,12 @@ void MainWindow::openConnection(){
 //open Editor window
 void MainWindow::openEditor(){
 
-    EditorSettingsWindow = new EditorSettings();
-    EditorSettingsWindow->show();
+    // get the widget in the centrale area
+       Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
+       // get the treeArea (left) part and call the method associated to search a sort
+       view->treeArea->searchSort();
+       EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
+       EditorSettingsWindow->show();
 }
 
 void MainWindow::openConnectionForm(){

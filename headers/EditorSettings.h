@@ -2,6 +2,10 @@
 #define EDITORSETTINGS_H
 #include <iostream>
 #include <QtGui>
+#include <QGraphicsScene>
+#include <map>
+#include <string>
+#include "GAction.h"
 
 class EditorSettings : public QDialog
 {
@@ -9,21 +13,18 @@ class EditorSettings : public QDialog
 
 public:
     //constructor , destructor
-    EditorSettings();
+    EditorSettings(PHPtr);
     ~EditorSettings();
-
+    list<std::string> getSelectedSorts();
 
 private:
 
 
-    //QWidget *editorWindow;
-
-
     QWidget *widget;
     QGroupBox *choiceBox;
+    QCheckBox *sort_Name;
 
-    QRadioButton *ch1;
-    QRadioButton *ch2;
+    list<QCheckBox*>tabSorts;
 
     //Mise en page générale
     QVBoxLayout *globalLayout;
