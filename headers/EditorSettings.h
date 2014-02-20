@@ -6,7 +6,10 @@
 #include <map>
 #include <string>
 #include "GAction.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 class EditorSettings : public QDialog
 {
@@ -16,17 +19,23 @@ public:
     //constructor , destructor
     EditorSettings(PHPtr);
     ~EditorSettings();
+<<<<<<< HEAD
+=======
+    list<std::string> getSelectedSorts();
+>>>>>>> master
 
 private:
 
 
-    //QWidget *editorWindow;
-
-
     QWidget *widget;
     QGroupBox *choiceBox;
+    QCheckBox *sort_Name;
 
+<<<<<<< HEAD
     QRadioButton *sort_Name;
+=======
+    list<QCheckBox*>tabSorts;
+>>>>>>> master
 
     //Mise en page générale
     QVBoxLayout *globalLayout;

@@ -1,8 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'EditorSettings.h'
 **
+<<<<<<< HEAD
 ** Created: Thu Feb 20 00:53:48 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
+=======
+** Created: Wed Feb 19 23:33:50 2014
+**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
+>>>>>>> master
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/

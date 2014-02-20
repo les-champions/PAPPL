@@ -1,4 +1,14 @@
 /home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------336.893 ms
+<<<<<<< HEAD
 /home/emnababd/Desktop/PAPPLI/PAPPL/samples/metazoan.ph----------249.846 ms
 /home/emnababd/Desktop/PAPPLI/PAPPL/samples/tcrsig40.ph----------103.97 ms
 /home/emnababd/Desktop/PAPPLI/PAPPL/samples/metazoan.ph----------74.9057 ms
+=======
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------59.8389 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------53.0509 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------43.5401 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/tcrsig40.ph----------122.907 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------45.9824 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph----------50.0878 ms
+/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/tcrsig40.ph----------119.142 ms
+>>>>>>> master
