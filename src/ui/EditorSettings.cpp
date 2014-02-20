@@ -11,21 +11,28 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 
     groupLayout = new QVBoxLayout;
 
+    QString chaine1, chaine2;
+    int i=0;
+
     // Get all the sorts of the PH file
     list<SortPtr> allSorts = myPHPtr->getSorts();
+
     for(SortPtr &s : allSorts){
-
-    sort_Name = new QRadioButton(QString::fromStdString(s->getName()));
-    // Insert the item at the end of the layout: sorts
-    groupLayout->addWidget(sort_Name);
-
+       sort_Name = new QCheckBox(QString::fromStdString(s->getName()));
+        // Insert the item at the end of the layout: sorts
+        groupLayout->addWidget(sort_Name);
+        if(i==0)
+            listehidenSorts.push_back(QString::fromStdString(s->getName()));
+        i++;
     }
+hideNonSelected(listehidenSorts,myPHPtr);
 
     //Buttons
-    Generate = new QPushButton("Generate");
-    Annuler = new QPushButton("Cancel");
-    Edit = new QPushButton("Edit");
+    Generate = new QPushButton("&Generate");
+    Annuler = new QPushButton("&Cancel");
+    Edit = new QPushButton("&Edit");
 
+    connect(Edit, SIGNAL(clicked()), this, SLOT( hideNonSelected(listehidenSorts,myPHPtr)));
 
     btnLayout = new QHBoxLayout;
     btnLayout->addWidget(Annuler);
@@ -56,5 +63,27 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     resize(500,500);
 
 }
+
+
+void EditorSettings::hideNonSelected(QList<QString> listehidenSorts,PHPtr myPHPtr){
+
+    for (QString &n: listehidenSorts){
+        // Hide the QGraphicsItem representing the sort
+        myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::hide();
+
+        // Hide all the actions related to the sort
+        std::vector<GActionPtr> allActions = myPHPtr->getGraphicsScene()->getActions();
+        for (GActionPtr &a: allActions){
+            if (a->getAction()->getSource()->getSort()->getName() == n.toStdString() || a->getAction()->getTarget()->getSort()->getName() == n.toStdString() || a->getAction()->getResult()->getSort()->getName() == n.toStdString()){
+                a->getDisplayItem()->hide();
+            }
+        }
+        }
+
+}
+
+
+
     //Detroyer
     EditorSettings::~EditorSettings(){}
+

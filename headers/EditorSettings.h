@@ -16,17 +16,16 @@ public:
     //constructor , destructor
     EditorSettings(PHPtr);
     ~EditorSettings();
+    void hideNonSelected(QList<QString>,PHPtr );
 
 private:
 
-
-    //QWidget *editorWindow;
-
-
     QWidget *widget;
     QGroupBox *choiceBox;
+    QCheckBox *sort_Name;
 
-    QRadioButton *sort_Name;
+    QList<QString> listehidenSorts;
+    void getSelectedSorts();
 
     //Mise en page générale
     QVBoxLayout *globalLayout;
@@ -38,7 +37,6 @@ private:
     QPushButton *Generate;
     QPushButton *Annuler;
     QPushButton *Edit;
-
     QScrollArea *area;
 
 
