@@ -2,7 +2,11 @@
 ** Meta object code from reading C++ file 'EditorSettings.h'
 **
 <<<<<<< HEAD
+<<<<<<< HEAD
 ** Created: Thu Feb 20 00:53:48 2014
+=======
+** Created: Thu Feb 20 13:37:34 2014
+>>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 =======
 ** Created: Wed Feb 19 23:33:50 2014

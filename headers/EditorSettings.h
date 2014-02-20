@@ -20,6 +20,7 @@ public:
     EditorSettings(PHPtr);
     ~EditorSettings();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     list<std::string> getSelectedSorts();
 >>>>>>> master
@@ -27,15 +28,26 @@ public:
 private:
 
 
+=======
+    void hideNonSelected(QList<QString>,PHPtr );
+
+private:
+
+>>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
     QWidget *widget;
     QGroupBox *choiceBox;
     QCheckBox *sort_Name;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     QRadioButton *sort_Name;
 =======
     list<QCheckBox*>tabSorts;
 >>>>>>> master
+=======
+    QList<QString> listehidenSorts;
+    void getSelectedSorts();
+>>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
 
     //Mise en page générale
     QVBoxLayout *globalLayout;
@@ -47,7 +59,6 @@ private:
     QPushButton *Generate;
     QPushButton *Annuler;
     QPushButton *Edit;
-
     QScrollArea *area;
 
 
