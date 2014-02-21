@@ -6,10 +6,8 @@
 #include <map>
 #include <string>
 #include "GAction.h"
-<<<<<<< HEAD
+#include "EditorOptions.h"
 
-=======
->>>>>>> master
 
 class EditorSettings : public QDialog
 {
@@ -19,49 +17,53 @@ public:
     //constructor , destructor
     EditorSettings(PHPtr);
     ~EditorSettings();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    list<std::string> getSelectedSorts();
->>>>>>> master
+    PHPtr myPHPtr;
+    //get the list of selected sort name
+    QList<QString> getSelectedSorts();
 
 private:
+    QList <QCheckBox*> listOfSorts;
 
-
-=======
-    void hideNonSelected(QList<QString>,PHPtr );
-
-private:
-
->>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
     QWidget *widget;
     QGroupBox *choiceBox;
     QCheckBox *sort_Name;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    QRadioButton *sort_Name;
-=======
+    //liste des sortes
     list<QCheckBox*>tabSorts;
->>>>>>> master
-=======
-    QList<QString> listehidenSorts;
-    void getSelectedSorts();
->>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
+
+    //
+    QRadioButton *selectAll;
+    QRadioButton *selectNone;
 
     //Mise en page générale
     QVBoxLayout *globalLayout;
+
     QVBoxLayout *layoutTotal;
     QVBoxLayout *groupLayout;
     QHBoxLayout *btnLayout;
+    QHBoxLayout *checkLayout;
 
     //button
     QPushButton *Generate;
-    QPushButton *Annuler;
-    QPushButton *Edit;
+    QPushButton *Cancel;
+    QPushButton *Next;
+
+    //scroll
     QScrollArea *area;
 
+    void hideNonSelected();
 
+private slots:
+
+    void checkAll();
+    void checkNone();
+    void next();
+    void quit();
+    //ToDo : implement
+    void generate();
+
+protected:
+    EditorOptions* EditorOptionsWindow;
 
 };
 

@@ -9,28 +9,9 @@
 
 EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 {
-<<<<<<< HEAD
-    choiceBox = new QGroupBox("Exclusive checkBox");
+    this->myPHPtr=myPHPtr;
 
     groupLayout = new QVBoxLayout;
-=======
-
-    groupLayout = new QVBoxLayout;
-    choiceBox = new QGroupBox("Exclusive checkBox");
-
-    // Get all the sorts of the PH file
-    list<SortPtr> allSorts = myPHPtr->getSorts();
-    for(SortPtr &s : allSorts){
-
-       sort_Name = new QCheckBox(QString::fromStdString(s->getName()));
-       tabSorts.push_back(sort_Name);
-        // Insert the item at the end of the layout: sorts
-        groupLayout->addWidget(sort_Name);
-    }
->>>>>>> master
-
-    QString chaine1, chaine2;
-    int i=0;
 
     // Get all the sorts of the PH file
     list<SortPtr> allSorts = myPHPtr->getSorts();
@@ -39,29 +20,47 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
        sort_Name = new QCheckBox(QString::fromStdString(s->getName()));
         // Insert the item at the end of the layout: sorts
         groupLayout->addWidget(sort_Name);
-        if(i==0)
-            listehidenSorts.push_back(QString::fromStdString(s->getName()));
-        i++;
+        listOfSorts.push_back(sort_Name);
     }
-hideNonSelected(listehidenSorts,myPHPtr);
+
+    choiceBox = new QGroupBox("List of sorts");
+    choiceBox->setLayout(groupLayout);
+
+    selectAll=new QRadioButton("All");
+    selectNone=new QRadioButton("None");
+
+    connect(selectAll, SIGNAL(clicked()), this, SLOT(checkAll()));
+    connect(selectNone, SIGNAL(clicked()), this, SLOT(checkNone()));
+
+    checkLayout=new QHBoxLayout;
+    checkLayout->addWidget(selectAll);
+    checkLayout->addWidget(selectNone);
 
     //Buttons
-    Generate = new QPushButton("&Generate");
-    Annuler = new QPushButton("&Cancel");
-    Edit = new QPushButton("&Edit");
 
-    connect(Edit, SIGNAL(clicked()), this, SLOT( hideNonSelected(listehidenSorts,myPHPtr)));
+    Cancel = new QPushButton("&Cancel");
+    Cancel->setFixedWidth(80);
+
+    Next = new QPushButton("&Next");
+    Next->setFixedWidth(80);
+
+    Generate = new QPushButton("&Generate");
+    Generate->setFixedWidth(80);
+
+    connect(Next, SIGNAL(clicked()), this, SLOT(next()));
+    connect(Cancel, SIGNAL(clicked()), this, SLOT(quit()));
+    //ToDO : method generate
+    connect (Generate,SIGNAL(clicked()),this,SLOT(quit()));
 
     btnLayout = new QHBoxLayout;
-    btnLayout->addWidget(Annuler);
-    btnLayout->addWidget(Edit);
+    btnLayout->addWidget(Cancel);
+    btnLayout->addWidget(Next);
     btnLayout->addWidget(Generate);
 
-
     globalLayout = new QVBoxLayout;
-    globalLayout->addLayout(groupLayout);
+    globalLayout->addWidget(choiceBox);
+    globalLayout->addLayout(checkLayout);
     globalLayout->addLayout(btnLayout);
-
 
     this->setLayout(globalLayout);
 
@@ -78,52 +77,79 @@ hideNonSelected(listehidenSorts,myPHPtr);
     setLayout(layoutTotal);
     setWindowTitle("Choice of Sorts");
     setModal(true);
-    resize(500,500);
+    resize(300,300);
 
 }
 
 
-<<<<<<< HEAD
- list<std::string> EditorSettings::getSelectedSorts(){
-
-     list<std::string> vect=new list<std::string> ;
-
-    for(QCheckBox &s : this->tabSorts){
-        if(s.isChecked())
-            vect.push_back(s.accessibleName());
-    }
-    return vect;
-=======
-void EditorSettings::hideNonSelected(QList<QString> listehidenSorts,PHPtr myPHPtr){
-
-    for (QString &n: listehidenSorts){
-        // Hide the QGraphicsItem representing the sort
-        myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::hide();
-
-        // Hide all the actions related to the sort
-        std::vector<GActionPtr> allActions = myPHPtr->getGraphicsScene()->getActions();
-        for (GActionPtr &a: allActions){
-            if (a->getAction()->getSource()->getSort()->getName() == n.toStdString() || a->getAction()->getTarget()->getSort()->getName() == n.toStdString() || a->getAction()->getResult()->getSort()->getName() == n.toStdString()){
+    void EditorSettings::hideNonSelected(){
+        QList<QString> listehidenSorts =getSelectedSorts();
+        for (QString &n: listehidenSorts){
+            // Hide the QGraphicsItem representing the sort
+            myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::hide();
+            // Hide all the actions related to the sort
+            std::vector<GActionPtr> allActions = myPHPtr->getGraphicsScene()->getActions();
+            for (GActionPtr &a: allActions){
+                if (a->getAction()->getSource()->getSort()->getName() == n.toStdString() || a->getAction()->getTarget()->getSort()->getName() == n.toStdString() || a->getAction()->getResult()->getSort()->getName() == n.toStdString()){
                 a->getDisplayItem()->hide();
             }
         }
+      }
+    }
+
+
+    //return a list of selected sorts name
+    QList<QString> EditorSettings::getSelectedSorts(){
+        QList<QString> selectedList;
+        for (QCheckBox *s: listOfSorts){
+            if(s->isChecked()){
+                selectedList.push_back(s->text());
+            }
+    }
+    return selectedList;
+    }
+
+
+
+    void EditorSettings::quit(){
+
+      this->~EditorSettings();
+    }
+
+
+    void EditorSettings::next(){
+
+        QList<QString> selectedList =this->getSelectedSorts();
+           for (QString s: selectedList){
+            std::cout<<s.toStdString()<<std::endl;
+         }
+        hideNonSelected();
+        EditorOptionsWindow = new EditorOptions();
+        EditorOptionsWindow->show();
+
+
+        this->~EditorSettings();
+    }
+
+    void EditorSettings::generate(){
+        this->~EditorSettings();
+    }
+
+    void EditorSettings::checkAll(){
+        std::cout<<"check all"<<std::endl;
+        for (QCheckBox *s: listOfSorts){
+             s->setChecked(true);
         }
->>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
+    }
 
-}
+    void EditorSettings::checkNone(){
 
-
-<<<<<<< HEAD
-    //Detroyer
-    EditorSettings::~EditorSettings(){}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
-=======
+        std::cout<<"check non"<<std::endl;
+        for (QCheckBox *s: listOfSorts){
+             s->setChecked(false);
+        }
+    }
 
     //Detroyer
     EditorSettings::~EditorSettings(){}
 
->>>>>>> 0857aebb2d538ff578b45dffe853d726f07d3120
