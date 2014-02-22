@@ -4,9 +4,15 @@
 #include <QVector>
 #include <QColor>
 #include <Qt>
+#include <QApplication>
+#include <QMenu>
 #include <QVector2D>
 #include "GAction.h"
 #include <QtCore/qmath.h>
+
+#include <QPen>
+#include <QBrush>
+#include <QtGui>
 
 
 GAction::GAction(ActionPtr a, PHScene* sc) : scene(sc), action(a) {
@@ -45,11 +51,14 @@ void GAction::update() {
 	hitLine->setPen(pen);
     }else{
         QPen pen;
-        pen.setWidth(1);
+        if (this->isBold())
+            pen.setWidth(2);
+        else
+            pen.setWidth(1);
         pen.setBrush(Qt::black);
 	hitLine->setPen(pen);
-    }
 
+    }
 }
 
 GAction::GAction(){
@@ -99,8 +108,8 @@ void GAction::initPointsInDetailledModel(){
 
 void GAction::updatePointsInSimpleModel(){
 
-    	GSortPtr sourceSort = scene->getGSort(action->getSource()->getSort()->getName());
-    	GSortPtr targetSort = scene->getGSort(action->getTarget()->getSort()->getName());
+    GSortPtr sourceSort = scene->getGSort(action->getSource()->getSort()->getName());
+    GSortPtr targetSort = scene->getGSort(action->getTarget()->getSort()->getName());
 
 	sourcePoint->setX(sourceSort->getCenterPoint().x());
 	sourcePoint->setY(sourceSort->getCenterPoint().y());	
@@ -253,6 +262,7 @@ bool GAction::isCurvedHit(GSortPtr sourceSort, GSortPtr targetSort, GProcessPtr 
 // Create actions paths
 //Hit Part
 QPainterPath GAction::createHitPath(){
+
     GProcessPtr source = getSource();
     GProcessPtr target = getTarget();
     GProcessPtr result = getResult();
@@ -447,6 +457,47 @@ QPolygonF GAction::makeArrowHead(QPainterPath path) {
     return polygon;
 }
 
+//Verify if this action is in bold
+bool GAction::isBold(){
+    return bold;
+}
+
+//make on bold this action
+void GAction::toBold() {
+    QPen pen;
+    if(this->isBold()){
+        pen.setWidth(1);
+        pen.setBrush(Qt::black);
+        hitLine->setPen(pen);
+        pen.setStyle(Qt::DashLine);
+        boundArc->setPen(pen);
+        this->bold=false;
+    }
+    else{
+        pen.setWidth(2);
+        pen.setBrush(Qt::black);
+        hitLine->setPen(pen);
+        pen.setStyle(Qt::DashLine);
+        boundArc->setPen(pen);
+        bold=true;
+    }
+}
+
+//Color this action
+void GAction::colorAction(QColor color){
+
+    if (!color.isValid()) {
+        return ;
+    } else {
+        QPen pen;
+        pen.setWidth(2);
+        pen.setBrush(QBrush(QColor(color)));
+        hitLine->setPen(pen);
+        pen.setStyle(Qt::DashLine);
+        boundArc->setPen(pen);
+    }
+}
+
 // getters
 
 QGraphicsItem* GAction::getDisplayItem (void) {
@@ -468,3 +519,5 @@ GProcessPtr GAction::getTarget() {
 GProcessPtr GAction::getResult() {
     return action->getResult()->getGProcess();
 }
+
+

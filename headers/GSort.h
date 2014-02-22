@@ -32,7 +32,7 @@ class GSort : public QGraphicsRectItem {
 
 	static const int marginDefault;
 
-        static const int defaultDistance;
+    static const int defaultDistance;
 
         /**
           * @brief constructor
@@ -56,7 +56,7 @@ class GSort : public QGraphicsRectItem {
           * @brief the color used by the Actions that have this Sort as source
           *
           */
-	QColor* color;
+        QColor* color;
 
         /**
           * @brief Handles mouse press event (handles drag start)
@@ -176,7 +176,30 @@ class GSort : public QGraphicsRectItem {
 	  * @return bool value of the vertical attribute
           */
     	bool isVertical();
-		
+        /**
+          * @brief indicates whether or not this GSort is made in bold
+          */
+        bool isBold();
+        /**
+          * @brief change this GSort to bold
+          */
+        void toBold();
+        /**
+          * @brief change the GActions of this Sort to bold
+          */
+        void ActionsToBold();
+        /**
+          * @brief change the GActions color
+          */
+        void ActionsChangeColor();
+        /**
+          * @brief change the process color
+          */
+        void processChangeColor();
+        /**
+          * @brief change the process border color
+          */
+        void processChangeBorderColor();
 	protected:
 
         /**
@@ -213,13 +236,13 @@ class GSort : public QGraphicsRectItem {
           * @brief list of GProcessPtr contained by the sort
           *
           */
-	vector<GProcessPtr> gProcesses;
+    vector<GProcessPtr> gProcesses;
 
         /**
           * @brief the related of the skeletonGraph
           *
           */
-	GVNode node;		
+    GVNode node;
 		
         /**
           * @brief the palette of colors that may be used as color member
@@ -263,6 +286,11 @@ class GSort : public QGraphicsRectItem {
           *
           */
         bool vertical;
+        /**
+          * @brief if the sort is in bold or not
+          *
+          */
+        bool bold;
 
         /**
           * @brief if action related to this sort has to be displayed following the simplified model
@@ -356,5 +384,6 @@ class GSort : public QGraphicsRectItem {
           *
           */
 	void changeOrientationGProcess();
+    void processChangeBold();
 
 };

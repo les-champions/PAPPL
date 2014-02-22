@@ -60,6 +60,7 @@ void GSort::initRectItem(){
 	_rect = new QGraphicsRectItem(QRectF(*leftTopCorner, *sizeRect),this);
     _rect->setPen(QPen(QColor(0,0,0)));
     _rect->setBrush(QBrush(QColor(255,255,255)));
+    bold=false;
 }
 
 void GSort::initTextItem(){
@@ -90,14 +91,60 @@ void GSort::initGProcessChildren(){
 // mouse press event handler: start "drag"
 void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
+    QPen pen;
+    pen.setWidth(5);
+    pen.setBrush(Qt::yellow);
+    _rect->setPen(pen);
+
     // change orientation on right click
     if (event->button() == Qt::RightButton) {
-	/*
-        isRightButtonPressed = true;
-        changeOrientation();
-        dynamic_cast<PHScene*>(scene())->updateActions();
-        event->accept();
-	*/
+        QMenu menu;
+         QAction* switchOrientation = menu.addAction("Switch horizontal/vertical");
+         QAction* switchDisplay = menu.addAction("Switch to detailled/simple display");
+
+         QMenu* editSort = menu.addMenu("Edit sort");
+         QAction* switchSortBold=editSort->addAction("Switch sort to bold/not bold ");
+         QAction* switchSortColor=editSort->addAction("Switch sort color ");
+
+         QMenu* editAction = menu.addMenu("Edit action");
+             QAction* switchActionBold=editAction->addAction("Switch Action to bold/not bold ");
+         QAction* switchActionColor=editAction->addAction("Switch Action color ");
+
+         QMenu* editProcess=menu.addMenu("Edit process");
+             QAction* switchProcessBold=editProcess->addAction("Switch Process to bold/not bold ");
+         QAction* switchProcessColor=editProcess->addAction("Switch Process color ");
+         QAction* switchProcesBordersColor=editProcess->addAction("Switch Process border color ");
+
+         QAction* selectedAction = menu.exec(QCursor::pos());
+
+         if(selectedAction != 0){
+             if(QString::compare(selectedAction->text(),switchOrientation->text())==0){
+                 changeOrientation();
+             }else if(QString::compare(selectedAction->text(),switchDisplay->text())==0){
+                 changeDisplayState();
+             }else if(QString::compare(selectedAction->text(),switchSortColor->text())==0){
+                 changeColor();
+             }
+
+             else if(QString::compare(selectedAction->text(),switchSortBold->text())==0){
+                 toBold();
+             }
+             else if(QString::compare(selectedAction->text(),switchActionBold->text())==0){
+                 ActionsToBold();
+             }
+             else if(QString::compare(selectedAction->text(),switchActionColor->text())==0){
+                 //chooseItem("Action");
+             }
+             else if(QString::compare(selectedAction->text(),switchProcessBold->text())==0){
+                 processChangeBold();
+             }
+         else if(QString::compare(selectedAction->text(),switchProcessColor->text())==0){
+                 processChangeColor();
+             }
+         else if(QString::compare(selectedAction->text(),switchProcesBordersColor->text())==0){
+                 processChangeBorderColor();
+             }
+         }
     }else if (event->button() == Qt::LeftButton) {
 	setCursor(QCursor(Qt::ClosedHandCursor));
 	// record coordinates for drawing item when mouse is moved/released
@@ -105,7 +152,7 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     	initPosPoint.setY(pos().y());
     	eventPressPoint.setX(event->scenePos().x());
     	eventPressPoint.setY(event->scenePos().y());
-    	event->accept();
+        event->accept();
     }
 }
 
@@ -113,6 +160,10 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 // mouse move event handler: process "drag"
 void GSort::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
+    QPen pen;
+    pen.setWidth(5);
+    pen.setBrush(Qt::yellow);
+    _rect->setPen(pen);
     QPointF eventScenePos(event->scenePos());
 
     if (isRightButtonPressed) {
@@ -129,6 +180,7 @@ void GSort::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     eventPressPoint.setY(event->scenePos().y());
 
     event->accept();
+
 }
 
 void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
@@ -144,6 +196,13 @@ void GSort::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     }
 
     event->accept();
+    QPen pen;
+    if(bold)
+        pen.setWidth(5);
+    else
+        pen.setWidth(1);
+    pen.setBrush(Qt::black);
+    _rect->setPen(pen);
 }
 
 void GSort::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
@@ -151,11 +210,13 @@ void GSort::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
     event->accept();
 }
 
+
 // context menu event handler
 void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
     // if other mouse buttons are pressed, do nothing
     if (QApplication::mouseButtons() == Qt::RightButton) {
+
         QMenu menu;
 	QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
 	QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
@@ -266,7 +327,7 @@ bool GSort::isOver(GSort* otherGSort){
 void GSort::changeOrientation(){
 	changeOrientationRect();
 	changeOrientationGProcess();
-	dynamic_cast<PHScene*>(scene())->updateActions();
+    dynamic_cast<PHScene*>(scene())->updateActions();
 }
 
 void GSort::changeColor(){
@@ -371,6 +432,23 @@ void GSort::hide() {
     this->setOpacity(0);
 }
 
+//Make this sort to or not on bold
+void GSort::toBold() {
+        QPen pen;
+    if(this->isBold()){
+        pen.setWidth(1);
+        pen.setBrush(Qt::black);
+        _rect->setPen(pen);
+        bold=false;
+    }
+    else{
+        pen.setWidth(5);
+        pen.setBrush(Qt::black);
+        _rect->setPen(pen);
+        bold=true;
+    }
+}
+
 void GSort::show() {
     this->setOpacity(1);
 }
@@ -381,6 +459,76 @@ bool GSort::isVisible() {
 
 bool GSort::isVertical(){
     return vertical;
+}
+
+bool GSort::isBold(){
+    return bold;
+}
+
+void GSort::ActionsToBold(){
+
+    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+
+     for (GActionPtr &a: allActions){
+        if (a->getAction()->getSource()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getTarget()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getResult()->getSort()->getName() == this->getSort()->getName()){
+         //  if (a->getAction()->getSource()->getSort()->getName() == this->getSort()->getName()){
+            a->toBold();
+        }
+    }
+}
+
+
+void GSort::ActionsChangeColor(){
+
+    // open a color dialog and get the color chosen
+    QColor actionsColor = QColorDialog::getColor();
+    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    if (!actionsColor.isValid()) {
+        return ;
+    } else {
+     for (GActionPtr &a: allActions){
+        if (a->getAction()->getSource()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getTarget()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getResult()->getSort()->getName() == this->getSort()->getName()){
+            a->colorAction(actionsColor);
+        }
+    }
+    }
+}
+
+
+void GSort::processChangeBold(){
+
+     for (GProcessPtr &p: gProcesses){
+         p->toBold();
+    }
+}
+
+
+void GSort::processChangeColor(){
+
+
+    // open a color dialog and get the color chosen
+    QColor actionsColor = QColorDialog::getColor();
+
+    if (!actionsColor.isValid()) {
+        return ;
+    } else {
+     for (GProcessPtr &p: gProcesses){
+         p->colorProcess(actionsColor);
+     }
+    }
+}
+
+void GSort::processChangeBorderColor(){
+    // open a color dialog and get the color chosen
+    QColor actionsColor = QColorDialog::getColor();
+
+    if (!actionsColor.isValid()) {
+        return ;
+    } else {
+     for (GProcessPtr &p: gProcesses){
+            p->colorProcessBorder(actionsColor);
+    }
+    }
 }
 
 // palette managementsizeRect

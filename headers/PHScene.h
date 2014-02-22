@@ -94,6 +94,28 @@ class PHScene: public QGraphicsScene {
           * @param bool activate or not the simplified model
           */
         void setSimpleDisplay(bool onOff);
+        /**
+          * @brief Handles mouse press event (handles drag start)
+          *
+          * @param QGraphicsSceneMouseEvent the event to be handled
+          */
+       void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+
+       /**
+         * @brief change the color of the background
+         *
+         */
+        void BackgroundColor();
+        /**
+          * @brief change the actions in bold
+          *
+          */
+         void ActionsInBold(QPointF);
+         /**
+           * @brief change the color of the action
+           *
+           */
+         void ActionColor(QPointF);
 
 	protected:
 
@@ -102,7 +124,6 @@ class PHScene: public QGraphicsScene {
           *
           */
 		PH* ph;
-
 
         /**
           * @brief map of the Sorts drawn in the scene: the keys are the names of the Sorts
@@ -114,7 +135,7 @@ class PHScene: public QGraphicsScene {
           * @brief vector of the Processes drawn in the scene
           *
           */
-	std::vector<GProcessPtr> processes;
+        std::vector<GProcessPtr> processes;
 
         /**
           * @brief vector of the Actions drawn in the scene

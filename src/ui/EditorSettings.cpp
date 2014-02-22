@@ -25,7 +25,7 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
             listehidenSorts.push_back(QString::fromStdString(s->getName()));
         i++;
     }
-hideNonSelected(listehidenSorts,myPHPtr);
+    hideNonSelected(listehidenSorts,myPHPtr);
 
     //Buttons
     Generate = new QPushButton("&Generate");
@@ -80,6 +80,11 @@ void EditorSettings::hideNonSelected(QList<QString> listehidenSorts,PHPtr myPHPt
         }
         }
 
+/*
+    PHScenePtr scene = myPHPtr->getGraphicsScene();
+    GSortPtr sourceSort = scene->getGSort(action->getSource()->getSort()->getName());
+    GSortPtr targetSort = scene->getGSort(action->getTarget()->getSort()->getName());
+*/
 }
 
 

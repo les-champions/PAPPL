@@ -8,6 +8,12 @@
 #include "Action.h"
 #include "GSort.h"
 
+#include <QtGui/qgraphicswidget.h>
+#include <QColor>
+#include <QSize>
+#include <QPoint>
+#include <vector>
+
 
 /**
   * @file GAction.h
@@ -95,7 +101,18 @@ class GAction {
           * @param GProcessPtr a pointer to the result GProcess item
           */
         GProcessPtr getResult();
-
+        /**
+          * @brief indicates whether or not this action is in bold
+          */
+        bool isBold();
+        /**
+          * @brief change this GAction to bold
+          */
+        void toBold();
+        /**
+          * @brief change this GAction color
+          */
+        void colorAction(QColor);
 	
 	protected:
 	
@@ -115,7 +132,7 @@ class GAction {
           * @brief line representing the first part of the action
           *
           */
-        QGraphicsPathItem* hitLine;
+     QGraphicsPathItem* hitLine;
 
         /**
           * @brief path representing the second part of the action
@@ -148,6 +165,12 @@ class GAction {
           *
           */
         ActionPtr action;
+
+        /**
+          * @brief if the action is in bold or not
+          *
+          */
+        bool bold;
 
         /**
           * @brief the pair of graphical items representing the tails of the arrows of the Action

@@ -95,6 +95,19 @@ class GProcess {
           *
           */
         void setCoordsForImport(int x, int y);
+
+        /**
+          * @brief colorer les process
+          */
+        void colorProcess(QColor);
+        /**
+          * @brief colorer la bordure du process
+          */
+        void colorProcessBorder(QColor color);
+        /**
+          * @brief transform this process to bold
+          */
+        void toBold();
 	
 	protected:
 
@@ -141,6 +154,11 @@ class GProcess {
         QGraphicsRectItem* marginRect;
 
         /**
+          * @brief if this process is bold or not
+          */
+        bool bold;
+
+        /**
           * @brief arbitrarily-chosen key for "margin item" data
           *
           */
@@ -173,6 +191,10 @@ class GProcess {
 	/**
 	  * @brief init the text item
 	  */
-	void initTextItem();
+    void initTextItem();
+    /**
+      * @brief verify if this process is bold
+      */
+    bool isBold();
 
 };

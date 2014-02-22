@@ -48,6 +48,7 @@ void GProcess::initEllipseItem(){
                                         size->width(), size->height(), display);
 	ellipse->setPen(QPen(QColor(0,0,0)));
 	ellipse->setBrush(QBrush(QColor(255,255,255)));
+    bold=false;
 }
 
 void GProcess::initMarginRectItem(){
@@ -74,6 +75,57 @@ void GProcess::initTextItem(){
 
 	QSizeF textSize = text->document()->size();
 	text->setPos(text->x() - textSize.width()/2, text->y() - textSize.height()/2);
+}
+
+//Colorer le process
+void GProcess::colorProcess(QColor color){
+
+    if (!color.isValid()) {
+        return ;
+    } else {
+        QPen pen;
+        if(this->isBold())
+            pen.setWidth(4);
+        else
+            pen.setWidth(2);
+       // pen.setBrush(QBrush(QColor(color)));
+        ellipse->setBrush(QBrush(QColor(color)));
+    }
+}
+
+//Colorer la bordure du process
+void GProcess::colorProcessBorder(QColor color){
+
+    if (!color.isValid()) {
+        return ;
+    } else {
+        QPen pen;
+        pen.setWidth(5);
+        pen.setBrush(QBrush(QColor(color)));
+        ellipse->setPen(pen);
+    }
+}
+
+//Verify if this action is in bold
+bool GProcess::isBold(){
+    return bold;
+}
+
+//make on bold this Process
+void GProcess::toBold() {
+    QPen pen;
+    if(this->isBold()){
+        pen.setWidth(1);
+        pen.setBrush(Qt::black);
+        ellipse->setPen(pen);
+        bold=false;
+    }
+    else{
+        pen.setWidth(4);
+        pen.setBrush(Qt::black);
+        ellipse->setPen(pen);
+        bold=true;
+    }
 }
 
 // Getters

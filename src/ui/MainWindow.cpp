@@ -87,7 +87,6 @@ MainWindow::MainWindow()
     QObject::connect(actionDot, SIGNAL(triggered()), this, SLOT(exportDot()));
     QObject::connect(actionForimport, SIGNAL(triggered()), this, SLOT(importXMLMetadata()));
     QObject::connect(actionExportTikzData,SIGNAL(triggered()),this,SLOT(openEditor()));
-    //QObject::connect(actionExportTikzData, SIGNAL(triggered()), this, SLOT(EditTikzData()));
 
     // actions for the menu Edit
     actionUndo = menuEdit->addAction("Undo");

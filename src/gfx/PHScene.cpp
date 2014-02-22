@@ -9,6 +9,9 @@
 #include "PHScene.h"
 #include <map>
 #include <QDebug>
+#include <QApplication>
+#include <QMenu>
+#include <QtGui>
 
 PHScene::PHScene(PH* _ph) : ph(_ph) {
     // set background color
@@ -84,4 +87,64 @@ void PHScene::setSimpleDisplay(bool onOff){
      }
      updateActions();
 }
+
+// context menu event handler
+void PHScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
+
+    QPointF sorEventPressPoint;
+    bool horsSorte=true;
+    QPointF eventScenePos(event->scenePos());
+
+    // if other mouse buttons are pressed, do nothing
+    if (QApplication::mouseButtons() == Qt::RightButton) {
+        for(auto &s : sorts){
+            sorEventPressPoint = s.second.get()->geteventPressPoint();
+            if(sorEventPressPoint.x() == event->scenePos().x() && sorEventPressPoint.y() == event->scenePos().y()){
+                horsSorte=false;
+               // s.second.get()->contextMenuEvent(event);
+            }
+        }
+        if(horsSorte){
+
+        QMenu menu;
+    QAction* switchBackgroundColor = menu.addAction("color background ");
+    QAction* switchActionsInBold = menu.addAction("action in bold");
+    QAction* switchActionColor = menu.addAction("color action");
+
+    QAction* selectedAction = menu.exec(QCursor::pos());
+    if(selectedAction != 0){
+        if(QString::compare(selectedAction->text(),switchBackgroundColor->text())==0){
+            BackgroundColor();
+        }else if(QString::compare(selectedAction->text(),switchActionsInBold->text())==0){
+           // ActionsInBold(eventScenePos);
+        }else if(QString::compare(selectedAction->text(),switchActionColor->text())==0){
+            //ActionColor(eventScenePos);
+        }
+    }
+    }
+    }
+}
+
+void PHScene::BackgroundColor(){
+    // open a color dialog and get the color chosen
+    QColor color = QColorDialog::getColor();
+
+    if(!color.isValid()){
+       return ;
+    } else {
+       this->setBackgroundBrush(color);
+   }
+
+}
+/*
+void PHScene::ActionsInBold(QPointF ){
+
+
+
+}
+
+void PHScene::ActionColor(QPointF){
+
+}
+*/
 
