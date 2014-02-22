@@ -9,6 +9,8 @@
 #include "GVNode.h"
 #include "GProcess.h"
 
+//#include "ListItems.h"
+
 /**
   * @file GSort.h
   * @brief header for the GSort class
@@ -128,7 +130,7 @@ class GSort : public QGraphicsRectItem {
           * @return GPointF center of the GSort
           *
           */
-	QPointF getCenterPoint();
+        QPointF getCenterPoint();
 
         /**
           * @brief get the size of the ellipse representing the process
@@ -177,7 +179,12 @@ class GSort : public QGraphicsRectItem {
           */
     	bool isVertical();
 		
-	protected:
+        vector<GProcessPtr> getProcess();
+
+    protected:
+
+    //ListItems* ListItemWindow;
+
 
         /**
           * @brief position of the left top corner of the rectangle representing the sort
@@ -356,5 +363,13 @@ class GSort : public QGraphicsRectItem {
           *
           */
 	void changeOrientationGProcess();
+
+    void actionsChoose(QString);
+    void ActionsChangeColor();
+
+    void ProcessChangeColor();
+    void processChoose();
+
+
 
 };

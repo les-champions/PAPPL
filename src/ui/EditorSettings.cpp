@@ -41,21 +41,16 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     Cancel = new QPushButton("&Cancel");
     Cancel->setFixedWidth(80);
 
-    Next = new QPushButton("&Next");
-    Next->setFixedWidth(80);
+    Finish = new QPushButton("&Finish");
+    Finish->setFixedWidth(80);
 
-    Generate = new QPushButton("&Generate");
-    Generate->setFixedWidth(80);
-
-    connect(Next, SIGNAL(clicked()), this, SLOT(next()));
+    //connect slots
     connect(Cancel, SIGNAL(clicked()), this, SLOT(quit()));
-    //ToDO : method generate
-    connect (Generate,SIGNAL(clicked()),this,SLOT(quit()));
+    connect (Finish,SIGNAL(clicked()),this,SLOT(finish()));
 
     btnLayout = new QHBoxLayout;
     btnLayout->addWidget(Cancel);
-    btnLayout->addWidget(Next);
-    btnLayout->addWidget(Generate);
+    btnLayout->addWidget(Finish);
 
     globalLayout = new QVBoxLayout;
     globalLayout->addWidget(choiceBox);
@@ -81,9 +76,8 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 
 }
 
-
     void EditorSettings::hideNonSelected(){
-        QList<QString> listehidenSorts =getSelectedSorts();
+        QList<QString> listehidenSorts =getNonSelectedSorts();
         for (QString &n: listehidenSorts){
             // Hide the QGraphicsItem representing the sort
             myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::hide();
@@ -96,8 +90,6 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
         }
       }
     }
-
-
     //return a list of selected sorts name
     QList<QString> EditorSettings::getSelectedSorts(){
         QList<QString> selectedList;
@@ -109,6 +101,17 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     return selectedList;
     }
 
+    //return a list of non selected sorts name
+    QList<QString> EditorSettings::getNonSelectedSorts(){
+
+        QList<QString> nonSelectedList;
+        for (QCheckBox *s: listOfSorts){
+            if(!-s->isChecked()){
+                nonSelectedList.push_back(s->text());
+            }
+    }
+    return nonSelectedList;
+    }
 
 
     void EditorSettings::quit(){
@@ -116,27 +119,25 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
       this->~EditorSettings();
     }
 
-
-    void EditorSettings::next(){
+    void EditorSettings::finish(){
 
         QList<QString> selectedList =this->getSelectedSorts();
-           for (QString s: selectedList){
-            std::cout<<s.toStdString()<<std::endl;
-         }
-        hideNonSelected();
-        EditorOptionsWindow = new EditorOptions();
-        EditorOptionsWindow->show();
+        bool test=true;
+        if (selectedList.empty()) test=false;
 
+        //if no sort is selected , return a message error
+        if (test==false){
+            QMessageBox::critical(this, "Error", "At least one sort must be selected");
+        }
+        else{
+            hideNonSelected();
+           //ToDo status bar
+            this->~EditorSettings();
+        }
 
-        this->~EditorSettings();
-    }
-
-    void EditorSettings::generate(){
-        this->~EditorSettings();
     }
 
     void EditorSettings::checkAll(){
-        std::cout<<"check all"<<std::endl;
         for (QCheckBox *s: listOfSorts){
              s->setChecked(true);
         }

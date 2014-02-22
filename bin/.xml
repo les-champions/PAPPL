@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph_metadata>
+    <global>
+        <ph_file>
+            <name>metazoan.ph</name>
+            <path>/home/dell/Bureau/PAPPL_ph2TikZ/PAPPL/samples/metazoan.ph</path>
+        </ph_file>
+        <styles>
+            <bg_color>#ffffff</bg_color>
+            <sort_color>#073642</sort_color>
+            <process_color>#EEE8D5</process_color>
+            <text_bg_color>#0A0A0A</text_bg_color>
+            <sort_font></sort_font>
+            <process_font></process_font>
+            <text_font>TypeWriter</text_font>
+        </styles>
+        <scene>
+            <height>744</height>
+            <width>1301</width>
+        </scene>
+    </global>
+    <sorts>
+        <sort name="a" visible="1">
+            <pos x="0" y="0" xcluster="133" ycluster="-264"/>
+            <size w="120" h="240"/>
+            <color>#ffffff</color>
+            <label text="a">
+                <font>Ubuntu,11,-1,5,50,0,0,0,0,0</font>
+                <pos x="" y=""/>
+            </label>
+            <processes nb="2">
+                <process i="0">
+                    <pos x="193" y="-204"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="1">
+                    <pos x="193" y="-84"/>
+                    <size w="" h=""/>
+                </process>
+            </processes>
+        </sort>
+        <sort name="c" visible="1">
+            <pos x="0" y="0" xcluster="114" ycluster="-1224"/>
+            <size w="120" h="240"/>
+            <color>#ffffff</color>
+            <label text="c">
+                <font>Ubuntu,11,-1,5,50,0,0,0,0,0</font>
+                <pos x="" y=""/>
+            </label>
+            <processes nb="2">
+                <process i="0">
+                    <pos x="174" y="-1164"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="1">
+                    <pos x="174" y="-1044"/>
+                    <size w="" h=""/>
+                </process>
+            </processes>
+        </sort>
+        <sort name="f" visible="1">
+            <pos x="0" y="0" xcluster="205" ycluster="-1560"/>
+            <size w="120" h="240"/>
+            <color>#ffffff</color>
+            <label text="f">
+                <font>Ubuntu,11,-1,5,50,0,0,0,0,0</font>
+                <pos x="" y=""/>
+            </label>
+            <processes nb="2">
+                <process i="0">
+                    <pos x="265" y="-1500"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="1">
+                    <pos x="265" y="-1380"/>
+                    <size w="" h=""/>
+                </process>
+            </processes>
+        </sort>
+        <sort name="fc" visible="1">
+            <pos x="0" y="0" xcluster="295" ycluster="-864"/>
+            <size w="120" h="480"/>
+            <color>#ffffff</color>
+            <label text="fc">
+                <font>Ubuntu,11,-1,5,50,0,0,0,0,0</font>
+                <pos x="" y=""/>
+            </label>
+            <processes nb="4">
+                <process i="0">
+                    <pos x="355" y="-804"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="1">
+                    <pos x="355" y="-684"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="2">
+                    <pos x="355" y="-564"/>
+                    <size w="" h=""/>
+                </process>
+                <process i="3">
+                    <pos x="355" y="-444"/>
+                    <size w="" h=""/>
+                </process>
+            </processes>
+        </sort>
+    </sorts>
+    <sort_groups>
+        <debug debug=""/>
+    </sort_groups>
+</graph_metadata>

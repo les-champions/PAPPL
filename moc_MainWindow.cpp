@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MainWindow.h'
 **
-** Created: Fri Feb 21 23:22:26 2014
+** Created: Sat Feb 22 19:20:54 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -117,7 +117,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->hideShowTree(); break;
         case 22: _t->findFixpoints(); break;
         case 23: _t->computeReachability(); break;
-        case 24: _t->EditTikzData(); break;
+        //case 24: _t->EditTikzData(); break;
         case 25: _t->runStochasticSimulation(); break;
         case 26: _t->checkModelType(); break;
         case 27: _t->statistics(); break;

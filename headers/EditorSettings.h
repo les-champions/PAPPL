@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 #include "GAction.h"
-#include "EditorOptions.h"
+
 
 
 class EditorSettings : public QDialog
@@ -20,6 +20,7 @@ public:
     PHPtr myPHPtr;
     //get the list of selected sort name
     QList<QString> getSelectedSorts();
+    QList<QString> getNonSelectedSorts();
 
 private:
     QList <QCheckBox*> listOfSorts;
@@ -44,9 +45,8 @@ private:
     QHBoxLayout *checkLayout;
 
     //button
-    QPushButton *Generate;
+    QPushButton *Finish;
     QPushButton *Cancel;
-    QPushButton *Next;
 
     //scroll
     QScrollArea *area;
@@ -57,13 +57,10 @@ private slots:
 
     void checkAll();
     void checkNone();
-    void next();
-    void quit();
-    //ToDo : implement
-    void generate();
 
-protected:
-    EditorOptions* EditorOptionsWindow;
+    void quit();
+    void finish();
+
 
 };
 

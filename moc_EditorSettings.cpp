@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'EditorSettings.h'
 **
-** Created: Fri Feb 21 23:22:31 2014
+** Created: Sat Feb 22 19:21:01 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_EditorSettings[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,14 +35,13 @@ static const uint qt_meta_data_EditorSettings[] = {
       27,   15,   15,   15, 0x08,
       39,   15,   15,   15, 0x08,
       46,   15,   15,   15, 0x08,
-      53,   15,   15,   15, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_EditorSettings[] = {
     "EditorSettings\0\0checkAll()\0checkNone()\0"
-    "next()\0quit()\0generate()\0"
+    "quit()\0finish()\0"
 };
 
 void EditorSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -53,9 +52,8 @@ void EditorSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->checkAll(); break;
         case 1: _t->checkNone(); break;
-        case 2: _t->next(); break;
-        case 3: _t->quit(); break;
-        case 4: _t->generate(); break;
+        case 2: _t->quit(); break;
+        case 3: _t->finish(); break;
         default: ;
         }
     }
@@ -94,9 +92,9 @@ int EditorSettings::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 4;
     }
     return _id;
 }

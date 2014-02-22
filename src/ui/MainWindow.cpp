@@ -137,6 +137,7 @@ MainWindow::MainWindow()
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
     actionPrintStyle = menuDefaultStyles->addAction("Print");    
 
+
     //connect to the menu Styles
     QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
     QObject::connect(actionSortColor, SIGNAL(triggered()), this, SLOT(changeSortColor()));
@@ -203,7 +204,7 @@ MainWindow::MainWindow()
         this->actionDot->setEnabled(false);
         this->actionExportXMLData->setEnabled(false);
         //toDo "false"
-        this->actionExportTikzData->setEnabled(true);
+        this->actionExportTikzData->setEnabled(false);
         this->actionForimport->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
@@ -1161,18 +1162,6 @@ void MainWindow::findFixpoints() {
     this->compute(program, arguments, fileName);
 }
 
-void MainWindow::EditTikzData(){
-/*
-    //ask the user the state which is tested
-    bool ok = false;
-    QString state = QInputDialog::getText(this, "editor", "Which sorts do you want to edit ?", QLineEdit::Normal, QString(), &ok);
-
-    //Button Generate and Cancel
-    bool ok = false;
-    BtnCancel = new QPushButton("&Cancel");
-    */
-
-}
 
 void MainWindow::computeReachability() {
 
@@ -1295,13 +1284,13 @@ void MainWindow::openConnection(){
 
 //open Editor window
 void MainWindow::openEditor(){
+
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the treeArea (left) part and call the method associated to search a sort
     view->treeArea->searchSort();
     EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
     EditorSettingsWindow->show();
-
 }
 
 void MainWindow::openConnectionForm(){
@@ -1329,8 +1318,7 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
         this->actionExportXMLData->setEnabled(false);
-        //change to false after that
-        this->actionExportTikzData->setEnabled(true);
+        this->actionExportTikzData->setEnabled(false);
         this->actionForimport->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomIn->setEnabled(false);

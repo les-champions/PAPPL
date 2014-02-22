@@ -15,7 +15,6 @@
 #include <QtGui>
 #include "GSort.h"
 
-
 const int GSort::marginDefault = 10;
 const int GSort::defaultDistance = 25;
 
@@ -156,12 +155,21 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
     // if other mouse buttons are pressed, do nothing
     if (QApplication::mouseButtons() == Qt::RightButton) {
-        QMenu menu;
-	QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
-	QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
+
+    QMenu menu;
+    QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
+    QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
     QAction* switchColor = menu.addAction("switch sort color");
 
-	QAction* selectedAction = menu.exec(QCursor::pos());
+    QMenu* switchActionColor = menu.addMenu("switch action color");
+    QAction* switchAllActions=switchActionColor->addAction("apply to all actions");
+    QAction* chooseActions=switchActionColor->addAction("choose actions");
+
+    QMenu* switchProcessColor=menu.addMenu("switch  process color");
+    QAction* switchAllProcess=switchProcessColor->addAction("apply to all process");
+    QAction* chooseProcess=switchProcessColor->addAction("choose process");
+
+    QAction* selectedAction = menu.exec(QCursor::pos());
 
 	if(selectedAction != 0){
 		if(QString::compare(selectedAction->text(),switchOrientation->text())==0){
@@ -170,6 +178,19 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 			changeDisplayState();
         }else if(QString::compare(selectedAction->text(),switchColor->text())==0){
             changeColor();
+        }
+
+        else if(QString::compare(selectedAction->text(),switchAllActions->text())==0){
+            ActionsChangeColor();
+        }
+        else if(QString::compare(selectedAction->text(),chooseActions->text())==0){
+            actionsChoose("Action");
+        }
+        else if(QString::compare(selectedAction->text(),switchAllProcess->text())==0){
+            ProcessChangeColor();
+        }
+        else if(QString::compare(selectedAction->text(),chooseProcess->text())==0){
+            processChoose();
         }
 	}	
     }
@@ -194,6 +215,9 @@ QPointF GSort::getCenterPoint() {
 }
 
 QSize* GSort::getSizeRect() { return this->sizeRect;}
+
+vector<GProcessPtr> GSort:: getProcess(){return this->gProcesses;}
+
 
 bool GSort::getSimpleDisplay(){ return this->simpleDisplay; }
 
@@ -269,6 +293,89 @@ void GSort::changeOrientation(){
 	dynamic_cast<PHScene*>(scene())->updateActions();
 }
 
+void GSort::actionsChoose(QString b){
+
+    // OpenFile dialog
+    QDialog* ch = new QDialog();
+    QGroupBox* choiceBox;
+    QVBoxLayout *groupLayout;
+     QList <QCheckBox*> listOfItems;
+    if(QString::compare(b,"Process")==0){
+
+         for(GProcessPtr &i : gProcesses){
+            QCheckBox* itemName = new QCheckBox(QString::fromStdString(i.getProcess().getNumber()));
+            // Insert the item at the end of the layout: sorts
+            groupLayout->addWidget(itemName);
+            listOfItems.push_back(itemName);
+        }
+
+         choiceBox = new QGroupBox("List of Process");
+    }
+    else{
+        //ToDo
+        // list <ActionPtr> allItems = ;
+
+        //        for(ActionPtr &i : allItems){
+        //            itemName = new QCheckBox(QString::fromStdString(i->getName()));
+        //            // Insert the item at the end of the layout: sorts
+        //            groupLayout->addWidget(itemName);
+        //            listOfSorts.push_back(itemName);
+        //        }
+       choiceBox = new QGroupBox("List of Actions");
+
+    }
+
+
+    //Buttons
+
+    QPushButton* Cancel = new QPushButton("&Cancel");
+    Cancel->setFixedWidth(80);
+
+    QPushButton*Color = new QPushButton("&Color");
+    Color->setFixedWidth(80);
+
+    //connect slots
+//    connect(Cancel, SIGNAL(clicked()), this, SLOT(quit()));
+//    connect (Color,SIGNAL(clicked()),this,SLOT(color()));
+
+    QHBoxLayout* btnLayout = new QHBoxLayout;
+    btnLayout->addWidget(Color);
+    btnLayout->addWidget(Cancel);
+
+    QVBoxLayout* globalLayout = new QVBoxLayout;
+    globalLayout->addWidget(choiceBox);
+    globalLayout->addLayout(btnLayout);
+
+//    this->setLayout(globalLayout);
+
+    //ajout du scroll
+    QWidget* widget = new QWidget;
+    widget->setLayout(globalLayout);
+    QScrollArea* area = new QScrollArea;
+    area->setWidget(widget);
+    area->setWidgetResizable(true);
+
+    QVBoxLayout* layoutTotal = new QVBoxLayout;
+    layoutTotal->addWidget(area);
+
+    ch->setLayout(layoutTotal);
+    ch->setWindowTitle("Choice of items");
+    ch->setModal(true);
+    ch->resize(300,300);
+    ch->show();
+}
+
+void GSort::processChoose(){
+
+}
+
+void GSort::ProcessChangeColor(){
+
+}
+void GSort::ActionsChangeColor(){
+
+}
+
 void GSort::changeColor(){
     // open a color dialog and get the color chosen
     QColor color = QColorDialog::getColor();
@@ -282,6 +389,7 @@ void GSort::changeColor(){
     }
 
 }
+
 
 void GSort::changeOrientationRect(){
     qreal topLeftX=0;
