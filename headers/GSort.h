@@ -160,6 +160,7 @@ class GSort : public QGraphicsRectItem {
           */
         void hide();
 
+        void actionsHide();
         /**
           * @brief show the GSort setting full opacity
           */

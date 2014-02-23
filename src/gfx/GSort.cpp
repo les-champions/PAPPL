@@ -96,22 +96,24 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     pen.setBrush(Qt::yellow);
     _rect->setPen(pen);
 
+    bool test=true;
     // change orientation on right click
     if (event->button() == Qt::RightButton) {
         QMenu menu;
-         QAction* switchOrientation = menu.addAction("Switch horizontal/vertical");
-         QAction* switchDisplay = menu.addAction("Switch to detailled/simple display");
 
          QMenu* editSort = menu.addMenu("Edit sort");
+         QAction* switchOrientation = editSort->addAction("Switch horizontal/vertical");
+         QAction* switchDisplay = editSort->addAction("Switch to detailled/simple display");
          QAction* switchSortBold=editSort->addAction("Switch sort to bold/not bold ");
          QAction* switchSortColor=editSort->addAction("Switch sort color ");
+         QAction* hideSort=editSort->addAction("Hide sort ");
 
          QMenu* editAction = menu.addMenu("Edit action");
-             QAction* switchActionBold=editAction->addAction("Switch Action to bold/not bold ");
+         QAction* switchActionBold=editAction->addAction("Switch Action to bold/not bold ");
          QAction* switchActionColor=editAction->addAction("Switch Action color ");
 
          QMenu* editProcess=menu.addMenu("Edit process");
-             QAction* switchProcessBold=editProcess->addAction("Switch Process to bold/not bold ");
+         QAction* switchProcessBold=editProcess->addAction("Switch Process to bold/not bold ");
          QAction* switchProcessColor=editProcess->addAction("Switch Process color ");
          QAction* switchProcesBordersColor=editProcess->addAction("Switch Process border color ");
 
@@ -128,6 +130,7 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
              else if(QString::compare(selectedAction->text(),switchSortBold->text())==0){
                  toBold();
+                 test=false;
              }
              else if(QString::compare(selectedAction->text(),switchActionBold->text())==0){
                  ActionsToBold();
@@ -141,9 +144,19 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
          else if(QString::compare(selectedAction->text(),switchProcessColor->text())==0){
                  processChangeColor();
              }
+         else if(QString::compare(selectedAction->text(),hideSort->text())==0){
+                 this->actionsHide();
+             }
          else if(QString::compare(selectedAction->text(),switchProcesBordersColor->text())==0){
                  processChangeBorderColor();
              }
+             if(test){
+                 QPen pen;
+                 pen.setWidth(1);
+                 pen.setBrush(Qt::black);
+                 _rect->setPen(pen);
+             }
+
          }
     }else if (event->button() == Qt::LeftButton) {
 	setCursor(QCursor(Qt::ClosedHandCursor));
@@ -214,6 +227,7 @@ void GSort::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
 // context menu event handler
 void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
+    /*
     // if other mouse buttons are pressed, do nothing
     if (QApplication::mouseButtons() == Qt::RightButton) {
 
@@ -233,7 +247,7 @@ void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
             changeColor();
         }
 	}	
-    }
+    }*/
 }
 
 // getters
@@ -266,6 +280,7 @@ void GSort::setSimpleDisplay(bool isSimpleDisplay){
 }
 
 void GSort::changeDisplayState(){
+
     if(simpleDisplay){
     	simpleDisplay = false;
         _rect->setBrush(QBrush(QColor(255,255,255)));
@@ -428,6 +443,19 @@ void GSort::changeOrientationGProcess(){
     }
 }
 
+void GSort::actionsHide(){
+
+    this->hide();
+    std::string n = this->getSort()->getName();
+    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    for (GActionPtr &a: allActions){
+            if (a->getAction()->getSource()->getSort()->getName() == n || a->getAction()->getTarget()->getSort()->getName() == n || a->getAction()->getResult()->getSort()->getName() == n){
+            a->getDisplayItem()->hide();
+        }
+    }
+  }
+
+
 void GSort::hide() {
     this->setOpacity(0);
 }
@@ -527,7 +555,7 @@ void GSort::processChangeBorderColor(){
     } else {
      for (GProcessPtr &p: gProcesses){
             p->colorProcessBorder(actionsColor);
-    }
+     }
     }
 }
 

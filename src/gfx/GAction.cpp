@@ -45,7 +45,7 @@ void GAction::update() {
     boundArc->setPath(createBoundPath());
     hitLine->setPath(createHitPath());
     if((targetPoint->x()==resultPoint->x())&&(targetPoint->y()==resultPoint->y())) {
-	QPen pen;
+    QPen pen;
         pen.setWidth(2);
         pen.setBrush(Qt::red);
 	hitLine->setPen(pen);
@@ -56,8 +56,7 @@ void GAction::update() {
         else
             pen.setWidth(1);
         pen.setBrush(Qt::black);
-	hitLine->setPen(pen);
-
+        hitLine->setPen(pen);
     }
 }
 

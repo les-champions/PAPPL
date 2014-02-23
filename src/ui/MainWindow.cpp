@@ -127,7 +127,6 @@ MainWindow::MainWindow()
     actionHide->setEnabled(false);
     actionDisplayDetailed->setEnabled(false);
 
-
     //actions for the menu Styles
     actionBackgroundColor = menuStyles->addAction("Set background color");
     actionSortColor = menuStyles->addAction("Set sorts color");
@@ -142,7 +141,6 @@ MainWindow::MainWindow()
     QObject::connect(actionNaturalStyle, SIGNAL(triggered()), this, SLOT(positiveContrast()));
     QObject::connect(actionNegativeStyle, SIGNAL(triggered()), this, SLOT(negativeContrast()));
     QObject::connect(actionPrintStyle, SIGNAL(triggered()), this, SLOT(printStyle()));
-
 
     //actions for the menu Workspace
     actionHideShowText = menuWindow->addAction("Hide / Show Text");
@@ -166,7 +164,7 @@ MainWindow::MainWindow()
     actionConnection = menuComputation->addAction("Launch a function...");
     actionNewConnection = menuComputation->addAction("Create a new function...");
 
-            // disable what does not work well
+    // disable what does not work well
     actionCheckModelType->setEnabled(false);
 
     // connect the menu Computation
@@ -179,7 +177,7 @@ MainWindow::MainWindow()
     QObject::connect(actionNewConnection, SIGNAL(triggered()), this, SLOT(openConnection()));
     //QObject::connect(menuComputation, SIGNAL(hovered(QAction*)), this, SLOT(openConnection()));
 
-    actionConnection->setShortcut(    QKeySequence(Qt::CTRL + Qt::Key_C));
+    actionConnection->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_C));
 
     // action for the menu Help
     actionHelp = menuHelp->addAction("Help !");
@@ -201,16 +199,15 @@ MainWindow::MainWindow()
         this->actionPng->setEnabled(false);
         this->actionDot->setEnabled(false);
         this->actionExportXMLData->setEnabled(false);
-        //toDo "false"
-        this->actionExportTikzData->setEnabled(true);
+        this->actionExportTikzData->setEnabled(false);
         this->actionForimport->setEnabled(false);
         this->actionAdjust->setEnabled(false);
         this->actionZoomOut->setEnabled(false);
         this->actionZoomIn->setEnabled(false);
-	this->actionSimplifiedModel->setEnabled(false);
-	this->actionDetailledModel->setEnabled(false);
-	this->actionSimplifiedModel->setEnabled(false);
-	this->actionDetailledModel->setEnabled(false);
+        this->actionSimplifiedModel->setEnabled(false);
+        this->actionDetailledModel->setEnabled(false);
+//	this->actionSimplifiedModel->setEnabled(false);
+//	this->actionDetailledModel->setEnabled(false);
         this->actionBackgroundColor->setEnabled(false);
         this->actionSortColor->setEnabled(false);
         this->actionNaturalStyle->setEnabled(false);

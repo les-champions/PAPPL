@@ -12,7 +12,6 @@ ProcessPtr Action::getSource() { return source; }
 ProcessPtr Action::getTarget() { return target; }
 ProcessPtr Action::getResult() { return result; }
 
-
 // output for DOT file
 string Action::toDotString (void) {
 	string res;
