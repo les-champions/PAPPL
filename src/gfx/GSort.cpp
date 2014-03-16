@@ -456,6 +456,20 @@ void GSort::actionsHide(){
   }
 
 
+
+
+void GSort::actionsShow(){
+
+    this->show();
+    std::string n = this->getSort()->getName();
+    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    for (GActionPtr &a: allActions){
+            if (!(a->getAction()->getSource()->getSort()->getName() == n || a->getAction()->getTarget()->getSort()->getName() == n || a->getAction()->getResult()->getSort()->getName() == n)){
+            a->getDisplayItem()->show();
+        }
+    }
+  }
+
 void GSort::hide() {
     this->setOpacity(0);
 }

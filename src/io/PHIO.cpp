@@ -13,12 +13,14 @@
 #include <Qt>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
+#include <QTextStream>
+#include<math.h>
 #include "axe.h"
 #include "Exceptions.h"
 #include "IO.h"
 #include "PHIO.h"
 #include "Area.h"
-
+#include<utility>
 
 using boost::make_shared;
 using std::string;
@@ -326,5 +328,159 @@ void PHIO::exportXMLMetadata(MainWindow *window, QFile &output){
     stream.writeEndDocument();
 }
 
+void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
+
+    QTextStream t(&output);
+    t.setCodec("UTF-8");
+
+    t << "\\documentclass{article}\n";
+    t << "\\usepackage[french]{babel}\n";
+    t << "\\usepackage[utf8]{inputenc}\n";
+    t << "\\usepackage[T1]{fontenc}\n";
+    t << "\\usepackage{amsmath}  % Maths\n";
+    t << "\\usepackage{amsfonts} % Maths\n";
+    t << "\\usepackage{amssymb}  % Maths\n";
+    t << "\\usepackage{tikz}\n";
+    t << "\\usetikzlibrary{arrows,shapes,shadows,scopes}\n";
+    t << "\\usetikzlibrary{positioning}\n";
+    t << "\\usetikzlibrary{matrix}\n";
+    t << "\\usetikzlibrary{decorations.text}\n";
+    t << "\\usetikzlibrary{decorations.pathmorphing}\n";
+    t << "\\input{macros-ph}  \n";
+    t << "\\begin{document}\n";
+    t << "\\begin{figure}[p]\n";
+    t << "\\begin{center}\n";
+    t << "\\begin{tikzpicture}\n";
+
+    list<SortPtr> allSorts = ph->getSorts();
+    list <pair <int, int> > txy;
+
+    int pnumS;
+    int pnumT;
+    int pnumB;
+
+    string snameS;
+    string snameT;
+
+    string n;
+    int nb=0;
+    float x;
+    float y;
+
+    pair<int,int> o;
+    for(SortPtr &s : allSorts){
+        if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+
+            x=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x();
+            y=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y();
+            o= std::make_pair(x,y);
+            txy.push_back(o);
+        }
+    }
 
 
+    pair<int,int> origin=findOrigin(txy);
+
+    for(SortPtr &s : allSorts){
+        if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+
+            n=s->getName();
+            nb=s->countProcesses();
+
+            x=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x()-origin.first)/100;
+            y=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y()-origin.second)/-100;
+
+            t <<  "   \\TSort{("<<x<<","<<y<<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{l}\n";
+    }
+  }
+
+    std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
+
+    for (GActionPtr &a: allActions){
+
+        snameS=a->getAction()->getSource()->getSort()->getName();
+        snameT=a->getAction()->getTarget()->getSort()->getName();
+        if(ph->getGraphicsScene()->getGSort(snameS)->isVisible()&&ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
+        pnumS=a->getAction()->getSource()->getNumber();
+        pnumT=a->getAction()->getTarget()->getNumber();
+        pnumB=a->getAction()->getResult()->getNumber();
+        t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<<pnumS<<"}{bend right}{"<<QString::fromStdString(snameT)<<"_"<<pnumT<<"}{.west}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
+        t <<  "    \\path[bounce, bend left] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{.south west};\n";
+        }
+  }
+
+
+//    t<<  "     \\THit{a_1}{}{c_0}{.east}{c_1}\n";
+
+//    t <<  "   \\path[bounce, bend right] \\TBounce{c_0}{}{c_1}{.south east};\n";
+//    t<<  "   \\TState{a_1,b_0,c_1,c_0}\n";
+
+
+
+
+    t << "\\end{tikzpicture}\n";
+    t << "\\end{center}\n";
+    t << "\\caption{Exemple de schema Process Hitting simple}\n";
+    t << "\\end{figure}\n";
+    t << "\\end{document}";
+
+}
+
+
+
+pair<int,int>PHIO::findOrigin( list <pair <int, int> > txy){
+
+    pair<int,int> origin;
+    pair<int,int> good;
+    int moyx=0;
+    int moyy=0;
+    int S2=0;
+    int S1=0;
+    int Vx;
+    int Vy;
+
+
+
+     for(pair<int,int> &i : txy){
+         moyx=moyx+i.first;
+         S2 = S2+i.first*i.first;
+         moyy=moyy+i.second;
+         S1=S1+i.second*i.second;
+     }
+
+     moyx=(int)moyx/txy.size();
+     moyy=(int)moyy/txy.size();
+
+     Vx = S2/txy.size()-moyx*moyx;
+     Vy = S1/txy.size()-moyy*moyy;
+
+
+     if(Vx<Vy){
+         pair<int,int> min=txy.front();
+
+         int dmin=fabs(min.first-moyx);
+         origin=std::make_pair(min.first,min.second);
+
+         for(pair<int,int> &i : txy ){
+             if (dmin<fabs(i.first-moyx)){
+                 origin= std::make_pair(i.first,i.second);
+                 dmin=fabs(i.first-moyx);
+             }
+         }
+     }else{
+         pair<int,int> min=txy.front();
+
+         int dmin=fabs(min.second-moyy);
+         origin=std::make_pair(min.first,min.second);
+
+         for(pair<int,int> &i : txy ){
+             if (dmin<fabs(i.second-moyy)){
+                 origin= std::make_pair(i.first,i.second);
+                 dmin=fabs(i.second-moyy);
+             }
+         }
+     }
+//good=std::make_pair(moyx,moyy);
+    return origin;
+
+}

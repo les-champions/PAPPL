@@ -88,6 +88,7 @@ MainWindow::MainWindow()
     QObject::connect(actionForimport, SIGNAL(triggered()), this, SLOT(importXMLMetadata()));
     QObject::connect(actionExportTikzData,SIGNAL(triggered()),this,SLOT(openEditor()));
 
+
     // actions for the menu Edit
     actionUndo = menuEdit->addAction("Undo");
     actionRedo = menuEdit->addAction("Redo");
@@ -474,6 +475,7 @@ void MainWindow::exportDot() {
 
 }
 
+
 // method to export style and layout data to XML format
 void MainWindow::exportXMLMetadata(){
 
@@ -501,6 +503,7 @@ void MainWindow::exportXMLMetadata(){
 
 }
 
+
 // method to import style and layout from XML format
 void MainWindow::importXMLMetadata(QString tempXML){
 
@@ -519,7 +522,6 @@ void MainWindow::importXMLMetadata(QString tempXML){
         }
 
         QFile input(xmlfile);
-
         QXmlStreamReader stream(&input) ;
         Area* area = (Area*)this->getCentraleArea()->currentSubWindow()->widget();
         MyArea* myarea = ((Area*)this->getCentraleArea()->currentSubWindow()->widget())->myArea;

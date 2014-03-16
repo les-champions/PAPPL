@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'EditorSettings.h'
 **
-** Created: Sun Feb 23 01:10:19 2014
-**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
+** Created: Sat Mar 15 21:07:55 2014
+**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'EditorSettings.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.1. It"
+#error "This file was generated using the moc from 4.8.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -23,7 +23,7 @@ static const uint qt_meta_data_EditorSettings[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,13 +35,14 @@ static const uint qt_meta_data_EditorSettings[] = {
       27,   15,   15,   15, 0x08,
       39,   15,   15,   15, 0x08,
       46,   15,   15,   15, 0x08,
+      61,   15,   15,   15, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_EditorSettings[] = {
     "EditorSettings\0\0checkAll()\0checkNone()\0"
-    "quit()\0finish()\0"
+    "back()\0generateTikz()\0quit()\0"
 };
 
 void EditorSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -52,8 +53,9 @@ void EditorSettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->checkAll(); break;
         case 1: _t->checkNone(); break;
-        case 2: _t->quit(); break;
-        case 3: _t->finish(); break;
+        case 2: _t->back(); break;
+        case 3: _t->generateTikz(); break;
+        case 4: _t->quit(); break;
         default: ;
         }
     }
@@ -92,9 +94,9 @@ int EditorSettings::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

@@ -4,8 +4,7 @@
 #include "PHIO.h"
 #include <QtGui>
 #include "Area.h"
-#include "PH.h"
-#include "PHIO.h"
+
 
 EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 {
@@ -17,10 +16,13 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     list<SortPtr> allSorts = myPHPtr->getSorts();
 
     for(SortPtr &s : allSorts){
+
        sort_Name = new QCheckBox(QString::fromStdString(s->getName()));
         // Insert the item at the end of the layout: sorts
         groupLayout->addWidget(sort_Name);
         listOfSorts.push_back(sort_Name);
+        if(myPHPtr->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible())
+            sort_Name->setChecked(true);
     }
 
     choiceBox = new QGroupBox("List of sorts");
@@ -37,20 +39,24 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     checkLayout->addWidget(selectNone);
 
     //Buttons
+    Generate = new QPushButton("&Generate");
+    Generate->setFixedWidth(80);
 
-    Cancel = new QPushButton("&Cancel");
-    Cancel->setFixedWidth(80);
+    Show = new QPushButton("&Show");
+    Show->setFixedWidth(80);
 
-    Finish = new QPushButton("&Finish");
-    Finish->setFixedWidth(80);
+    Exit = new QPushButton("&Exit");
+    Exit->setFixedWidth(80);
 
     //connect slots
-    connect(Cancel, SIGNAL(clicked()), this, SLOT(quit()));
-    connect (Finish,SIGNAL(clicked()),this,SLOT(finish()));
+    connect(Show, SIGNAL(clicked()), this, SLOT(back()));
+    connect(Generate,SIGNAL(clicked()),this,SLOT(generateTikz()));
+    connect(Exit,SIGNAL(clicked()),this,SLOT(quit()));
 
     btnLayout = new QHBoxLayout;
-    btnLayout->addWidget(Cancel);
-    btnLayout->addWidget(Finish);
+    btnLayout->addWidget(Show);
+    btnLayout->addWidget(Generate);
+    btnLayout->addWidget(Exit);
 
     globalLayout = new QVBoxLayout;
     globalLayout->addWidget(choiceBox);
@@ -76,20 +82,32 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
 
 }
 
-    void EditorSettings::hideNonSelected(){
+    void EditorSettings::quit(){
+
+        this->~EditorSettings();
+    }
+
+    void EditorSettings::back(){
         QList<QString> listehidenSorts =getNonSelectedSorts();
+        QList<QString> listeShownSorts =getSelectedSorts();
+
+        for (QString &n: listeShownSorts){
+
+            // show the QGraphicsItem representing the sort
+            myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::show();
+            myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::actionsShow();
+      }
+
         for (QString &n: listehidenSorts){
+
             // Hide the QGraphicsItem representing the sort
             myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::hide();
-            // Hide all the actions related to the sort
-            std::vector<GActionPtr> allActions = myPHPtr->getGraphicsScene()->getActions();
-            for (GActionPtr &a: allActions){
-                if (a->getAction()->getSource()->getSort()->getName() == n.toStdString() || a->getAction()->getTarget()->getSort()->getName() == n.toStdString() || a->getAction()->getResult()->getSort()->getName() == n.toStdString()){
-                a->getDisplayItem()->hide();
-            }
-        }
+            myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::actionsHide();
       }
+
+
     }
+
     //return a list of selected sorts name
     QList<QString> EditorSettings::getSelectedSorts(){
         QList<QString> selectedList;
@@ -114,34 +132,29 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     }
 
 
-    void EditorSettings::quit(){
+//    void EditorSettings::finish(){
 
-      this->~EditorSettings();
-    }
+//        QList<QString> selectedList =this->getSelectedSorts();
+//        bool test=true;
+//        if (selectedList.empty()) test=false;
 
-    void EditorSettings::finish(){
+//        //if no sort is selected , return a message error
+//        if (test==false){
+//            QMessageBox::critical(this, "Error", "At least one sort must be selected");
+//        }
+//        else{
+//                QDialog* mb = new QDialog();
+//                //Display loading window
+//                mb->setWindowTitle("Please wait...");
+//                mb->resize(300,150);
+//                mb->show();
+//                hideNonSelected();
 
-        QList<QString> selectedList =this->getSelectedSorts();
-        bool test=true;
-        if (selectedList.empty()) test=false;
+//             sleep(2);
+//             this->~EditorSettings();
+//        }
 
-        //if no sort is selected , return a message error
-        if (test==false){
-            QMessageBox::critical(this, "Error", "At least one sort must be selected");
-        }
-        else{
-                QDialog* mb = new QDialog();
-                //Display loading window
-                mb->setWindowTitle("Please wait...");
-                mb->resize(300,150);
-                mb->show();
-                hideNonSelected();
-
-             sleep(2);
-             this->~EditorSettings();
-        }
-
-    }
+//    }
 
     void EditorSettings::checkAll(){
         for (QCheckBox *s: listOfSorts){
@@ -152,9 +165,40 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     void EditorSettings::checkNone(){
 
         std::cout<<"check non"<<std::endl;
+
         for (QCheckBox *s: listOfSorts){
              s->setChecked(false);
         }
+    }
+
+
+    // method to export style and layout data to Tikz format
+    void EditorSettings::generateTikz(){
+
+        QList<QString> selectedList =this->getSelectedSorts();
+
+        if(!selectedList.empty()){
+        back();
+                // SaveFile dialog
+                QString tikzFile = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.tex");
+
+                // add .dot to the name if necessary
+                if (tikzFile.indexOf(QString(".tex"), 0, Qt::CaseInsensitive) < 0){
+                   tikzFile += ".tex";
+                }
+
+                // open file if possible and write Tikz into it
+                QFile output(tikzFile);
+                if (!output.open(QIODevice::WriteOnly)){
+                    QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
+                    output.errorString();
+                    return;
+                } else {
+                    PHIO::exportTikzMetadata(myPHPtr,output);
+                }
+
+            } else QMessageBox::critical(this, "Error", "No file opened!");
+
     }
 
     //Detroyer

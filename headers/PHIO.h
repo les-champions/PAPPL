@@ -61,6 +61,7 @@ class PHIO {
           */
         static void exportXMLMetadata(MainWindow *window, QFile &output);
 
+        static void exportTikzMetadata(PHPtr ph, QFile &output);
 	
 	private:
 		PHIO(){}
@@ -73,4 +74,8 @@ class PHIO {
           */
         static PHPtr parse (string const& input);
 
+        /**
+         *Function
+         */
+        static pair<int,int> findOrigin( list <pair <int, int> > txy);
 };

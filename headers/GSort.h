@@ -166,6 +166,8 @@ class GSort : public QGraphicsRectItem {
           */
         void show();
 
+        void actionsShow();
+
         /**
           * @brief indicates whether or not this GSort is made visible (test based on opacity, cf. hide() and show())
           */

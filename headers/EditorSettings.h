@@ -45,22 +45,20 @@ private:
     QHBoxLayout *checkLayout;
 
     //button
-    QPushButton *Finish;
-    QPushButton *Cancel;
-
+    QPushButton *Show;
+    QPushButton *Generate;
+    QPushButton *Exit;
     //scroll
     QScrollArea *area;
-
-    void hideNonSelected();
 
 private slots:
 
     void checkAll();
     void checkNone();
 
+    void back();
+    void generateTikz();
     void quit();
-    void finish();
-
 };
 
 #endif // EDITORSETTINGS_H
