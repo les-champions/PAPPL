@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.27)  17 MAR 2014 17:19
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.27)  18 MAR 2014 23:28
 entering extended mode
  %&-line parsing enabled.
 **01.tex
@@ -769,22 +769,12 @@ ABD: EveryShipout initializing macros
 \MPscratchDim=\dimen169
 \MPnumerator=\count128
 \everyMPtoPDFconversion=\toks32
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./01.aux) ) 
-Here is how much of TeX's memory you used:
- 13965 strings out of 495061
- 280658 string characters out of 1182621
- 349293 words of memory out of 3000000
- 16858 multiletter control sequences out of 15000+50000
- 5840 words of font info for 17 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
- 56i,8n,73p,437b,855s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/em
-nababd/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk> </home/emnababd/.
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/emnababd/.texmf-va
-r/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk>
-Output written on 01.pdf (1 page, 13604 bytes).
-PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+)
 
+! Package tikz Error: Giving up on this path. Did you forget a semicolon?.
+
+See the tikz package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 ...outh east}   \THit{f_0}{}{c_1}{.e

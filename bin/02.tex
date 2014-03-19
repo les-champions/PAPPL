@@ -16,18 +16,12 @@
 \begin{figure}[p]
 \begin{center}
 \begin{tikzpicture}
-   \TSort{(-3.09,-1.53)}{a}{2}{l}
-   \TSort{(-0.07,-3.33)}{c}{2}{l}
+   \TSort{(-0.91,-3.36)}{c}{2}{l}
    \TSort{(0,0)}{f}{2}{l}
-   \THit{c_1}{bend right}{a_1}{.west}{a_0}
-    \path[bounce, bend left] \TBounce{a_1}{}{a_0}{.south west};
-  \THit{c_1}{out=-40, in=40, selfhit}{c_1}{}{c_0} 
-    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.south west};
-   \THit{f_0}{bend right}{c_1}{.west}{c_0}
-    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.south west};
-  \THit{f_1}{out=-40, in=40, selfhit}{f_1}{}{f_0} 
-    \path[bounce, bend left] \TBounce{f_1}{}{f_0}{.south west};
-\end{tikzpicture}
+   
+   \THit{f_0}{}{c_1}{.east}{c_0}
+    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.east};
+
 \end{center}
 \caption{Exemple de schema Process Hitting simple}
 \end{figure}

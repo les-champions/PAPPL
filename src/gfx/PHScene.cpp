@@ -29,7 +29,7 @@ void PHScene::drawFromSkeleton(void){
 			int width = GProcess::sizeDefault+2*GSort::marginDefault;
 			int height = nbProcess*(GProcess::sizeDefault+2*GSort::marginDefault);
 			if(gn.name == makeSkeletonNodeName(s->getName())){
-                sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s,gn,width,height)));
+                sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s,gn,width,height,this)));
 			}
 		}	
 	}
@@ -93,7 +93,6 @@ void PHScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
     QPointF sorEventPressPoint;
     bool horsSorte=true;
-    QPointF eventScenePos(event->scenePos());
 
     // if other mouse buttons are pressed, do nothing
     if (QApplication::mouseButtons() == Qt::RightButton) {
@@ -106,7 +105,7 @@ void PHScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
         }
         if(horsSorte){
 
-        QMenu menu;
+    QMenu menu;
     QAction* switchBackgroundColor = menu.addAction("color background ");
     QAction* switchActionsInBold = menu.addAction("action in bold");
     QAction* switchActionColor = menu.addAction("color action");

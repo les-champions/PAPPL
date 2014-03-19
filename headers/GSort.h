@@ -8,6 +8,7 @@
 #include "Sort.h"
 #include "GVNode.h"
 #include "GProcess.h"
+#include "PHScene.h"
 
 /**
   * @file GSort.h
@@ -19,6 +20,7 @@
 class GSort;
 typedef boost::shared_ptr<GSort> GSortPtr;
 class GSimpleProcess;
+class PHScene;
 typedef boost::shared_ptr<GProcess> GProcessPtr;
 
 /**
@@ -42,7 +44,7 @@ class GSort : public QGraphicsRectItem {
           * @param qreal width of the Sort
           * @param qreal height of the Sort
           */
-        GSort(SortPtr p, GVNode n, qreal width, qreal height);
+        GSort(SortPtr p, GVNode n, qreal width, qreal height,PHScene* sc);
 
 		~GSort();
 
@@ -84,7 +86,7 @@ class GSort : public QGraphicsRectItem {
           *
           * @param QGraphicsSceneContextMenuEvent the event to be handled
           */
-        void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+      //  void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
 
         void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
@@ -306,6 +308,8 @@ class GSort : public QGraphicsRectItem {
           *
           */
         bool isRightButtonPressed;
+
+        PHScene* scene;
 
 	/**
           * @brief initialize inner attributes of the GSort

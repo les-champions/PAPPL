@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}
+   \TSort{(0,0)}{CD45}{2}{l}
+   \TSort{(-2.82,-2.62)}{Fyn}{2}{l}
+   \TSort{(3.02,-3.63)}{LCK}{2}{l}
+   \THit{CD45_0}{}{Fyn_1}{.east}{Fyn_0}
+    \path[bounce, bend left] \TBounce{Fyn_1}{}{Fyn_0}{.east};
+  \THit{CD45_0}{out=-40, in=40, selfhit}{CD45_0}{}{CD45_1} 
+ \path[bounce, bend right] \TBounce{CD45_0}{}{CD45_1}{.south east}; 
+   \THit{CD45_0}{}{LCK_1}{.west}{LCK_0}
+    \path[bounce, bend left] \TBounce{LCK_1}{}{LCK_0}{.west};
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de schema Process Hitting simple}
+\end{figure}
+\end{document}

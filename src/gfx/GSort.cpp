@@ -19,7 +19,7 @@
 const int GSort::marginDefault = 10;
 const int GSort::defaultDistance = 25;
 
-GSort::GSort(SortPtr s, GVNode n, qreal width, qreal height) : QGraphicsRectItem(n.centerPos.x()-width/2, n.centerPos.y()-height/2, width, height),sort(s), node(n) {
+GSort::GSort(SortPtr s, GVNode n, qreal width, qreal height, PHScene* sc) : QGraphicsRectItem(n.centerPos.x()-width/2, n.centerPos.y()-height/2, width, height),sort(s), node(n),scene(sc) {
 
 	initInnerAttributes();
 
@@ -122,33 +122,42 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
          if(selectedAction != 0){
              if(QString::compare(selectedAction->text(),switchOrientation->text())==0){
                  changeOrientation();
+                 event->accept();
              }else if(QString::compare(selectedAction->text(),switchDisplay->text())==0){
                  changeDisplayState();
+                 event->accept();
              }else if(QString::compare(selectedAction->text(),switchSortColor->text())==0){
                  changeColor();
+                 event->accept();
              }
-
              else if(QString::compare(selectedAction->text(),switchSortBold->text())==0){
                  toBold();
                  test=false;
+                 event->accept();
              }
              else if(QString::compare(selectedAction->text(),switchActionBold->text())==0){
                  ActionsToBold();
+                 event->accept();
              }
              else if(QString::compare(selectedAction->text(),switchActionColor->text())==0){
-                 //chooseItem("Action");
+                 ActionsChangeColor();
+                 event->accept();
              }
              else if(QString::compare(selectedAction->text(),switchProcessBold->text())==0){
                  processChangeBold();
+                 event->accept();
              }
          else if(QString::compare(selectedAction->text(),switchProcessColor->text())==0){
                  processChangeColor();
+                 event->accept();
              }
          else if(QString::compare(selectedAction->text(),hideSort->text())==0){
                  this->actionsHide();
+                 event->accept();
              }
          else if(QString::compare(selectedAction->text(),switchProcesBordersColor->text())==0){
                  processChangeBorderColor();
+                 event->accept();
              }
              if(test){
                  QPen pen;
@@ -156,19 +165,17 @@ void GSort::mousePressEvent(QGraphicsSceneMouseEvent *event) {
                  pen.setBrush(Qt::black);
                  _rect->setPen(pen);
              }
-
          }
     }else if (event->button() == Qt::LeftButton) {
-	setCursor(QCursor(Qt::ClosedHandCursor));
-	// record coordinates for drawing item when mouse is moved/released
-    	initPosPoint.setX(pos().x());
-    	initPosPoint.setY(pos().y());
-    	eventPressPoint.setX(event->scenePos().x());
-    	eventPressPoint.setY(event->scenePos().y());
+    setCursor(QCursor(Qt::ClosedHandCursor));
+    // record coordinates for drawing item when mouse is moved/released
+        initPosPoint.setX(pos().x());
+        initPosPoint.setY(pos().y());
+        eventPressPoint.setX(event->scenePos().x());
+        eventPressPoint.setY(event->scenePos().y());
         event->accept();
     }
 }
-
 
 // mouse move event handler: process "drag"
 void GSort::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
@@ -223,32 +230,31 @@ void GSort::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
     event->accept();
 }
 
+//// context menu event handler
+//void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
-// context menu event handler
-void GSort::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
+//    /*
+//    // if other mouse buttons are pressed, do nothing
+//    if (QApplication::mouseButtons() == Qt::RightButton) {
 
-    /*
-    // if other mouse buttons are pressed, do nothing
-    if (QApplication::mouseButtons() == Qt::RightButton) {
+//        QMenu menu;
+//    QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
+//    QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
+//    QAction* switchColor = menu.addAction("switch sort color");
 
-        QMenu menu;
-	QAction* switchOrientation = menu.addAction("switch horizontal/vertical");
-	QAction* switchDisplay = menu.addAction("switch to detailled/simple display");
-    QAction* switchColor = menu.addAction("switch sort color");
+//    QAction* selectedAction = menu.exec(QCursor::pos());
 
-	QAction* selectedAction = menu.exec(QCursor::pos());
-
-	if(selectedAction != 0){
-		if(QString::compare(selectedAction->text(),switchOrientation->text())==0){
-			changeOrientation();
-		}else if(QString::compare(selectedAction->text(),switchDisplay->text())==0){
-			changeDisplayState();
-        }else if(QString::compare(selectedAction->text(),switchColor->text())==0){
-            changeColor();
-        }
-	}	
-    }*/
-}
+//    if(selectedAction != 0){
+//        if(QString::compare(selectedAction->text(),switchOrientation->text())==0){
+//            changeOrientation();
+//        }else if(QString::compare(selectedAction->text(),switchDisplay->text())==0){
+//            changeDisplayState();
+//        }else if(QString::compare(selectedAction->text(),switchColor->text())==0){
+//            changeColor();
+//        }
+//    }
+//    }*/
+//}
 
 // getters
 
@@ -288,7 +294,8 @@ void GSort::changeDisplayState(){
 	simpleDisplay = true;
     _rect->setBrush(QBrush(QColor(255,190,190)));
     }
-    dynamic_cast<PHScene*>(scene())->updateActions();
+   // dynamic_cast<PHScene*>(scene())->updateActions();
+    scene->updateActions();
 }
 
 void GSort::shiftPosition(QPointF shiftVector) {
@@ -305,7 +312,8 @@ void GSort::shiftPosition(QPointF shiftVector) {
 
     setPos(x() + shiftVector.x(), y() + shiftVector.y() );
 
-    dynamic_cast<PHScene*>(scene())->updateActions();
+   // dynamic_cast<PHScene*>(scene())->updateActions();
+    scene->updateActions();
 }
 
 void GSort::cancelShift(){
@@ -313,7 +321,8 @@ void GSort::cancelShift(){
 }
 
 bool GSort::isOverAnotherGSort(){
-    map<string, GSortPtr> listGSorts = dynamic_cast<PHScene*>(scene())->getGSorts();
+    //map<string, GSortPtr> listGSorts = dynamic_cast<PHScene*>(scene())->getGSorts();
+    map<string, GSortPtr> listGSorts =scene->getGSorts();
     bool resetPosition = false;
 
     for(auto &s : listGSorts){
@@ -342,7 +351,8 @@ bool GSort::isOver(GSort* otherGSort){
 void GSort::changeOrientation(){
 	changeOrientationRect();
 	changeOrientationGProcess();
-    dynamic_cast<PHScene*>(scene())->updateActions();
+    //dynamic_cast<PHScene*>(scene())->updateActions();
+    scene->updateActions();
 }
 
 void GSort::changeColor(){
@@ -447,7 +457,9 @@ void GSort::actionsHide(){
 
     this->hide();
     std::string n = this->getSort()->getName();
-    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    //    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    std::vector<GActionPtr> allActions=scene->getActions();
+
     for (GActionPtr &a: allActions){
             if (a->getAction()->getSource()->getSort()->getName() == n || a->getAction()->getTarget()->getSort()->getName() == n || a->getAction()->getResult()->getSort()->getName() == n){
             a->getDisplayItem()->hide();
@@ -455,14 +467,12 @@ void GSort::actionsHide(){
     }
   }
 
-
-
-
 void GSort::actionsShow(){
 
     this->show();
     std::string n = this->getSort()->getName();
-    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+   // std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+    std::vector<GActionPtr> allActions =scene->getActions();
     for (GActionPtr &a: allActions){
             if (!(a->getAction()->getSource()->getSort()->getName() == n || a->getAction()->getTarget()->getSort()->getName() == n || a->getAction()->getResult()->getSort()->getName() == n)){
             a->getDisplayItem()->show();
@@ -509,8 +519,8 @@ bool GSort::isBold(){
 
 void GSort::ActionsToBold(){
 
-    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
-
+    //std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+   std::vector<GActionPtr> allActions = scene->getActions();
      for (GActionPtr &a: allActions){
         if (a->getAction()->getSource()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getTarget()->getSort()->getName() == this->getSort()->getName() || a->getAction()->getResult()->getSort()->getName() == this->getSort()->getName()){
          //  if (a->getAction()->getSource()->getSort()->getName() == this->getSort()->getName()){
@@ -524,7 +534,8 @@ void GSort::ActionsChangeColor(){
 
     // open a color dialog and get the color chosen
     QColor actionsColor = QColorDialog::getColor();
-    std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+   // std::vector<GActionPtr> allActions = dynamic_cast<PHScene*>(scene())->getActions();
+   std::vector<GActionPtr> allActions =scene->getActions();
     if (!actionsColor.isValid()) {
         return ;
     } else {

@@ -30,7 +30,6 @@ class PHScene;
 
 using std::pair;
 
-
 /**
   * @class GAction
   * @brief contains style and layout info to draw an action

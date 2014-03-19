@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}
+   \TSort{(0,0)}{c}{2}{l}
+   \TSort{(3.99,0.55)}{f}{2}{l}
+  \THit{c_1}{out=40, in=-40, selfhit}{c_1}{}{c_0} 
+ \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.north east}; 
+   \THit{f_0}{}{c_1}{.east}{c_0}
+    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.east};
+  \THit{f_1}{out=40, in=-40, selfhit}{f_1}{}{f_0} 
+ \path[bounce, bend left] \TBounce{f_1}{}{f_0}{.north east}; 
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de schema Process Hitting simple}
+\end{figure}
+\end{document}

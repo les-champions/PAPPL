@@ -331,103 +331,137 @@ void PHIO::exportXMLMetadata(MainWindow *window, QFile &output){
 void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
 
     QTextStream t(&output);
-    t.setCodec("UTF-8");
+       t.setCodec("UTF-8");
 
-    t << "\\documentclass{article}\n";
-    t << "\\usepackage[french]{babel}\n";
-    t << "\\usepackage[utf8]{inputenc}\n";
-    t << "\\usepackage[T1]{fontenc}\n";
-    t << "\\usepackage{amsmath}  % Maths\n";
-    t << "\\usepackage{amsfonts} % Maths\n";
-    t << "\\usepackage{amssymb}  % Maths\n";
-    t << "\\usepackage{tikz}\n";
-    t << "\\usetikzlibrary{arrows,shapes,shadows,scopes}\n";
-    t << "\\usetikzlibrary{positioning}\n";
-    t << "\\usetikzlibrary{matrix}\n";
-    t << "\\usetikzlibrary{decorations.text}\n";
-    t << "\\usetikzlibrary{decorations.pathmorphing}\n";
-    t << "\\input{macros-ph}  \n";
-    t << "\\begin{document}\n";
-    t << "\\begin{figure}[p]\n";
-    t << "\\begin{center}\n";
-    t << "\\begin{tikzpicture}\n";
+       t << "\\documentclass{article}\n";
+       t << "\\usepackage[french]{babel}\n";
+       t << "\\usepackage[utf8]{inputenc}\n";
+       t << "\\usepackage[T1]{fontenc}\n";
+       t << "\\usepackage{amsmath}  % Maths\n";
+       t << "\\usepackage{amsfonts} % Maths\n";
+       t << "\\usepackage{amssymb}  % Maths\n";
+       t << "\\usepackage{tikz}\n";
+       t << "\\usetikzlibrary{arrows,shapes,shadows,scopes}\n";
+       t << "\\usetikzlibrary{positioning}\n";
+       t << "\\usetikzlibrary{matrix}\n";
+       t << "\\usetikzlibrary{decorations.text}\n";
+       t << "\\usetikzlibrary{decorations.pathmorphing}\n";
+       t << "\\input{macros-ph}  \n";
+       t << "\\begin{document}\n";
+       t << "\\begin{figure}[p]\n";
+       t << "\\begin{center}\n";
+       t << "\\begin{tikzpicture}\n";
 
-    list<SortPtr> allSorts = ph->getSorts();
-    list <pair <int, int> > txy;
+       list<SortPtr> allSorts = ph->getSorts();
+       list <pair <int, int> > txy;
 
-    int pnumS;
-    int pnumT;
-    int pnumB;
+       int pnumS;
+       int pnumT;
+       int pnumB;
 
-    string snameS;
-    string snameT;
+       string snameS;
+       string snameT;
 
-    string n;
-    int nb=0;
-    float x;
-    float y;
+       string direction;
+       string sensAction;
 
-    pair<int,int> o;
-    for(SortPtr &s : allSorts){
-        if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+       string n;
+       int nb=0;
+       float x;
+       float y;
 
-            x=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x();
-            y=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y();
-            o= std::make_pair(x,y);
-            txy.push_back(o);
-        }
-    }
+       pair<int,int> o;
+       for(SortPtr &s : allSorts){
+           if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+
+               x=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x();
+               y=ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y();
+               o= std::make_pair(x,y);
+               txy.push_back(o);
+           }
+       }
+
+       pair<int,int> origin=findOrigin(txy);
+
+       for(SortPtr &s : allSorts){
+           if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+
+               n=s->getName();
+               nb=s->countProcesses();
+
+               x=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x()-origin.first)/100;
+               y=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y()-origin.second)/-100;
+
+               t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{l}\n";
+       }
+     }
+
+       std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
+
+       int xProcessSource;
+       int yProcessSource;
+       int xProcessTarget;
+       int yProcessTarget;
+
+       for (GActionPtr &a: allActions){
+
+           snameS=a->getAction()->getSource()->getSort()->getName();
+           snameT=a->getAction()->getTarget()->getSort()->getName();
+           if(ph->getGraphicsScene()->getGSort(snameS)->isVisible() && ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
+               pnumS=a->getAction()->getSource()->getNumber();
+               pnumT=a->getAction()->getTarget()->getNumber();
+               pnumB=a->getAction()->getResult()->getNumber();
+
+               xProcessSource=a->getAction()->getSource()->getGProcess()->getCenterPoint()->x();
+               yProcessSource=a->getAction()->getSource()->getGProcess()->getCenterPoint()->y();
+
+               xProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->x();
+               yProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->y();
+
+               if(xProcessSource <= xProcessTarget){
+                   direction="west";
+                   sensAction="right";
+               }else{
+                   direction="east";
+                   sensAction="left";
+               }
+               if(yProcessSource <= yProcessTarget){
+                   direction + " north";
+               }else{
+                   direction + " south";
+               }
+
+               if(snameS.compare(snameT)==0 && pnumS==pnumT){
+                   if (pnumS < pnumB){
+                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=-40, in=40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
+                       t <<  " \\path[bounce, bend right] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.south east}; \n";
+                   }else{
+                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=40, in=-40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
+                       t <<  " \\path[bounce, bend left] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.north east}; \n";
+                   }
 
 
-    pair<int,int> origin=findOrigin(txy);
+               }else{
+                   t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{}{"<<QString::fromStdString(snameT) << "_" << pnumT << "}{." << QString::fromStdString(direction) << "}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
+                   t <<  "    \\path[bounce, bend "<< QString::fromStdString(sensAction) <<"] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
 
-    for(SortPtr &s : allSorts){
-        if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
+               }
+              // t <<  "    \\path[bounce, bend left] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
+           }
+     }
 
-            n=s->getName();
-            nb=s->countProcesses();
+   //    t<<  "     \\THit{a_1}{}{c_0}{.east}{c_1}\n";
 
-            x=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x()-origin.first)/100;
-            y=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y()-origin.second)/-100;
+   //    t <<  "   \\path[bounce, bend right] \\TBounce{c_0}{}{c_1}{.south east};\n";
+   //    t<<  "   \\TState{a_1,b_0,c_1,c_0}\n";
 
-            t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{l}\n";
-    }
-  }
-
-    std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
-
-    for (GActionPtr &a: allActions){
-
-        snameS=a->getAction()->getSource()->getSort()->getName();
-        snameT=a->getAction()->getTarget()->getSort()->getName();
-        if(ph->getGraphicsScene()->getGSort(snameS)->isVisible() && ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
-            pnumS=a->getAction()->getSource()->getNumber();
-            pnumT=a->getAction()->getTarget()->getNumber();
-            pnumB=a->getAction()->getResult()->getNumber();
-            if(snameS.compare(snameT)==0 && pnumS==pnumT){
-                t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=-40, in=40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
-
-            }else{
-                t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{bend right}{"<<QString::fromStdString(snameT) << "_" << pnumT << "}{.west}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
-            }
-            t <<  "    \\path[bounce, bend left] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{.south west};\n";
-        }
-  }
-
-
-//    t<<  "     \\THit{a_1}{}{c_0}{.east}{c_1}\n";
-
-//    t <<  "   \\path[bounce, bend right] \\TBounce{c_0}{}{c_1}{.south east};\n";
-//    t<<  "   \\TState{a_1,b_0,c_1,c_0}\n";
-
-    t << "\\end{tikzpicture}\n";
-    t << "\\end{center}\n";
-    t << "\\caption{Exemple de schema Process Hitting simple}\n";
-    t << "\\end{figure}\n";
-    t << "\\end{document}";
+       t << "\\end{tikzpicture}\n";
+       t << "\\end{center}\n";
+       t << "\\caption{Exemple de schema Process Hitting simple}\n";
+       t << "\\end{figure}\n";
+       t << "\\end{document}";
 
 }
-
 
 
 pair<int,int>PHIO::findOrigin( list <pair <int, int> > txy){

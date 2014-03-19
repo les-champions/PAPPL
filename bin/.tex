@@ -16,17 +16,16 @@
 \begin{figure}[p]
 \begin{center}
 \begin{tikzpicture}
-   \TSort{(-0.72,-12.96)}{a}{2}{l}
-   \TSort{(-0.91,-3.36)}{c}{2}{l}
-   \TSort{(0,0)}{f}{2}{l}
-   \THit{c_1}{bend right}{a_1}{.west}{a_0}
-    \path[bounce, bend left] \TBounce{a_1}{}{a_0}{.south west};
-  \THit{c_1}{out=-40, in=40, selfhit}{c_1}{}{c_0} 
-    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.south west};
-   \THit{f_0}{bend right}{c_1}{.west}{c_0}
-    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.south west};
-  \THit{f_1}{out=-40, in=40, selfhit}{f_1}{}{f_0} 
-    \path[bounce, bend left] \TBounce{f_1}{}{f_0}{.south west};
+   \TSort{(0,0)}{ERalphaMYC}{4}{l}
+   \TSort{(-3.74,4.8)}{MYC}{2}{l}
+   \THit{MYC_0}{}{ERalphaMYC_1}{.west}{ERalphaMYC_0}
+    \path[bounce, bend left] \TBounce{ERalphaMYC_1}{}{ERalphaMYC_0}{.west};
+   \THit{MYC_1}{}{ERalphaMYC_0}{.west}{ERalphaMYC_1}
+    \path[bounce, bend left] \TBounce{ERalphaMYC_0}{}{ERalphaMYC_1}{.west};
+   \THit{MYC_0}{}{ERalphaMYC_3}{.west}{ERalphaMYC_2}
+    \path[bounce, bend left] \TBounce{ERalphaMYC_3}{}{ERalphaMYC_2}{.west};
+   \THit{MYC_1}{}{ERalphaMYC_2}{.west}{ERalphaMYC_3}
+    \path[bounce, bend left] \TBounce{ERalphaMYC_2}{}{ERalphaMYC_3}{.west};
 \end{tikzpicture}
 \end{center}
 \caption{Exemple de schema Process Hitting simple}

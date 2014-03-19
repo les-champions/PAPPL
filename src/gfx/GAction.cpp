@@ -41,22 +41,23 @@ GAction::GAction(ActionPtr a, PHScene* sc) : scene(sc), action(a) {
 void GAction::update() {
 
     updateContactPoints();
+    QPen pen;
 
     boundArc->setPath(createBoundPath());
     hitLine->setPath(createHitPath());
     if((targetPoint->x()==resultPoint->x())&&(targetPoint->y()==resultPoint->y())) {
-    QPen pen;
         pen.setWidth(2);
         pen.setBrush(Qt::red);
 	hitLine->setPen(pen);
     }else{
-        QPen pen;
         if (this->isBold())
             pen.setWidth(2);
         else
             pen.setWidth(1);
         pen.setBrush(Qt::black);
         hitLine->setPen(pen);
+        pen.setStyle(Qt::DashLine);
+        boundArc->setPen(pen);
     }
 }
 
