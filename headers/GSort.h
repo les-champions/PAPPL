@@ -146,6 +146,8 @@ class GSort : public QGraphicsRectItem {
           * @return bool value of the attribute simpleDisplay
           *
           */
+
+    vector <GProcessPtr>getGProcesses();
 	bool getSimpleDisplay();
 
 	void changeDisplayState();

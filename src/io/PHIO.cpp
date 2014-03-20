@@ -150,7 +150,7 @@ PHPtr PHIO::parseFile (string const& path) {
     }
     stderr += phcProcess->readAllStandardError();
     stdout += phcProcess->readAllStandardOutput();
-    delete phcProcess;    
+    delete phcProcess;
 
     // parse dump
     if (!stderr.isEmpty())
@@ -365,10 +365,14 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        string direction;
        string sensAction;
 
+       string listState="\\TState{";
+
        string n;
        int nb=0;
        float x;
        float y;
+
+       bool primo=true;
 
        pair<int,int> o;
        for(SortPtr &s : allSorts){
@@ -393,9 +397,26 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                y=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y()-origin.second)/-100;
 
                t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{l}\n";
-       }
+
+               for(GProcessPtr &gp: ph->getGraphicsScene()->getGSort(s->getName())->getGProcesses()){
+                   if(gp->getProcessActifState()){
+                       if(primo){
+                           listState + s->getName() + "_" + gp->getText()->toHtml().toStdString();
+                           //listState + "___";
+                           primo=false;
+                       }
+                       else{
+
+                           listState + ","+s->getName() + "_" + gp->getText()->toHtml().toStdString();
+                       }
+                   }
+               }
+           }
      }
 
+       listState + "} \n";
+//       t << QString::fromStdString(listState);
+       std::cout << "listState: " << listState << std::endl;
        std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
 
        int xProcessSource;

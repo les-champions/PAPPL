@@ -257,6 +257,7 @@ void GSort::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
 //}
 
 // getters
+vector <GProcessPtr> GSort:: getGProcesses(){ return this->gProcesses;}
 
 QGraphicsRectItem* GSort::getRect() { return this->_rect; }
 

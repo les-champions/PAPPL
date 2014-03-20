@@ -34,7 +34,8 @@ HEADERS 	= 	headers/Action.h 		\
     headers/test/ChoixLigne.h \
     headers/GVSkeletonGraph.h \
     headers/EditorSettings.h \
-    headers/test/TikzEditor.h
+    headers/test/TikzEditor.h \
+    headers/TikzEditor.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 

@@ -272,35 +272,45 @@ void TikzEditor::checkUncheckAll(){
 }
 
 
+
 void TikzEditor::colorP(){
 
     QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
-    QString sortName;
-    QString processNumber;
-
     for (QPair<QString,QString> &sp : selectedProcesses ){
-        std::cout<<sp.first.toStdString()<<":"<<sp.second.toStdString()<<std::endl;
+        vector <GProcessPtr> process=myPHPtr->getGraphicsScene()->getGSort(sp.first.toStdString())->GSort::getGProcesses();
 
+        for(GProcessPtr &p:process){
+            //if (p)
+            if((p->getText()->toHtml().toStdString().compare(sp.second.toStdString()))==0)
+                p->beActifProcess();
+        }
     }
+}
 
-//    // Get all the sorts of the PH file
-//    list<SortPtr> allSorts = myPHPtr->getSorts();
-
-//    for(SortPtr &s : allSorts){
-//         sortName = QString::fromStdString(s->getName());
-//         for(ProcessPtr &p : s->getProcesses()){
-//            processNumber=QString::number(p->getNumber());
-
-//        if(selectedProcess.find(processNumber)&& ){
-//            //appel color?
-//        }
-//    }
-//   }
-
-
+void TikzEditor::boldP(){
 
 }
 
+//void TikzEditor::boldP(){
+
+//        QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+//        QString sortName;
+//        QString processNumber;
+
+//        for (QPair<QString,QString> &sp : selectedProcesses ){
+//            std::cout<<sp.first.toStdString()<<":"<<sp.second.toStdString()<<std::endl;
+//            //call function to bold
+//        }
+//}
+
+void TikzEditor::onClear(){
+
+    QTreeWidgetItem *currentItem = fontTree->currentItem();
+    foreach (QTreeWidgetItem *item, fontTree->selectedItems())
+            fontTree->setItemSelected(item, false);
+        fontTree->setItemSelected(currentItem, true);
+
+}
 
 //Detroyer
 TikzEditor::~TikzEditor(){}

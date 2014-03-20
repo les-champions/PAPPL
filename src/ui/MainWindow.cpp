@@ -1297,8 +1297,8 @@ void MainWindow::openEditor(){
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the treeArea (left) part and call the method associated to search a sort
     view->treeArea->searchSort();
-   // EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
-    //EditorSettingsWindow->show();
+//    EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
+//    EditorSettingsWindow->show();
     TikzEditorWindow=new TikzEditor(view->treeArea->myPHPtr);
     TikzEditorWindow->show();
 }
