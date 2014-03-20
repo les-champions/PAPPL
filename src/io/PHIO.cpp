@@ -385,8 +385,8 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
 
        for(SortPtr &s : allSorts){
            if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
-
                n=s->getName();
+               std::replace( n.begin(), n.end(), '_', '-');
                nb=s->countProcesses();
 
                x=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x()-origin.first)/100;
@@ -407,6 +407,7 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
 
            snameS=a->getAction()->getSource()->getSort()->getName();
            snameT=a->getAction()->getTarget()->getSort()->getName();
+
            if(ph->getGraphicsScene()->getGSort(snameS)->isVisible() && ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
                pnumS=a->getAction()->getSource()->getNumber();
                pnumT=a->getAction()->getTarget()->getNumber();
@@ -430,6 +431,8 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                }else{
                    direction + " south";
                }
+                std::replace( snameS.begin(), snameS.end(), '_', '-');
+                std::replace( snameT.begin(), snameT.end(), '_', '-');
 
                if(snameS.compare(snameT)==0 && pnumS==pnumT){
                    if (pnumS < pnumB){
@@ -439,19 +442,15 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                        t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=40, in=-40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
                        t <<  " \\path[bounce, bend left] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.north east}; \n";
                    }
-
-
                }else{
                    t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{}{"<<QString::fromStdString(snameT) << "_" << pnumT << "}{." << QString::fromStdString(direction) << "}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
                    t <<  "    \\path[bounce, bend "<< QString::fromStdString(sensAction) <<"] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
-
                }
               // t <<  "    \\path[bounce, bend left] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
            }
      }
 
    //    t<<  "     \\THit{a_1}{}{c_0}{.east}{c_1}\n";
-
    //    t <<  "   \\path[bounce, bend right] \\TBounce{c_0}{}{c_1}{.south east};\n";
    //    t<<  "   \\TState{a_1,b_0,c_1,c_0}\n";
 
@@ -462,7 +461,6 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        t << "\\end{document}";
 
 }
-
 
 pair<int,int>PHIO::findOrigin( list <pair <int, int> > txy){
 

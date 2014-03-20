@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}
+   \TSort{(0,0)}{ERBB1_3}{2}{l}
+   \TSort{(-1.39,5.14)}{ERBB3}{2}{l}
+   \THit{ERBB3_0}{}{ERBB1_3_1}{.west}{ERBB1_3_0}
+    \path[bounce, bend right] \TBounce{ERBB1_3_1}{}{ERBB1_3_0}{.west};
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de schema Process Hitting simple}
+\end{figure}
+\end{document}

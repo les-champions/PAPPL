@@ -94,6 +94,7 @@ class GProcess {
           * @param int y the vertical coordinate of the node
           *
           */
+
         void setCoordsForImport(int x, int y);
 
         /**
@@ -107,7 +108,25 @@ class GProcess {
         /**
           * @brief transform this process to bold
           */
-        void toBold();
+        void toBold();      
+        /**
+          * @brief transform this process to actif state
+          */
+        void beActifProcess();
+        /**
+          * @brief transform this process to non actif state
+          */
+        void beNonActifProcess();
+        /**
+          * @brief gets the state of the process
+          *
+          */
+        bool getProcessActifState();
+        /**
+          * @brief sets the state of the process
+          *
+          */
+        void setProcessActifState(bool state);
 	
 	protected:
 
@@ -157,6 +176,10 @@ class GProcess {
           * @brief if this process is bold or not
           */
         bool bold;
+        /**
+          * @brief if this process is bold or not
+          */
+        bool actifState;
 
         /**
           * @brief arbitrarily-chosen key for "margin item" data

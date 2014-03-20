@@ -547,7 +547,6 @@ void GSort::ActionsChangeColor(){
     }
 }
 
-
 void GSort::processChangeBold(){
 
      for (GProcessPtr &p: gProcesses){
@@ -555,9 +554,7 @@ void GSort::processChangeBold(){
     }
 }
 
-
 void GSort::processChangeColor(){
-
 
     // open a color dialog and get the color chosen
     QColor actionsColor = QColorDialog::getColor();

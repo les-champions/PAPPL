@@ -110,12 +110,12 @@ class PHScene: public QGraphicsScene {
           * @brief change the actions in bold
           *
           */
-         void ActionsInBold(QPointF);
+         void ActionsInBold();
          /**
            * @brief change the color of the action
            *
            */
-         void ActionColor(QPointF);
+         void ActionColor();
 
 	protected:
 

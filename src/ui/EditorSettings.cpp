@@ -35,8 +35,11 @@ EditorSettings::EditorSettings(PHPtr myPHPtr): QDialog()
     connect(selectNone, SIGNAL(clicked()), this, SLOT(checkNone()));
 
     checkLayout=new QHBoxLayout;
+    selectAll=new QRadioButton("All");
+    selectNone=new QRadioButton("None");
     checkLayout->addWidget(selectAll);
     checkLayout->addWidget(selectNone);
+
 
     //Buttons
     Generate = new QPushButton("&Generate");

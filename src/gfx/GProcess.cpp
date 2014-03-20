@@ -35,7 +35,6 @@ GProcess::~GProcess() {
     delete display;
 }
 
-
 // Init methods
 
 void GProcess::initGeometricsValues(QPointF centerPoint, double diameter){
@@ -75,6 +74,7 @@ void GProcess::initTextItem(){
 
 	QSizeF textSize = text->document()->size();
 	text->setPos(text->x() - textSize.width()/2, text->y() - textSize.height()/2);
+    actifState=false;
 }
 
 //Colorer le process
@@ -88,14 +88,12 @@ void GProcess::colorProcess(QColor color){
             pen.setWidth(4);
         else
             pen.setWidth(2);
-       // pen.setBrush(QBrush(QColor(color)));
         ellipse->setBrush(QBrush(QColor(color)));
     }
 }
 
 //Colorer la bordure du process
 void GProcess::colorProcessBorder(QColor color){
-
     if (!color.isValid()) {
         return ;
     } else {
@@ -128,6 +126,23 @@ void GProcess::toBold() {
     }
 }
 
+//make the process in grey color
+void GProcess::beActifProcess(){
+    this->setProcessActifState(true);
+    ellipse->setBrush(QBrush(QColor(201,201,201)));
+}
+
+//make the process in normal color
+void GProcess::beNonActifProcess(){
+    this->setProcessActifState(false);
+    ellipse->setBrush(QBrush(QColor(255,255,255)));
+}
+
+//change the process state actif ou not actif
+void GProcess::setProcessActifState(bool state){
+    this->actifState=state;
+}
+
 // Getters
 
 ProcessPtr* GProcess::getProcess() { return &(this->process); }
@@ -143,6 +158,8 @@ QPointF* GProcess::getCenterPoint() {return this->center;}
 QSizeF* GProcess::getSizeEllipse() {return this->size;}
 
 QGraphicsTextItem* GProcess::getText() {return this->text;}
+
+bool GProcess::getProcessActifState(){return this->actifState;}
 
 // Setters
 

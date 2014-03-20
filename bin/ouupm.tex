@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}
+   \TSort{(0,0)}{ERBB23}{2}{l}
+   \TSort{(3.76,-7.2)}{ERBB23AKT1}{4}{l}
+   \THit{ERBB231}{}{ERBB2_3AKT10}{.west}{ERBB2_3AKT1_2}
+    \path[bounce, bend right] \TBounce{ERBB2_3AKT1_0}{}{ERBB2_3AKT1_2}{.west};
+   \THit{ERBB230}{}{ERBB23AKT13}{.west}{ERBB23AKT1_1}
+    \path[bounce, bend right] \TBounce{ERBB23AKT13}{}{ERBB23AKT11}{.west};
+   \THit{ERBB230}{}{ERBB23AKT12}{.west}{ERBB23AKT10}
+    \path[bounce, bend right] \TBounce{ERBB2_3AKT1_2}{}{ERBB23AKT10}{.west};
+   \THit{ERBB231}{}{ERBB23AKT11}{.west}{ERBB23AKT13}
+    \path[bounce, bend right] \TBounce{ERBB23AKT11}{}{ERBB23AKT13}{.west};
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de schema Process Hitting simple}
+\end{figure}
+\end{document}

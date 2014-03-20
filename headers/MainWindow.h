@@ -5,7 +5,8 @@
 #include "ConnectionSettings.h"
 #include <vector>
 #include "FunctionForm.h"
-#include "EditorSettings.h"
+//#include "EditorSettings.h"
+#include"TikzEditor.h"
 #include <QWidget>
 
 /**
@@ -86,8 +87,8 @@ protected:
     QMdiArea* centraleArea;
     ConnectionSettings* ConnectionSettingsWindow;
     FunctionForm* FunctionFormWindow;
-    EditorSettings* EditorSettingsWindow;
-
+    //EditorSettings* EditorSettingsWindow;
+    TikzEditor* TikzEditorWindow;
     // QMenu
     QMenu *menuFile;
     QMenu *menuEdit;

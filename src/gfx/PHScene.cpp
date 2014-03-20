@@ -100,27 +100,33 @@ void PHScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
             sorEventPressPoint = s.second.get()->geteventPressPoint();
             if(sorEventPressPoint.x() == event->scenePos().x() && sorEventPressPoint.y() == event->scenePos().y()){
                 horsSorte=false;
-               // s.second.get()->contextMenuEvent(event);
             }
         }
         if(horsSorte){
 
     QMenu menu;
+    QAction* switchToSimplifiedModel = menu.addAction("switch to simplified model");
+    QAction* switchToDetailledModel = menu.addAction("switch to detailled model");
     QAction* switchBackgroundColor = menu.addAction("color background ");
-    QAction* switchActionsInBold = menu.addAction("action in bold");
-    QAction* switchActionColor = menu.addAction("color action");
+    QAction* switchActionsInBold = menu.addAction("all actions in bold/ not to blod");
+    QAction* switchActionColor = menu.addAction("color all actions");
 
     QAction* selectedAction = menu.exec(QCursor::pos());
     if(selectedAction != 0){
         if(QString::compare(selectedAction->text(),switchBackgroundColor->text())==0){
             BackgroundColor();
         }else if(QString::compare(selectedAction->text(),switchActionsInBold->text())==0){
-           // ActionsInBold(eventScenePos);
+            ActionsInBold();
         }else if(QString::compare(selectedAction->text(),switchActionColor->text())==0){
-            //ActionColor(eventScenePos);
+            ActionColor();
+        }else if(QString::compare(selectedAction->text(),switchToSimplifiedModel->text())==0){
+            setSimpleDisplay(true);
+        }else if(QString::compare(selectedAction->text(),switchToDetailledModel->text())==0){
+            setSimpleDisplay(false);
         }
+
     }
-    }
+        }
     }
 }
 
@@ -135,15 +141,47 @@ void PHScene::BackgroundColor(){
    }
 
 }
-/*
-void PHScene::ActionsInBold(QPointF ){
 
-
-
+void PHScene::ActionsInBold(){
+//    GActionPtr actionToChange;
+//    bool test=true;
+//    int minx;
+//    int miny;
+//    int min;
+    for(auto &a :this->getActions()){
+        a->toBold();
+//      QPointF* ptSource = a->getSource()->getCenterPoint();
+//       QPointF* ptTarget = a->getTarget()->getCenterPoint();
+//       QPointF* ptResult = a->getResult()->getCenterPoint();
+//       if(test){
+//          actionToChange=a;
+//          minx=ptSource->x() - pressPoint.x();
+//          miny=ptSource->y() - pressPoint.y();
+//          min=minx*minx + miny*miny;
+//          std::cout << "Min x=" << ptSource->x()<< "y=" << ptSource->y()<< std::endl;
+//          test=false;
+//       }else{
+//           if(min > (ptSource->x()*ptSource->x() + ptSource->y()*ptSource->y())- (pressPoint.x()*pressPoint.x() + pressPoint.y()*pressPoint.y())){
+//               min = (ptSource->x()*ptSource->x() + ptSource->y()*ptSource->y())- (pressPoint.x()*pressPoint.x() + pressPoint.y()*pressPoint.y());
+//               actionToChange=a;
+//               std::cout << "x=" << ptSource->x()<< "y=" << ptSource->y()<< std::endl;
+//           }
+//       }
+   }
+//    actionToChange->toBold();
 }
 
-void PHScene::ActionColor(QPointF){
+void PHScene::ActionColor(){
 
+    // open a color dialog and get the color chosen
+    QColor actionsColor = QColorDialog::getColor();
+    if (!actionsColor.isValid()) {
+        return ;
+    } else {
+     for (GActionPtr &a: this->getActions()){
+            a->colorAction(actionsColor);
+    }
+    }
 }
-*/
+
 

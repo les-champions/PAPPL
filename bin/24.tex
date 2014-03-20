@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+\begin{figure}[p]
+\begin{center}
+\begin{tikzpicture}
+   \TSort{(0,0)}{--coop184}{4}{l}
+   \TSort{(-5.2,-4.71)}{--coop185}{4}{l}
+   \TSort{(-4.56,0.72)}{importinalpha}{2}{l}
+   \THit{__coop184_0}{}{__coop185_2}{.east}{__coop185_0}
+    \path[bounce, bend left] \TBounce{__coop185_2}{}{__coop185_0}{.east};
+   \THit{importinalpha_1}{}{__coop185_2}{.east}{__coop185_3}
+    \path[bounce, bend left] \TBounce{__coop185_2}{}{__coop185_3}{.east};
+   \THit{__coop184_1}{}{__coop185_1}{.east}{__coop185_3}
+    \path[bounce, bend left] \TBounce{__coop185_1}{}{__coop185_3}{.east};
+   \THit{__coop184_2}{}{__coop185_1}{.east}{__coop185_3}
+    \path[bounce, bend left] \TBounce{__coop185_1}{}{__coop185_3}{.east};
+   \THit{__coop184_3}{}{__coop185_1}{.east}{__coop185_3}
+    \path[bounce, bend left] \TBounce{__coop185_1}{}{__coop185_3}{.east};
+   \THit{importinalpha_0}{}{__coop185_1}{.east}{__coop185_0}
+    \path[bounce, bend left] \TBounce{__coop185_1}{}{__coop185_0}{.east};
+   \THit{__coop184_0}{}{__coop185_3}{.east}{__coop185_1}
+    \path[bounce, bend left] \TBounce{__coop185_3}{}{__coop185_1}{.east};
+   \THit{importinalpha_0}{}{__coop185_3}{.east}{__coop185_2}
+    \path[bounce, bend left] \TBounce{__coop185_3}{}{__coop185_2}{.east};
+   \THit{__coop184_1}{}{__coop185_0}{.east}{__coop185_2}
+    \path[bounce, bend left] \TBounce{__coop185_0}{}{__coop185_2}{.east};
+   \THit{__coop184_2}{}{__coop185_0}{.east}{__coop185_2}
+    \path[bounce, bend left] \TBounce{__coop185_0}{}{__coop185_2}{.east};
+   \THit{__coop184_3}{}{__coop185_0}{.east}{__coop185_2}
+    \path[bounce, bend left] \TBounce{__coop185_0}{}{__coop185_2}{.east};
+   \THit{importinalpha_1}{}{__coop185_0}{.east}{__coop185_1}
+    \path[bounce, bend left] \TBounce{__coop185_0}{}{__coop185_1}{.east};
+\end{tikzpicture}
+\end{center}
+\caption{Exemple de schema Process Hitting simple}
+\end{figure}
+\end{document}
