@@ -80,8 +80,8 @@ private slots:
     QList <QTreeWidgetItem* > getSelectedSorts();
     QList <QTreeWidgetItem* > getUnselectedSorts();
 
-    QMap <QString,QString> getUnselectedProcess();
-    QMap <QString,QString> getSelectedProcess();
+    QList<QPair <QString,QString> > getUnselectedProcess();
+    QList<QPair <QString,QString> > getSelectedProcess();
 
     void back();
     void generateTikz();

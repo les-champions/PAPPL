@@ -68,3 +68,10 @@
 /home/emnababd/Desktop/PAPPL/samples/ERBB_G1-S.ph----------149.013 ms
 /home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------85.9677 ms
 /home/emnababd/Desktop/PAPPL/samples/ERBB_G1-S.ph----------359.372 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------81.7595 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------464.692 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------202.538 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------87.6485 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------463.379 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------83.6441 ms
+/home/emnababd/Desktop/PAPPL/samples/metazoan.ph----------74.1774 ms

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'TikzEditor.h'
 **
-** Created: Thu Mar 20 02:18:46 2014
+** Created: Thu Mar 20 11:46:53 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -35,11 +35,11 @@ static const uint qt_meta_data_TikzEditor[] = {
       21,   11,   11,   11, 0x08,
       63,   11,   39,   11, 0x08,
       82,   11,   39,   11, 0x08,
-     125,   11,  103,   11, 0x08,
-     148,   11,  103,   11, 0x08,
-     169,   11,   11,   11, 0x08,
-     176,   11,   11,   11, 0x08,
-     191,   11,   11,   11, 0x08,
+     134,   11,  103,   11, 0x08,
+     157,   11,  103,   11, 0x08,
+     178,   11,   11,   11, 0x08,
+     185,   11,   11,   11, 0x08,
+     200,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -47,7 +47,8 @@ static const uint qt_meta_data_TikzEditor[] = {
 static const char qt_meta_stringdata_TikzEditor[] = {
     "TikzEditor\0\0colorP()\0checkUncheckAll()\0"
     "QList<QTreeWidgetItem*>\0getSelectedSorts()\0"
-    "getUnselectedSorts()\0QMap<QString,QString>\0"
+    "getUnselectedSorts()\0"
+    "QList<QPair<QString,QString> >\0"
     "getUnselectedProcess()\0getSelectedProcess()\0"
     "back()\0generateTikz()\0quit()\0"
 };
@@ -64,10 +65,10 @@ void TikzEditor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast< QList<QTreeWidgetItem*>*>(_a[0]) = _r; }  break;
         case 3: { QList<QTreeWidgetItem*> _r = _t->getUnselectedSorts();
             if (_a[0]) *reinterpret_cast< QList<QTreeWidgetItem*>*>(_a[0]) = _r; }  break;
-        case 4: { QMap<QString,QString> _r = _t->getUnselectedProcess();
-            if (_a[0]) *reinterpret_cast< QMap<QString,QString>*>(_a[0]) = _r; }  break;
-        case 5: { QMap<QString,QString> _r = _t->getSelectedProcess();
-            if (_a[0]) *reinterpret_cast< QMap<QString,QString>*>(_a[0]) = _r; }  break;
+        case 4: { QList<QPair<QString,QString> > _r = _t->getUnselectedProcess();
+            if (_a[0]) *reinterpret_cast< QList<QPair<QString,QString> >*>(_a[0]) = _r; }  break;
+        case 5: { QList<QPair<QString,QString> > _r = _t->getSelectedProcess();
+            if (_a[0]) *reinterpret_cast< QList<QPair<QString,QString> >*>(_a[0]) = _r; }  break;
         case 6: _t->back(); break;
         case 7: _t->generateTikz(); break;
         case 8: _t->quit(); break;

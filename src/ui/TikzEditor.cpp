@@ -148,12 +148,12 @@ void TikzEditor::back(){
         myPHPtr->getGraphicsScene()->getGSort(n.toStdString())->GSort::actionsHide();
      }
 
+    if(colorProcess->isChecked()){
+        colorP();
+    }
 
-    QMap <QString,QString> nonSelectedProcess=getUnselectedProcess();
-
-
-
-    QMap <QString,QString>  selectedProcess=getSelectedProcess();
+//    QMap <QString,QString> nonSelectedProcess=getUnselectedProcess();
+//    QMap <QString,QString>  selectedProcess=getSelectedProcess();
 
 
 }
@@ -184,34 +184,40 @@ QList<QTreeWidgetItem*> TikzEditor::getSelectedSorts(){
 }
 
 
-QMap <QString,QString>  TikzEditor::getSelectedProcess(){
+QList<QPair <QString,QString> >  TikzEditor::getSelectedProcess(){
 
-  QMap <QString,QString>  selectedItems;
+  QList<QPair <QString,QString> >  selectedItems;
+  QPair<QString,QString> elem;
     for (int i=0;i<fontTree->topLevelItemCount();i++) {
         QTreeWidgetItem *sortItem = fontTree->topLevelItem(i);
         for (int j = 0; j < sortItem->childCount(); j++) {
             QTreeWidgetItem *processItem = sortItem->child(j);
-            if (processItem->checkState(0) == Qt::Checked)
-               //selectedItems.push_back(processItem->text(0));
-                selectedItems.insert(fontTree->topLevelItem(i)->text(0),processItem->text(0));
+            if (processItem->checkState(0) == Qt::Checked){
+               elem.first=fontTree->topLevelItem(i)->text(0);
+               elem.second=processItem->text(0);
+                selectedItems.push_back(elem);
         }
+        }
+
     }
     return selectedItems;
 }
 
 
-QMap <QString,QString>   TikzEditor::getUnselectedProcess(){
+QList<QPair <QString,QString> >   TikzEditor::getUnselectedProcess(){
 
 
-    QMap <QString,QString>  unSelectedItems;
+    QList<QPair <QString,QString> >  unSelectedItems;
+    QPair <QString,QString> elem;
     for (int i=0;i<fontTree->topLevelItemCount();i++) {
         QTreeWidgetItem *sortItem = fontTree->topLevelItem(i);
         for (int j = 0; j < sortItem->childCount(); j++) {
             QTreeWidgetItem *processItem = sortItem->child(j);
             if (processItem->checkState(0) == Qt::Unchecked)
-
-               unSelectedItems.insert(fontTree->topLevelItem(i)->text(0),processItem->text(0));
-        }
+                elem.first=fontTree->topLevelItem(i)->text(0);
+                elem.second=processItem->text(0);
+                unSelectedItems.push_back(elem);
+              }
     }
     return unSelectedItems;
 }
@@ -220,31 +226,30 @@ QMap <QString,QString>   TikzEditor::getUnselectedProcess(){
 // method to export style and layout data to Tikz format
 void TikzEditor::generateTikz(){
 
-//    QList<QString> selectedList =this->getSelectedSorts();
 
-//    if(!selectedList.empty()){
-//    back();
-//            // SaveFile dialog
-//            QString tikzFile = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.tex");
+    QList <QTreeWidgetItem*> selectedSorts=getSelectedSorts();
+    if (!selectedSorts.empty()){
+        back();
+        // SaveFile dialog
+        QString tikzFile = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.tex");
 
-//            // add .dot to the name if necessary
-//            if (tikzFile.indexOf(QString(".tex"), 0, Qt::CaseInsensitive) < 0){
-//               tikzFile += ".tex";
-//            }
+        // add .dot to the name if necessary
+        if (tikzFile.indexOf(QString(".tex"), 0, Qt::CaseInsensitive) < 0){
+              tikzFile += ".tex";
+         }
 
-//            // open file if possible and write Tikz into it
-//            QFile output(tikzFile);
-//            if (!output.open(QIODevice::WriteOnly)){
-//                QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
-//                output.errorString();
-//                return;
-//            } else {
-//                PHIO::exportTikzMetadata(myPHPtr,output);
-//            }
+        // open file if possible and write Tikz into it
+         QFile output(tikzFile);
+         if (!output.open(QIODevice::WriteOnly)){
+             QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
+                output.errorString();
+                return;
+                } else {
+                        PHIO::exportTikzMetadata(myPHPtr,output);
+                    }
+               } else QMessageBox::critical(this, "Error", "No file opened!");
+    }
 
-//        } else QMessageBox::critical(this, "Error", "No file opened!");
-
-}
 
 
 void TikzEditor::checkUncheckAll(){
@@ -269,34 +274,33 @@ void TikzEditor::checkUncheckAll(){
 
 void TikzEditor::colorP(){
 
-    QMap <QString,QString>  selectedProcess=getSelectedProcess();
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+    QString sortName;
+    QString processNumber;
+
+    for (QPair<QString,QString> &sp : selectedProcesses ){
+        std::cout<<sp.first.toStdString()<<":"<<sp.second.toStdString()<<std::endl;
+
+    }
+
+//    // Get all the sorts of the PH file
+//    list<SortPtr> allSorts = myPHPtr->getSorts();
+
+//    for(SortPtr &s : allSorts){
+//         sortName = QString::fromStdString(s->getName());
+//         for(ProcessPtr &p : s->getProcesses()){
+//            processNumber=QString::number(p->getNumber());
+
+//        if(selectedProcess.find(processNumber)&& ){
+//            //appel color?
+//        }
+//    }
+//   }
+
+
 
 }
 
-//void TikzEditor::checkNone(){
-
-//    QList<QTreeWidgetItem *> items = fontTree;
-//    foreach (QTreeWidgetItem *item, items) {
-//        sortItem->setCheckState(0, Qt::Unchecked);
-//    }
-
-
-
-//    sortItem = new QTreeWidgetItem(fontTree);
-//    sortItem->setText(0, sortName);
-
-
-//    QTreeWidgetItem *currentItem = fontTree->currentItem();
-//    foreach (QTreeWidgetItem *item, fontTree->selectedItems())
-//        fontTree->setItemSelected(item, false);
-//    fontTree->setItemSelected(currentItem, true);
-//}
-
-
-//        if (sortItem->checkState(0) == Qt::Checked) {
-//            family = familyItem->text(0);
-//            pageMap[family] = StyleItems();
-//        }
 
 //Detroyer
 TikzEditor::~TikzEditor(){}
