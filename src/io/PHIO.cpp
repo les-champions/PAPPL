@@ -312,7 +312,6 @@ void PHIO::exportXMLMetadata(MainWindow *window, QFile &output){
                 stream.writeEndElement();
             }
             stream.writeEndElement(); // group
-
         }
     }
 
@@ -362,10 +361,10 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        string snameS;
        string snameT;
 
-       string direction;
+       string direction="";
        string sensAction;
 
-       string listState="\\TState{";
+       QString listState="\\TState{";
 
        string n;
        int nb=0;
@@ -386,48 +385,58 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        }
 
        pair<int,int> origin=findOrigin(txy);
+       string orientation="l";
 
        for(SortPtr &s : allSorts){
            if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVisible()){
                n=s->getName();
                std::replace( n.begin(), n.end(), '_', '-');
+
                nb=s->countProcesses();
 
                x=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().x()-origin.first)/100;
                y=(float)(ph->getGraphicsScene()->getGSort(s->getName())->GSort::getCenterPoint().y()-origin.second)/-100;
 
-               t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{l}\n";
+               if(ph->getGraphicsScene()->getGSort(s->getName())->GSort::isVertical()){
+                   orientation = "l";
+               }else{
+                   orientation = "t";
+               }
+
+               t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{"<< QString::fromStdString(orientation) << "}\n";
 
                for(GProcessPtr &gp: ph->getGraphicsScene()->getGSort(s->getName())->getGProcesses()){
                    if(gp->getProcessActifState()){
                        if(primo){
-                           listState + s->getName() + "_" + gp->getText()->toHtml().toStdString();
-                           //listState + "___";
+                          listState=listState + QString::fromStdString(s->getName())+ "_" +  QString::number(gp->getProcessPtr()->getNumber());
                            primo=false;
                        }
                        else{
-
-                           listState + ","+s->getName() + "_" + gp->getText()->toHtml().toStdString();
+                          listState=listState + ","+QString::fromStdString(s->getName()) + "_" + QString::number(gp->getProcessPtr()->getNumber());
                        }
                    }
                }
            }
      }
 
-       listState + "} \n";
-//       t << QString::fromStdString(listState);
-       std::cout << "listState: " << listState << std::endl;
+       listState = listState + "} \n";
+       //t << QString::fromStdString(listState);
+       t << listState;
+       std::cout << "listState: " << listState.toStdString() << std::endl;
        std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
 
        int xProcessSource;
        int yProcessSource;
        int xProcessTarget;
        int yProcessTarget;
+       int difX;
+       int difY;
 
        for (GActionPtr &a: allActions){
 
            snameS=a->getAction()->getSource()->getSort()->getName();
            snameT=a->getAction()->getTarget()->getSort()->getName();
+           direction="";
 
            if(ph->getGraphicsScene()->getGSort(snameS)->isVisible() && ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
                pnumS=a->getAction()->getSource()->getNumber();
@@ -440,20 +449,56 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                xProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->x();
                yProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->y();
 
-               if(xProcessSource <= xProcessTarget){
-                   direction="west";
-                   sensAction="right";
-               }else{
-                   direction="east";
-                   sensAction="left";
-               }
-               if(yProcessSource <= yProcessTarget){
-                   direction + " north";
-               }else{
-                   direction + " south";
-               }
-                std::replace( snameS.begin(), snameS.end(), '_', '-');
-                std::replace( snameT.begin(), snameT.end(), '_', '-');
+               difX = xProcessSource - xProcessTarget;
+               difY = yProcessSource - yProcessTarget;
+               int minXY=500;
+
+     //          if(ph->getGraphicsScene()->getGSort(snameS)->isVertical()){
+                   if(difX >= minXY){
+                       if(xProcessSource <= xProcessTarget){
+                           direction="west";
+                           sensAction="right";
+                       }else{
+                           direction="east";
+                           sensAction="left";
+                       }
+                   }else{
+                       if(yProcessSource <= yProcessTarget){
+                           direction = "north";
+                           sensAction="right";
+                       }
+                       else{
+                           direction = "south";
+                           sensAction="left";
+                       }
+                   }
+//                   else{
+//                       if(yProcessSource <= yProcessTarget){
+//                           direction = "north";
+//                           sensAction="right";
+//                       }else{
+//                           direction = "south";
+//                           sensAction="left";
+//                       }
+//                   }
+//               }else{
+//                   if(xProcessSource <= xProcessTarget){
+//                       direction="west";
+//                       sensAction="right";
+//                   }else{
+//                       direction="east";
+//                       sensAction="left";
+//                   }
+//                   if(yProcessSource <= yProcessTarget){
+//                       direction + " north";
+//                   }else{
+//                       direction + " south";
+//                   }
+//               }
+
+
+               std::replace( snameS.begin(), snameS.end(), '_', '-');
+               std::replace( snameT.begin(), snameT.end(), '_', '-');
 
                if(snameS.compare(snameT)==0 && pnumS==pnumT){
                    if (pnumS < pnumB){
@@ -480,7 +525,6 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        t << "\\caption{Exemple de schema Process Hitting simple}\n";
        t << "\\end{figure}\n";
        t << "\\end{document}";
-
 }
 
 pair<int,int>PHIO::findOrigin( list <pair <int, int> > txy){

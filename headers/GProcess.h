@@ -45,6 +45,11 @@ class GProcess {
           *
           */
         ProcessPtr* getProcess();
+        /**
+          * @brief gets the related Process
+          *
+          */
+        ProcessPtr getProcessPtr();
 
         /**
           * @brief gets the display

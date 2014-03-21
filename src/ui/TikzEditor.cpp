@@ -276,12 +276,24 @@ void TikzEditor::checkUncheckAll(){
 void TikzEditor::colorP(){
 
     QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
-    for (QPair<QString,QString> &sp : selectedProcesses ){
-        vector <GProcessPtr> process=myPHPtr->getGraphicsScene()->getGSort(sp.first.toStdString())->GSort::getGProcesses();
+    QList<QPair <QString,QString> >  unselectedProcesses = getSelectedProcess();
+
+    vector <GProcessPtr> process;
+    list<SortPtr> allSorts = myPHPtr->getSorts();
+
+    for (SortPtr &s : allSorts ){
+        process=myPHPtr->getGraphicsScene()->getGSort(s->getName())->GSort::getGProcesses();
 
         for(GProcessPtr &p:process){
-            //if (p)
-            if((p->getText()->toHtml().toStdString().compare(sp.second.toStdString()))==0)
+                p->beNonActifProcess();
+        }
+    }
+
+    for (QPair<QString,QString> &sp : selectedProcesses ){
+        process=myPHPtr->getGraphicsScene()->getGSort(sp.first.toStdString())->GSort::getGProcesses();
+
+        for(GProcessPtr &p:process){
+            if((QString::number(p->getProcessPtr()->getNumber()).compare(sp.second))==0)
                 p->beActifProcess();
         }
     }

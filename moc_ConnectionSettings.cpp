@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'ConnectionSettings.h'
 **
-** Created: Thu Mar 20 11:21:29 2014
+** Created: Fri Mar 21 10:39:33 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

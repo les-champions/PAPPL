@@ -147,6 +147,8 @@ void GProcess::setProcessActifState(bool state){
 
 ProcessPtr* GProcess::getProcess() { return &(this->process); }
 
+ProcessPtr GProcess::getProcessPtr() { return this->process;}
+
 QGraphicsItem* GProcess::getDisplayItem (void) { return display; }
 
 QGraphicsEllipseItem* GProcess::getEllipseItem(){ return ellipse; }
