@@ -365,7 +365,6 @@ void GSort::changeColor(){
     } else {
             // for all the current GSort set the brush
             this->getRect()->setBrush(QBrush(QColor(color)));
-
     }
 
 }
@@ -558,13 +557,13 @@ void GSort::processChangeBold(){
 void GSort::processChangeColor(){
 
     // open a color dialog and get the color chosen
-    QColor actionsColor = QColorDialog::getColor();
+    QColor processColor = QColorDialog::getColor();
 
-    if (!actionsColor.isValid()) {
+    if (!processColor.isValid()) {
         return ;
     } else {
      for (GProcessPtr &p: gProcesses){
-         p->colorProcess(actionsColor);
+         p->colorProcess(processColor);
      }
     }
 }

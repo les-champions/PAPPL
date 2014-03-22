@@ -35,6 +35,7 @@ GAction::GAction(ActionPtr a, PHScene* sc) : scene(sc), action(a) {
 
     boundArc = new QGraphicsPathItem(createBoundPath(),display);
     boundArc->setPen(QPen(Qt::DashLine));
+    numberActionColor=-1;
     
 }
 
@@ -474,7 +475,7 @@ void GAction::toBold() {
         this->bold=false;
     }
     else{
-        pen.setWidth(2);
+        pen.setWidth(4);
         pen.setBrush(Qt::black);
         hitLine->setPen(pen);
         pen.setStyle(Qt::DashLine);
@@ -496,6 +497,17 @@ void GAction::colorAction(QColor color){
         pen.setStyle(Qt::DashLine);
         boundArc->setPen(pen);
     }
+}
+
+//Change the number of action color
+void GAction::setActionColorNUmber(int r, int g, int b, int nb){
+    this->numberActionColor=nb;
+    QPen pen;
+    pen.setWidth(2);
+    pen.setBrush(QBrush(QColor(r,g,b)));
+    hitLine->setPen(pen);
+    pen.setStyle(Qt::DashLine);
+    boundArc->setPen(pen);
 }
 
 // getters
@@ -520,4 +532,4 @@ GProcessPtr GAction::getResult() {
     return action->getResult()->getGProcess();
 }
 
-
+int GAction::getActionColorNumber(){return this->numberActionColor;}

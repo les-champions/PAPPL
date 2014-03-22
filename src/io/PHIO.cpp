@@ -347,8 +347,19 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        t << "\\usetikzlibrary{decorations.pathmorphing}\n";
        t << "\\input{macros-ph}  \n";
        t << "\\begin{document}\n";
-       t << "\\begin{figure}[p]\n";
-       t << "\\begin{center}\n";
+
+       t << " % *** Style de TikZ \n";
+       t << "\\tikzstyle{style trait 10}=[black,thick]\n";
+       t << "\\tikzstyle{style trait 11}=[red,thick]\n";
+       t << "\\tikzstyle{style trait 12}=[green,thick]\n";
+       t << "\\tikzstyle{style trait 13}=[blue,thick]\n\n";
+
+       t << "\\tikzstyle{style fond 0}=[fill=black!30]\n";
+       t << "\\tikzstyle{style fond 1}=[fill=red!30]\n";
+       t << "\\tikzstyle{style fond 2}=[fill=green!30]\n";
+       t << "\\tikzstyle{style fond 3}=[fill=blue!30]\n";
+
+       t << "\\tikzstyle{style fond 5}=[draw=black,line width=1mm]\n\n";
        t << "\\begin{tikzpicture}\n";
 
        list<SortPtr> allSorts = ph->getSorts();
@@ -372,6 +383,7 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
        float y;
 
        bool primo=true;
+       bool existListSort=true;
 
        pair<int,int> o;
        for(SortPtr &s : allSorts){
@@ -402,7 +414,6 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                }else{
                    orientation = "t";
                }
-
                t <<  "   \\TSort{("<< x <<","<< y <<")}{"<< QString::fromStdString(n) <<"}{"<<nb<<"}{"<< QString::fromStdString(orientation) << "}\n";
 
                for(GProcessPtr &gp: ph->getGraphicsScene()->getGSort(s->getName())->getGProcesses()){
@@ -410,33 +421,41 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                        if(primo){
                           listState=listState + QString::fromStdString(s->getName())+ "_" +  QString::number(gp->getProcessPtr()->getNumber());
                            primo=false;
+                           std::cout << "aaaa  " << listState.toStdString() << std::endl;
                        }
                        else{
                           listState=listState + ","+QString::fromStdString(s->getName()) + "_" + QString::number(gp->getProcessPtr()->getNumber());
                        }
+                       t << "  \\node[process, style fond 2] at ("<< QString::fromStdString(s->getName()) << "_" << gp->getProcessPtr()->getNumber() << ".center) {}; \n" ;
+
+                   if(gp->getProcessColorNumber()!=0){
+                       t << "  \\node[process, style fond " << gp->getProcessColorNumber() << "] at ("<< QString::fromStdString(s->getName()) << "_" << gp->getProcessPtr()->getNumber() << ".center) {}; \n" ;
+                       existListSort=false;
                    }
+               }
                }
            }
      }
 
        listState = listState + "} \n";
        //t << QString::fromStdString(listState);
-       t << listState;
-       std::cout << "listState: " << listState.toStdString() << std::endl;
+       if(existListSort)
+           t << listState;
        std::vector<GActionPtr> allActions =ph->getGraphicsScene()->getActions();
 
        int xProcessSource;
        int yProcessSource;
        int xProcessTarget;
        int yProcessTarget;
-       int difX;
        int difY;
+       string actionBoldColor;
 
        for (GActionPtr &a: allActions){
 
            snameS=a->getAction()->getSource()->getSort()->getName();
            snameT=a->getAction()->getTarget()->getSort()->getName();
            direction="";
+           actionBoldColor="";
 
            if(ph->getGraphicsScene()->getGSort(snameS)->isVisible() && ph->getGraphicsScene()->getGSort(snameT)->isVisible()){
                pnumS=a->getAction()->getSource()->getNumber();
@@ -449,12 +468,10 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                xProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->x();
                yProcessTarget=a->getAction()->getTarget()->getGProcess()->getCenterPoint()->y();
 
-               difX = xProcessSource - xProcessTarget;
                difY = yProcessSource - yProcessTarget;
                int minXY=500;
 
-     //          if(ph->getGraphicsScene()->getGSort(snameS)->isVertical()){
-                   if(difX >= minXY){
+                   if(difY <= minXY ){
                        if(xProcessSource <= xProcessTarget){
                            direction="west";
                            sensAction="right";
@@ -462,7 +479,7 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                            direction="east";
                            sensAction="left";
                        }
-                   }else{
+                   }else if( difY >= minXY ){
                        if(yProcessSource <= yProcessTarget){
                            direction = "north";
                            sensAction="right";
@@ -472,58 +489,35 @@ void PHIO::exportTikzMetadata(PHPtr ph, QFile &output){
                            sensAction="left";
                        }
                    }
-//                   else{
-//                       if(yProcessSource <= yProcessTarget){
-//                           direction = "north";
-//                           sensAction="right";
-//                       }else{
-//                           direction = "south";
-//                           sensAction="left";
-//                       }
-//                   }
-//               }else{
-//                   if(xProcessSource <= xProcessTarget){
-//                       direction="west";
-//                       sensAction="right";
-//                   }else{
-//                       direction="east";
-//                       sensAction="left";
-//                   }
-//                   if(yProcessSource <= yProcessTarget){
-//                       direction + " north";
-//                   }else{
-//                       direction + " south";
-//                   }
-//               }
-
 
                std::replace( snameS.begin(), snameS.end(), '_', '-');
                std::replace( snameT.begin(), snameT.end(), '_', '-');
 
+              if(a->getActionColorNumber()!=-1){
+
+                   actionBoldColor=",style trait 1" + QString::number( a->getActionColorNumber()).toStdString();
+              }
+
+
+             //  actionBoldColor="style trait 12";
+
                if(snameS.compare(snameT)==0 && pnumS==pnumT){
                    if (pnumS < pnumB){
-                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=-40, in=40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
-                       t <<  " \\path[bounce, bend right] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.south east}; \n";
+                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS  <<"}{out=-40, in=40, selfhit,"<< QString::fromStdString(actionBoldColor)<<"}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
+                       t <<  " \\path[bounce, bend right] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{"<< QString::fromStdString(actionBoldColor) <<"}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.south east}; \n";
                    }else{
-                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=40, in=-40, selfhit}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
-                       t <<  " \\path[bounce, bend left] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.north east}; \n";
+                       t <<  "  \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{out=40, in=-40, selfhit,"<< QString::fromStdString(actionBoldColor)<<"}{"<<QString::fromStdString(snameT) << "_"<< pnumT << "}{}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"} \n";
+                       t <<  " \\path[bounce, bend left] \\TBounce{" << QString::fromStdString(snameS) << "_" << pnumS << "}{"<< QString::fromStdString(actionBoldColor) <<"}{" << QString::fromStdString(snameS) << "_" << pnumB << "}{.north east}; \n";
                    }
-               }else{
-                   t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{}{"<<QString::fromStdString(snameT) << "_" << pnumT << "}{." << QString::fromStdString(direction) << "}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
-                   t <<  "    \\path[bounce, bend "<< QString::fromStdString(sensAction) <<"] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
+               }else{           
+                   t <<  "   \\THit{"<<QString::fromStdString(snameS)<<"_"<< pnumS <<"}{"<< QString::fromStdString(actionBoldColor) <<"}{"<<QString::fromStdString(snameT) << "_" << pnumT << "}{." << QString::fromStdString(direction) << "}{"<<QString::fromStdString(snameT)<<"_"<<pnumB<<"}\n";
+                   t <<  "    \\path[bounce, bend "<< QString::fromStdString(sensAction) <<"] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{"<< QString::fromStdString(actionBoldColor) <<"}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
                }
               // t <<  "    \\path[bounce, bend left] \\TBounce{"<<QString::fromStdString(snameT)<<"_"<< pnumT<<"}{}{"<<QString::fromStdString(snameT)<<"_"<< pnumB<<"}{." << QString::fromStdString(direction) << "};\n";
            }
      }
 
-   //    t<<  "     \\THit{a_1}{}{c_0}{.east}{c_1}\n";
-   //    t <<  "   \\path[bounce, bend right] \\TBounce{c_0}{}{c_1}{.south east};\n";
-   //    t<<  "   \\TState{a_1,b_0,c_1,c_0}\n";
-
        t << "\\end{tikzpicture}\n";
-       t << "\\end{center}\n";
-       t << "\\caption{Exemple de schema Process Hitting simple}\n";
-       t << "\\end{figure}\n";
        t << "\\end{document}";
 }
 

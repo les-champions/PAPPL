@@ -117,7 +117,7 @@ class GProcess {
         /**
           * @brief transform this process to actif state
           */
-        void beActifProcess();
+        void beActifProcess(int r, int g, int b);
         /**
           * @brief transform this process to non actif state
           */
@@ -132,6 +132,20 @@ class GProcess {
           *
           */
         void setProcessActifState(bool state);
+        /**
+          * @brief gets the number of color RGB to tikZ file
+          *
+          */
+        int getProcessColorNumber();
+        /**
+          * @brief sets the number of the process color RGB to TikZ file
+          *
+          */
+        void setProcessColorNumber(int nb);
+        /**
+          * @brief verify if this process is bold
+          */
+        bool isBold();
 	
 	protected:
 
@@ -185,6 +199,10 @@ class GProcess {
           * @brief if this process is bold or not
           */
         bool actifState;
+        /**
+          * @brief color of this process
+          */
+        int numberProcessColor;
 
         /**
           * @brief arbitrarily-chosen key for "margin item" data
@@ -220,9 +238,5 @@ class GProcess {
 	  * @brief init the text item
 	  */
     void initTextItem();
-    /**
-      * @brief verify if this process is bold
-      */
-    bool isBold();
 
 };

@@ -1,4 +1,3 @@
-
 #include "TikzEditor.h"
 #include "MainWindow.h"
 #include "PH.h"
@@ -12,6 +11,7 @@
 TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog()
 {
 
+    this->column=1;
     this->myPHPtr=myPHPtr;
     this->allChecked=false;
     fontTree = new QTreeWidget();
@@ -41,8 +41,11 @@ TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog()
         }
     }
 
-    //check sorts
+    //connect items changed
+    connect(fontTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+            this, SLOT(setStatus(QTreeWidgetItem*,int)));
 
+    //check sorts
     checkLayout=new QHBoxLayout;
     check = new QPushButton("&Check/Uncheck all");
     checkLayout->addWidget(check);
@@ -53,7 +56,7 @@ TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog()
     treeLayout->addLayout(checkLayout);
 
 
-    //Buttons
+    //Buttons: creation
     Generate = new QPushButton("&Generate");
     Generate->setFixedWidth(80);
 
@@ -63,51 +66,74 @@ TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog()
     Exit = new QPushButton("&Exit");
     Exit->setFixedWidth(80);
 
-    //connect slots
+    //Buttons:connect slots
     connect(Show, SIGNAL(clicked()), this, SLOT(back()));
     connect(Generate,SIGNAL(clicked()),this,SLOT(generateTikz()));
     connect(Exit,SIGNAL(clicked()),this,SLOT(quit()));
 
+    //Buttons: add to layout
     btnLayout = new QHBoxLayout;
     btnLayout->addWidget(Show);
     btnLayout->addWidget(Generate);
     btnLayout->addWidget(Exit);
 
-    //
-    choiceBoxS=new QGroupBox("Sorts");
-    colorSorts=new QCheckBox("Color Sorts");
-    boldSorts=new QCheckBox("Sort in color");
-    box1=new QVBoxLayout;
-    box1->addWidget(colorSorts);
-    box1->addWidget( boldSorts);
-    choiceBoxS->setLayout(box1);
+    //Choice of a color for the process
+    colorProcessLayout=new QHBoxLayout;
+    grayp=new QRadioButton("gray");
+    redp=new QRadioButton("red");
+    greenp=new QRadioButton("green");
+    bluep=new QRadioButton("blue");
+    colorProcessLayout->addWidget(grayp);
+    colorProcessLayout->addWidget(redp);
+    colorProcessLayout->addWidget(greenp);
+    colorProcessLayout->addWidget(bluep);
+
+    //choice of color for the actions
+    colorActionLayout=new QHBoxLayout;
+    graya=new QRadioButton("black");
+    reda=new QRadioButton("red");
+    greena=new QRadioButton("green");
+    bluea=new QRadioButton("blue");
+    colorActionLayout->addWidget(graya);
+    colorActionLayout->addWidget(reda);
+    colorActionLayout->addWidget(greena);
+    colorActionLayout->addWidget(bluea);
 
 
-    choiceBoxP=new QGroupBox("Process");
-    colorProcess=new QCheckBox("Color selected process");
-    boldProcess=new QCheckBox("Bold selected process");
+    choiceBoxP=new QGroupBox("Active process");
+        colorProcess=new QCheckBox("Color process");
+        boldProcess=new QCheckBox("Bold process");
+        //verify if at least one process is checked before checking
+        connect(colorProcess,SIGNAL(stateChanged(int)),this, SLOT(testP(int)));
+        connect(boldProcess,SIGNAL(stateChanged(int)),this, SLOT(testP(int)));
+
     box2=new QVBoxLayout;
     box2->addWidget(colorProcess);
     box2->addWidget( boldProcess);
+    box2->addLayout(colorProcessLayout);
     choiceBoxP->setLayout(box2);
 
-    choiceBoxA=new QGroupBox("Actions");
+    choiceBoxA=new QGroupBox("Actions jouables");
     colorAction=new QCheckBox("Color actions");
     boldAction=new QCheckBox("Bold actions");
+    //verify if at least two process are checked
+    connect(colorAction,SIGNAL(stateChanged(int)),this, SLOT(testA(int)));
+    connect(boldAction,SIGNAL(stateChanged(int)),this, SLOT(testA(int)));
+
+
     box3=new QVBoxLayout;
     box3->addWidget(colorAction);
     box3->addWidget( boldAction);
+    box3->addLayout(colorActionLayout);
     choiceBoxA->setLayout(box3);
 
     choiceLayout=new QVBoxLayout;
-    choiceLayout->addWidget(choiceBoxS);
     choiceLayout->addWidget(choiceBoxP);
     choiceLayout->addWidget(choiceBoxA);
 
     layoutTotal=new QHBoxLayout;
     layoutTotal->addLayout(treeLayout);
     layoutTotal->addLayout(choiceLayout);
-
 
     globalLayout=new QVBoxLayout;
     globalLayout->addLayout(layoutTotal);
@@ -120,8 +146,6 @@ TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog()
 
 }
 
-
-
 void TikzEditor::quit(){
 
     this->~TikzEditor();
@@ -130,7 +154,6 @@ void TikzEditor::quit(){
 
 
 void TikzEditor::back(){
-// fontTree->topLevelItem(i)->setCheckState(0, Qt::Unchecked);
 
     QList <QTreeWidgetItem*> selectedItems=getSelectedSorts();
     for(QTreeWidgetItem *item:selectedItems){
@@ -149,15 +172,41 @@ void TikzEditor::back(){
      }
 
     if(colorProcess->isChecked()){
-        colorP();
+        if(redp->isChecked())
+            colorP(1);
+        else if(greenp->isChecked())
+            colorP(2);
+        else if(bluep->isChecked())
+            colorP(3);
+        else
+            colorP(0);
+    }else{
+        unColorP();
     }
 
-//    QMap <QString,QString> nonSelectedProcess=getUnselectedProcess();
-//    QMap <QString,QString>  selectedProcess=getSelectedProcess();
-
-
+    if(boldProcess->isChecked()){
+        boldP();
+    }else{
+        unBold();
+    }
+    if(colorAction->isChecked()){
+        if(reda->isChecked())
+            colorA(1);
+        else if(greena->isChecked())
+            colorA(2);
+        else if(bluea->isChecked())
+            colorA(3);
+        else
+            colorA(0);
+    }else{
+        unColorA();
+    }
+    if(boldAction->isChecked()){
+        boldA();
+    }else{
+        unBoldA();
+    }
 }
-
 
 
 QList<QTreeWidgetItem*> TikzEditor::getUnselectedSorts(){
@@ -206,7 +255,6 @@ QList<QPair <QString,QString> >  TikzEditor::getSelectedProcess(){
 
 QList<QPair <QString,QString> >   TikzEditor::getUnselectedProcess(){
 
-
     QList<QPair <QString,QString> >  unSelectedItems;
     QPair <QString,QString> elem;
     for (int i=0;i<fontTree->topLevelItemCount();i++) {
@@ -225,7 +273,6 @@ QList<QPair <QString,QString> >   TikzEditor::getUnselectedProcess(){
 
 // method to export style and layout data to Tikz format
 void TikzEditor::generateTikz(){
-
 
     QList <QTreeWidgetItem*> selectedSorts=getSelectedSorts();
     if (!selectedSorts.empty()){
@@ -272,57 +319,254 @@ void TikzEditor::checkUncheckAll(){
 }
 
 
-
-void TikzEditor::colorP(){
+void TikzEditor::colorP(int n){
 
     QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
-    QList<QPair <QString,QString> >  unselectedProcesses = getSelectedProcess();
-
     vector <GProcessPtr> process;
-    list<SortPtr> allSorts = myPHPtr->getSorts();
 
-    for (SortPtr &s : allSorts ){
-        process=myPHPtr->getGraphicsScene()->getGSort(s->getName())->GSort::getGProcesses();
-
-        for(GProcessPtr &p:process){
-                p->beNonActifProcess();
-        }
-    }
-
+    unColorP();
     for (QPair<QString,QString> &sp : selectedProcesses ){
         process=myPHPtr->getGraphicsScene()->getGSort(sp.first.toStdString())->GSort::getGProcesses();
 
         for(GProcessPtr &p:process){
-            if((QString::number(p->getProcessPtr()->getNumber()).compare(sp.second))==0)
-                p->beActifProcess();
+            p->setProcessColorNumber(n);
+            if((QString::number(p->getProcessPtr()->getNumber()).compare(sp.second))==0){
+                p->setProcessColorNumber(n);
+                p->setProcessActifState(true);
+                if(n==1){
+                    p->beActifProcess(255,0,0);
+                }else if(n==2){
+                    p->beActifProcess(0,255,0);
+                }else if(n==3){
+                    p->beActifProcess(0,0,255);
+                }else{
+                    p->beActifProcess(201,201,201);
+                }
+            }
+        }
+    }
+}
+
+void TikzEditor::unColorP(){
+
+    vector <GProcessPtr> process;
+    list<SortPtr> allSorts = myPHPtr->getSorts();
+    for (SortPtr &s : allSorts ){
+        process=myPHPtr->getGraphicsScene()->getGSort(s->getName())->GSort::getGProcesses();
+        for(GProcessPtr &p:process){
+                p->beNonActifProcess();
         }
     }
 }
 
 void TikzEditor::boldP(){
 
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+    vector <GProcessPtr> process;
+
+    unBold();
+    for (QPair<QString,QString> &sp : selectedProcesses ){
+        process=myPHPtr->getGraphicsScene()->getGSort(sp.first.toStdString())->GSort::getGProcesses();
+
+        for(GProcessPtr &p:process){
+            if((QString::number(p->getProcessPtr()->getNumber()).compare(sp.second))==0){
+                if(!p->isBold()){
+                    p->toBold();
+                }
+                p->setProcessActifState(true);
+            }
+        }
+    }
 }
 
-//void TikzEditor::boldP(){
 
-//        QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
-//        QString sortName;
-//        QString processNumber;
+void TikzEditor::unBold(){
 
-//        for (QPair<QString,QString> &sp : selectedProcesses ){
-//            std::cout<<sp.first.toStdString()<<":"<<sp.second.toStdString()<<std::endl;
-//            //call function to bold
-//        }
-//}
+    vector <GProcessPtr> process;
+    list<SortPtr> allSorts = myPHPtr->getSorts();
+    for (SortPtr &s : allSorts ){
+        process=myPHPtr->getGraphicsScene()->getGSort(s->getName())->GSort::getGProcesses();
+        for(GProcessPtr &p:process){
+            if(p->isBold()){
+                p->toBold();
+                p->setProcessActifState(false);
+            }
+        }
+    }
 
-void TikzEditor::onClear(){
+}
 
-    QTreeWidgetItem *currentItem = fontTree->currentItem();
-    foreach (QTreeWidgetItem *item, fontTree->selectedItems())
-            fontTree->setItemSelected(item, false);
-        fontTree->setItemSelected(currentItem, true);
+void TikzEditor::colorA(int n){
 
+    this->unColorA();
+    QString pnumS;
+    QString pnumT;
+    QString snameS;
+    QString snameT;
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+    vector <GActionPtr> allActions=myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+
+        pnumS = QString::number(a->getAction()->getSource()->getNumber());
+        pnumT = QString::number(a->getAction()->getTarget()->getNumber());
+
+        snameS=QString::fromStdString(a->getAction()->getSource()->getSort()->getName());
+        snameT=QString::fromStdString(a->getAction()->getTarget()->getSort()->getName());
+
+        for (QPair<QString,QString> &sp : selectedProcesses ){
+            if(sp.second.compare(pnumS)==0 && sp.first.compare(snameS)==0){
+                for (QPair<QString,QString> &s : selectedProcesses ){
+                    if(s.second.compare(pnumT)==0 && s.first.compare(snameT)==0){
+                       if(n==1){
+                          a->setActionColorNUmber(255,0,0,n);
+                       }else if(n==2){
+                           a->setActionColorNUmber(0,255,0,n);
+                       }else if(n==3){
+                           a->setActionColorNUmber(0,0,255,n);
+                       }else{
+                           a->setActionColorNUmber(220,220,220,n);
+                       }
+                    }
+                }
+            }
+        }
+        }
+        }
+
+void TikzEditor::unColorA() {
+
+    vector <GActionPtr> allActions=myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+        a->setActionColorNUmber(0,0,0,-1);
+    }
+}
+
+void TikzEditor::boldA(){
+
+    this->unColorA();
+    this->unBoldA();
+    QString pnumS;
+    QString pnumT;
+    QString snameS;
+    QString snameT;
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+    vector <GActionPtr> allActions=myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+
+        pnumS = QString::number(a->getAction()->getSource()->getNumber());
+        pnumT = QString::number(a->getAction()->getTarget()->getNumber());
+
+        snameS=QString::fromStdString(a->getAction()->getSource()->getSort()->getName());
+        snameT=QString::fromStdString(a->getAction()->getTarget()->getSort()->getName());
+
+        for (QPair<QString,QString> &sp : selectedProcesses ){
+            if(sp.second.compare(pnumS)==0 && sp.first.compare(snameS)==0){
+                for (QPair<QString,QString> &s : selectedProcesses ){
+                    if(s.second.compare(pnumT)==0 && s.first.compare(snameT)==0){
+                        a->setActionColorNUmber(0,0,0,0);
+                        a->toBold();
+                    }
+                }
+            }
+        }
+     }
+}
+
+void TikzEditor:: unBoldA(){
+
+    vector <GActionPtr> allActions=myPHPtr->getGraphicsScene()->getActions();
+    for (GActionPtr &a: allActions){
+        if(a->isBold()){
+             a->toBold();
+         }
+    }
+}
+
+void TikzEditor:: setStatus(QTreeWidgetItem *item,int column){
+
+        if (!item || column != 0)
+            return;
+        Qt::CheckState state = item->checkState(0);
+        QTreeWidgetItem *parent = item->parent();
+        QList<QPair <QString,QString> >  selectedProcesses ;
+        if (parent) {
+
+            if (state == Qt::Checked) {
+                // Mark parent items when child items are checked.
+                parent->setCheckState(0, Qt::Checked);
+                colorProcess->setCheckState(Qt::Checked);
+            }
+            else if (state == Qt::Unchecked) {
+                 selectedProcesses = getSelectedProcess();
+                // Unmark color process and color sort when child items are unchecked.
+                if (selectedProcesses.size()<2){
+                    boldAction->setCheckState(Qt::Unchecked);
+                    colorAction->setCheckState(Qt::Unchecked);
+                }
+                if (selectedProcesses.size()==0){
+                    boldProcess->setCheckState(Qt::Unchecked);
+                    colorProcess->setCheckState(Qt::Unchecked);
+                }
+                }
+        } else {
+            int row;
+            int number = 0;
+            for (row = 0; row < item->childCount(); ++row) {
+                if (item->child(row)->checkState(0) == Qt::Checked)
+                    ++number;
+            }
+
+
+            // unmark all child items when unmarking top-level
+            // items.
+          if (state == Qt::Unchecked && number > 0) {
+                for (row = 0; row < item->childCount(); ++row) {
+                    if (item->child(row)->checkState(0) == Qt::Checked)
+                        item->child(row)->setCheckState(0, Qt::Unchecked);
+                }
+            }
+        }
+
+}
+
+/**
+ * @brief TikzEditor::testA
+ *
+ */
+void TikzEditor::testA(int state){
+
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+    if(state){
+        std::cout<<"size:"<<selectedProcesses.size()<<std::endl;
+        if (selectedProcesses.size()<=1){
+            QMessageBox::critical(this, "Error", "At least two process must be selected");
+            if(colorAction->isChecked()==true)
+                colorAction->setCheckState(Qt::Unchecked);
+            if(boldAction->isChecked()==true)
+                boldAction->setCheckState(Qt::Unchecked);
+
+        }
+    }
+
+}
+
+
+void TikzEditor::testP(int state){
+
+    QList<QPair <QString,QString> >  selectedProcesses = getSelectedProcess();
+
+    if(state){
+        if (selectedProcesses.size()==0){
+            QMessageBox::critical(this, "Error", "At least one process must be selected");
+            if(colorProcess->isChecked()==true)
+                colorProcess->setCheckState(Qt::Unchecked);
+            if(boldProcess->isChecked()==true)
+                boldProcess->setCheckState(Qt::Unchecked);
+
+        }
+    }
 }
 
 //Detroyer
 TikzEditor::~TikzEditor(){}
+

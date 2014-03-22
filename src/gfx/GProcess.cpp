@@ -48,6 +48,7 @@ void GProcess::initEllipseItem(){
 	ellipse->setPen(QPen(QColor(0,0,0)));
 	ellipse->setBrush(QBrush(QColor(255,255,255)));
     bold=false;
+    numberProcessColor=0;
 }
 
 void GProcess::initMarginRectItem(){
@@ -79,7 +80,6 @@ void GProcess::initTextItem(){
 
 //Colorer le process
 void GProcess::colorProcess(QColor color){
-
     if (!color.isValid()) {
         return ;
     } else {
@@ -127,9 +127,9 @@ void GProcess::toBold() {
 }
 
 //make the process in grey color
-void GProcess::beActifProcess(){
+void GProcess::beActifProcess(int r, int g, int b){
     this->setProcessActifState(true);
-    ellipse->setBrush(QBrush(QColor(201,201,201)));
+    ellipse->setBrush(QBrush(QColor(r,g,b)));
 }
 
 //make the process in normal color
@@ -141,6 +141,11 @@ void GProcess::beNonActifProcess(){
 //change the process state actif ou not actif
 void GProcess::setProcessActifState(bool state){
     this->actifState=state;
+}
+
+//Change the number of process color
+void GProcess::setProcessColorNumber(int nb){
+    this->numberProcessColor=nb;
 }
 
 // Getters
@@ -162,6 +167,8 @@ QSizeF* GProcess::getSizeEllipse() {return this->size;}
 QGraphicsTextItem* GProcess::getText() {return this->text;}
 
 bool GProcess::getProcessActifState(){return this->actifState;}
+
+int GProcess::getProcessColorNumber(){return this->numberProcessColor;}
 
 // Setters
 

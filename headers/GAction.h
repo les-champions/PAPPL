@@ -112,7 +112,18 @@ class GAction {
           * @brief change this GAction color
           */
         void colorAction(QColor);
+        /**
+          * @brief gets the number of color RGB to tikZ file
+          *
+          */
+        int getActionColorNumber();
+        /**
+          * @brief sets the number of the process color RGB to TikZ file
+          *
+          */
+        void setActionColorNUmber(int r, int g, int b, int nb);
 	
+
 	protected:
 	
         /**
@@ -175,6 +186,10 @@ class GAction {
           * @brief the pair of graphical items representing the tails of the arrows of the Action
           *
           */
+        /**
+          * @brief color of this action
+          */
+        int numberActionColor;
 	pair<QGraphicsPathItem*, QGraphicsPathItem*> 		arrowTails;
 
         /**

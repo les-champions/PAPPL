@@ -21,16 +21,15 @@ public:
     PHPtr myPHPtr;
     bool allChecked;
 
-
-    //void colorS();
-    void colorP();
+    int column;
+    void colorP(int n);
+    void unColorP();
     void boldP();
-    //void colorAction();
-
-    //void boldS();
-    //void boldProcess();
-    //void boldAction();
-
+    void unBold();
+    void colorA(int n);
+    void unColorA();
+    void boldA();
+    void unBoldA();
 
     QList <QTreeWidgetItem* > getSelectedSorts();
     QList <QTreeWidgetItem* > getUnselectedSorts();
@@ -60,13 +59,9 @@ private:
 
 
     //choice
-    QVBoxLayout *box1;
+
     QVBoxLayout *box2;
     QVBoxLayout *box3;
-
-    QGroupBox *choiceBoxS;
-    QCheckBox *colorSorts ;
-    QCheckBox *boldSorts ;
 
     QGroupBox *choiceBoxP;
     QCheckBox *colorProcess ;
@@ -78,19 +73,34 @@ private:
 
     QVBoxLayout *choiceLayout;
 
+    //Color
+    QHBoxLayout *colorProcessLayout;
+    QRadioButton *grayp;
+    QRadioButton *redp;
+    QRadioButton *greenp;
+    QRadioButton *bluep;
 
-    //check
+    QHBoxLayout *colorActionLayout;
+    QRadioButton *graya;
+    QRadioButton *reda;
+    QRadioButton *greena;
+    QRadioButton *bluea;
+
+    //check/unchek all
 
     QPushButton *check;
     QHBoxLayout *checkLayout;
 
 
 private slots:
-    void onClear();
+
+    void setStatus(QTreeWidgetItem *item, int column);
     void checkUncheckAll();
     void back();
     void generateTikz();
     void quit();
+    void testA(int);
+    void testP(int);
 };
 
 
