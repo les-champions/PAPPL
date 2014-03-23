@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\input{macros-ph}  
+\begin{document}
+ % *** Style de TikZ 
+\tikzstyle{style trait 10}=[black,thick]
+\tikzstyle{style trait 11}=[red,thick]
+\tikzstyle{style trait 12}=[green,thick]
+\tikzstyle{style trait 13}=[blue,thick]
+
+\tikzstyle{style fond 0}=[fill=black!30]
+\tikzstyle{style fond 1}=[fill=red!30]
+\tikzstyle{style fond 2}=[fill=green!30]
+\tikzstyle{style fond 3}=[fill=blue!30]
+\tikzstyle{style fond 5}=[draw=black,line width=1mm]
+
+\begin{tikzpicture}
+   \TSort{(0,0)}{TCRlig}{2}{l}
+  \node[process, style fond 2] at (TCRlig_0.center) {}; 
+\TState{TCRlig_0} 
+  \THit{TCRlig_0}{out=-40, in=40, selfhit,}{TCRlig_0}{}{TCRlig_1} 
+ \path[bounce, bend right] \TBounce{TCRlig_0}{}{TCRlig_1}{.south east}; 
+\end{tikzpicture}
+\end{document}

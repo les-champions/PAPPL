@@ -101,6 +101,8 @@ private slots:
     void quit();
     void testA(int);
     void testP(int);
+    void colorOrBoldAction(int);
+    void boldOrColorAction(int);
 };
 
 

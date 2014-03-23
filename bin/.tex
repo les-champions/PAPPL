@@ -26,21 +26,12 @@
 \tikzstyle{style fond 5}=[draw=black,line width=1mm]
 
 \begin{tikzpicture}
-   \TSort{(-0.91,-7.55)}{a}{2}{l}
-  \node[process, style fond 2] at (a_1.center) {}; 
-   \TSort{(-2.01,-3.46)}{c}{2}{l}
-  \node[process, style fond 2] at (c_0.center) {}; 
-  \node[process, style fond 2] at (c_1.center) {}; 
-   \TSort{(0,0)}{f}{2}{l}
-  \node[process, style fond 2] at (f_1.center) {}; 
-\TState{a_1,c_0,c_1,f_1} 
-   \THit{c_1}{,style trait 11}{a_1}{.west}{a_0}
-    \path[bounce, bend right] \TBounce{a_1}{,style trait 11}{a_0}{.west};
-  \THit{c_1}{out=40, in=-40, selfhit,,style trait 11}{c_1}{}{c_0} 
- \path[bounce, bend left] \TBounce{c_1}{,style trait 11}{c_0}{.north east}; 
-   \THit{f_0}{}{c_1}{.east}{c_0}
-    \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.east};
-  \THit{f_1}{out=40, in=-40, selfhit,,style trait 11}{f_1}{}{f_0} 
- \path[bounce, bend left] \TBounce{f_1}{,style trait 11}{f_0}{.north east}; 
+   \TSort{(0,0)}{a}{2}{l}
+   \TSort{(-2.27,3.06)}{c}{2}{l}
+\TState{} 
+   \THit{c_1}{}{a_1}{.west}{a_0}
+    \path[bounce, bend right] \TBounce{a_1}{}{a_0}{.west};
+  \THit{c_1}{out=40, in=-40, selfhit,}{c_1}{}{c_0} 
+ \path[bounce, bend left] \TBounce{c_1}{}{c_0}{.north east}; 
 \end{tikzpicture}
 \end{document}

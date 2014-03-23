@@ -33,8 +33,6 @@ HEADERS 	= 	headers/Action.h 		\
     headers/FunctionForm.h \
     headers/test/ChoixLigne.h \
     headers/GVSkeletonGraph.h \
-    headers/EditorSettings.h \
-    headers/test/TikzEditor.h \
     headers/TikzEditor.h
 				
 INCLUDEPATH = headers headers/axe headers/test
@@ -61,7 +59,6 @@ SOURCES			= 	src/gfx/GProcess.cpp	\
     src/ui/FuncFrame.cpp \
     src/ui/FunctionForm.cpp \
     src/ui/ChoixLigne.cpp \
-    src/ui/EditorSettings.cpp \
     src/ui/TikzEditor.cpp
 
 #So 2013 (needed for Axe)

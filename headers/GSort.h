@@ -192,13 +192,21 @@ class GSort : public QGraphicsRectItem {
           */
         void toBold();
         /**
-          * @brief change the GActions of this Sort to bold
+          * @brief change the GActions In of this Sort to bold
           */
-        void ActionsToBold();
+        void ActionsInToBold();
         /**
-          * @brief change the GActions color
+        * @brief change the GActions out of this Sort to bold
+        */
+      void ActionsOutToBold();
+        /**
+          * @brief change the GActions In color
           */
-        void ActionsChangeColor();
+        void ActionsInChangeColor();
+        /**
+          * @brief change the GActions out color
+          */
+        void ActionsOutChangeColor();
         /**
           * @brief change the process color
           */

@@ -143,32 +143,9 @@ void PHScene::BackgroundColor(){
 }
 
 void PHScene::ActionsInBold(){
-//    GActionPtr actionToChange;
-//    bool test=true;
-//    int minx;
-//    int miny;
-//    int min;
     for(auto &a :this->getActions()){
         a->toBold();
-//      QPointF* ptSource = a->getSource()->getCenterPoint();
-//       QPointF* ptTarget = a->getTarget()->getCenterPoint();
-//       QPointF* ptResult = a->getResult()->getCenterPoint();
-//       if(test){
-//          actionToChange=a;
-//          minx=ptSource->x() - pressPoint.x();
-//          miny=ptSource->y() - pressPoint.y();
-//          min=minx*minx + miny*miny;
-//          std::cout << "Min x=" << ptSource->x()<< "y=" << ptSource->y()<< std::endl;
-//          test=false;
-//       }else{
-//           if(min > (ptSource->x()*ptSource->x() + ptSource->y()*ptSource->y())- (pressPoint.x()*pressPoint.x() + pressPoint.y()*pressPoint.y())){
-//               min = (ptSource->x()*ptSource->x() + ptSource->y()*ptSource->y())- (pressPoint.x()*pressPoint.x() + pressPoint.y()*pressPoint.y());
-//               actionToChange=a;
-//               std::cout << "x=" << ptSource->x()<< "y=" << ptSource->y()<< std::endl;
-//           }
-//       }
    }
-//    actionToChange->toBold();
 }
 
 void PHScene::ActionColor(){
