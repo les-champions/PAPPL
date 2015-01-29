@@ -2,7 +2,7 @@ TEMPLATE 	= app
 CONFIG 		+= qt
 DESTDIR 	= bin
 OBJECTS_DIR = .tmp
-LIBS 		= -lboost_filesystem -lboost_system -L/usr/lib/graphviz -lgvc -lgraph -lpathplan -lcdt -lgvplugin_dot_layout
+LIBS 		= -lboost_filesystem -lboost_system -L/usr/lib/graphviz -lgvc -lcgraph -lpathplan -lcdt -lgvplugin_dot_layout
 
 HEADERS 	= 	headers/Action.h 		\
 				headers/Exceptions.h 	\

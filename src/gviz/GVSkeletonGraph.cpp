@@ -16,13 +16,13 @@ const qreal GVSkeletonGraph::sepValue = 30.0;
 static inline Agnode_t* _agnode(Agraph_t* object, QString name) {
     setlocale(LC_NUMERIC,"en_US.UTF-8"); // To set "." as decimal delimiter for GraphViz
 
-    return agnode(object, const_cast<char *>(qPrintable(name)));
+    return agnode(object, const_cast<char *>(qPrintable(name)), 1);
 }
 
-static inline Agraph_t* _agopen(QString name, int kind) {
+static inline Agraph_t* _agopen(QString name, Agdesc_t kind) {
     setlocale(LC_NUMERIC,"en_US.UTF-8");
 
-    return agopen(const_cast<char *>(qPrintable(name)),kind);
+    return agopen(const_cast<char *>(qPrintable(name)),kind, 0);
 }
 
 static inline QString _agget(void *object, QString attr, QString alt=QString()) {
@@ -31,18 +31,6 @@ static inline QString _agget(void *object, QString attr, QString alt=QString()) 
     QString str = agget(object, const_cast<char *>(qPrintable(attr)));
     if(str==QString()) return alt;
     else return str;
-}
-
-static inline Agsym_t* _agnodeattr(Agraph_t* object, QString attr, QString value) {
-    setlocale(LC_NUMERIC,"en_US.UTF-8");
-
-    return agnodeattr(object, const_cast<char *>(qPrintable(attr)),const_cast<char *>(qPrintable(value)));
-}
-
-static inline Agsym_t* _agedgeattr(Agraph_t* object, QString attr, QString value) {
-    setlocale(LC_NUMERIC,"en_US.UTF-8");
-
-    return agedgeattr(object, const_cast<char *>(qPrintable(attr)),const_cast<char *>(qPrintable(value)));
 }
 
 static inline void _gvLayout(GVC_t* context, Agraph_t* graph, QString alg) {
@@ -55,7 +43,7 @@ GVSkeletonGraph::GVSkeletonGraph(QString name, QFont font) {
     setlocale(LC_NUMERIC,"en_US.UTF-8");
 
     _context = gvContext();
-    _graph = _agopen(name, AGDIGRAPHSTRICT);
+    _graph = _agopen(name, Agstrictdirected);
     setGraphAttributes();
     setFont(font);
 }
@@ -112,15 +100,15 @@ QList<GVNode> GVSkeletonGraph::nodes() {
     for(QMap<QString, Agnode_t*>::const_iterator it = _nodes.begin(); it != _nodes.end(); ++it) {
         Agnode_t *node = it.value();
         GVNode object;
-        object.name = node->name;
+        object.name = ND_label(node)->text;
 
-        qreal x = node ->u.coord.x *(dpi/GVSkeletonGraph::DotDefaultDPI);
-        qreal y = -node ->u.coord.y *(dpi/GVSkeletonGraph::DotDefaultDPI);
+        qreal x = ND_coord(node).x *(dpi/GVSkeletonGraph::DotDefaultDPI);
+        qreal y = -ND_coord(node).y *(dpi/GVSkeletonGraph::DotDefaultDPI);
 
         object.centerPos = QPoint(x,y);
 
-        object.height = node->u.height * dpi;
-        object.width = node->u.width * dpi;
+        object.height = ND_height(node) * dpi;
+        object.width  = ND_width(node)  * dpi;
 
         list << object;
     }
@@ -186,7 +174,10 @@ void GVSkeletonGraph::addEdge(const QString &source, const QString &target) {
     if (hasNode(source) && hasNode(target)) {
         QPair<QString, QString> key(source, target);
 
-        if(!_edges.contains(key)) _edges.insert(key, agedge(_graph, getNode(source), getNode(target)));
+        if(!_edges.contains(key)) {
+            Agedge_t *edge = agedge(_graph, getNode(source), getNode(target), 0, 1);
+            _edges.insert(key, edge);
+        }
 
     }
 }
