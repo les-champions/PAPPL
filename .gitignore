@@ -22,6 +22,11 @@ Temporary Items
 bin/
 # Object files
 .tmp/
+# Qt meta-object source files
+.moc/
+
+# Log file created on each file opening
+log_opening_time.txt
 # Generated Makefile
 Makefile
 

@@ -1,82 +1,82 @@
 TEMPLATE 	= app
 CONFIG 		+= qt
 DESTDIR 	= bin
-OBJECTS_DIR = .tmp
-LIBS 		= -lboost_filesystem -lboost_system -L/usr/lib/graphviz -lgvc -lcgraph -lpathplan -lcdt -lgvplugin_dot_layout
+OBJECTS_DIR     = .tmp
+MOC_DIR         = .moc
 
-HEADERS 	= 	headers/Action.h 		\
-				headers/Exceptions.h 	\
-				headers/IO.h 			\
-				headers/GProcess.h 		\
-				headers/GAction.h 		\
-				headers/GSort.h 		\
-				headers/GVEdge.h 		\
-				headers/GVNode.h	 	\
-				headers/MainWindow.h 	\
-				headers/MyArea.h 		\
-				headers/PH.h 			\
-				headers/PHScene.h		\
-				headers/PHIO.h 			\
-				headers/Process.h 		\
-				headers/Sort.h \
-    headers/Area.h \
-    headers/TextArea.h \
-    headers/TreeArea.h \
-    headers/ColorerSequences.h \
-    #Connection.h \
-    #src/ui/connectionsettings.h \
-    #src/ui/ConnectionSettings.h \
-    #src/ui/ConnectionSettings.h \
-    headers/ConnectionSettings.h \
-    headers/ArgumentFrame.h \
-    headers/FuncFrame.h \
-    headers/FunctionForm.h \
-    headers/test/ChoixLigne.h \
-    headers/GVSkeletonGraph.h \
-    headers/TikzEditor.h
+LIBS 		= -lboost_filesystem -lboost_system \
+                  -L/usr/lib/graphviz \
+                  -lgvc -lcgraph -lpathplan -lcdt -lgvplugin_dot_layout
+
+HEADERS 	=   headers/Action.h \
+                    headers/Exceptions.h \
+                    headers/IO.h \
+                    headers/GProcess.h \
+                    headers/GAction.h \
+                    headers/GSort.h \
+                    headers/GVEdge.h \
+                    headers/GVNode.h \
+                    headers/MainWindow.h \
+                    headers/MyArea.h \
+                    headers/PH.h \
+                    headers/PHScene.h \
+                    headers/PHIO.h \
+                    headers/Process.h \
+                    headers/Sort.h \
+                    headers/Area.h \
+                    headers/TextArea.h \
+                    headers/TreeArea.h \
+                    headers/ColorerSequences.h \
+                    #Connection.h \
+                    #src/ui/connectionsettings.h \
+                    #src/ui/ConnectionSettings.h \
+                    #src/ui/ConnectionSettings.h \
+                    headers/ConnectionSettings.h \
+                    headers/ArgumentFrame.h \
+                    headers/FuncFrame.h \
+                    headers/FunctionForm.h \
+                    headers/test/ChoixLigne.h \
+                    headers/GVSkeletonGraph.h \
+                    headers/TikzEditor.h
 				
 INCLUDEPATH = headers headers/axe headers/test
 
-SOURCES			= 	src/gfx/GProcess.cpp	\
-					src/gfx/GAction.cpp		\					
-					src/gfx/GSort.cpp		\					
-					src/gfx/PHScene.cpp		\
-					src/gviz/GVSkeletonGraph.cpp \
-					src/io/IO.cpp			\
-					src/io/PHIO.cpp			\
-					src/ph/Action.cpp		\
-					src/ph/PH.cpp			\					
-					src/ph/Process.cpp		\
-					src/ph/Sort.cpp			\
-					src/ui/MainWindow.cpp 	\
-					src/ui/MyArea.cpp \
-    src/ui/TextArea.cpp \
-    src/ui/TreeArea.cpp \
-    src/ui/Area.cpp \
-    src/ui/ColorerSequences.cpp \
-    src/ui/ConnectionSettings.cpp \
-    src/ui/ArgumentFrame.cpp \
-    src/ui/FuncFrame.cpp \
-    src/ui/FunctionForm.cpp \
-    src/ui/ChoixLigne.cpp \
-    src/ui/TikzEditor.cpp
+SOURCES			=   src/gfx/GProcess.cpp \
+                            src/gfx/GAction.cpp \
+                            src/gfx/GSort.cpp \
+                            src/gfx/PHScene.cpp \
+                            src/gviz/GVSkeletonGraph.cpp \
+                            src/io/IO.cpp \
+                            src/io/PHIO.cpp \
+                            src/ph/Action.cpp \
+                            src/ph/PH.cpp \
+                            src/ph/Process.cpp \
+                            src/ph/Sort.cpp \
+                            src/ui/MainWindow.cpp \
+                            src/ui/MyArea.cpp \
+                            src/ui/TextArea.cpp \
+                            src/ui/TreeArea.cpp \
+                            src/ui/Area.cpp \
+                            src/ui/ColorerSequences.cpp \
+                            src/ui/ConnectionSettings.cpp \
+                            src/ui/ArgumentFrame.cpp \
+                            src/ui/FuncFrame.cpp \
+                            src/ui/FunctionForm.cpp \
+                            src/ui/ChoixLigne.cpp \
+                            src/ui/TikzEditor.cpp
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x
 QMAKE_CXXFLAGS += -ggdb
 
 test {
-
-	QMAKE_CXXFLAGS += -ggdb
-	QT += testlib
-	HEADERS +=	headers/test/PHIOTest.h
-	SOURCES	+= 	src/test/TestRunner.cpp	\
-				src/test/PHIOTest.cpp
-
+  QMAKE_CXXFLAGS += -ggdb
+  QT      += testlib
+  HEADERS += headers/test/PHIOTest.h
+  SOURCES += src/test/TestRunner.cpp	\
+             src/test/PHIOTest.cpp
 } else {
-
-	SOURCES	+= src/Main.cpp
-
+  SOURCES	+= src/Main.cpp
 }
 
 FORMS +=
