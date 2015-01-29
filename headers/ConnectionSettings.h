@@ -1,7 +1,8 @@
 #ifndef HEADER_CONNECTIONSETTINGS
 #define HEADER_CONNECTIONSETTINGS
 
-#include <QtGui>
+#include <QtCore>
+#include <QtWidgets>
 #include "FuncFrame.h"
 #include "ChoixLigne.h"
 

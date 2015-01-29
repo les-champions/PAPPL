@@ -4,6 +4,7 @@
 #include <QColor>
 #include <QSize>
 #include <QPoint>
+#include <QColorDialog>
 #include <vector>
 #include "Sort.h"
 #include "GVNode.h"

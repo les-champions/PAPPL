@@ -2,6 +2,8 @@
 #define TIKZEDITOR_H
 
 #include <iostream>
+#include <QtCore>
+#include <QtWidgets>
 #include <QtGui>
 #include <QGraphicsScene>
 #include <map>

@@ -3,6 +3,8 @@
 #include <QHBoxLayout>
 #include <QInputDialog>
 #include <QErrorMessage>
+#include <QMessageBox>
+#include <QColorDialog>
 #include <QMenu>
 
 TreeArea::TreeArea(QWidget *parent): QWidget(parent) {

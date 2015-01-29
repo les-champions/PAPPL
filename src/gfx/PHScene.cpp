@@ -12,6 +12,7 @@
 #include <QApplication>
 #include <QMenu>
 #include <QtGui>
+#include <QGraphicsSceneContextMenuEvent>
 
 PHScene::PHScene(PH* _ph) : ph(_ph) {
     // set background color

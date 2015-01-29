@@ -2,11 +2,10 @@
 #include "MainWindow.h"
 #include "PH.h"
 #include "PHIO.h"
-#include <QtGui>
 #include "Area.h"
-#include<iostream>
-#include<stdio.h>
-#include<utility>
+#include <iostream>
+#include <stdio.h>
+#include <utility>
 
 TikzEditor::TikzEditor(PHPtr myPHPtr): QDialog() {
 

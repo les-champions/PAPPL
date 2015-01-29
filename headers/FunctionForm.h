@@ -1,6 +1,7 @@
 #ifndef FUNCTIONFORM_H
 #define FUNCTIONFORM_H
-#include <QtGui>
+#include <QtCore>
+#include <QtWidgets>
 
 class FunctionForm : public QDialog {
     Q_OBJECT

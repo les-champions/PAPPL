@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QApplication>
 #include <QtGui>
+#include <QGraphicsView>
 #include "PH.h"
 
 /**

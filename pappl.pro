@@ -69,6 +69,8 @@ SOURCES			=   src/gfx/GProcess.cpp \
 QMAKE_CXXFLAGS += -std=c++0x
 QMAKE_CXXFLAGS += -ggdb
 
+QT += widgets
+
 test {
   QMAKE_CXXFLAGS += -ggdb
   QT      += testlib

@@ -8,7 +8,7 @@
 #include "Action.h"
 #include "GSort.h"
 
-#include <QtGui/qgraphicswidget.h>
+#include <QGraphicsItem>
 #include <QColor>
 #include <QSize>
 #include <QPoint>
