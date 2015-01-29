@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -39,155 +39,139 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// e_plus_t, e_minus_t, e_mult_t, e_div_t - common extractors
-    /// operators used +=, -=, *=, /=
-    //-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+/// e_plus_t, e_minus_t, e_mult_t, e_div_t - common extractors
+/// operators used +=, -=, *=, /=
+//-------------------------------------------------------------------------
 
-    template<class T> struct r_expression_t;
-    
-    //-------------------------------------------------------------------------
-    /// e_plus_t - extractor class for operator +
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct e_plus_t
-    {
-        T& t1_;
-        const T& t2_;
+template<class T> struct r_expression_t;
 
-        e_plus_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
+//-------------------------------------------------------------------------
+/// e_plus_t - extractor class for operator +
+//-------------------------------------------------------------------------
+template<class T>
+struct e_plus_t {
+    T& t1_;
+    const T& t2_;
 
-        template<class It>
-        void operator()(It i1, It i2)
-        {
-            t1_ += t2_;
-        }
-    };
+    e_plus_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
 
-    //-------------------------------------------------------------------------
-    /// e_minus_t - extractor class for operator-
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct e_minus_t
-    {
-        T& t1_;
-        const T& t2_;
+    template<class It>
+    void operator()(It i1, It i2) {
+        t1_ += t2_;
+    }
+};
 
-        e_minus_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
+//-------------------------------------------------------------------------
+/// e_minus_t - extractor class for operator-
+//-------------------------------------------------------------------------
+template<class T>
+struct e_minus_t {
+    T& t1_;
+    const T& t2_;
 
-        template<class It>
-        void operator()(It i1, It i2)
-        {
-            t1_ -= t2_;
-        }
-    };
+    e_minus_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
 
-    //-------------------------------------------------------------------------
-    /// e_mult_t - extractor class for operator*
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct e_mult_t
-    {
-        T& t1_;
-        const T& t2_;
-        e_mult_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
+    template<class It>
+    void operator()(It i1, It i2) {
+        t1_ -= t2_;
+    }
+};
 
-        template<class It>
-        void operator()(It i1, It i2)
-        {
-            t1_ *= t2_;
-        }
-    };
+//-------------------------------------------------------------------------
+/// e_mult_t - extractor class for operator*
+//-------------------------------------------------------------------------
+template<class T>
+struct e_mult_t {
+    T& t1_;
+    const T& t2_;
+    e_mult_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
 
-    //-------------------------------------------------------------------------
-    /// e_div_t - extractor class for operator/
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct e_div_t
-    {
-        T& t1_;
-        const T& t2_;
-        e_div_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
+    template<class It>
+    void operator()(It i1, It i2) {
+        t1_ *= t2_;
+    }
+};
 
-        template<class It>
-        void operator()(It i1, It i2)
-        {
-            t1_ /= t2_;
-        }
-    };
+//-------------------------------------------------------------------------
+/// e_div_t - extractor class for operator/
+//-------------------------------------------------------------------------
+template<class T>
+struct e_div_t {
+    T& t1_;
+    const T& t2_;
+    e_div_t(T& t1, const T& t2) : t1_(t1), t2_(t2) {}
 
-    //-------------------------------------------------------------------------
-    /// r_group_t - rule for syntactical group (paranthesised expression)
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct r_group_t
-    {
-        T& value_;
-        explicit r_group_t(T& value) : value_(value) {}
+    template<class It>
+    void operator()(It i1, It i2) {
+        t1_ /= t2_;
+    }
+};
 
-        template<class It>
-        result<It> operator() (It i1, It i2)
-        {
-            return (r_lit('(') & r_expression_t<T>(value_) & ')')(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+/// r_group_t - rule for syntactical group (paranthesised expression)
+//-------------------------------------------------------------------------
+template<class T>
+struct r_group_t {
+    T& value_;
+    explicit r_group_t(T& value) : value_(value) {}
 
-    //-------------------------------------------------------------------------
-    /// r_factor_t - rule for factor
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct r_factor_t
-    {
-        T& value_;
-        explicit r_factor_t(T& value) : value_(value) {}
+    template<class It>
+    result<It> operator() (It i1, It i2) {
+        return (r_lit('(') & r_expression_t<T>(value_) & ')')(i1, i2);
+    }
+};
 
-        template<class It>
-        result<It> operator() (It i1, It i2)
-        {
-            return (r_decimal(value_) | r_group_t<T>(value_))(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+/// r_factor_t - rule for factor
+//-------------------------------------------------------------------------
+template<class T>
+struct r_factor_t {
+    T& value_;
+    explicit r_factor_t(T& value) : value_(value) {}
 
-    //-------------------------------------------------------------------------
-    /// r_term_t - rule for term
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct r_term_t
-    {
-        T& value_;
-        explicit r_term_t(T& value) : value_(value) {}
+    template<class It>
+    result<It> operator() (It i1, It i2) {
+        return (r_decimal(value_) | r_group_t<T>(value_))(i1, i2);
+    }
+};
 
-        template<class It>
-        result<It> operator() (It i1, It i2)
-        {
-            T t;
-            return (r_factor_t<T>(value_) 
-            & r_many((r_lit('*') & r_factor_t<T>(t)) >> e_mult_t<T>(value_, t)
-            | (r_lit('/') & r_factor_t<T>(t)) >> e_div_t<T>(value_, t)
-            ))(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+/// r_term_t - rule for term
+//-------------------------------------------------------------------------
+template<class T>
+struct r_term_t {
+    T& value_;
+    explicit r_term_t(T& value) : value_(value) {}
 
-    //-------------------------------------------------------------------------
-    /// r_expression_t - rule for expression
-    //-------------------------------------------------------------------------
-    template<class T>
-    struct r_expression_t
-    {
-        T& value_;
-        explicit r_expression_t(T& value) : value_(value) {}
+    template<class It>
+    result<It> operator() (It i1, It i2) {
+        T t;
+        return (r_factor_t<T>(value_)
+                & r_many((r_lit('*') & r_factor_t<T>(t)) >> e_mult_t<T>(value_, t)
+                         | (r_lit('/') & r_factor_t<T>(t)) >> e_div_t<T>(value_, t)
+                        ))(i1, i2);
+    }
+};
 
-        template<class It>
-        result<It> operator() (It i1, It i2)
-        {
-            T t = T();
-            return 
-            (r_term_t<T>(value_) 
-                & r_many((r_lit('+') & r_term_t<T>(t)) >> e_plus_t<T>(value_, t)
-                                | (r_lit('-') & r_term_t<T>(t)) >> e_plus_t<T>(value_, -t))
+//-------------------------------------------------------------------------
+/// r_expression_t - rule for expression
+//-------------------------------------------------------------------------
+template<class T>
+struct r_expression_t {
+    T& value_;
+    explicit r_expression_t(T& value) : value_(value) {}
+
+    template<class It>
+    result<It> operator() (It i1, It i2) {
+        T t = T();
+        return
+            (r_term_t<T>(value_)
+             & r_many((r_lit('+') & r_term_t<T>(t)) >> e_plus_t<T>(value_, t)
+                      | (r_lit('-') & r_term_t<T>(t)) >> e_plus_t<T>(value_, -t))
             )(i1, i2);
-        }
-    };
+    }
+};
 
 }
 #endif

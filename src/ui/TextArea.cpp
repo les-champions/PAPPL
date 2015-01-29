@@ -6,8 +6,7 @@
 #include "Exceptions.h"
 
 TextArea::TextArea(QWidget *parent) :
-    QTextEdit(parent)
-{
+    QTextEdit(parent) {
     this->setMinimumWidth(200);
     this->setMaximumWidth(200);
     this->nberEdit = -1;
@@ -19,7 +18,7 @@ TextArea::TextArea(QWidget *parent) :
 }
 
 
-void TextArea::changeBackgroundColor(QColor color){
+void TextArea::changeBackgroundColor(QColor color) {
     // get the current palette of the textArea
     QPalette p = this->palette();
     // set the color chosen to the palette
@@ -28,37 +27,37 @@ void TextArea::changeBackgroundColor(QColor color){
     this->setPalette(p);
 }
 
-void TextArea::onTextEdit(){
+void TextArea::onTextEdit() {
 
     this->nberEdit++;
 }
 
-void TextArea::decNberTextChange(){
+void TextArea::decNberTextChange() {
 
     this->nberTextChange--;
 }
 
-int TextArea::getNberEdit(){
+int TextArea::getNberEdit() {
 
     return this->nberEdit;
 }
 
-void TextArea::setNberEdit(int a){
+void TextArea::setNberEdit(int a) {
 
     this->nberEdit = a;
 }
 
-int TextArea::getNberTextChange(){
+int TextArea::getNberTextChange() {
 
     return this->nberTextChange;
 }
 
-void TextArea::setNberTextChange(int a){
+void TextArea::setNberTextChange(int a) {
 
     this->nberTextChange = a;
 }
 
-void TextArea::incrementeNberTextChange(){
+void TextArea::incrementeNberTextChange() {
 
     this->nberTextChange++;
 }

@@ -7,7 +7,7 @@
  */
 
 int main (int argc, char ** argv) {
-	PHIOTest test1;
-	QTest::qExec(&test1);
-	return 0;
+    PHIOTest test1;
+    QTest::qExec(&test1);
+    return 0;
 }

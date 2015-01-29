@@ -19,31 +19,31 @@ PHScene::PHScene(PH* _ph) : ph(_ph) {
 }
 
 
-void PHScene::drawFromSkeleton(void){
-	GVSkeletonGraphPtr gSkeleton = ph->createSkeletonGraph();
-	
-	QList<GVNode> gSkeletonNodes = gSkeleton->nodes();
-	for(GVNode &gn : gSkeletonNodes){
-		for(SortPtr &s : ph->getSorts()){
-			int nbProcess = (s->getProcesses()).size();
-			int width = GProcess::sizeDefault+2*GSort::marginDefault;
-			int height = nbProcess*(GProcess::sizeDefault+2*GSort::marginDefault);
-			if(gn.name == makeSkeletonNodeName(s->getName())){
+void PHScene::drawFromSkeleton(void) {
+    GVSkeletonGraphPtr gSkeleton = ph->createSkeletonGraph();
+
+    QList<GVNode> gSkeletonNodes = gSkeleton->nodes();
+    for(GVNode &gn : gSkeletonNodes) {
+        for(SortPtr &s : ph->getSorts()) {
+            int nbProcess = (s->getProcesses()).size();
+            int width = GProcess::sizeDefault+2*GSort::marginDefault;
+            int height = nbProcess*(GProcess::sizeDefault+2*GSort::marginDefault);
+            if(gn.name == makeSkeletonNodeName(s->getName())) {
                 sorts.insert(GSortEntry(s->getName(), make_shared<GSort>(s,gn,width,height,this)));
-			}
-		}	
-	}
-	// Clear the scene and add sorts item (containing also processes) to the scene
-	clear();
-    for (auto &s : sorts){
+            }
+        }
+    }
+    // Clear the scene and add sorts item (containing also processes) to the scene
+    clear();
+    for (auto &s : sorts) {
         addItem(s.second.get());
-	}
+    }
 
     createActions();
 
-	for (auto &a : actions){
-		addItem(a->getDisplayItem());
-	}
+    for (auto &a : actions) {
+        addItem(a->getDisplayItem());
+    }
 }
 
 
@@ -52,24 +52,24 @@ GSortPtr PHScene::getGSort (const string& s) {
     map<string, GSortPtr>::iterator f = sorts.find(s);
     if (f == sorts.end())
         throw sort_not_found() << sort_info(s);
-	return sorts[s];
+    return sorts[s];
 }
 
 // get all the GSort
-map<string, GSortPtr> PHScene::getGSorts(){
+map<string, GSortPtr> PHScene::getGSorts() {
     return this->sorts;
 }
 
-std::vector<GProcessPtr> PHScene::getProcesses(){
+std::vector<GProcessPtr> PHScene::getProcesses() {
     return processes;
 }
 
-std::vector<GActionPtr> PHScene::getActions(){
+std::vector<GActionPtr> PHScene::getActions() {
     return actions;
 }
 
-void PHScene::updateActions(){
-    for(auto &a: actions){
+void PHScene::updateActions() {
+    for(auto &a: actions) {
         a->update();
     }
 }
@@ -77,15 +77,15 @@ void PHScene::updateActions(){
 void PHScene::createActions() {
     // create GAction items
     for (ActionPtr &a : ph->getActions()) {
-    	actions.push_back(make_shared<GAction>(a,this));
+        actions.push_back(make_shared<GAction>(a,this));
     }
 }
 
-void PHScene::setSimpleDisplay(bool onOff){
-     for(auto &s : sorts){
-          s.second->setSimpleDisplay(onOff);
-     }
-     updateActions();
+void PHScene::setSimpleDisplay(bool onOff) {
+    for(auto &s : sorts) {
+        s.second->setSimpleDisplay(onOff);
+    }
+    updateActions();
 }
 
 // context menu event handler
@@ -96,68 +96,68 @@ void PHScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
 
     // if other mouse buttons are pressed, do nothing
     if (QApplication::mouseButtons() == Qt::RightButton) {
-        for(auto &s : sorts){
+        for(auto &s : sorts) {
             sorEventPressPoint = s.second.get()->geteventPressPoint();
-            if(sorEventPressPoint.x() == event->scenePos().x() && sorEventPressPoint.y() == event->scenePos().y()){
+            if(sorEventPressPoint.x() == event->scenePos().x() && sorEventPressPoint.y() == event->scenePos().y()) {
                 horsSorte=false;
             }
         }
-        if(horsSorte){
+        if(horsSorte) {
 
-    QMenu menu;
-    QAction* switchToSimplifiedModel = menu.addAction("switch to simplified model");
-    QAction* switchToDetailledModel = menu.addAction("switch to detailled model");
-    QAction* switchBackgroundColor = menu.addAction("color background ");
-    QAction* switchActionsInBold = menu.addAction("all actions in bold/ not to blod");
-    QAction* switchActionColor = menu.addAction("color all actions");
+            QMenu menu;
+            QAction* switchToSimplifiedModel = menu.addAction("switch to simplified model");
+            QAction* switchToDetailledModel = menu.addAction("switch to detailled model");
+            QAction* switchBackgroundColor = menu.addAction("color background ");
+            QAction* switchActionsInBold = menu.addAction("all actions in bold/ not to blod");
+            QAction* switchActionColor = menu.addAction("color all actions");
 
-    QAction* selectedAction = menu.exec(QCursor::pos());
-    if(selectedAction != 0){
-        if(QString::compare(selectedAction->text(),switchBackgroundColor->text())==0){
-            BackgroundColor();
-        }else if(QString::compare(selectedAction->text(),switchActionsInBold->text())==0){
-            ActionsInBold();
-        }else if(QString::compare(selectedAction->text(),switchActionColor->text())==0){
-            ActionColor();
-        }else if(QString::compare(selectedAction->text(),switchToSimplifiedModel->text())==0){
-            setSimpleDisplay(true);
-        }else if(QString::compare(selectedAction->text(),switchToDetailledModel->text())==0){
-            setSimpleDisplay(false);
-        }
+            QAction* selectedAction = menu.exec(QCursor::pos());
+            if(selectedAction != 0) {
+                if(QString::compare(selectedAction->text(),switchBackgroundColor->text())==0) {
+                    BackgroundColor();
+                } else if(QString::compare(selectedAction->text(),switchActionsInBold->text())==0) {
+                    ActionsInBold();
+                } else if(QString::compare(selectedAction->text(),switchActionColor->text())==0) {
+                    ActionColor();
+                } else if(QString::compare(selectedAction->text(),switchToSimplifiedModel->text())==0) {
+                    setSimpleDisplay(true);
+                } else if(QString::compare(selectedAction->text(),switchToDetailledModel->text())==0) {
+                    setSimpleDisplay(false);
+                }
 
-    }
+            }
         }
     }
 }
 
-void PHScene::BackgroundColor(){
+void PHScene::BackgroundColor() {
     // open a color dialog and get the color chosen
     QColor color = QColorDialog::getColor();
 
-    if(!color.isValid()){
-       return ;
+    if(!color.isValid()) {
+        return ;
     } else {
-       this->setBackgroundBrush(color);
-   }
+        this->setBackgroundBrush(color);
+    }
 
 }
 
-void PHScene::ActionsInBold(){
-    for(auto &a :this->getActions()){
+void PHScene::ActionsInBold() {
+    for(auto &a :this->getActions()) {
         a->toBold();
-   }
+    }
 }
 
-void PHScene::ActionColor(){
+void PHScene::ActionColor() {
 
     // open a color dialog and get the color chosen
     QColor actionsColor = QColorDialog::getColor();
     if (!actionsColor.isValid()) {
         return ;
     } else {
-     for (GActionPtr &a: this->getActions()){
+        for (GActionPtr &a: this->getActions()) {
             a->colorAction(actionsColor);
-    }
+        }
     }
 }
 

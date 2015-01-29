@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -34,203 +34,210 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// is_alpha returns true for ASCII alpha characters
-    //-------------------------------------------------------------------------
-    struct is_alpha
-    {
-        template<class C>
-        bool operator() (C c) const { return c >= C('A') && c <= C('Z') || c >= C('a') && c <= C('z') || c == C('_'); }
-    };
+//-------------------------------------------------------------------------
+/// is_alpha returns true for ASCII alpha characters
+//-------------------------------------------------------------------------
+struct is_alpha {
+    template<class C>
+    bool operator() (C c) const {
+        return c >= C('A') && c <= C('Z') || c >= C('a') && c <= C('z') || c == C('_');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_num returns true for single digits
-    //-------------------------------------------------------------------------
-    struct is_num
-    {
-        template<class C>
-        bool operator() (C c) const { return c >= C('0') && c <= C('9'); }
-    };
+//-------------------------------------------------------------------------
+/// is_num returns true for single digits
+//-------------------------------------------------------------------------
+struct is_num {
+    template<class C>
+    bool operator() (C c) const {
+        return c >= C('0') && c <= C('9');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_alnum returns true for ASCII characters or numbers
-    //-------------------------------------------------------------------------
-    struct is_alnum
-    {
-        template<class ChartT>
-        bool operator()(ChartT c) const { return is_alpha()(c) || is_num()(c); }
-    };
+//-------------------------------------------------------------------------
+/// is_alnum returns true for ASCII characters or numbers
+//-------------------------------------------------------------------------
+struct is_alnum {
+    template<class ChartT>
+    bool operator()(ChartT c) const {
+        return is_alpha()(c) || is_num()(c);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_hex returns true for hex characters
-    //-------------------------------------------------------------------------
-    struct is_hex
-    {
-        template<class C>
-        bool operator() (C c) const
-        { 
-            return is_num()(c) || c >= C('a') && c <= C('f') || c >= C('A') && c <= C('F');
-        }
-    };
+//-------------------------------------------------------------------------
+/// is_hex returns true for hex characters
+//-------------------------------------------------------------------------
+struct is_hex {
+    template<class C>
+    bool operator() (C c) const {
+        return is_num()(c) || c >= C('a') && c <= C('f') || c >= C('A') && c <= C('F');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_oct returns true for oct characters
-    //-------------------------------------------------------------------------
-    struct is_oct
-    {
-        template<class C>
-        bool operator() (C c) const { return c >= C('0') && c <= C('7'); }
-    };
+//-------------------------------------------------------------------------
+/// is_oct returns true for oct characters
+//-------------------------------------------------------------------------
+struct is_oct {
+    template<class C>
+    bool operator() (C c) const {
+        return c >= C('0') && c <= C('7');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_bin returns true for binary characters
-    //-------------------------------------------------------------------------
-    struct is_bin
-    {
-        template<class C>
-        bool operator() (C c) const { return c == C('0') || c == C('1'); }
-    };
+//-------------------------------------------------------------------------
+/// is_bin returns true for binary characters
+//-------------------------------------------------------------------------
+struct is_bin {
+    template<class C>
+    bool operator() (C c) const {
+        return c == C('0') || c == C('1');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// printable characters
-    //-------------------------------------------------------------------------
-    struct is_printable
-    {
-        template<class C>
-        bool operator() (C c) const { return c >= C(' ') && c <= C('~'); }
-    };
+//-------------------------------------------------------------------------
+/// printable characters
+//-------------------------------------------------------------------------
+struct is_printable {
+    template<class C>
+    bool operator() (C c) const {
+        return c >= C(' ') && c <= C('~');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_space returns true for space characters
-    //-------------------------------------------------------------------------
-    struct is_space
-    {
-        template<class C>
-        bool operator() (C c) const { return c == C(' ') || c == C('\t') || c == C('\n') || c == C('\r'); }
-    };
+//-------------------------------------------------------------------------
+/// is_space returns true for space characters
+//-------------------------------------------------------------------------
+struct is_space {
+    template<class C>
+    bool operator() (C c) const {
+        return c == C(' ') || c == C('\t') || c == C('\n') || c == C('\r');
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_char returns true if value is equal to character
-    //-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+/// is_char returns true if value is equal to character
+//-------------------------------------------------------------------------
+template<class CharT>
+struct is_char_t {
+    CharT c_;
+  public:
+    is_char_t(CharT c) : c_(c) {}
+    bool operator ()(CharT c) const {
+        return c_ == c;
+    }
+};
+
+//-------------------------------------------------------------------------
+/// is_any returns true if value is in range specified by pair of characters
+//-------------------------------------------------------------------------
+template<class CharT = void>
+class is_any_t {
+    CharT from_, to_; // specifies [from_, to_] range
+  public:
+    is_any_t(CharT from, CharT to) : from_(from), to_(to) {}
+
+    template<class V>
+    bool operator() (V value) const {
+        static_assert(std::is_convertible<V, CharT>::value, "must be convertible to CharT");
+        return value >= from_ && value <= to_;
+    }
+};
+
+//-------------------------------------------------------------------------
+/// is_any_t<void> always returns true
+//-------------------------------------------------------------------------
+template<>
+class is_any_t<void> {
+  public:
+
+    template<class V>
+    bool operator() (V) const {
+        return true;
+    }
+};
+
+//-------------------------------------------------------------------------
+/// is_any_t<const CharT*> returns true if value is present in zero terminated string
+//-------------------------------------------------------------------------
+template<class CharT>
+class is_any_t<const CharT*> {
+    const CharT* str_;
+  public:
+    explicit is_any_t(const CharT* str) : str_(str) {}
+
+    template<class V>
+    bool operator() (V value) const {
+        static_assert(std::is_convertible<V, CharT>::value, "must be convertible to CharT");
+        const CharT* i = str_;
+        while(i && *i && !(*i == value))
+            ++i;
+
+        return i && *i == value;
+    }
+};
+
+//-------------------------------------------------------------------------
+/// p_and_t - predicate for AND operation on predicates
+//-------------------------------------------------------------------------
+template<class P1, class P2>
+class p_and_t {
+    P1 p1_;
+    P2 p2_;
+  public:
+    p_and_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
+
     template<class CharT>
-    struct is_char_t
-    {
-        CharT c_;
-    public:
-        is_char_t(CharT c) : c_(c) {}
-        bool operator ()(CharT c) const { return c_ == c; }
-    };
+    bool operator ()(CharT c) const {
+        return p1_(c) && p2_(c);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// is_any returns true if value is in range specified by pair of characters
-    //-------------------------------------------------------------------------
-    template<class CharT = void>
-    class is_any_t
-    {
-        CharT from_, to_; // specifies [from_, to_] range
-    public:
-        is_any_t(CharT from, CharT to) : from_(from), to_(to) {}
+//-------------------------------------------------------------------------
+/// p_or_t - predicate for OR operation on predicates
+//-------------------------------------------------------------------------
+template<class P1, class P2>
+class p_or_t {
+    P1 p1_;
+    P2 p2_;
+  public:
+    p_or_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
 
-        template<class V>
-        bool operator() (V value) const 
-        { 
-            static_assert(std::is_convertible<V, CharT>::value, "must be convertible to CharT");
-            return value >= from_ && value <= to_;
-        }
-    };
-
-    //-------------------------------------------------------------------------
-    /// is_any_t<void> always returns true
-    //-------------------------------------------------------------------------
-    template<>
-    class is_any_t<void>
-    {
-    public:
-
-        template<class V>
-        bool operator() (V) const { return true; }
-    };
-
-    //-------------------------------------------------------------------------
-    /// is_any_t<const CharT*> returns true if value is present in zero terminated string
-    //-------------------------------------------------------------------------
     template<class CharT>
-    class is_any_t<const CharT*>
-    {
-        const CharT* str_;
-    public:
-        explicit is_any_t(const CharT* str) : str_(str) {}
+    bool operator ()(CharT c) const {
+        return p1_(c) || p2_(c);
+    }
+};
 
-        template<class V>
-        bool operator() (V value) const 
-        { 
-            static_assert(std::is_convertible<V, CharT>::value, "must be convertible to CharT");
-            const CharT* i = str_;
-            while(i && *i && !(*i == value))
-                ++i;
-            
-            return i && *i == value;
-        }
-    };
+//-------------------------------------------------------------------------
+/// p_xor_t - predicate for boolean XOR operation on predicates
+//-------------------------------------------------------------------------
+template<class P1, class P2>
+class p_xor_t {
+    P1 p1_;
+    P2 p2_;
+  public:
+    p_xor_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
 
-    //-------------------------------------------------------------------------
-    /// p_and_t - predicate for AND operation on predicates
-    //-------------------------------------------------------------------------
-    template<class P1, class P2>
-    class p_and_t
-    {
-        P1 p1_;
-        P2 p2_;
-    public:
-        p_and_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
+    template<class CharT>
+    bool operator ()(CharT c) const {
+        return p1_(c) ^ p2_(c);
+    }
+};
 
-        template<class CharT>
-        bool operator ()(CharT c) const { return p1_(c) && p2_(c); }
-    };
+//-------------------------------------------------------------------------
+/// p_xor_t - predicate for NOT operation
+//-------------------------------------------------------------------------
+template<class P1>
+class p_not_t {
+    P1 p1_;
+  public:
+    p_not_t(P1&& p1) : p1_(std::forward<P1>(p1)) {}
 
-    //-------------------------------------------------------------------------
-    /// p_or_t - predicate for OR operation on predicates
-    //-------------------------------------------------------------------------
-    template<class P1, class P2>
-    class p_or_t
-    {
-        P1 p1_;
-        P2 p2_;
-    public:
-        p_or_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
-
-        template<class CharT>
-        bool operator ()(CharT c) const { return p1_(c) || p2_(c); }
-    };
-
-    //-------------------------------------------------------------------------
-    /// p_xor_t - predicate for boolean XOR operation on predicates
-    //-------------------------------------------------------------------------
-    template<class P1, class P2>
-    class p_xor_t
-    {
-        P1 p1_;
-        P2 p2_;
-    public:
-        p_xor_t(P1&& p1, P2&& p2) : p1_(std::forward<P1>(p1)), p2_(std::forward<P2>(p2)) {}
-
-        template<class CharT>
-        bool operator ()(CharT c) const { return p1_(c) ^ p2_(c); }
-    };
-
-    //-------------------------------------------------------------------------
-    /// p_xor_t - predicate for NOT operation
-    //-------------------------------------------------------------------------
-    template<class P1>
-    class p_not_t
-    {
-        P1 p1_;
-    public:
-        p_not_t(P1&& p1) : p1_(std::forward<P1>(p1)) {}
-
-        template<class CharT>
-        bool operator ()(CharT c) const { return !p1_(c); }
-    };
+    template<class CharT>
+    bool operator ()(CharT c) const {
+        return !p1_(c);
+    }
+};
 }
 
 #endif

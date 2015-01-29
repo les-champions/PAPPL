@@ -10,11 +10,10 @@
 
 
 
-class TikzEditor : public QDialog
-{
+class TikzEditor : public QDialog {
     Q_OBJECT
 
-public:
+  public:
     //constructor , destructor
     TikzEditor(PHPtr);
     ~TikzEditor();
@@ -39,7 +38,7 @@ public:
 
 
 
-private:
+  private:
 
     //button
     QPushButton *Show;
@@ -92,7 +91,7 @@ private:
     QHBoxLayout *checkLayout;
 
 
-private slots:
+  private slots:
 
     void setStatus(QTreeWidgetItem *item, int column);
     void checkUncheckAll();

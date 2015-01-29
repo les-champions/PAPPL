@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -38,137 +38,123 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// rule extracts iterator range from matching R and passes it to E
-    //-------------------------------------------------------------------------
-    template<class R, class E>
-    class r_extractor_t
-    {
-        R r_;
-        E e_;
+//-------------------------------------------------------------------------
+/// rule extracts iterator range from matching R and passes it to E
+//-------------------------------------------------------------------------
+template<class R, class E>
+class r_extractor_t {
+    R r_;
+    E e_;
 
-    public:
+  public:
 
-        r_extractor_t(R&& r, E&& e) : r_(std::forward<R>(r)), e_(std::forward<E>(e)) {}
-  
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2)
-        {
-            result<Iterator> i = r_(i1, i2);
-            
-            if(i.matched)
-                e_(i1, i.position);
+    r_extractor_t(R&& r, E&& e) : r_(std::forward<R>(r)), e_(std::forward<E>(e)) {}
 
-            return i;
-        }
-    };
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
+        result<Iterator> i = r_(i1, i2);
 
-    //-------------------------------------------------------------------------
-    /// extractor to evaluate iterator range and convert using stringstream
-    //-------------------------------------------------------------------------
-    template<class T>
-    class e_value_t
-    {
-        T& t_;
-    public:
-        explicit e_value_t(T& t) : t_(t) {}
+        if(i.matched)
+            e_(i1, i.position);
 
-        template<class Iterator>
-        void operator() (Iterator i1, Iterator i2)
-        {
-            std::operator>>(std::istringstream(std::string(i1, i2)), t_);
-        }
-    };
+        return i;
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// extractor to evaluate iterator range specialized for std::basic_string
-    //-------------------------------------------------------------------------
-    template<class C, class T, class A>
-    class e_value_t<std::basic_string<C, T, A>>
-    {
-        std::basic_string<C, T, A>& str;
-    public:
-        explicit e_value_t(std::basic_string<C, T, A>& str) : str(str) {}
+//-------------------------------------------------------------------------
+/// extractor to evaluate iterator range and convert using stringstream
+//-------------------------------------------------------------------------
+template<class T>
+class e_value_t {
+    T& t_;
+  public:
+    explicit e_value_t(T& t) : t_(t) {}
 
-        template<class Iterator>
-        void operator() (Iterator i1, Iterator i2)
-        {
-            str.assign(i1, i2);
-        }
-    };
+    template<class Iterator>
+    void operator() (Iterator i1, Iterator i2) {
+        std::operator>>(std::istringstream(std::string(i1, i2)), t_);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// extractor for single character
-    //-------------------------------------------------------------------------
-    template<>
-    class e_value_t<char>
-    {
-        char& c;
-    public:
-        explicit e_value_t(char& c) : c(c) {}
+//-------------------------------------------------------------------------
+/// extractor to evaluate iterator range specialized for std::basic_string
+//-------------------------------------------------------------------------
+template<class C, class T, class A>
+class e_value_t<std::basic_string<C, T, A>> {
+    std::basic_string<C, T, A>& str;
+  public:
+    explicit e_value_t(std::basic_string<C, T, A>& str) : str(str) {}
 
-        template<class Iterator>
-        void operator() (Iterator i1, Iterator i2)
-        {
-            if(i1 != i2)
-                c = *i1;
-        }
-    };
+    template<class Iterator>
+    void operator() (Iterator i1, Iterator i2) {
+        str.assign(i1, i2);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// reference wrapper for extractor (can be used with lambda functions)
-    //-------------------------------------------------------------------------
-    template<class T>
-    class e_ref_t
-    {
-        T t_;
-    public:
-        e_ref_t(T&& t) : t_(std::forward<T>(t)) {}
-        
-        template<class I>
-        void operator()(I i1, I i2)
-        {
-            t_(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+/// extractor for single character
+//-------------------------------------------------------------------------
+template<>
+class e_value_t<char> {
+    char& c;
+  public:
+    explicit e_value_t(char& c) : c(c) {}
 
-    //-------------------------------------------------------------------------
-    /// extractor for iterator range to determine its length
-    //-------------------------------------------------------------------------
-    template<class S>
-    class e_length_t
-    {
-        S& length;
-    public:
-        explicit e_length_t(S& length) : length(length) {}
+    template<class Iterator>
+    void operator() (Iterator i1, Iterator i2) {
+        if(i1 != i2)
+            c = *i1;
+    }
+};
 
-        template<class Iterator>
-        void operator() (Iterator i1, Iterator i2)
-        {
-            length = std::distance(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+/// reference wrapper for extractor (can be used with lambda functions)
+//-------------------------------------------------------------------------
+template<class T>
+class e_ref_t {
+    T t_;
+  public:
+    e_ref_t(T&& t) : t_(std::forward<T>(t)) {}
 
-    //-------------------------------------------------------------------------
-    /// extractor for iterator range that pushes values to container
-    //-------------------------------------------------------------------------
-    template<class C>
-    class e_push_back_t
-    {
-        C& c;
-        typedef typename C::value_type value_type;
-    public:
-        explicit e_push_back_t(C& c) : c(c) {}
+    template<class I>
+    void operator()(I i1, I i2) {
+        t_(i1, i2);
+    }
+};
 
-        template<class Iterator>
-        void operator() (Iterator i1, Iterator i2)
-        {
-            value_type value;
-            e_value_t<value_type> ex(value);
-            ex(i1, i2);
-            c.push_back(std::move(value));
-        }
-    };
+//-------------------------------------------------------------------------
+/// extractor for iterator range to determine its length
+//-------------------------------------------------------------------------
+template<class S>
+class e_length_t {
+    S& length;
+  public:
+    explicit e_length_t(S& length) : length(length) {}
+
+    template<class Iterator>
+    void operator() (Iterator i1, Iterator i2) {
+        length = std::distance(i1, i2);
+    }
+};
+
+//-------------------------------------------------------------------------
+/// extractor for iterator range that pushes values to container
+//-------------------------------------------------------------------------
+template<class C>
+class e_push_back_t {
+    C& c;
+    typedef typename C::value_type value_type;
+  public:
+    explicit e_push_back_t(C& c) : c(c) {}
+
+    template<class Iterator>
+    void operator() (Iterator i1, Iterator i2) {
+        value_type value;
+        e_value_t<value_type> ex(value);
+        ex(i1, i2);
+        c.push_back(std::move(value));
+    }
+};
 }
 
 #endif

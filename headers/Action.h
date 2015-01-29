@@ -27,7 +27,7 @@ typedef boost::shared_ptr<GAction> GActionPtr;
   */
 class Action {
 
-	public:
+  public:
     /**
       * @brief constructor
       *
@@ -38,83 +38,83 @@ class Action {
       * @param double the rate of the hit
       * @param int the stochasticity absorption of the hit
       */
-		Action 	(	ProcessPtr source_, ProcessPtr target_, ProcessPtr result_
-				, 	const bool& infiniteRate_
-				, 	const double& r_
-				,	const int& sa_
-				);
+    Action 	(	ProcessPtr source_, ProcessPtr target_, ProcessPtr result_
+                , 	const bool& infiniteRate_
+                , 	const double& r_
+                ,	const int& sa_
+            );
 
-        /**
-          * @brief gets the source Process
-          *
-          * @return ProcessPtr pointer to the source Process
-          */
-        ProcessPtr getSource();
+    /**
+      * @brief gets the source Process
+      *
+      * @return ProcessPtr pointer to the source Process
+      */
+    ProcessPtr getSource();
 
-        /**
-          * @brief gets the target Process
-          *
-          * @return ProcessPtr pointer to the target Process
-          */
-		ProcessPtr getTarget();
+    /**
+      * @brief gets the target Process
+      *
+      * @return ProcessPtr pointer to the target Process
+      */
+    ProcessPtr getTarget();
 
-        /**
-          * @brief gets the result Process
-          *
-          * @return ProcessPtr pointer to the result Process
-          */
-		ProcessPtr getResult();
+    /**
+      * @brief gets the result Process
+      *
+      * @return ProcessPtr pointer to the result Process
+      */
+    ProcessPtr getResult();
 
-        /**
-          * @brief gives a text representation of the Process (as it would be in a .ph file)
-          *
-          * @return string the text representation of the Process
-          */
-		string toString (void);
+    /**
+      * @brief gives a text representation of the Process (as it would be in a .ph file)
+      *
+      * @return string the text representation of the Process
+      */
+    string toString (void);
 
-        /**
-          * @brief gives a text representation of the Process (in .dot format, used in Graphviz)
-          *
-          * @return string the text representation of the Process
-          */
-		string toDotString (void);
+    /**
+      * @brief gives a text representation of the Process (in .dot format, used in Graphviz)
+      *
+      * @return string the text representation of the Process
+      */
+    string toDotString (void);
 
-	protected:
+  protected:
 
-       /**
-         * @brief the source Process
-         *
-         */
-        ProcessPtr source;
+    /**
+      * @brief the source Process
+      *
+      */
+    ProcessPtr source;
 
-        /**
-          * @brief the target Process
-          *
-          */
-		ProcessPtr target;
+    /**
+      * @brief the target Process
+      *
+      */
+    ProcessPtr target;
 
-        /**
-          * @brief the result Process
-          *
-          */
-        ProcessPtr result;
+    /**
+      * @brief the result Process
+      *
+      */
+    ProcessPtr result;
 
-        /**
-          * @brief Boolean that determines whether the rate of the hit is infinite or not
-          *
-          */
-        bool infiniteRate;
+    /**
+      * @brief Boolean that determines whether the rate of the hit is infinite or not
+      *
+      */
+    bool infiniteRate;
 
-        /**
-          * @brief the rate of the hit
-          *
-          */
-        float r;
+    /**
+      * @brief the rate of the hit
+      *
+      */
+    float r;
 
-        /**
-          * @brief the stochasticity absorption
-          *
-          */
-        int sa;
-		
+    /**
+      * @brief the stochasticity absorption
+      *
+      */
+    int sa;
+
 };

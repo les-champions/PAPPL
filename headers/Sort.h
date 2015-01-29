@@ -35,96 +35,96 @@ class GSort;
   */
 class Sort {
 
-public:
-	
-        /**
-          * @brief creates a pointer to the Sort which name is given as parameter
-          * @param string name of the Sort to created
-          * @param int number of processes in the Sort
-          * @return SortPtr the pointer to the created Sort
-          *
-          */
-		static SortPtr make(const string&, const int&);
-		
+  public:
 
-        /**
-          * @brief gets a Process by its index
-          * @param uint the index of the Process in processes vector
-          *
-          */
-		ProcessPtr getProcess (const uint&);
+    /**
+      * @brief creates a pointer to the Sort which name is given as parameter
+      * @param string name of the Sort to created
+      * @param int number of processes in the Sort
+      * @return SortPtr the pointer to the created Sort
+      *
+      */
+    static SortPtr make(const string&, const int&);
 
-        /**
-          * @brief gets processes vector
-          *
-          */
-        vector<ProcessPtr> getProcesses (void);
 
-        /**
-          * @brief gets the active process
-          *
-          */
-		ProcessPtr getActiveProcess (void);
+    /**
+      * @brief gets a Process by its index
+      * @param uint the index of the Process in processes vector
+      *
+      */
+    ProcessPtr getProcess (const uint&);
 
-        /**
-          * @brief sets the active process
-          *
-          */
-		void setActiveProcess (const int&);
+    /**
+      * @brief gets processes vector
+      *
+      */
+    vector<ProcessPtr> getProcesses (void);
 
-        /**
-          * @brief counts the number of processes
-          * @return int the number of processes
-          */
-		int countProcesses (void);
+    /**
+      * @brief gets the active process
+      *
+      */
+    ProcessPtr getActiveProcess (void);
 
-        /**
-          * @brief gets the name of the Sort
-          *
-          */
-		string getName (void);
+    /**
+      * @brief sets the active process
+      *
+      */
+    void setActiveProcess (const int&);
 
-        /**
-          * @brief gives a text representation of the process hitting (as it would be in a .ph file)
-          * @return string the text representation of the process hitting in PH format
-          */
-		string toString(void);
+    /**
+      * @brief counts the number of processes
+      * @return int the number of processes
+      */
+    int countProcesses (void);
 
-        /**
-          * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          * @return string the text representation of the process hitting in DOT format
-          */
-		string toDotString(void);
+    /**
+      * @brief gets the name of the Sort
+      *
+      */
+    string getName (void);
 
-	protected:
+    /**
+      * @brief gives a text representation of the process hitting (as it would be in a .ph file)
+      * @return string the text representation of the process hitting in PH format
+      */
+    string toString(void);
 
-        /**
-          * @brief constructor
-          *
-          */
-        Sort (const string&);
+    /**
+      * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+      * @return string the text representation of the process hitting in DOT format
+      */
+    string toDotString(void);
 
-        /**
-          * @brief adds a Process
-          * @param ProcessPtr pointer to the Process to add
-          */
-		void addProcess(ProcessPtr p);
+  protected:
 
-        /**
-          * @brief name of the Sort
-          *
-          */
-		string name;
+    /**
+      * @brief constructor
+      *
+      */
+    Sort (const string&);
 
-        /**
-          * @brief Processes of the Sort
-          *
-          */
-		vector<ProcessPtr> processes;
+    /**
+      * @brief adds a Process
+      * @param ProcessPtr pointer to the Process to add
+      */
+    void addProcess(ProcessPtr p);
 
-        /**
-          * @brief active Process in the Sort
-          *
-          */
-		ProcessPtr activeProcess;
+    /**
+      * @brief name of the Sort
+      *
+      */
+    string name;
+
+    /**
+      * @brief Processes of the Sort
+      *
+      */
+    vector<ProcessPtr> processes;
+
+    /**
+      * @brief active Process in the Sort
+      *
+      */
+    ProcessPtr activeProcess;
 };

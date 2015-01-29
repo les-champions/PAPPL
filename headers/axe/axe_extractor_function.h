@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -36,44 +36,48 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    // extractor operators and functions
-    //-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+// extractor operators and functions
+//-------------------------------------------------------------------------
 
-    //-------------------------------------------------------------------------
-    template<class R, class E>
-    r_extractor_t<
-        typename std::enable_if<is_rule<typename std::remove_reference<R>::type>::value, R>::type,
-        typename std::enable_if<is_extractor<typename std::remove_reference<E>::type>::value, E>::type
-    >
-    operator >> (R&& r, E&& e) 
-    { 
-        return r_extractor_t<R, E>(std::forward<R>(r), std::forward<E>(e));
-    }
+//-------------------------------------------------------------------------
+template<class R, class E>
+r_extractor_t<
+typename std::enable_if<is_rule<typename std::remove_reference<R>::type>::value, R>::type,
+         typename std::enable_if<is_extractor<typename std::remove_reference<E>::type>::value, E>::type
+         >
+operator >> (R&& r, E&& e) {
+    return r_extractor_t<R, E>(std::forward<R>(r), std::forward<E>(e));
+}
 
-    //-------------------------------------------------------------------------
-    template<class R, class T>
-    r_extractor_t<
-        typename std::enable_if<is_rule<typename std::remove_reference<R>::type>::value, R>::type,
-        typename std::enable_if<!is_extractor<typename std::remove_reference<T>::type>::value, e_value_t<T>>::type
-    >
-    operator >> (R&& r, T& t) 
-    { 
-        return r_extractor_t<R, e_value_t<T>>(std::forward<R>(r), e_value_t<T>(t));
-    }
+//-------------------------------------------------------------------------
+template<class R, class T>
+r_extractor_t<
+typename std::enable_if<is_rule<typename std::remove_reference<R>::type>::value, R>::type,
+         typename std::enable_if<!is_extractor<typename std::remove_reference<T>::type>::value, e_value_t<T>>::type
+         >
+operator >> (R&& r, T& t) {
+    return r_extractor_t<R, e_value_t<T>>(std::forward<R>(r), e_value_t<T>(t));
+}
 
-    //-------------------------------------------------------------------------
-    template<class E>
-    e_ref_t<E>
-    e_ref(E&& e) { return e_ref_t<E>(std::forward<E>(e)); }
+//-------------------------------------------------------------------------
+template<class E>
+e_ref_t<E>
+e_ref(E&& e) {
+    return e_ref_t<E>(std::forward<E>(e));
+}
 
-    //-------------------------------------------------------------------------
-    template<class T>
-    e_length_t<T> e_length(T& t) { return e_length_t<T>(t); }
+//-------------------------------------------------------------------------
+template<class T>
+e_length_t<T> e_length(T& t) {
+    return e_length_t<T>(t);
+}
 
-    //-------------------------------------------------------------------------
-    template<class C>
-    e_push_back_t<C> e_push_back(C& c) { return e_push_back_t<C>(c); }
+//-------------------------------------------------------------------------
+template<class C>
+e_push_back_t<C> e_push_back(C& c) {
+    return e_push_back_t<C>(c);
+}
 }
 
 #endif

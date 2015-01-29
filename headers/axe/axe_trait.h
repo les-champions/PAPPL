@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -36,70 +36,79 @@
 
 namespace axe {
 
-    //-----------------------------
-    template<class R>
-    class is_rule
-    {
-        struct yes { char c; };
-        struct no { yes y[2]; };
-
-        template<class T, class I, result<I> (T::*)(I,I)>       struct sfinae {};
-        template<class T, class I, result<I> (T::*)(I,I) const> struct const_sfinae {};
-
-        template<class T>
-        static yes test(T*, sfinae<T, const char*, &T::operator()>* = 0);
-        template<class T>
-        static yes test(T*, const_sfinae<T, const char*, &T::operator()>* = 0);
-
-        template<class T>
-        static no test(...);
-    public:
-        static const bool value = sizeof(yes) == sizeof(test<R>(0));
+//-----------------------------
+template<class R>
+class is_rule {
+    struct yes {
+        char c;
+    };
+    struct no {
+        yes y[2];
     };
 
-    //-----------------------------
-    template<class E>
-    class is_extractor
-    {
-        struct yes { char c; };
-        struct no { yes y[2]; };
+    template<class T, class I, result<I> (T::*)(I,I)>       struct sfinae {};
+    template<class T, class I, result<I> (T::*)(I,I) const> struct const_sfinae {};
 
-        template<class T, class I, void (T::*)(I,I)>          struct sfinae {};
-        template<class T, class I, void (T::*)(I,I) const>    struct const_sfinae {};
+    template<class T>
+    static yes test(T*, sfinae<T, const char*, &T::operator()>* = 0);
+    template<class T>
+    static yes test(T*, const_sfinae<T, const char*, &T::operator()>* = 0);
 
-        template<class T>
-        static yes test(T*, sfinae<T, const char*, &T::operator()>* = 0);
+    template<class T>
+    static no test(...);
+  public:
+    static const bool value = sizeof(yes) == sizeof(test<R>(0));
+};
 
-        template<class T>
-        static yes test(T*, const_sfinae<T, const char*, &T::operator()>* = 0);
-
-        template<class T>
-        static no test(...);
-    public:
-        static const bool value = sizeof(yes) == sizeof(test<E>(0));
+//-----------------------------
+template<class E>
+class is_extractor {
+    struct yes {
+        char c;
+    };
+    struct no {
+        yes y[2];
     };
 
-    //-----------------------------
-    template<class E>
-    class is_predicate
-    {
-        struct yes { char c; };
-        struct no { yes y[2]; };
+    template<class T, class I, void (T::*)(I,I)>          struct sfinae {};
+    template<class T, class I, void (T::*)(I,I) const>    struct const_sfinae {};
 
-        template<class T, class CharT, bool (T::*)(CharT)>          struct sfinae {};
-        template<class T, class CharT, bool (T::*)(CharT) const>    struct const_sfinae {};
+    template<class T>
+    static yes test(T*, sfinae<T, const char*, &T::operator()>* = 0);
 
-        template<class T>
-        static yes test(T*, sfinae<T, char, &T::operator()>* = 0);
+    template<class T>
+    static yes test(T*, const_sfinae<T, const char*, &T::operator()>* = 0);
 
-        template<class T>
-        static yes test(T*, const_sfinae<T, char, &T::operator()>* = 0);
+    template<class T>
+    static no test(...);
+  public:
+    static const bool value = sizeof(yes) == sizeof(test<E>(0));
+};
 
-        template<class T>
-        static no test(...);
-    public:
-        static const bool value = sizeof(yes) == sizeof(test<E>(0));
+//-----------------------------
+template<class E>
+class is_predicate {
+    struct yes {
+        char c;
     };
+    struct no {
+        yes y[2];
+    };
+
+    template<class T, class CharT, bool (T::*)(CharT)>          struct sfinae {};
+    template<class T, class CharT, bool (T::*)(CharT) const>    struct const_sfinae {};
+
+    template<class T>
+    static yes test(T*, sfinae<T, char, &T::operator()>* = 0);
+
+    template<class T>
+    static yes test(T*, const_sfinae<T, char, &T::operator()>* = 0);
+
+    template<class T>
+    static no test(...);
+  public:
+    static const bool value = sizeof(yes) == sizeof(test<E>(0));
+};
 
 }
 

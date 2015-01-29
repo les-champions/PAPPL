@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -36,342 +36,310 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// r_udecimal_t rule matches unsigned decimal number
-    //-------------------------------------------------------------------------
-    template<class T = void>
-    struct r_udecimal_t
-    {
-        T& number_;
-    public:
-        explicit r_udecimal_t(T& number) : number_(number) {}
+//-------------------------------------------------------------------------
+/// r_udecimal_t rule matches unsigned decimal number
+//-------------------------------------------------------------------------
+template<class T = void>
+struct r_udecimal_t {
+    T& number_;
+  public:
+    explicit r_udecimal_t(T& number) : number_(number) {}
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            auto match = r_numstr()(i1, i2);
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        auto match = r_numstr()(i1, i2);
 
-            if(match.matched)
-            {
-                number_ = 0;
-                
-                for(;i1 != match.position; ++i1)
-                    number_ = number_ * 10 + *i1 - '0';
-            }
-            return match;
+        if(match.matched) {
+            number_ = 0;
+
+            for(; i1 != match.position; ++i1)
+                number_ = number_ * 10 + *i1 - '0';
         }
-    };
+        return match;
+    }
+};
 
-    //-------------------------------------------------------------------------
-    template<>
-    struct r_udecimal_t<void>
-    {
-    public:
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            return r_numstr()(i1, i2);
-        }
-    };
+//-------------------------------------------------------------------------
+template<>
+struct r_udecimal_t<void> {
+  public:
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        return r_numstr()(i1, i2);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// r_decimal_t rule matches signed decimal number
-    //-------------------------------------------------------------------------
-    template<class T = void>
-    struct r_decimal_t
-    {
-        T&  number_;
-    public:
+//-------------------------------------------------------------------------
+/// r_decimal_t rule matches signed decimal number
+//-------------------------------------------------------------------------
+template<class T = void>
+struct r_decimal_t {
+    T&  number_;
+  public:
 
-        explicit r_decimal_t(T& number) : number_(number) {}
+    explicit r_decimal_t(T& number) : number_(number) {}
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            char sign = 0;
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        char sign = 0;
 
-            result<Iterator> match = 
-                (
+        result<Iterator> match =
+            (
                 ~(r_char('-') >> sign | '+') // optional sign
                 & ~r_predstr(is_space()) // optional spaces
                 & r_udecimal_t<T>(number_)
-                )(i1, i2);
+            )(i1, i2);
 
-            if(match.matched && sign == '-')
-                number_ *= -1;
+        if(match.matched && sign == '-')
+            number_ *= -1;
 
-            return match;
-        }
-    };
+        return match;
+    }
+};
 
-    //-------------------------------------------------------------------------
-    template<>
-    struct r_decimal_t<void>
-    {
-    public:
+//-------------------------------------------------------------------------
+template<>
+struct r_decimal_t<void> {
+  public:
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            return
-                (
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        return
+            (
                 ~(r_char('-') | '+') // optional sign
                 & ~r_predstr(is_space()) // optional spaces
                 & r_udecimal_t<>()
-                )(i1, i2);
+            )(i1, i2);
+    }
+};
+
+//-------------------------------------------------------------------------
+/// r_hex_t rule matches unsigned hex number
+//-------------------------------------------------------------------------
+template<class T>
+class r_hex_t {
+    T& number_;
+  public:
+    explicit r_hex_t(T& number) : number_(number) {}
+
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        auto match = r_hexstr()(i1, i2);
+
+        if(match.matched) {
+            number_ = 0;
+
+            for(; i1 != match.position; ++i1)
+                number_ = number_ * 16 + convert(i1);
         }
-    };
+        return match;
+    }
+  private:
+    template<class Iterator>
+    static T convert(Iterator i) {
+        return *i >= '0' && *i <= '9' ? *i - '0'
+               : *i >= 'A' && *i <= 'F' ? *i - 'A' + 10
+               : *i - 'a' + 10;
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// r_hex_t rule matches unsigned hex number
-    //-------------------------------------------------------------------------
-    template<class T>
-    class r_hex_t
-    {
-        T& number_;
-    public:
-        explicit r_hex_t(T& number) : number_(number) {}
+//-------------------------------------------------------------------------
+/// r_oct_t rule matches unsigned oct number
+//-------------------------------------------------------------------------
+template<class T>
+class r_oct_t {
+    T& number_;
+  public:
+    explicit r_oct_t(T& number) : number_(number) {}
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            auto match = r_hexstr()(i1, i2);
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        auto match = r_octstr()(i1, i2);
 
-            if(match.matched)
-            {
-                number_ = 0;
+        if(match.matched) {
+            number_ = 0;
 
-                for(;i1 != match.position; ++i1)
-                    number_ = number_ * 16 + convert(i1);
-            }
-            return match;
+            for(; i1 != match.position; ++i1)
+                number_ = number_ * 8 + *i1 - '0';
         }
-    private:
-        template<class Iterator>
-        static T convert(Iterator i)
-        {
-            return *i >= '0' && *i <= '9' ? *i - '0'
-                : *i >= 'A' && *i <= 'F' ? *i - 'A' + 10
-                : *i - 'a' + 10;
+
+        return match;
+    }
+};
+
+//-------------------------------------------------------------------------
+/// r_binary_t rule matches unsigned binary number
+//-------------------------------------------------------------------------
+template<class T>
+class r_binary_t {
+    T& number_;
+  public:
+    explicit r_binary_t(T& number) : number_(number) {}
+
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        auto match = r_binstr()(i1, i2);
+
+        if(match.matched) {
+            number_ = 0;
+
+            for(; i1 != match.position; ++i1)
+                number_ = number_ * 2 + *i1 - '0';
         }
-    };
 
-    //-------------------------------------------------------------------------
-    /// r_oct_t rule matches unsigned oct number
-    //-------------------------------------------------------------------------
-    template<class T>
-    class r_oct_t
-    {
-        T& number_;
-    public:
-        explicit r_oct_t(T& number) : number_(number) {}
+        return match;
+    }
+};
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            auto match = r_octstr()(i1, i2);
+//-------------------------------------------------------------------------
+/// r_ufixed_t rule matches unsigned fixed-point number
+//-------------------------------------------------------------------------
+template<class T = void>
+class r_ufixed_t {
+    T& number_;
+  public:
+    explicit r_ufixed_t(T& number) : number_(number) {}
 
-            if(match.matched)
-            {
-                number_ = 0;
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        unsigned u1 = 0;
+        unsigned u2 = 0;
+        unsigned length = 0;
 
-                for(;i1 != match.position; ++i1)
-                    number_ = number_ * 8 + *i1 - '0';
-            }
-
-            return match;
-        }
-    };
-
-    //-------------------------------------------------------------------------
-    /// r_binary_t rule matches unsigned binary number
-    //-------------------------------------------------------------------------
-    template<class T>
-    class r_binary_t
-    {
-        T& number_;
-    public:
-        explicit r_binary_t(T& number) : number_(number) {}
-
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            auto match = r_binstr()(i1, i2);
-
-            if(match.matched)
-            {
-                number_ = 0;
-
-                for(;i1 != match.position; ++i1)
-                    number_ = number_ * 2 + *i1 - '0';
-            }
-
-            return match;
-        }
-    };
-
-    //-------------------------------------------------------------------------
-    /// r_ufixed_t rule matches unsigned fixed-point number
-    //-------------------------------------------------------------------------
-    template<class T = void>
-    class r_ufixed_t
-    {
-        T& number_;
-    public:
-        explicit r_ufixed_t(T& number) : number_(number) {}
-
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            unsigned u1 = 0;
-            unsigned u2 = 0;
-            unsigned length = 0;
-
-            result<Iterator> result = 
-                (
-                r_udecimal_t<unsigned>(u1) 
+        result<Iterator> result =
+            (
+                r_udecimal_t<unsigned>(u1)
                 & ~('.' & ~(r_udecimal_t<unsigned>(u2) >> e_length(length)))
                 | '.' & r_udecimal_t<unsigned>(u2) >> e_length(length)
-                )(i1, i2);
+            )(i1, i2);
 
-            if(result.matched)
-            {
-                number_ = u1 + u2 / pow(T(10), T(length));
-            }
-
-            return make_result(result.matched, result.position, i1);
+        if(result.matched) {
+            number_ = u1 + u2 / pow(T(10), T(length));
         }
-    };
 
-    //-------------------------------------------------------------------------
-    template<>
-    class r_ufixed_t<void>
-    {
-    public:
+        return make_result(result.matched, result.position, i1);
+    }
+};
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            return
-                (
-                r_udecimal_t<>() 
+//-------------------------------------------------------------------------
+template<>
+class r_ufixed_t<void> {
+  public:
+
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        return
+            (
+                r_udecimal_t<>()
                 & ~('.' & ~r_udecimal_t<>())
                 | '.' & r_udecimal_t<>()
-                )(i1, i2);
-        }
-    };
+            )(i1, i2);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// r_fixed_t rule matches signed fixed-point number
-    //-------------------------------------------------------------------------
-    template<class T = void>
-    struct r_fixed_t
-    {
-        T&  number_;
+//-------------------------------------------------------------------------
+/// r_fixed_t rule matches signed fixed-point number
+//-------------------------------------------------------------------------
+template<class T = void>
+struct r_fixed_t {
+    T&  number_;
 
-    public:
+  public:
 
-        explicit r_fixed_t(T& number) : number_(number) {}
+    explicit r_fixed_t(T& number) : number_(number) {}
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            char sign = 0;
-            
-            result<Iterator> result = // optional sign
-                (
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        char sign = 0;
+
+        result<Iterator> result = // optional sign
+            (
                 ~(r_char('-') >> sign | '+')
                 & ~r_predstr(is_space())
                 & r_ufixed_t<T>(number_)
-                )(i1, i2);
-            
-            if(result.matched && sign == '-')
-                number_ *= -1;
+            )(i1, i2);
 
-            return result;
-        }
-    };
+        if(result.matched && sign == '-')
+            number_ *= -1;
 
-    //-------------------------------------------------------------------------
-    template<>
-    struct r_fixed_t<void>
-    {
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-			
-			char sign(0);
-		
-            return
-                (
+        return result;
+    }
+};
+
+//-------------------------------------------------------------------------
+template<>
+struct r_fixed_t<void> {
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+
+        char sign(0);
+
+        return
+            (
                 ~(r_char('-') >> sign | '+')
                 & ~r_predstr(is_space())
                 & r_ufixed_t<>()
-                )(i1, i2);
-        }
-    };
+            )(i1, i2);
+    }
+};
 
-    //-------------------------------------------------------------------------
-    /// r_double_t matches floating point number
-    //-------------------------------------------------------------------------
-    template<class T = void>
-    class r_double_t
-    {
-        T& d_;
+//-------------------------------------------------------------------------
+/// r_double_t matches floating point number
+//-------------------------------------------------------------------------
+template<class T = void>
+class r_double_t {
+    T& d_;
 
-    public:
+  public:
 
-        explicit r_double_t(T& d) : d_(d) {}
+    explicit r_double_t(T& d) : d_(d) {}
 
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            char sign(0);
-            unsigned i(0);
-            unsigned frac(0);
-            int flen(0);
-            int e(0);
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        char sign(0);
+        unsigned i(0);
+        unsigned frac(0);
+        int flen(0);
+        int e(0);
 
-            result<Iterator> result = 
-                (
+        result<Iterator> result =
+            (
                 ~(r_lit('-') >> sign | '+')
-                & ~r_predstr(is_space()) 
-                & 
+                & ~r_predstr(is_space())
+                &
                 (
-                r_udecimal_t<unsigned>(i) & ~('.' & ~r_udecimal_t<unsigned>(frac) >> e_length(flen))
-                | '.' & r_udecimal_t<unsigned>(frac) >> e_length(flen)
+                    r_udecimal_t<unsigned>(i) & ~('.' & ~r_udecimal_t<unsigned>(frac) >> e_length(flen))
+                    | '.' & r_udecimal_t<unsigned>(frac) >> e_length(flen)
                 )
                 & ~(r_any("eE") & r_decimal_t<int>(e))
-                )(i1, i2);
+            )(i1, i2);
 
-            if(result.matched)
-                d_ = (sign == '-' ? -1 : 1) * (T(i) + frac / pow(T(10), T(flen))) * pow(T(10), T(e));
+        if(result.matched)
+            d_ = (sign == '-' ? -1 : 1) * (T(i) + frac / pow(T(10), T(flen))) * pow(T(10), T(e));
 
-            return result;
-        }
-    };
+        return result;
+    }
+};
 
-    //-------------------------------------------------------------------------
-    template<>
-    class r_double_t<void>
-    {
-    public:
-        template<class Iterator>
-        result<Iterator> operator() (Iterator i1, Iterator i2) const
-        {
-            return
-                (
+//-------------------------------------------------------------------------
+template<>
+class r_double_t<void> {
+  public:
+    template<class Iterator>
+    result<Iterator> operator() (Iterator i1, Iterator i2) const {
+        return
+            (
                 ~(r_lit('-') | '+')
-                & ~r_predstr(is_space()) 
-                & 
+                & ~r_predstr(is_space())
+                &
                 (
-                r_udecimal_t<>() & ~('.' & ~r_udecimal_t<>())
-                | '.' & r_udecimal_t<>()
+                    r_udecimal_t<>() & ~('.' & ~r_udecimal_t<>())
+                    | '.' & r_udecimal_t<>()
                 )
                 & ~(r_any("eE") & r_decimal_t<>())
-                )(i1, i2);
-        }
-    };
+            )(i1, i2);
+    }
+};
 
 }
 #endif

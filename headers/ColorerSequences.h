@@ -4,11 +4,10 @@
 #include <QtGui>
 #include <vector>
 
-class ColorerSequences: public QSyntaxHighlighter
-{
+class ColorerSequences: public QSyntaxHighlighter {
     Q_OBJECT
 
-public:
+  public:
     ColorerSequences(QTextDocument *parent = 0);
     ~ColorerSequences();
 
@@ -19,10 +18,10 @@ public:
 
 
 
-public slots:
+  public slots:
     void highlightBlock(const QString &text);
 
-private:
+  private:
 
 
 };

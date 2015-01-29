@@ -1,33 +1,33 @@
 #include "FuncFrame.h"
 
 
-FuncFrame::FuncFrame(){
+FuncFrame::FuncFrame() {
 }
 
-FuncFrame::~FuncFrame(){
+FuncFrame::~FuncFrame() {
 }
 
-QString FuncFrame::getNameFunction(){
+QString FuncFrame::getNameFunction() {
     return nameFunction;
 }
 
-void FuncFrame::setNameFunction(QString newNameFunction){
+void FuncFrame::setNameFunction(QString newNameFunction) {
     nameFunction = newNameFunction;
 }
 
-QString FuncFrame::getProgram(){
+QString FuncFrame::getProgram() {
     return program;
 }
 
-void FuncFrame::setProgram(QString newProgram){
+void FuncFrame::setProgram(QString newProgram) {
     program = newProgram;
 }
 
-QString FuncFrame::getNbArgument(){
+QString FuncFrame::getNbArgument() {
     return nbArgument;
 }
 
-void FuncFrame::setNbArgument(QString newNbArgument){
+void FuncFrame::setNbArgument(QString newNbArgument) {
     nbArgument = newNbArgument;
 }
 

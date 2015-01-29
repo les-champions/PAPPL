@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -30,10 +30,12 @@
 #include "axe_expression.h"
 
 namespace axe {
-    //-------------------------------------------------------------------------
-    /// r_expression function matches arithmetic expression and stores its value
-    //-------------------------------------------------------------------------
-    template<class T>
-    r_expression_t<T> r_expression(T& t) { return r_expression_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_expression function matches arithmetic expression and stores its value
+//-------------------------------------------------------------------------
+template<class T>
+r_expression_t<T> r_expression(T& t) {
+    return r_expression_t<T>(t);
+}
 
 }

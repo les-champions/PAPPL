@@ -4,10 +4,9 @@
 #include <vector>
 #include "ArgumentFrame.h"
 
-class FuncFrame
-{
+class FuncFrame {
 
-public:
+  public:
     FuncFrame();
     ~FuncFrame();
 
@@ -20,7 +19,7 @@ public:
     QString getNbArgument();
     void setNbArgument(QString newNbArgument);
 
-private :
+  private :
     QString nameFunction;
     QString program;
     QString nbArgument;

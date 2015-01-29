@@ -2,13 +2,11 @@
 #include <vector>
 #include <iostream>
 
-ColorerSequences::ColorerSequences(QTextDocument *parent): QSyntaxHighlighter(parent)
-{
+ColorerSequences::ColorerSequences(QTextDocument *parent): QSyntaxHighlighter(parent) {
 
 }
 
-void ColorerSequences::highlightBlock(const QString &text)
-{
+void ColorerSequences::highlightBlock(const QString &text) {
     //number of words to be highlighted
     int nbMotEnValeur=25;
 
@@ -84,11 +82,10 @@ void ColorerSequences::highlightBlock(const QString &text)
     tabClassFormat[24].setForeground(comment);
 
     //match color to pattern
-    for (int i=0 ; i<nbMotEnValeur ; i++)
-    {
+    for (int i=0 ; i<nbMotEnValeur ; i++) {
         tabClassFormat[i].setFontItalic(true);
 
-        if(i != 24){
+        if(i != 24) {
 
             tabClassFormat[i].setFontWeight(QFont::Bold);
             tabClassFormat[i].setFontItalic(false);
@@ -100,12 +97,11 @@ void ColorerSequences::highlightBlock(const QString &text)
             int length = tabExpression[i].matchedLength();
             setFormat(tabIndex[i], length, tabClassFormat[i]);
             tabIndex[i] = text.indexOf(tabExpression[i], tabIndex[i] + length);
-       }
+        }
     }
 }
 
-ColorerSequences::~ColorerSequences()
-{
+ColorerSequences::~ColorerSequences() {
 
 }
 

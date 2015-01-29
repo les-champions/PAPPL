@@ -3,9 +3,8 @@
 
 #include <QtGui>
 
-class ArgumentFrame
-{
-public:
+class ArgumentFrame {
+  public:
     ArgumentFrame();
     ~ArgumentFrame();
 
@@ -25,7 +24,7 @@ public:
     void setArgOutline(QString newArgOutline);
 
 
-private :
+  private :
     QString argNumber;
     QString argSuf;
     QString argType;

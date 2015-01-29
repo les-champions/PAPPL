@@ -5,8 +5,7 @@
 #include "Exceptions.h"
 
 Area::Area(QWidget *parent, QString path) :
-    QWidget(parent)
-{
+    QWidget(parent) {
     this->path = path;
 
     // call the constructors of all the areas
@@ -104,7 +103,7 @@ Area::Area(QWidget *parent, QString path) :
     QObject::connect(this->cancelTextEdit, SIGNAL(clicked()), this, SLOT(cancelEdit()));
     QObject::connect(this->textArea, SIGNAL(textChanged()), this->textArea, SLOT(onTextEdit()));
     QObject::connect(this->saveTextEdit, SIGNAL(clicked()), this, SLOT(saveEdit()));
-    QObject::connect(this->textArea, SIGNAL(textChanged()), this, SLOT(onTextEdit()));    
+    QObject::connect(this->textArea, SIGNAL(textChanged()), this, SLOT(onTextEdit()));
     QObject::connect(this, SIGNAL(edition()), this, SLOT(showToolTip()));
     QObject::connect(this, SIGNAL(makeTempXML()), this, SLOT(tempXMLfile()));
 
@@ -116,64 +115,62 @@ Area::Area(QWidget *parent, QString path) :
     this->cancelTextEdit->setDefault(false);
 }
 
-void Area::hideText(){
+void Area::hideText() {
     // get all the subwindows of the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
     // hide all the textAreas of those subwindows
-    for (QMdiSubWindow* &a: tabs){
+    for (QMdiSubWindow* &a: tabs) {
 
-       if(this->indicatorEdit->isVisible()){
+        if(this->indicatorEdit->isVisible()) {
 
             QMessageBox::warning(this, "Warning...", "Please save or cancel edition !");
-        }
-        else{
+        } else {
 
             ((Area*)a->widget())->textArea->hide();
         }
     }
 }
 
-void Area::showText(){
+void Area::showText() {
     // get all the subwindows of the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
     // show all the textAreas of those subwindows
-    for (QMdiSubWindow* &a: tabs){
+    for (QMdiSubWindow* &a: tabs) {
         ((Area*)a->widget())->textArea->show();
     }
 }
 
-void Area::hideTree(){
+void Area::hideTree() {
     // get all the subwindows of the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
     // hide all the treeAreas of those subwindows
-    for (QMdiSubWindow* &a: tabs){
+    for (QMdiSubWindow* &a: tabs) {
         ((Area*)a->widget())->treeArea->hide();
     }
 }
 
-void Area::showTree(){
+void Area::showTree() {
     // get all the subwindows of the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
     // show all the treeAreas of those subwindows
-    for (QMdiSubWindow* &a: tabs){
+    for (QMdiSubWindow* &a: tabs) {
         ((Area*)a->widget())->treeArea->show();
     }
 }
 
-void Area::hideOrShowTree(){
+void Area::hideOrShowTree() {
     // get all the subwindows of the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
     // if the current treeArea is hidden, all are hidden
-    if(!this->treeArea->isHidden()){
-        for (QMdiSubWindow* &a: tabs){
+    if(!this->treeArea->isHidden()) {
+        for (QMdiSubWindow* &a: tabs) {
             // hide all the trees
             ((Area*)a->widget())->hideTree();
             // change the button
             ((Area*)a->widget())->leftButton->setText(">");
         }
-    }
-    else  {
-        for (QMdiSubWindow* &a: tabs){
+    } else  {
+        for (QMdiSubWindow* &a: tabs) {
             // show all the trees
             ((Area*)a->widget())->showTree();
             // change the button
@@ -182,34 +179,32 @@ void Area::hideOrShowTree(){
     }
 }
 
-void Area::hideOrShowText(){
+void Area::hideOrShowText() {
     // get all the subwindows in the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
-    if(!this->textArea->isHidden()){
+    if(!this->textArea->isHidden()) {
         // if the current text area is hidden, all are hidden
-        for (QMdiSubWindow* &a: tabs){
+        for (QMdiSubWindow* &a: tabs) {
             // hide all the textAreas
             ((Area*)a->widget())->hideText();
-            if(this->textArea->isHidden())
-            {
+            if(this->textArea->isHidden()) {
                 // change the button
                 ((Area*)a->widget())->rightButton->setText("<");
                 // hide the button to expand
-                ((Area*)a->widget())->rightExpandButton->hide();                
+                ((Area*)a->widget())->rightExpandButton->hide();
                 ((Area*)a->widget())->saveTextEdit->hide();
                 ((Area*)a->widget())->cancelTextEdit->hide();
                 ((Area*)a->widget())->indicatorEdit->hide();
             }
         }
-    }
-    else {
-        for (QMdiSubWindow* &a: tabs){
+    } else {
+        for (QMdiSubWindow* &a: tabs) {
             //show all the treeAreas
             ((Area*)a->widget())->showText();
             // change the button
             ((Area*)a->widget())->rightButton->setText(">");
             // show the button to expand
-            ((Area*)a->widget())->rightExpandButton->show();            
+            ((Area*)a->widget())->rightExpandButton->show();
             ((Area*)a->widget())->saveTextEdit->show();
             ((Area*)a->widget())->cancelTextEdit->show();
             this->editText();
@@ -217,12 +212,12 @@ void Area::hideOrShowText(){
     }
 }
 
-void Area::expandOrReduceText(){
+void Area::expandOrReduceText() {
     // get all the subwindows in the central area
     QList<QMdiSubWindow*> tabs = this->mainWindow->getCentraleArea()->subWindowList();
-    if (this->textArea->maximumWidth() == 200){
+    if (this->textArea->maximumWidth() == 200) {
         // if this subwindow is not expanded
-        for (QMdiSubWindow* &a: tabs){
+        for (QMdiSubWindow* &a: tabs) {
             // expand it
             ((Area*)a->widget())->textArea->setMaximumWidth(500);
             ((Area*)a->widget())->textArea->setMinimumWidth(500);
@@ -232,9 +227,8 @@ void Area::expandOrReduceText(){
             // change the button
             ((Area*)a->widget())->rightExpandButton->setText(">");
         }
-    }
-    else {
-        for (QMdiSubWindow* &a: tabs){
+    } else {
+        for (QMdiSubWindow* &a: tabs) {
             // reduce it
             ((Area*)a->widget())->textArea->setMaximumWidth(200);
             ((Area*)a->widget())->textArea->setMinimumWidth(200);
@@ -247,29 +241,29 @@ void Area::expandOrReduceText(){
     }
 }
 
-void Area::editText(){
+void Area::editText() {
 
     this->textArea->setNberEdit(0);
     this->setOldText();
 }
 
-void Area::cancelEdit(){
+void Area::cancelEdit() {
 
     this->indicatorEdit->setVisible(false);
     int i;
 
-    switch(this->typeOfCancel){
+    switch(this->typeOfCancel) {
 
-        case 0:
-            i = 2;
-            break;
+    case 0:
+        i = 2;
+        break;
 
-        case 1:
-            i = 1;
-            break;
+    case 1:
+        i = 1;
+        break;
 
-        default:
-            return;
+    default:
+        return;
     }
 
     int a = this->listOldText->size()-i;
@@ -284,7 +278,7 @@ void Area::cancelEdit(){
 
 }
 
-void Area::saveEdit(int del){
+void Area::saveEdit(int del) {
 
     //temporary file for the text edition
 
@@ -292,31 +286,31 @@ void Area::saveEdit(int del){
 
     newph.open(QIODevice::WriteOnly | QIODevice::Truncate);
     QTextStream flux(&newph);
-    flux.setCodec("UTF-8");    
+    flux.setCodec("UTF-8");
 
     QString *file = new QString("temp.ph");
     QString fileXML("tempXML.xml");
     std::string phFile = file->toStdString();
 
-    try{
+    try {
 
         //Save new text into new file
-        if(this->textArea->toPlainText().isEmpty()){
+        if(this->textArea->toPlainText().isEmpty()) {
 
             throw textAreaEmpty_exception();
         }
 
         flux << this->textArea->toPlainText() << endl;
 
-        newph.close();        
+        newph.close();
 
-        if(del == 0){
+        if(del == 0) {
 
             emit makeTempXML();
         }
 
-/*TODO understand why importXMLMetadata after rendering makes actions mad when updating text area... Bug in updating actions ?
-Is it useful to call that method here ? */
+        /*TODO understand why importXMLMetadata after rendering makes actions mad when updating text area... Bug in updating actions ?
+        Is it useful to call that method here ? */
         this->mainWindow->importXMLMetadata(fileXML);
 
         // render graph
@@ -335,23 +329,21 @@ Is it useful to call that method here ? */
         // build the tree in the treeArea
         this->treeArea->build();
 
-        this->indicatorEdit->setVisible(false);       
+        this->indicatorEdit->setVisible(false);
         this->saveTextEdit->setDefault(false);
         this->textArea->incrementeNberTextChange();
         this->typeOfCancel = 0;
-        this->saveTextEdit->setEnabled(false);        
+        this->saveTextEdit->setEnabled(false);
         this->textArea->setNberEdit(0);
         this->cancelTextEdit->setShortcut(QKeySequence());
 
         this->setOldText();
 
         newph.remove();
-    }
-    catch(textAreaEmpty_exception & e){
+    } catch(textAreaEmpty_exception & e) {
 
         QMessageBox::critical(this, "Error !", "You cannot update from an empty text area !");
-    }
-    catch(ph_parse_error & argh){
+    } catch(ph_parse_error & argh) {
 
         //Catch a parsing error !
         //Put the exception into a QMessageBox critical
@@ -386,8 +378,7 @@ Is it useful to call that method here ? */
         //One or more of your expressions are wrong !
         newph.remove();
         QMessageBox::critical(this, "Syntax error !", "One or more of your expressions are wrong !\nNear "+list3[0]+" "+list3[1]+" of dump");
-    }
-    catch(sort_not_found& sort){
+    } catch(sort_not_found& sort) {
 
         //Catch a error if the user delete a sort before associated actions !
 
@@ -395,50 +386,49 @@ Is it useful to call that method here ? */
     }
 }
 
-void Area::onTextEdit(){
+void Area::onTextEdit() {
 
     this->textArea->setUndoRedoEnabled(true);
     this->typeOfCancel = 1;
 
-    if(this->textArea->getNberEdit() == 0){
+    if(this->textArea->getNberEdit() == 0) {
 
         this->saveTextEdit->setDefault(false);
-        this->indicatorEdit->setVisible(false);        
+        this->indicatorEdit->setVisible(false);
         this->saveTextEdit->setEnabled(false);
         this->cancelTextEdit->setEnabled(false);
-    }
-    else{
+    } else {
 
-        if(this->textArea->getNberEdit() == 1){
+        if(this->textArea->getNberEdit() == 1) {
 
             emit edition();
         }
 
         this->saveTextEdit->setDefault(true);
-        this->indicatorEdit->setVisible(true);        
+        this->indicatorEdit->setVisible(true);
         this->saveTextEdit->setEnabled(true);
         this->cancelTextEdit->setEnabled(true);
         this->cancelTextEdit->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Escape));
     }
 }
 
-void Area::setOldText(){
+void Area::setOldText() {
 
     this->listOldText->insert(this->textArea->getNberTextChange(), this->textArea->toPlainText());
 }
 
-void Area::showToolTip(){
+void Area::showToolTip() {
 
     QToolTip::showText(QPoint(850,80), "Press CTRL+E to save or CTRL+ESC to cancel");
     QTimer::singleShot(5000, this, SLOT(hideToolTip()));
 }
 
-void Area::hideToolTip(){
+void Area::hideToolTip() {
 
     QToolTip::hideText();
 }
 
-void Area::tempXMLfile(){
+void Area::tempXMLfile() {
 
     this->tempXML.setFileName("tempXML.xml");
     this->tempXML.open(QIODevice::WriteOnly);
@@ -446,7 +436,7 @@ void Area::tempXMLfile(){
     this->tempXML.close();
 }
 
-void Area::deleteTempXML(){
+void Area::deleteTempXML() {
 
     this->tempXML.remove();
 }

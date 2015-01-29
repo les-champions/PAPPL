@@ -31,74 +31,74 @@ typedef boost::shared_ptr<GProcess> GProcessPtr;
   */
 class Process {
 
-	public:
+  public:
 
-        /**
-          * @brief constructor
-          *
-          * @param Sortptr pointer to the Sort the Process is related to
-          * @param int number of the Process in the Sort it is related to
-          *
-          */
-		Process (SortPtr s, const int& n);
+    /**
+      * @brief constructor
+      *
+      * @param Sortptr pointer to the Sort the Process is related to
+      * @param int number of the Process in the Sort it is related to
+      *
+      */
+    Process (SortPtr s, const int& n);
 
-        /**
-          * @brief gets the number
-          *
-          */
-		int getNumber(void);
+    /**
+      * @brief gets the number
+      *
+      */
+    int getNumber(void);
 
-        /**
-          * @brief gets the Sort
-          *
-          */
-		SortPtr getSort(void);
+    /**
+      * @brief gets the Sort
+      *
+      */
+    SortPtr getSort(void);
 
-        /**
-          * @brief builds name for DOT files
-          * @return string adapted name
-          */
-		string getDotName (void);
+    /**
+      * @brief builds name for DOT files
+      * @return string adapted name
+      */
+    string getDotName (void);
 
-        /**
-          * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
-          * @return string the representation in DOT format
-          *
-          */
-		string toDotString (void);
+    /**
+      * @brief gives a text representation of the process hitting (in .dot format, used in Graphviz)
+      * @return string the representation in DOT format
+      *
+      */
+    string toDotString (void);
 
-        /**
-          * @brief sets the related GProcess
-          * @param a pointer to the related GProcess object
-          */
-        void setGProcess(GProcessPtr gPPtr);
+    /**
+      * @brief sets the related GProcess
+      * @param a pointer to the related GProcess object
+      */
+    void setGProcess(GProcessPtr gPPtr);
 
-        /**
-          * @brief gets the related GProcess
-          * @return GProcessPtr a pointer to the related GProcess object
-          *
-          */
-        GProcessPtr getGProcess();
+    /**
+      * @brief gets the related GProcess
+      * @return GProcessPtr a pointer to the related GProcess object
+      *
+      */
+    GProcessPtr getGProcess();
 
 
-	private:
+  private:
 
-        /**
-          * @brief the Sort the Process is related to
-          *
-          */
-		SortPtr sort;
+    /**
+      * @brief the Sort the Process is related to
+      *
+      */
+    SortPtr sort;
 
-        /**
-          * @brief the number of the Process in the Sort it is related to
-          *
-          */
-		int number;
+    /**
+      * @brief the number of the Process in the Sort it is related to
+      *
+      */
+    int number;
 
-        /**
-          * @brief a pointer to the related GProcess
-          *
-          */
-        GProcessPtr gProcess;
+    /**
+      * @brief a pointer to the related GProcess
+      *
+      */
+    GProcessPtr gProcess;
 
 };

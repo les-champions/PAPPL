@@ -13,10 +13,9 @@
   * @brief New Tab extends QWidget
   *
   */
-class Area : public QWidget
-{
+class Area : public QWidget {
     Q_OBJECT
-public:
+  public:
     /**
       * @brief constructor for Area
       * @param QWidget parent, the widget containing the Area, which is the TabbedView
@@ -170,11 +169,11 @@ public:
 
     QFile getTempXML();
 
-private:
+  private:
 
     QFile tempXML;
 
-signals:
+  signals:
 
     /**
       * @brief Indicate edition
@@ -190,7 +189,7 @@ signals:
 
     void makeTempXML();
 
-public slots:
+  public slots:
 
     /**
       * @brief method to hide or show the text area clicking on the button
@@ -232,7 +231,7 @@ public slots:
       * @brief method to save all the new textArea into the QStringList
       *
       */
-    void setOldText();    
+    void setOldText();
 
     /**
       * @brief method to show the tooltip about shortcuts of QTextEdit

@@ -27,7 +27,7 @@ class MainWindow : public QMainWindow {
 
     Q_OBJECT
 
-public:
+  public:
 
     static MainWindow* mwThis;
 
@@ -78,7 +78,7 @@ public:
 
 
 
-protected:
+  protected:
 
     /**
       * @brief pointer to the central area of the window
@@ -155,14 +155,14 @@ protected:
     // action for the menu Help
     QAction *actionHelp;
 
-private :
+  private :
 
     int displayMode;
     QPushButton *BtnCancel;
 
-signals:
+  signals:
 
-public slots:
+  public slots:
 
     //menu file
 
@@ -361,4 +361,4 @@ public slots:
 
     void openConnectionForm();
 
-    };
+};

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -34,62 +34,88 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// r_udecimal rule for matching unsigned decimal
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_udecimal_t<T> r_udecimal (T& t) { return r_udecimal_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_udecimal rule for matching unsigned decimal
+//-------------------------------------------------------------------------
+template<class T>
+inline r_udecimal_t<T> r_udecimal (T& t) {
+    return r_udecimal_t<T>(t);
+}
 
-    inline r_udecimal_t<> r_udecimal () { return r_udecimal_t<>(); }
+inline r_udecimal_t<> r_udecimal () {
+    return r_udecimal_t<>();
+}
 
-    //-------------------------------------------------------------------------
-    /// r_decimal rule for matching signed decimal
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_decimal_t<T> r_decimal (T& t) { return r_decimal_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_decimal rule for matching signed decimal
+//-------------------------------------------------------------------------
+template<class T>
+inline r_decimal_t<T> r_decimal (T& t) {
+    return r_decimal_t<T>(t);
+}
 
-    inline r_decimal_t<> r_decimal () { return r_decimal_t<>(); }
+inline r_decimal_t<> r_decimal () {
+    return r_decimal_t<>();
+}
 
-    //-------------------------------------------------------------------------
-    /// r_hex rule for matching unsigned decimal
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_hex_t<T> r_hex (T& t) { return r_hex_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_hex rule for matching unsigned decimal
+//-------------------------------------------------------------------------
+template<class T>
+inline r_hex_t<T> r_hex (T& t) {
+    return r_hex_t<T>(t);
+}
 
-    //-------------------------------------------------------------------------
-    /// r_hex rule for matching unsigned decimal
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_oct_t<T> r_oct (T& t) { return r_oct_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_hex rule for matching unsigned decimal
+//-------------------------------------------------------------------------
+template<class T>
+inline r_oct_t<T> r_oct (T& t) {
+    return r_oct_t<T>(t);
+}
 
-    //-------------------------------------------------------------------------
-    /// r_hex rule for matching unsigned decimal
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_binary_t<T> r_binary (T& t) { return r_binary_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_hex rule for matching unsigned decimal
+//-------------------------------------------------------------------------
+template<class T>
+inline r_binary_t<T> r_binary (T& t) {
+    return r_binary_t<T>(t);
+}
 
-    //-------------------------------------------------------------------------
-    /// r_ufixed rule for matching unsigned fixed point number
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_ufixed_t<T> r_ufixed (T& t) { return r_ufixed_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_ufixed rule for matching unsigned fixed point number
+//-------------------------------------------------------------------------
+template<class T>
+inline r_ufixed_t<T> r_ufixed (T& t) {
+    return r_ufixed_t<T>(t);
+}
 
-    inline r_ufixed_t<> r_ufixed () { return r_ufixed_t<>(); }
+inline r_ufixed_t<> r_ufixed () {
+    return r_ufixed_t<>();
+}
 
-    //-------------------------------------------------------------------------
-    /// r_fixed rule for matching unsigned fixed point number
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_fixed_t<T> r_fixed (T& t) { return r_fixed_t<T>(t); }
+//-------------------------------------------------------------------------
+/// r_fixed rule for matching unsigned fixed point number
+//-------------------------------------------------------------------------
+template<class T>
+inline r_fixed_t<T> r_fixed (T& t) {
+    return r_fixed_t<T>(t);
+}
 
-    inline r_fixed_t<> r_fixed () { return r_fixed_t<>(); }
+inline r_fixed_t<> r_fixed () {
+    return r_fixed_t<>();
+}
 
-    //-------------------------------------------------------------------------
-    /// r_double rule for matching double precision number
-    //-------------------------------------------------------------------------
-    template<class T>
-    inline r_double_t<T> r_double (T& d) { return r_double_t<T>(d); }
+//-------------------------------------------------------------------------
+/// r_double rule for matching double precision number
+//-------------------------------------------------------------------------
+template<class T>
+inline r_double_t<T> r_double (T& d) {
+    return r_double_t<T>(d);
+}
 
-    inline r_double_t<> r_double () { return r_double_t<>(); }
+inline r_double_t<> r_double () {
+    return r_double_t<>();
+}
 }
 #endif

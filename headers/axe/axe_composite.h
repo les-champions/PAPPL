@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -41,17 +41,15 @@ namespace axe {
 /// class r_and_t defines AND operation
 //-----------------------------------------------------------------------------
 template<class R1, class R2>
-class r_and_t
-{
+class r_and_t {
     R1 r1_;
     R2 r2_;
 
-public:
+  public:
     r_and_t(R1&& r1, R2&& r2) : r1_(std::forward<R1>(r1)), r2_(std::forward<R2>(r2)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> i = r1_(i1, i2);
         if(i.matched)
             i = r2_(i.position, i2);
@@ -63,18 +61,16 @@ public:
 /// class r_or_t defines OR operation
 //-----------------------------------------------------------------------------
 template<class T1, class T2>
-class r_or_t
-{
+class r_or_t {
     T1 t1_;
     T2 t2_;
     unsigned index;
 
-public:
+  public:
     r_or_t(T1&& t1, T2&& t2) : t1_(std::forward<T1>(t1)), t2_(std::forward<T2>(t2)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> i = t1_(i1, i2);
         index = i.matched ? 0 : 1;
         if(!i.matched)
@@ -82,50 +78,50 @@ public:
         return i;
     }
 
-    unsigned which() const { return index; }
+    unsigned which() const {
+        return index;
+    }
 };
 
 //-----------------------------------------------------------------------------
 /// class r_xor_t defines XOR operation
 //-----------------------------------------------------------------------------
 template<class T1, class T2>
-class r_xor_t
-{
+class r_xor_t {
     T1 t1_;
     T2 t2_;
     unsigned index;
 
-public:
+  public:
     r_xor_t(T1&& t1, T2&& t2) : t1_(std::forward<T1>(t1)), t2_(std::forward<T2>(t2)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> first = t1_(i1, i2);
         result<Iterator> second = t2_(i1, i2);
 
         index = first.matched ? 0 : 1;
-        return make_result(first.matched && !second.matched || !first.matched && second.matched, 
-            first.matched ? first.position : second.position, i1);
+        return make_result(first.matched && !second.matched || !first.matched && second.matched,
+                           first.matched ? first.position : second.position, i1);
     }
 
-    unsigned which() const { return index; }
+    unsigned which() const {
+        return index;
+    }
 };
 
 //-----------------------------------------------------------------------------
 /// class r_not_t defines NOT (negation) operation
 //-----------------------------------------------------------------------------
 template<class R>
-class r_not_t
-{
+class r_not_t {
     R r_;
 
-public:
+  public:
     explicit r_not_t(R&& r) : r_(std::forward<R>(r)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2)
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> i = r_(i1, i2);
         return make_result(!i.matched, i1, i.position);
     }
@@ -135,17 +131,15 @@ public:
 /// class r_select_t defines select rule (r1 & r2 | !r1 & r3)
 //-----------------------------------------------------------------------------
 template<class R1, class R2, class R3>
-class r_select_t
-{
+class r_select_t {
     R1 r1_;
     R2 r2_;
     R3 r3_;
-public:
+  public:
     r_select_t(R1&& r1, R2&& r2, R3&& r3) : r1_(r1), r2_(r2), r3_(r3) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2)
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> match = r1_(i1, i2);
         return match.matched ? r2_(match.position, i2) : r3_(i1, i2);
     }
@@ -155,41 +149,37 @@ public:
 /// class r_many_t defines a sequence of rules separated by separator rule
 //-----------------------------------------------------------------------------
 template<class R, class S>
-class r_many_t
-{
+class r_many_t {
     R r_;
     S separator_;
     const size_t min_occurrence_;
     const size_t max_occurrence_;
 
-public:
-    r_many_t(R&& r, S&& separator, size_t min_occurrence, size_t max_occurrence) 
-    : r_(std::forward<R>(r)), separator_(std::forward<S>(separator)), 
-    min_occurrence_(min_occurrence), max_occurrence_(max_occurrence) 
-    {}
+  public:
+    r_many_t(R&& r, S&& separator, size_t min_occurrence, size_t max_occurrence)
+        : r_(std::forward<R>(r)), separator_(std::forward<S>(separator)),
+          min_occurrence_(min_occurrence), max_occurrence_(max_occurrence) {
+    }
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         auto i_match = r_(i1, i2);
-        
+
         if(!i_match.matched)
             return make_result(!min_occurrence_, i1, i_match.position);
 
-		size_t count = 1;
-		auto match = i_match;
+        size_t count = 1;
+        auto match = i_match;
 
-		while(match.matched && count < max_occurrence_)
-		{
-			match = separator_(match.position, i2);
-			if(match.matched)
-				match = r_(match.position, i2);
-			if(match.matched)
-			{
-				i_match = match;
-				++count;
-			}
-		}
+        while(match.matched && count < max_occurrence_) {
+            match = separator_(match.position, i2);
+            if(match.matched)
+                match = r_(match.position, i2);
+            if(match.matched) {
+                i_match = match;
+                ++count;
+            }
+        }
 
         return make_result(count >= min_occurrence_, i_match.position, match.position);
     }
@@ -199,15 +189,13 @@ public:
 /// class r_opt_t defines optional operation
 //-----------------------------------------------------------------------------
 template<class R>
-class r_opt_t
-{
+class r_opt_t {
     R r_;
-public:
+  public:
     explicit r_opt_t(R&& r) : r_(std::forward<R>(r)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> i = r_(i1, i2);
         return make_result(true, i.matched ? i.position : i1);
     }
@@ -217,15 +205,13 @@ public:
 /// reference wrapper (lvalues held by reference, rvalues moved)
 //-----------------------------------------------------------------------------
 template<class R>
-class r_ref_t
-{
+class r_ref_t {
     R r_;
-public:
+  public:
     explicit r_ref_t(R&& r) : r_(std::forward<R>(r)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         return r_(i1, i2);
     }
 };
@@ -234,19 +220,16 @@ public:
 /// rule to find specified rule (skip input elements until specified rule matched)
 //-----------------------------------------------------------------------------
 template<class R>
-class r_find_t
-{
+class r_find_t {
     R r_;
-public:
+  public:
     r_find_t(R&& r) : r_(std::forward<R>(r)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> match = make_result(false, i1);
 
-        for(; i1 != i2 && !match.matched; ++i1)
-        {
+        for(; i1 != i2 && !match.matched; ++i1) {
             match = r_(i1, i2);
         }
 
@@ -258,16 +241,14 @@ public:
 /// r_fail_t matches the first rule and if failed calls specified function
 //-----------------------------------------------------------------------------
 template<class R, class F>
-class r_fail_t
-{
+class r_fail_t {
     R r_; // rule to match
     F f_; // function to call on fail
-public:
+  public:
     r_fail_t(R&& r, F&& f) : r_(std::forward<R>(r)), f_(std::forward<F>(f)) {}
 
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2) 
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         result<Iterator> match = r_(i1, i2);
         if(!match.matched)
             f_(i1, match.position);
@@ -280,28 +261,27 @@ public:
 /// r_fail_wrapper_t is used to wrap fail function
 //-----------------------------------------------------------------------------
 template<class F>
-class r_fail_wrapper_t
-{
+class r_fail_wrapper_t {
     F f_;
-public:
+  public:
     r_fail_wrapper_t(F&& f) : f_(std::forward<F>(f)) {}
 
-    F get() const { return f_; }
+    F get() const {
+        return f_;
+    }
 };
 
 //-----------------------------------------------------------------------------
 /// r_test_t matches the specified rule, but always returns the initial iterator
 //-----------------------------------------------------------------------------
 template<class R>
-class r_test_t
-{
+class r_test_t {
     R r_;
-public:
+  public:
     r_test_t(R&& r) : r_(r) {}
-    
+
     template<class Iterator>
-    result<Iterator> operator() (Iterator i1, Iterator i2)
-    {
+    result<Iterator> operator() (Iterator i1, Iterator i2) {
         return make_result(r_(i1, i2).matched, i1);
     }
 };
@@ -310,33 +290,28 @@ public:
 /// r_rule is a polymorphic rule, used primarily for defining recursive rules
 //-----------------------------------------------------------------------------
 template<class I>
-class r_rule
-{
+class r_rule {
     std::function<result<I> (I,I)> fun_;
-public:
+  public:
 
-    r_rule<I>& operator= (const r_rule& r)
-    {
+    r_rule<I>& operator= (const r_rule& r) {
         fun_ = r.fun_;
         return *this;
     }
 
-    r_rule<I>& operator= (r_rule&& r)
-    {
+    r_rule<I>& operator= (r_rule&& r) {
         fun_ = std::move(r.fun_);
         return *this;
     }
 
     template<class T>
-    r_rule<I>& operator= (T&& t)
-    {
+    r_rule<I>& operator= (T&& t) {
         fun_ = std::forward<T>(t);
         return *this;
     }
 
     template<class Iterator>
-    result<Iterator> operator()(Iterator i1, Iterator i2) const
-    {
+    result<Iterator> operator()(Iterator i1, Iterator i2) const {
         static_assert(std::is_convertible<I, Iterator>::value, "Iterator must be convertible to I");
         return fun_(i1, i2);
     }

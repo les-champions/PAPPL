@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -37,74 +37,78 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    // operators and functions for predicates
-    //-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+// operators and functions for predicates
+//-------------------------------------------------------------------------
 
-    template<class P1, class P2>
-    p_and_t<
-        typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
-        typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
-    >
-    operator && (P1&& p1, P2&& p2)
-    {
-        return p_and_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
-    }
+template<class P1, class P2>
+p_and_t<
+typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
+         typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
+         >
+operator && (P1&& p1, P2&& p2) {
+    return p_and_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
+}
 
-    //-------------------------------------------------------------------------
-    template<class P1, class P2>
-    p_or_t<
-        typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
-        typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
-    >
-    operator || (P1&& p1, P2&& p2)
-    {
-        return p_or_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
-    }
+//-------------------------------------------------------------------------
+template<class P1, class P2>
+p_or_t<
+typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
+         typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
+         >
+operator || (P1&& p1, P2&& p2) {
+    return p_or_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
+}
 
-    //-------------------------------------------------------------------------
-    template<class P1, class P2>
-    p_xor_t<
-        typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
-        typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
-    >
-    operator ^ (P1&& p1, P2&& p2)
-    {
-        return p_xor_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
-    }
+//-------------------------------------------------------------------------
+template<class P1, class P2>
+p_xor_t<
+typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type,
+         typename std::enable_if<is_predicate<typename std::remove_reference<P2>::type>::value, P2>::type
+         >
+operator ^ (P1&& p1, P2&& p2) {
+    return p_xor_t<P1,P2>(std::forward<P1>(p1), std::forward<P2>(p2));
+}
 
-    //-------------------------------------------------------------------------
-    template<class P1>
-    p_not_t<
-        typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type
-    >
-    operator ! (P1&& p1)
-    {
-        return p_not_t<P1>(std::forward<P1>(p1));
-    }
+//-------------------------------------------------------------------------
+template<class P1>
+p_not_t<
+typename std::enable_if<is_predicate<typename std::remove_reference<P1>::type>::value, P1>::type
+>
+operator ! (P1&& p1) {
+    return p_not_t<P1>(std::forward<P1>(p1));
+}
 
-    //-------------------------------------------------------------------------
-    /// is_char function matches a single character
-    //-------------------------------------------------------------------------
-    template<class CharT>
-    inline is_char_t<CharT> is_char(CharT c) { return is_char_t<CharT>(c); }
+//-------------------------------------------------------------------------
+/// is_char function matches a single character
+//-------------------------------------------------------------------------
+template<class CharT>
+inline is_char_t<CharT> is_char(CharT c) {
+    return is_char_t<CharT>(c);
+}
 
-    //-------------------------------------------------------------------------
-    /// is_any function matches any characters in the range [c1, c2]
-    //-------------------------------------------------------------------------
-    template<class CharT>
-    inline is_any_t<CharT> is_any(CharT c1, CharT c2) { return is_any_t<CharT>(c1, c2); }
+//-------------------------------------------------------------------------
+/// is_any function matches any characters in the range [c1, c2]
+//-------------------------------------------------------------------------
+template<class CharT>
+inline is_any_t<CharT> is_any(CharT c1, CharT c2) {
+    return is_any_t<CharT>(c1, c2);
+}
 
-    //-------------------------------------------------------------------------
-    /// is_any function matches any characters present in the string
-    //-------------------------------------------------------------------------
-    template<class CharT>
-    inline is_any_t<const CharT*> is_any(const CharT* str) { return is_any_t<const CharT*>(str); }
+//-------------------------------------------------------------------------
+/// is_any function matches any characters present in the string
+//-------------------------------------------------------------------------
+template<class CharT>
+inline is_any_t<const CharT*> is_any(const CharT* str) {
+    return is_any_t<const CharT*>(str);
+}
 
-    //-------------------------------------------------------------------------
-    /// is_any function matches any single character
-    //-------------------------------------------------------------------------
-    inline is_any_t<void> is_any() { return is_any_t<void>(); }
+//-------------------------------------------------------------------------
+/// is_any function matches any single character
+//-------------------------------------------------------------------------
+inline is_any_t<void> is_any() {
+    return is_any_t<void>();
+}
 }
 
 #endif

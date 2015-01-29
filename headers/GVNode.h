@@ -33,5 +33,5 @@ struct GVNode {
       *
       */
     float height, width;
-	
+
 };

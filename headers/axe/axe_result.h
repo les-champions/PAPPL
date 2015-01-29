@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 //  Original Author: Gene Bushuyev
 //  Copyright (C) 2011 GB Research, LLC
-//  
+//
 //  Boost Software License - Version 1.0 - August 17th, 2003
 //
 //  Permission is hereby granted, free of charge, to any person or organization
@@ -32,35 +32,32 @@
 
 namespace axe {
 
-    //-------------------------------------------------------------------------
-    /// result class holds the result of rule matching and iterator position
-    //-------------------------------------------------------------------------
-    template<class Iterator>
-    struct result
-    {
-        bool matched;
-        Iterator position;
+//-------------------------------------------------------------------------
+/// result class holds the result of rule matching and iterator position
+//-------------------------------------------------------------------------
+template<class Iterator>
+struct result {
+    bool matched;
+    Iterator position;
 
-        result(bool matched, Iterator position) : matched(matched), position(position) {}
-    };
+    result(bool matched, Iterator position) : matched(matched), position(position) {}
+};
 
-    //-------------------------------------------------------------------------
-    /// make_result function constructs result class
-    //-------------------------------------------------------------------------
-    template<class Iterator>
-    inline result<Iterator> make_result(bool b, Iterator position)
-    {
-      return result<Iterator>(b, position);
-    }
+//-------------------------------------------------------------------------
+/// make_result function constructs result class
+//-------------------------------------------------------------------------
+template<class Iterator>
+inline result<Iterator> make_result(bool b, Iterator position) {
+    return result<Iterator>(b, position);
+}
 
-    //-------------------------------------------------------------------------
-    /// make_result function constructs result class depending on the value
-    //-------------------------------------------------------------------------
-    template<class Iterator>
-    inline result<Iterator> make_result(bool b, Iterator position, Iterator fail_position)
-    {
-      return result<Iterator>(b, b ? position : fail_position);
-    }
+//-------------------------------------------------------------------------
+/// make_result function constructs result class depending on the value
+//-------------------------------------------------------------------------
+template<class Iterator>
+inline result<Iterator> make_result(bool b, Iterator position, Iterator fail_position) {
+    return result<Iterator>(b, b ? position : fail_position);
+}
 }
 
 #endif

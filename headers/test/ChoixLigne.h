@@ -3,9 +3,8 @@
 
 #include <QtGui>
 
-class ChoixLigne
-{
-public:
+class ChoixLigne {
+  public:
     ChoixLigne();
     ~ChoixLigne();
 
@@ -18,7 +17,7 @@ public:
     QString getChoixPrefix();
     void setChoixPrefix(QString newChoixPrefix);
 
-private :
+  private :
     QString choixNom;
     QString choixParam;
     QString choixPrefix;

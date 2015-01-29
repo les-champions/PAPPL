@@ -9,10 +9,9 @@
   * @brief Text Widget extends QTextEdit
   *
   */
-class TextArea : public QTextEdit
-{
+class TextArea : public QTextEdit {
     Q_OBJECT
-public:
+  public:
 
     /**
       * @brief constructor
@@ -63,7 +62,7 @@ public:
       */
     void decNberTextChange();
 
-private :
+  private :
 
     /**
       * @brief Number of text change in the textArea
@@ -77,9 +76,9 @@ private :
       */
     int nberTextChange;
 
-signals:
+  signals:
 
-public slots:
+  public slots:
 
     /**
       * @brief method to count change of the text area

@@ -13,10 +13,9 @@
   * @brief Tree Wigets extends QWidget
   *
   */
-class TreeArea : public QWidget
-{
+class TreeArea : public QWidget {
     Q_OBJECT
-public:
+  public:
 
     /**
       * @brief constructor
@@ -120,9 +119,9 @@ public:
 
 
 
-signals:
+  signals:
 
-public slots:
+  public slots:
 
     /**
       * @brief build the base tree. Called on opening
@@ -170,7 +169,7 @@ public slots:
       * @brief hide a sort
       * @param int a flag that takes the value TreeArea::clickInSortsTree or TreeArea::clickInGroupsTree
       *
-      */    
+      */
     void hideSort(int clickedTree);
 
     /**

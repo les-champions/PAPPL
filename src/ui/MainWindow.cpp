@@ -10,14 +10,13 @@
 #include "IO.h"
 #include <QThread>
 #include <sstream>
-#include <time.h> 
+#include <time.h>
 #include <fstream>
 #include <QWidget>
 
 MainWindow* MainWindow::mwThis;
 
-MainWindow::MainWindow()
-{
+MainWindow::MainWindow() {
     // static variable
     MainWindow::mwThis = this;
 
@@ -134,7 +133,7 @@ MainWindow::MainWindow()
     menuDefaultStyles = menuStyles->addMenu("Default Styles");
     actionNaturalStyle = menuDefaultStyles->addAction("Positive contrast");
     actionNegativeStyle = menuDefaultStyles->addAction("Negative contrast");
-    actionPrintStyle = menuDefaultStyles->addAction("Print");    
+    actionPrintStyle = menuDefaultStyles->addAction("Print");
 
     //connect to the menu Styles
     QObject::connect(actionBackgroundColor, SIGNAL(triggered()), this, SLOT(changeBackgroundColor()));
@@ -194,7 +193,7 @@ MainWindow::MainWindow()
     // management of the menus (enabled/disabled)
     QObject::connect(this->centraleArea, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(disableMenu(QMdiSubWindow*)));
 
-    if(this->getCentraleArea()->subWindowList().isEmpty()){
+    if(this->getCentraleArea()->subWindowList().isEmpty()) {
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
         this->actionPng->setEnabled(false);
@@ -252,112 +251,111 @@ std::vector<QString> MainWindow::getAllPaths() {
 // open a new tab
 MyArea* MainWindow::openTab() {
 
-        // OpenFile dialog
-        QFileDialog* filedialog = new QFileDialog(this);
+    // OpenFile dialog
+    QFileDialog* filedialog = new QFileDialog(this);
 
-        QDialog* mb = new QDialog(filedialog);
-        mb->setFixedSize(300,150);
-        mb->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
+    QDialog* mb = new QDialog(filedialog);
+    mb->setFixedSize(300,150);
+    mb->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
 
-        QString file = filedialog->getOpenFileName(this, "Open...");
+    QString file = filedialog->getOpenFileName(this, "Open...");
 
-        // TODO refactor using early returns
-        if(file!=NULL) {
-     // Initiates timeopening calculation
-     std::ofstream logFile("log_opening_time.txt",std::ios::app);
-     timespec depart, arrivee;
-     clock_gettime(CLOCK_REALTIME,&depart);
-            QFileInfo pathInfo(file);
-            std::vector<QString> allPath = this->getAllPaths();
-            int size = allPath.size();
-            bool alreadyOpen = false;
+    // TODO refactor using early returns
+    if(file!=NULL) {
+        // Initiates timeopening calculation
+        std::ofstream logFile("log_opening_time.txt",std::ios::app);
+        timespec depart, arrivee;
+        clock_gettime(CLOCK_REALTIME,&depart);
+        QFileInfo pathInfo(file);
+        std::vector<QString> allPath = this->getAllPaths();
+        int size = allPath.size();
+        bool alreadyOpen = false;
 
-            // check if the file is already open
-            for(int i=0;i<size;i++) {
-                if(allPath[i]==file) {
-                   alreadyOpen = true;
-                    break;
-                }
+        // check if the file is already open
+        for(int i=0; i<size; i++) {
+            if(allPath[i]==file) {
+                alreadyOpen = true;
+                break;
             }
+        }
 
 
-            if(!alreadyOpen){
+        if(!alreadyOpen) {
 
-                //Display loading window
-                QLabel* dialogue = new QLabel(mb);
-                mb->setWindowTitle("Please wait...");
-                QMovie* gif = new QMovie("loading.gif");
-                gif->setScaledSize(QSize(300,150));
-                gif->start();
-                dialogue->setMovie(gif);
-                dialogue->show();
-                mb->open();
+            //Display loading window
+            QLabel* dialogue = new QLabel(mb);
+            mb->setWindowTitle("Please wait...");
+            QMovie* gif = new QMovie("loading.gif");
+            gif->setScaledSize(QSize(300,150));
+            gif->start();
+            dialogue->setMovie(gif);
+            dialogue->show();
+            mb->open();
 
-                //need a std::string instead of a QString
-                std::string path =	file.toStdString();                
+            //need a std::string instead of a QString
+            std::string path =	file.toStdString();
 
-                // parse file
-                Area *area = new Area(this, QString::fromStdString(path));
-                area->mainWindow = this;
+            // parse file
+            Area *area = new Area(this, QString::fromStdString(path));
+            area->mainWindow = this;
 
-                try {
-                    // render graph
-                    PHPtr myPHPtr = PHIO::parseFile(path);
-                    area->myArea->setPHPtr(myPHPtr);
-                    myPHPtr->render();
-                    PHScenePtr scene = myPHPtr->getGraphicsScene();
-                    area->myArea->setScene(&*scene);
+            try {
+                // render graph
+                PHPtr myPHPtr = PHIO::parseFile(path);
+                area->myArea->setPHPtr(myPHPtr);
+                myPHPtr->render();
+                PHScenePtr scene = myPHPtr->getGraphicsScene();
+                area->myArea->setScene(&*scene);
 
-                    // set the pointer of the treeArea
-                    area->treeArea->myPHPtr = myPHPtr;
-                    //set the pointer of the treeArea
-                    area->treeArea->myArea = area->myArea;
-                    // build the tree in the treeArea
-                    area->treeArea->build();
+                // set the pointer of the treeArea
+                area->treeArea->myPHPtr = myPHPtr;
+                //set the pointer of the treeArea
+                area->treeArea->myArea = area->myArea;
+                // build the tree in the treeArea
+                area->treeArea->build();
 
-                    // call the PH file and write it in the text area (same as .ph)
-                    QFile fichier(file);
-                    fichier.open(QIODevice::ReadOnly);
-                    QByteArray data;
-                    data = fichier.readAll();
-                    QString ligne(data);
-                    area->textArea->setPlainText(ligne);
+                // call the PH file and write it in the text area (same as .ph)
+                QFile fichier(file);
+                fichier.open(QIODevice::ReadOnly);
+                QByteArray data;
+                data = fichier.readAll();
+                QString ligne(data);
+                area->textArea->setPlainText(ligne);
 
-                    // make the subwindow for the new tab
-                    QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);
-                    QString fileName(pathInfo.fileName());
-                    theNewTab->setWindowTitle(fileName);
-                    this->enableMenu();                    
+                // make the subwindow for the new tab
+                QMdiSubWindow *theNewTab = this->getCentraleArea()->addSubWindow(area);
+                QString fileName(pathInfo.fileName());
+                theNewTab->setWindowTitle(fileName);
+                this->enableMenu();
 
-                    mb->close();
-                    this->setWindowState(Qt::WindowMaximized);
-            // putting time needed to open ph file into a "log_opening_time.txt" file
-            clock_gettime(CLOCK_REALTIME,&arrivee);
-            double timeOpening;
-            timeOpening = (arrivee.tv_nsec - depart.tv_nsec)/1000000.0+(arrivee.tv_sec - depart.tv_sec)*1000.0;
-            logFile << file.toStdString()+"-----"+"-----" << timeOpening;
-                    logFile << " ms\n";
-                    logFile.close();
-                    return area->myArea;
-
-                } catch(exception_base& argh) {
-                    mb->close();
-                    QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
-                    return NULL;
-                }
-            }
-            else {
                 mb->close();
-                QMessageBox::critical(this, "Error", "This file is already opened!");
+                this->setWindowState(Qt::WindowMaximized);
+                // putting time needed to open ph file into a "log_opening_time.txt" file
+                clock_gettime(CLOCK_REALTIME,&arrivee);
+                double timeOpening;
+                timeOpening = (arrivee.tv_nsec - depart.tv_nsec)/1000000.0+(arrivee.tv_sec - depart.tv_sec)*1000.0;
+                logFile << file.toStdString()+"-----"+"-----" << timeOpening;
+                logFile << " ms\n";
+                logFile.close();
+                return area->myArea;
+
+            } catch(exception_base& argh) {
+                mb->close();
+                QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
                 return NULL;
             }
-
-
-
         } else {
             mb->close();
+            QMessageBox::critical(this, "Error", "This file is already opened!");
             return NULL;
         }
+
+
+
+    } else {
+        mb->close();
+        return NULL;
+    }
 }
 
 
@@ -366,7 +364,7 @@ void MainWindow::closeTab() {
 
     // if there is at least one subwindow, close the current one
     if(!this->getCentraleArea()->subWindowList().isEmpty()) {
-        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();        
+        QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         subWindow->close();
     } else {
         QMessageBox::critical(this, "Error", "No file opened!");
@@ -377,45 +375,45 @@ void MainWindow::closeTab() {
 // save a graph
 void MainWindow::save() {
 
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
 
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
-        if(!((Area*) subWindow->widget())->indicatorEdit->isVisible()){
+        if(!((Area*) subWindow->widget())->indicatorEdit->isVisible()) {
 
-        // SaveFile dialog
-        QString fichier = QFileDialog::getSaveFileName(this, "Save file", "*.ph");
+            // SaveFile dialog
+            QString fichier = QFileDialog::getSaveFileName(this, "Save file", "*.ph");
 
-        // need a std::string instead of a QString
-        std::string path =	fichier.toStdString();
+            // need a std::string instead of a QString
+            std::string path =	fichier.toStdString();
 
-        //Selection of output format
+            //Selection of output format
 
-        QStringList items;
-        items << tr("Standard") << tr("Dump");
-        bool ok;
-        QString typeFile = QInputDialog::getItem(this,"Output format","Format : ", items, 0, false, &ok);
+            QStringList items;
+            items << tr("Standard") << tr("Dump");
+            bool ok;
+            QString typeFile = QInputDialog::getItem(this,"Output format","Format : ", items, 0, false, &ok);
 
-        //save as
-        //Dump format
-        if(ok && typeFile == "Dump"){
+            //save as
+            //Dump format
+            if(ok && typeFile == "Dump") {
 
-            PHPtr ph = ((Area*) subWindow->widget())->myArea->getPHPtr();
-            PHIO::writeToFile (path, ph);
-        }
-        //Text format (QTextEdit)
-        else if(ok && typeFile == "Standard"){
+                PHPtr ph = ((Area*) subWindow->widget())->myArea->getPHPtr();
+                PHIO::writeToFile (path, ph);
+            }
+            //Text format (QTextEdit)
+            else if(ok && typeFile == "Standard") {
 
-            std::string ph = ((Area*) subWindow->widget())->textArea->toPlainText().toStdString();
-            IO::writeFile (path, ph);
-        }
+                std::string ph = ((Area*) subWindow->widget())->textArea->toPlainText().toStdString();
+                IO::writeFile (path, ph);
+            }
 
-        }else{
+        } else {
             QMessageBox::critical(this, "Error", "Please save or cancel edition !");
         }
 
-    }else{
+    } else {
         QMessageBox::critical(this, "Error", "No file opened!");
     }
 }
@@ -424,8 +422,8 @@ void MainWindow::save() {
 // export methods
 
 void MainWindow::exportPng() {
-	
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
@@ -436,15 +434,15 @@ void MainWindow::exportPng() {
         PHPtr ph= ((Area*) subWindow->widget())->myArea->getPHPtr();
 
         // save as PNG
-		PHIO::exportToPNG(ph, fichier);
-		
+        PHIO::exportToPNG(ph, fichier);
+
     } else QMessageBox::critical(this, "Error", "No file opened!");
-	
+
 }
 
 void MainWindow::exportDot() {
 
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
@@ -452,7 +450,7 @@ void MainWindow::exportDot() {
         QString fichier = QFileDialog::getSaveFileName(this, "Export as .dot file", QString(), "*.dot");
 
         // add .dot to the name if necessary
-        if (fichier.indexOf(QString(".dot"), 0, Qt::CaseInsensitive) < 0){
+        if (fichier.indexOf(QString(".dot"), 0, Qt::CaseInsensitive) < 0) {
             fichier += ".dot";
         }
 
@@ -460,12 +458,11 @@ void MainWindow::exportDot() {
         QString str= QString::fromStdString(((Area*) subWindow->widget())->myArea->getPHPtr()->toDotString());
 
         QFile file(fichier);
-        if (!file.open(QIODevice::WriteOnly)){
+        if (!file.open(QIODevice::WriteOnly)) {
             QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
             file.errorString();
             return;
-        }
-        else{
+        } else {
             QDataStream out(&file);
             out.setVersion(QDataStream::Qt_4_5);
             out << str;
@@ -477,21 +474,21 @@ void MainWindow::exportDot() {
 
 
 // method to export style and layout data to XML format
-void MainWindow::exportXMLMetadata(){
+void MainWindow::exportXMLMetadata() {
 
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
 
         // SaveFile dialog
         QString xmlFile = QFileDialog::getSaveFileName(this, "Export preferences", QString(), "*.xml");
 
         // add .dot to the name if necessary
-        if (xmlFile.indexOf(QString(".xml"), 0, Qt::CaseInsensitive) < 0){
+        if (xmlFile.indexOf(QString(".xml"), 0, Qt::CaseInsensitive) < 0) {
             xmlFile += ".xml";
         }
 
         // open file if possible and write XML tree into it
         QFile output(xmlFile);
-        if (!output.open(QIODevice::WriteOnly)){
+        if (!output.open(QIODevice::WriteOnly)) {
             QMessageBox::critical(this, "Error", "Sorry, unable to open file.");
             output.errorString();
             return;
@@ -505,18 +502,17 @@ void MainWindow::exportXMLMetadata(){
 
 
 // method to import style and layout from XML format
-void MainWindow::importXMLMetadata(QString tempXML){
+void MainWindow::importXMLMetadata(QString tempXML) {
 
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
 
         QString xmlfile;
 
-        if(tempXML == ""){
+        if(tempXML == "") {
 
             // OpenFile dialog
             xmlfile = QFileDialog::getOpenFileName(this, "Import preferences", QString(),"*.xml");
-        }
-        else{
+        } else {
 
             xmlfile = tempXML;
         }
@@ -529,363 +525,308 @@ void MainWindow::importXMLMetadata(QString tempXML){
         input.open(QFile::ReadOnly | QFile::Text);
 
 
-        try
-        {
+        try {
 
-        while (!stream.atEnd())
-        {
+            while (!stream.atEnd()) {
 
-            while (stream.name()=="global")
-            {
-                stream.readNext();
-                while (stream.isStartElement()==false)
-                {
+                while (stream.name()=="global") {
                     stream.readNext();
+                    while (stream.isStartElement()==false) {
+                        stream.readNext();
+                    }
+
+                    if (stream.name() == "ph_file") {
+                        stream.readNext();
+                        while (stream.isStartElement()==false) {
+                            stream.readNext();
+                        }
+
+                        if (stream.name()=="name") {
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+                        }
+
+                        if (stream.name() == "path") {
+                            QString PATH = stream.readElementText();
+                            if (PATH!=area->path) {
+                                throw wrong_import_file();
+
+                            }
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+                        }
+
+
+                    }
+
+                    if (stream.name()=="styles") {
+                        stream.readNext();
+                        while (stream.isStartElement()==false) {
+                            stream.readNext();
+                        }
+                        if(stream.name() == "bg_color") {
+                            QString color = stream.readElementText();
+                            myarea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QBrush(QColor(color)));
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+                        }
+                        stream.readNext();
+
+                        while (stream.isStartElement()==false) {
+                            stream.readNext();
+                        }
+
+                    }
                 }
 
-                if (stream.name() == "ph_file")
-                {
-                  stream.readNext();
-                  while (stream.isStartElement()==false)
-                  {
-                      stream.readNext();
-                  }
-
-                  if (stream.name()=="name")
-                  {
-                      stream.readNext();
-                      while (stream.isStartElement()==false)
-                      {
-                          stream.readNext();
-                      }
-                  }
-
-                  if (stream.name() == "path")
-                  {
-                                   QString PATH = stream.readElementText();
-                                   if (PATH!=area->path)
-                                   {
-                                       throw wrong_import_file();
-
-                                   }
-                                   stream.readNext();
-                                   while (stream.isStartElement()==false)
-                                   {
-                                       stream.readNext();
-                                   }
-                               }
 
 
-                 }
+                while (stream.name()=="sorts") {
+                    stream.readNext();
+                    while (stream.isStartElement()==false) {
+                        stream.readNext();
+                    }
 
-                 if (stream.name()=="styles")
-                 {
-                               stream.readNext();
-                               while (stream.isStartElement()==false)
-                               {
-                                   stream.readNext();
-                               }
-                               if(stream.name() == "bg_color")
-                               {
-                                       QString color = stream.readElementText();
-                                       myarea->getPHPtr()->getGraphicsScene()->setBackgroundBrush(QBrush(QColor(color)));
-                                       stream.readNext();
-                                       while (stream.isStartElement()==false)
-                                       {
-                                           stream.readNext();
-                                       }
-                               }
+                    int i = 0;
+                    while (stream.name()=="sort") {
+                        std::string sortname = stream.attributes().first().value().toString().toStdString();
+                        stream.readNext();
+                        while (stream.isStartElement()==false) {
+                            stream.readNext();
+                        }
+
+
+                        if (stream.name()=="pos") {
+                            // Getting x coordinate of the top left corner of the sort
+                            qreal posx = stream.attributes().first().value().toString().toDouble();
+                            // Setting the x coordinate to the new value
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->setX(posx);
+
+                            // Getting y coordinate of the top left corner of the sort
+                            qreal posy = stream.attributes().value("y").toString().toDouble();
+                            // Setting the y coordinate to the new value
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->setY(posy);
+
+                            // Getting x coordinate of the cluster of the sort
+                            qreal posxCluster = stream.attributes().value("xcluster").toString().toDouble();
+                            // Setting the x coordinate to the new value
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getLeftTopCornerPoint()->setX(posxCluster);
+
+                            // Getting y coordinate of the cluster of the sort
+                            qreal posyCluster = stream.attributes().value("ycluster").toString().toDouble();
+                            // Setting the y coordinate to the new value
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getLeftTopCornerPoint()->setY(posyCluster);
+
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
                                 stream.readNext();
+                            }
+                        }
+                        if (stream.name()=="size") {
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+                        }
 
-                                while (stream.isStartElement()==false)
-                                {
-                                        stream.readNext();
+                        if (stream.name()=="color") {
+                            QString color = stream.readElementText();
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getRect()->setBrush(QBrush(QColor(color)));
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+                        }
+
+                        while (stream.name()=="label") {
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+
+                            if (stream.name()=="font") {
+                                stream.readNext();
+                                while (stream.isStartElement()==false) {
+                                    stream.readNext();
+                                }
+                            }
+
+                            if (stream.name()=="pos") {
+                                stream.readNext();
+                                while (stream.isStartElement()==false) {
+                                    stream.readNext();
+                                }
+                            }
+                        }
+
+                        while (stream.name()=="processes") {
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
+
+                            while (stream.name()=="process") {
+                                int noprocess = stream.attributes().first().value().toString().toInt();
+                                stream.readNext();
+                                while (stream.isStartElement()==false) {
+                                    stream.readNext();
                                 }
 
-                  }
-            }
+                                if (stream.name()=="pos") {
+                                    for (ProcessPtr &b : myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getSort()->getProcesses()) {
+                                        if (b->getNumber()==noprocess) {
+                                            // Getting x coordinate of the center of the process
+                                            qreal posx = stream.attributes().value("x").toString().toDouble();
+                                            // Setting the x coordinate to the new value
+                                            b->getGProcess()->getCenterPoint()->setX(posx);
 
-
-
-            while (stream.name()=="sorts")
-            {
-                stream.readNext();
-                while (stream.isStartElement()==false)
-                {
-                    stream.readNext();
-                }
-
-                int i = 0;
-                while (stream.name()=="sort")
-                {
-                    std::string sortname = stream.attributes().first().value().toString().toStdString();
-                    stream.readNext();
-                    while (stream.isStartElement()==false)
-                    {
-                        stream.readNext();
-                    }
-
-
-                    if (stream.name()=="pos")
-                    {
-                        // Getting x coordinate of the top left corner of the sort
-                        qreal posx = stream.attributes().first().value().toString().toDouble();
-                        // Setting the x coordinate to the new value
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->setX(posx);
-
-                        // Getting y coordinate of the top left corner of the sort
-                        qreal posy = stream.attributes().value("y").toString().toDouble();
-                        // Setting the y coordinate to the new value
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->setY(posy);
-
-                        // Getting x coordinate of the cluster of the sort
-                        qreal posxCluster = stream.attributes().value("xcluster").toString().toDouble();
-                        // Setting the x coordinate to the new value
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getLeftTopCornerPoint()->setX(posxCluster);
-
-                        // Getting y coordinate of the cluster of the sort
-                        qreal posyCluster = stream.attributes().value("ycluster").toString().toDouble();
-                        // Setting the y coordinate to the new value
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getLeftTopCornerPoint()->setY(posyCluster);
-
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
-                            stream.readNext();
-                        }
-                    }
-                    if (stream.name()=="size")
-                    {
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
-                            stream.readNext();
-                        }
-                    }
-
-                    if (stream.name()=="color")
-                    {
-                        QString color = stream.readElementText();
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getRect()->setBrush(QBrush(QColor(color)));
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
-                            stream.readNext();
-                        }
-                    }
-
-                    while (stream.name()=="label")
-                    {
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
-                            stream.readNext();
-                        }
-
-                        if (stream.name()=="font")
-                        {
-                            stream.readNext();
-                            while (stream.isStartElement()==false)
-                            {
-                                stream.readNext();
-                            }
-                        }
-
-                        if (stream.name()=="pos")
-                        {
-                            stream.readNext();
-                            while (stream.isStartElement()==false)
-                            {
-                                stream.readNext();
-                            }
-                        }
-                     }
-
-                    while (stream.name()=="processes")
-                    {
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
-                            stream.readNext();
-                        }
-
-                        while (stream.name()=="process")
-                        {
-                        	int noprocess = stream.attributes().first().value().toString().toInt();
-                            stream.readNext();
-                            while (stream.isStartElement()==false)
-                            {
-                                stream.readNext();
-                            }
-
-                            if (stream.name()=="pos")
-                            {
-                                for (ProcessPtr &b : myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->getSort()->getProcesses()){
-                                    if (b->getNumber()==noprocess)
-                                    {
-                                        // Getting x coordinate of the center of the process
-                                        qreal posx = stream.attributes().value("x").toString().toDouble();
-                                        // Setting the x coordinate to the new value
-                                        b->getGProcess()->getCenterPoint()->setX(posx);
-
-                                        // Getting y coordinate of the center of the process
-                                        qreal posy = stream.attributes().value("y").toString().toDouble();
-                                        // Setting the y coordinate to the new value
-                                        b->getGProcess()->getCenterPoint()->setY(posy);
+                                            // Getting y coordinate of the center of the process
+                                            qreal posy = stream.attributes().value("y").toString().toDouble();
+                                            // Setting the y coordinate to the new value
+                                            b->getGProcess()->getCenterPoint()->setY(posy);
 //TODO delete that useless method everywhere //b->getGProcess()->setCoordsForImport(nodeX,nodeY);
+                                        }
+                                    }
+
+                                    stream.readNext();
+                                    while (stream.isStartElement()==false) {
+                                        stream.readNext();
+                                    }
+
+
+                                }
+
+
+
+                                if (stream.name()=="size") {
+                                    stream.readNext();
+                                    while (stream.isStartElement()==false) {
+                                        stream.readNext();
                                     }
                                 }
-
-                                stream.readNext();
-                                while (stream.isStartElement()==false)
-                                {
-                                    stream.readNext();
-                                }
-
-
-                            }
-
-
-
-                            if (stream.name()=="size")
-                            {
-                                stream.readNext();
-                                while (stream.isStartElement()==false)
-                                {
-                                    stream.readNext();
-                                }
                             }
                         }
+
+                        if(i == (int)myarea->getPHPtr()->getGraphicsScene()->getGSorts().size()-2) {
+
+                            QGraphicsSceneMouseEvent* event = new QGraphicsSceneMouseEvent();
+                            event->scenePos().setX(0.1);
+                            event->scenePos().setY(0.1);
+                            myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->mouseReleaseEvent(event);
+                        }
+                        i++;
                     }
 
-                    if(i == (int)myarea->getPHPtr()->getGraphicsScene()->getGSorts().size()-2){
-
-                        QGraphicsSceneMouseEvent* event = new QGraphicsSceneMouseEvent();
-                        event->scenePos().setX(0.1);
-                        event->scenePos().setY(0.1);
-                        myarea->getPHPtr()->getGraphicsScene()->getGSort(sortname)->mouseReleaseEvent(event);
-                    }
-                    i++;
-                }
-
-                myarea->getPHPtr()->getGraphicsScene()->updateActions();
+                    myarea->getPHPtr()->getGraphicsScene()->updateActions();
 //TODO what is the use of updateForImport() ?
 //                myarea->getPHPtr()->getGraphicsScene()->updateForImport();
-            }
-
-
-
-            while (stream.name()=="sort_groups")
-            {
-                stream.readNext();
-                while (stream.isStartElement()==false)
-                {
-                    stream.readNext();
                 }
 
 
 
-                while (stream.name()=="group")
-                {
-                    // Getting the name of the group
-                    QString groupname = stream.attributes().first().value().toString();
-                    // Creating the group in treeArea
-                    QTreeWidgetItem* groupe = new QTreeWidgetItem(area->treeArea->groupsTree);
-                    groupe->setText(0, groupname);
-                    area->treeArea->groups.push_back(groupe);
-                    int size = area->treeArea->groupsPalette->size();
-                    area->treeArea->groupsPalette->insert(groupe, area->treeArea->palette->at(size%8));
-                    //groupe->setForeground(0, QBrush(area->treeArea->palette->at(size%8)));
-
-
+                while (stream.name()=="sort_groups") {
                     stream.readNext();
-                    while (stream.isStartElement()==false)
-                    {
+                    while (stream.isStartElement()==false) {
                         stream.readNext();
                     }
 
-                    if (stream.name()=="color")
-                    {
-                        QString groupcolor = stream.readElementText();
-                        groupe->setForeground(0, QBrush(QColor(groupcolor)));
+
+
+                    while (stream.name()=="group") {
+                        // Getting the name of the group
+                        QString groupname = stream.attributes().first().value().toString();
+                        // Creating the group in treeArea
+                        QTreeWidgetItem* groupe = new QTreeWidgetItem(area->treeArea->groupsTree);
+                        groupe->setText(0, groupname);
+                        area->treeArea->groups.push_back(groupe);
+                        int size = area->treeArea->groupsPalette->size();
+                        area->treeArea->groupsPalette->insert(groupe, area->treeArea->palette->at(size%8));
+                        //groupe->setForeground(0, QBrush(area->treeArea->palette->at(size%8)));
+
+
                         stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
+                        while (stream.isStartElement()==false) {
                             stream.readNext();
                         }
-                    }
 
-                    while (stream.name()=="sorts_of_group")
-                    {
-                        stream.readNext();
-                        while (stream.isStartElement()==false)
-                        {
+                        if (stream.name()=="color") {
+                            QString groupcolor = stream.readElementText();
+                            groupe->setForeground(0, QBrush(QColor(groupcolor)));
                             stream.readNext();
-                        }
-
-                        while (stream.name()=="sort")
-                        {
-                            // Getting all the sorts in the sorts Tree
-                            QList<QTreeWidgetItem*> sortsFound = area->treeArea->sortsTree->findItems("", Qt::MatchContains, 0);
-                            // Getting the name of the sort in the group
-                            QString sortname = stream.attributes().first().value().toString();
-                            for (QTreeWidgetItem* &a : sortsFound)
-                            {
-                                if (a->text(0)==sortname)
-                                {
-                                    //QTreeWidgetItem* b = new QTreeWidgetItem(area->treeArea->groupsTree->currentItem());
-                                    QTreeWidgetItem* b = new QTreeWidgetItem(groupe);
-                                    b->setText(0, a->text(0));
-                                    b->setForeground(0, a->foreground(0));
-                                    QPen* pen = new QPen();
-                                    pen->setColor(groupe->foreground(0).color());
-                                    pen->setWidth(4);
-                                    area->treeArea->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getRect()->setPen(*pen);
-                                }
-                            }
-                            stream.readNext();
-                            while(stream.isStartElement()==false)
-                                if(stream.atEnd()==true){
-                                        break;
-                                }else{
+                            while (stream.isStartElement()==false) {
                                 stream.readNext();
-                                }
+                            }
                         }
 
+                        while (stream.name()=="sorts_of_group") {
+                            stream.readNext();
+                            while (stream.isStartElement()==false) {
+                                stream.readNext();
+                            }
 
+                            while (stream.name()=="sort") {
+                                // Getting all the sorts in the sorts Tree
+                                QList<QTreeWidgetItem*> sortsFound = area->treeArea->sortsTree->findItems("", Qt::MatchContains, 0);
+                                // Getting the name of the sort in the group
+                                QString sortname = stream.attributes().first().value().toString();
+                                for (QTreeWidgetItem* &a : sortsFound) {
+                                    if (a->text(0)==sortname) {
+                                        //QTreeWidgetItem* b = new QTreeWidgetItem(area->treeArea->groupsTree->currentItem());
+                                        QTreeWidgetItem* b = new QTreeWidgetItem(groupe);
+                                        b->setText(0, a->text(0));
+                                        b->setForeground(0, a->foreground(0));
+                                        QPen* pen = new QPen();
+                                        pen->setColor(groupe->foreground(0).color());
+                                        pen->setWidth(4);
+                                        area->treeArea->myPHPtr->getGraphicsScene()->getGSort(a->text(0).toStdString())->getRect()->setPen(*pen);
+                                    }
+                                }
+                                stream.readNext();
+                                while(stream.isStartElement()==false)
+                                    if(stream.atEnd()==true) {
+                                        break;
+                                    } else {
+                                        stream.readNext();
+                                    }
+                            }
+
+
+                        }
                     }
+
+                    stream.readNext();
+                    while(stream.isStartElement()==false)
+                        if(stream.atEnd()==true) {
+                            break;
+                        } else {
+                            stream.readNext();
+                        }
+
                 }
 
                 stream.readNext();
-                while(stream.isStartElement()==false)
-                    if(stream.atEnd()==true){
-                            break;
-                    }else{
-                    stream.readNext();
-                    }
 
             }
-
-            stream.readNext();
-
-         }
-         }
-        catch (wrong_import_file e)
-        {
+        } catch (wrong_import_file e) {
             QMessageBox::critical(this,"Error","Preferences file does not refer to the current opened file");
         }
 
         input.close();
 
     } else {
-     QMessageBox::critical(this,"Error","No file opened");
+        QMessageBox::critical(this,"Error","No file opened");
     }
 
 }
 
 // method to adjust the view
-void MainWindow::adjust()
-{
+void MainWindow::adjust() {
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the myArea (middle) part and fit the view
@@ -893,8 +834,7 @@ void MainWindow::adjust()
 }
 
 // method to zoom In
-void MainWindow::zoomIn()
-{
+void MainWindow::zoomIn() {
     // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the myArea (middle) part and call the method associated to zoom in
@@ -902,36 +842,32 @@ void MainWindow::zoomIn()
 }
 
 // method to zoom out
-void MainWindow::zoomOut()
-{
+void MainWindow::zoomOut() {
     // get the widget in the central area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the myArea (middle) part and call the method associated to zoom out
     view->myArea->zoomOut();
 }
 
-void MainWindow::switchToSimplifiedModel()
-{
-     if(!this->getCentraleArea()->subWindowList().isEmpty()){
+void MainWindow::switchToSimplifiedModel() {
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
         ((Area*) subWindow->widget())->myArea->getPHPtr()->getGraphicsScene()->setSimpleDisplay(true);
-     }
+    }
 }
 
-void MainWindow::switchToDetailledModel()
-{
-     if(!this->getCentraleArea()->subWindowList().isEmpty()){
+void MainWindow::switchToDetailledModel() {
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         // get the current subwindow
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
 
         ((Area*) subWindow->widget())->myArea->getPHPtr()->getGraphicsScene()->setSimpleDisplay(false);
-     }
+    }
 }
 
-void MainWindow::searchSort()
-{
+void MainWindow::searchSort() {
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the treeArea (left) part and call the method associated to search a sort
@@ -948,7 +884,7 @@ void MainWindow::changeBackgroundColor() {
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
 
-    if(!color.isValid()){
+    if(!color.isValid()) {
         return ;
     } else {
         // If the color chosen is valid, get the myArea (middle) part and set the backgroundbrush of the PH Scene
@@ -1000,7 +936,7 @@ void MainWindow::positiveContrast() {
     // get all the processes of the PH scene
     std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
     // set the color ellipse to transparent
-    for (GProcessPtr &a: processes){
+    for (GProcessPtr &a: processes) {
         a->getEllipseItem()->setPen(QPen(Qt::black, 1));
         a->getEllipseItem()->setBrush(QBrush(QColor(220,220,220)));
     }
@@ -1026,7 +962,7 @@ void MainWindow::negativeContrast() {
     // get all the processes of the PH scene
     std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
     // set the color ellipse to transparent
-    for (GProcessPtr &a: processes){
+    for (GProcessPtr &a: processes) {
         a->getEllipseItem()->setPen(QPen(Qt::black, 1));
         a->getEllipseItem()->setBrush(QBrush(QColor(160,160,160)));
     }
@@ -1053,14 +989,14 @@ void MainWindow::printStyle() {
     // get all the processes of the PH scene
     std::vector<GProcessPtr> processes = view->myArea->getPHPtr()->getGraphicsScene()->getProcesses();
     // set the color ellipse to transparent
-    for (GProcessPtr &a: processes){
+    for (GProcessPtr &a: processes) {
         a->getEllipseItem()->setPen(QPen(Qt::black, 3));
         a->getEllipseItem()->setBrush(Qt::NoBrush);
     }
 }
 
 // hide / show the text area. Called by the signal actionHideShowText
-void MainWindow::hideShowText(){
+void MainWindow::hideShowText() {
     // get the widget in the central area, cast it to Area (to use the methods)
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // cal the method to hide or show text
@@ -1068,7 +1004,7 @@ void MainWindow::hideShowText(){
 }
 
 // change the text background color in the text area. Called by the signal actionChangeTextBackgroundColor
-void MainWindow::changeTextBackgroundColor(){
+void MainWindow::changeTextBackgroundColor() {
     // open a color dialog and get the color chosen
     QColor color = QColorDialog::getColor();
     // get the widget in the central area
@@ -1083,7 +1019,7 @@ void MainWindow::changeTextBackgroundColor(){
 }
 
 // hide the tree area. Called by the signal actionHideTree
-void MainWindow::hideShowTree(){
+void MainWindow::hideShowTree() {
     // get the widget in the central area, cast it to Area (to use the methods)
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // call the method to hide or show the tree
@@ -1113,7 +1049,7 @@ void MainWindow::compute(QString program, QStringList arguments, QString fileNam
     delete myProcess;
 
     // pop up for the errors
-    if(!err.isEmpty()){
+    if(!err.isEmpty()) {
 
         //correct a false error message for ph-stable
         if(program==QString("ph-stable")) {
@@ -1129,7 +1065,7 @@ void MainWindow::compute(QString program, QStringList arguments, QString fileNam
     }
 
     //pop up for the output
-    if(!out.isEmpty()){
+    if(!out.isEmpty()) {
 
         QMessageBox::information(this, program+".output", out);
 
@@ -1159,16 +1095,16 @@ void MainWindow::findFixpoints() {
     this->compute(program, arguments, fileName);
 }
 
-void MainWindow::EditTikzData(){
-/*
-    //ask the user the state which is tested
-    bool ok = false;
-    QString state = QInputDialog::getText(this, "editor", "Which sorts do you want to edit ?", QLineEdit::Normal, QString(), &ok);
+void MainWindow::EditTikzData() {
+    /*
+        //ask the user the state which is tested
+        bool ok = false;
+        QString state = QInputDialog::getText(this, "editor", "Which sorts do you want to edit ?", QLineEdit::Normal, QString(), &ok);
 
-    //Button Generate and Cancel
-    bool ok = false;
-    BtnCancel = new QPushButton("&Cancel");
-    */
+        //Button Generate and Cancel
+        bool ok = false;
+        BtnCancel = new QPushButton("&Cancel");
+        */
 
 }
 
@@ -1179,7 +1115,7 @@ void MainWindow::computeReachability() {
 
     // get the filename associated with the current subWindow
     QString fileName;
-    if(this->getCentraleArea()->currentSubWindow() != 0){ // if a subWindow exists
+    if(this->getCentraleArea()->currentSubWindow() != 0) { // if a subWindow exists
         QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
         fileName = ((Area*) subWindow->widget())->path;
     } else {
@@ -1196,16 +1132,16 @@ void MainWindow::computeReachability() {
 
         arguments << "--no-debug" << "-i" << fileName;
 
-        for (int j=0; j< a.size(); j++){
-                arguments << a[j];
-            }
+        for (int j=0; j< a.size(); j++) {
+            arguments << a[j];
+        }
 
         //call MainWindow::compute
         this->compute(program, arguments);
     }
 }
 
-QStringList MainWindow::wordList(const QString& text){
+QStringList MainWindow::wordList(const QString& text) {
     QStringList result (text.split (QRegExp ("\\b([- .,?!':;/\"\(\)]+\\b)*"), QString::SkipEmptyParts));
     return result;
 
@@ -1213,7 +1149,7 @@ QStringList MainWindow::wordList(const QString& text){
 
 
 
-QString MainWindow::pathCurrentWindow(){
+QString MainWindow::pathCurrentWindow() {
     QMdiSubWindow *subWindow = this->getCentraleArea()->currentSubWindow();
     QString fileName = ((Area*) subWindow->widget())->path;
     return fileName;
@@ -1253,7 +1189,7 @@ void MainWindow::runStochasticSimulation() {
 
 // NOT IMPLEMENTED!
 // TODO implement it
-void MainWindow::checkModelType(){
+void MainWindow::checkModelType() {
     QString program = "";
     QStringList arguments;
     arguments << "gruik" << "gruik";
@@ -1261,7 +1197,7 @@ void MainWindow::checkModelType(){
 }
 
 
-void MainWindow::statistics(){
+void MainWindow::statistics() {
 
     QString program = "ph-stat";
     QStringList arguments;
@@ -1285,14 +1221,14 @@ void MainWindow::statistics(){
 
 
 //open connection settings window
-void MainWindow::openConnection(){
+void MainWindow::openConnection() {
 
     ConnectionSettingsWindow = new ConnectionSettings();
     ConnectionSettingsWindow->show();
 }
 
 //open Editor window
-void MainWindow::openEditor(){
+void MainWindow::openEditor() {
     // get the widget in the centrale area
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the treeArea (left) part and call the method associated to search a sort
@@ -1303,7 +1239,7 @@ void MainWindow::openEditor(){
     TikzEditorWindow->show();
 }
 
-void MainWindow::openConnectionForm(){
+void MainWindow::openConnectionForm() {
 
     QString fileName;
     if(this->getCentraleArea()->currentSubWindow() != 0) {
@@ -1321,7 +1257,7 @@ void MainWindow::openConnectionForm(){
 
 
 // disable menus when no open, active tabs
-void MainWindow::disableMenu(QMdiSubWindow* subwindow){
+void MainWindow::disableMenu(QMdiSubWindow* subwindow) {
     if(subwindow==0&&this->getCentraleArea()->subWindowList().isEmpty()) {
         this->actionClose->setEnabled(false);
         this->actionSaveas->setEnabled(false);
@@ -1354,8 +1290,8 @@ void MainWindow::disableMenu(QMdiSubWindow* subwindow){
 
 
 // enable menus when at least one open, active tab
-void MainWindow::enableMenu(){
-    if(!this->getCentraleArea()->subWindowList().isEmpty()){
+void MainWindow::enableMenu() {
+    if(!this->getCentraleArea()->subWindowList().isEmpty()) {
         this->actionClose->setEnabled(true);
         this->actionSaveas->setEnabled(true);
         this->actionPng->setEnabled(true);
@@ -1381,7 +1317,7 @@ void MainWindow::enableMenu(){
         this->actionRunStochasticSimulation->setEnabled(true);
         this->actionStatistics->setEnabled(true);
 
-        if(ConnectionSettings::tabFunction.size()!=0){
+        if(ConnectionSettings::tabFunction.size()!=0) {
 
             this->actionConnection->setEnabled(true);
         }
