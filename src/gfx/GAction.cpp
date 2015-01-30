@@ -222,7 +222,6 @@ bool GAction::isCurvedHit(GSortPtr sourceSort, GSortPtr targetSort, GProcessPtr 
 
     QLineF* sourceSortBottomLine;
     QLineF* sourceSortTopLine;
-    QPointF* intersectionPoint;
     QPointF sourceSortBottomLeft = sourceSort->getRect()->rect().bottomLeft();
     QPointF sourceSortBottomRight = sourceSort->getRect()->rect().bottomRight();
     QPointF sourceSortTopLeft = sourceSort->getRect()->rect().topLeft();
@@ -246,14 +245,14 @@ bool GAction::isCurvedHit(GSortPtr sourceSort, GSortPtr targetSort, GProcessPtr 
     const QLineF & refToTargetSortBottomLine = *targetSortBottomLine ;// built a reference to the QLinef* associate because of the function intersect() used after, which whants only reference and no pointer
     const QLineF & refToTargetSortTopLine = *targetSortTopLine ;// built a reference to the QLinef* associate because of the function intersect() used after, which whants only reference and no pointer
 
-    if((hitLineTemp->intersect(refToSourceSortBottomLine, intersectionPoint)==1 &&
-            source->getCenterPoint()->y() + GProcess::sizeDefault < sourceSort->getRect()->rect().bottomLeft().y()) ||
-            (hitLineTemp->intersect(refToSourceSortTopLine, intersectionPoint)==1 &&
-             source->getCenterPoint()->y() - GProcess::sizeDefault > sourceSort->getRect()->rect().topLeft().y())) {
+    if((hitLineTemp->intersect(refToSourceSortBottomLine, 0) == QLineF::BoundedIntersection &&
+        source->getCenterPoint()->y() + GProcess::sizeDefault < sourceSort->getRect()->rect().bottomLeft().y()) ||
+        (hitLineTemp->intersect(refToSourceSortTopLine, 0) == QLineF::BoundedIntersection &&
+         source->getCenterPoint()->y() - GProcess::sizeDefault > sourceSort->getRect()->rect().topLeft().y())) {
         return true;
-    } else if((hitLineTemp->intersect(refToTargetSortBottomLine, intersectionPoint)==1 &&
+    } else if((hitLineTemp->intersect(refToTargetSortBottomLine, 0) == QLineF::BoundedIntersection &&
                target->getCenterPoint()->y() + GProcess::sizeDefault < targetSort->getRect()->rect().bottomLeft().y()) ||
-              (hitLineTemp->intersect(refToTargetSortTopLine, intersectionPoint)==1 &&
+              (hitLineTemp->intersect(refToTargetSortTopLine, 0) == QLineF::BoundedIntersection &&
                target->getCenterPoint()->y() - GProcess::sizeDefault > targetSort->getRect()->rect().topLeft().y())) {
         return true;
     } else {
