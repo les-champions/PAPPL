@@ -310,7 +310,8 @@ QPainterPath GAction::createHitPath() {
         } else {
             hitPath.lineTo(*targetPoint);
         }
-    } else if (isAutoHit() && sourceSort->getSimpleDisplay()!=1||targetSort->getSimpleDisplay()!=1) {
+    } else if ( (isAutoHit() && sourceSort->getSimpleDisplay() != 1)
+                ||targetSort->getSimpleDisplay()!=1) {
         if(dynamic_cast<GSort*>(getTarget()->getDisplayItem()->parentItem())->isVertical() && targetPoint->y() > resultPoint->y()) {
             rectCornerY = source->getCenterPoint()->y();
             heightRect = (sourcePoint->y() - targetPoint->y())*2;
@@ -363,7 +364,6 @@ QPainterPath GAction::createBoundPath() {
 
     if((targetPoint->x()!=resultPoint->x())||(targetPoint->y()!=resultPoint->y())) {
         qreal rectCornerX;
-        qreal rectCornerXBis;
         qreal rectCornerY;
         qreal widthRect;
         qreal heightRect;
@@ -501,7 +501,7 @@ void GAction::colorAction(QColor color) {
 void GAction::setActionColorNUmber(int r, int g, int b, int nb) {
     this->numberActionColor=nb;
     QPen pen;
-    if(r==0, g==0, b==0)
+    if(r==0 && g==0 && b==0)
         pen.setWidth(1);
     else
         pen.setWidth(2);
