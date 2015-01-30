@@ -10,9 +10,9 @@
 #include "IO.h"
 #include <QThread>
 #include <sstream>
-#include <time.h>
 #include <fstream>
 #include <QWidget>
+#include <chrono>
 
 MainWindow* MainWindow::mwThis;
 
@@ -264,8 +264,8 @@ MyArea* MainWindow::openTab() {
     if(file!=NULL) {
         // Initiates timeopening calculation
         std::ofstream logFile("log_opening_time.txt",std::ios::app);
-        timespec depart, arrivee;
-        clock_gettime(CLOCK_REALTIME,&depart);
+        std::chrono::steady_clock::time_point depart, arrivee;
+        depart = std::chrono::steady_clock::now();
         QFileInfo pathInfo(file);
         std::vector<QString> allPath = this->getAllPaths();
         int size = allPath.size();
@@ -331,9 +331,11 @@ MyArea* MainWindow::openTab() {
                 mb->close();
                 this->setWindowState(Qt::WindowMaximized);
                 // putting time needed to open ph file into a "log_opening_time.txt" file
-                clock_gettime(CLOCK_REALTIME,&arrivee);
-                double timeOpening;
-                timeOpening = (arrivee.tv_nsec - depart.tv_nsec)/1000000.0+(arrivee.tv_sec - depart.tv_sec)*1000.0;
+                arrivee = std::chrono::steady_clock::now();
+                auto timeOpening =
+                    std::chrono::duration_cast<std::chrono::milliseconds>
+                        (arrivee - depart)
+                    .count();
                 logFile << file.toStdString()+"-----"+"-----" << timeOpening;
                 logFile << " ms\n";
                 logFile.close();
