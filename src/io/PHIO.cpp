@@ -146,20 +146,21 @@ PHPtr PHIO::parseFile (string const& path) {
         throw pint_program_not_found() << file_info("phc");
 
     // read result
-    QByteArray stderr;
-    QByteArray stdout;
-    while (!phcProcess->waitForFinished()) {
-        stderr += phcProcess->readAllStandardError();
-        stdout += phcProcess->readAllStandardOutput();
-    }
-    stderr += phcProcess->readAllStandardError();
-    stdout += phcProcess->readAllStandardOutput();
+    QByteArray phcStandardError;
+    QByteArray phcStandardOutput;
+    // Consider phc to have timed out after 10 mins
+    bool timedOut = !phcProcess->waitForFinished(10*60*1000);
+    phcStandardError  += phcProcess->readAllStandardError();
+    phcStandardOutput += phcProcess->readAllStandardOutput();
     delete phcProcess;
 
+    if (timedOut)
+        throw pint_phc_crash() << (parse_info)"Time out";
+
     // parse dump
-    if (!stderr.isEmpty())
-        throw pint_phc_crash() << parse_info(QString(stderr).toStdString());
-    return parse(QString(stdout).toStdString());
+    if (!phcStandardError.isEmpty())
+        throw pint_phc_crash() << (parse_info)QString(phcStandardError).toStdString();
+    return parse(QString(phcStandardOutput).toStdString());
 
 }
 
