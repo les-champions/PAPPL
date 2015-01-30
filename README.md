@@ -5,7 +5,7 @@ The Process Hitting is a recently introduced formalism suited for modelling qual
 
 [Pint](https://github.com/pauleve/pint/) implements the language, simulation, formal analysis, and translation of Process Hitting models.
 
-![screenshot gPH](http://loicpauleve.name/pint/images/gPH.png)
+![screenshot gPH](http://les-champions.github.io/gPH/images/gPH-screenshot-metazoan.png)
 
 ## Dependencies
 ### Compile-time
