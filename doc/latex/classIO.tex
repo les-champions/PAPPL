@@ -1,0 +1,150 @@
+\hypertarget{classIO}{\section{I\+O Class Reference}
+\label{classIO}\index{I\+O@{I\+O}}
+}
+
+
+manages the inputs and outputs at the lowest level  
+
+
+
+
+{\ttfamily \#include $<$I\+O.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{classIO_a6138448963246f65e08ee2e3c656a75f}{read\+File} (string const \&path)
+\begin{DoxyCompactList}\small\item\em reads file content \end{DoxyCompactList}\item 
+static void \hyperlink{classIO_a7565597b177de10e822ab266eb284cf1}{file\+Location\+Check} (string const \&path)
+\begin{DoxyCompactList}\small\item\em checks that the file exists \end{DoxyCompactList}\item 
+static void \hyperlink{classIO_affdd7cd3e9c55cbf32551920e491cae6}{write\+File} (string const \&path, string const \&content)
+\begin{DoxyCompactList}\small\item\em Writes the content in the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+manages the inputs and outputs at the lowest level 
+
+Definition at line 19 of file I\+O.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIO_a7565597b177de10e822ab266eb284cf1}{\index{I\+O@{I\+O}!file\+Location\+Check@{file\+Location\+Check}}
+\index{file\+Location\+Check@{file\+Location\+Check}!I\+O@{I\+O}}
+\subsubsection[{file\+Location\+Check}]{\setlength{\rightskip}{0pt plus 5cm}void I\+O\+::file\+Location\+Check (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classIO_a7565597b177de10e822ab266eb284cf1}
+
+
+checks that the file exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file to check \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+27                                               \{
+28 
+29     \textcolor{keyword}{using namespace }boost::filesystem;
+30 
+31     \textcolor{comment}{// sanity checks}
+32     \textcolor{keywordflow}{if} (!exists(path))
+33         \textcolor{keywordflow}{throw} \hyperlink{structfile__not__exist}{file\_not\_exist}() << file\_info(path);
+34     \textcolor{keywordflow}{if} (!is\_regular\_file(path))
+35         \textcolor{keywordflow}{throw} \hyperlink{structnot__regular__file}{not\_regular\_file}() << file\_info(path);
+36 
+37 \}
+\end{DoxyCode}
+\hypertarget{classIO_a6138448963246f65e08ee2e3c656a75f}{\index{I\+O@{I\+O}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!I\+O@{I\+O}}
+\subsubsection[{read\+File}]{\setlength{\rightskip}{0pt plus 5cm}string I\+O\+::read\+File (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classIO_a6138448963246f65e08ee2e3c656a75f}
+
+
+reads file content 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string file content 
+\end{DoxyReturn}
+
+
+Definition at line 10 of file I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+10                                        \{
+11 
+12     \textcolor{keyword}{using namespace }boost::filesystem;
+13     \hyperlink{classIO_a7565597b177de10e822ab266eb284cf1}{IO::fileLocationCheck}(path);
+14 
+15     \textcolor{comment}{// open text file in read only mode}
+16     QFile file(QString::fromUtf8(path.c\_str()));
+17     \textcolor{keywordflow}{if} (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+18         \textcolor{keywordflow}{throw} \hyperlink{structio__error}{io\_error}() << file\_info(path);
+19     QTextStream in(&file);
+20 
+21     \textcolor{keywordflow}{return} in.readAll().toStdString();
+22 
+23 \}
+\end{DoxyCode}
+\hypertarget{classIO_affdd7cd3e9c55cbf32551920e491cae6}{\index{I\+O@{I\+O}!write\+File@{write\+File}}
+\index{write\+File@{write\+File}!I\+O@{I\+O}}
+\subsubsection[{write\+File}]{\setlength{\rightskip}{0pt plus 5cm}void I\+O\+::write\+File (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path, }
+\item[{string const \&}]{content}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classIO_affdd7cd3e9c55cbf32551920e491cae6}
+
+
+Writes the content in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file to write in \\
+\hline
+{\em string} & the text content to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+41                                                              \{
+42 
+43     \textcolor{comment}{// open text file in write only mode}
+44     QFile file(QString::fromUtf8(path.c\_str()));
+45     file.open(QIODevice::WriteOnly | QIODevice::Text);
+46 
+47     \textcolor{comment}{// write string}
+48     QTextStream out(&file);
+49     out << QString::fromUtf8(content.c\_str());
+50 
+51     file.close();
+52 
+53 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{IO_8h}{I\+O.\+h}\item 
+src/io/I\+O.\+cpp\end{DoxyCompactItemize}

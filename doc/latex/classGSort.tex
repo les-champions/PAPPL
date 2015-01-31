@@ -1,0 +1,914 @@
+\hypertarget{classGSort}{\section{G\+Sort Class Reference}
+\label{classGSort}\index{G\+Sort@{G\+Sort}}
+}
+
+
+contains style and layout info to draw a \hyperlink{classSort}{Sort}  
+
+
+
+
+{\ttfamily \#include $<$G\+Sort.\+h$>$}
+
+
+
+Inheritance diagram for G\+Sort\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classGSort__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Sort\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGSort__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGSort_a944275172f65a74c9e87bec7032a7637}{G\+Sort} (Sort\+Ptr p, \hyperlink{structGVNode}{G\+V\+Node} n, qreal width, qreal height, \hyperlink{classPHScene}{P\+H\+Scene} $\ast$sc)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a06a2e1dd2dec8cad77c17ceb75c6b93b}{Q\+Graphics\+Rect\+Item $\ast$ \hyperlink{classGSort_a06a2e1dd2dec8cad77c17ceb75c6b93b}{get\+Rect} ()}\label{classGSort_a06a2e1dd2dec8cad77c17ceb75c6b93b}
+
+\begin{DoxyCompactList}\small\item\em get the rect item \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_ac3cbef2a811660668cff937f56ca37fe}{mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handles mouse press event (handles drag start) \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_aad29bd2ba170cd9b89ca80edf3439367}{mouse\+Move\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handles mouse move event (handles drag) \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_a340c92716c90ad010232fdd972902ff0}{mouse\+Release\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handles mouse release event (handles drop) \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_ad91eafb0a2ef415cb9b3f47f9c608da7}{mouse\+Double\+Click\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handles context menu event (typically on right click) \end{DoxyCompactList}\item 
+Sort\+Ptr \hyperlink{classGSort_a69520d78ab078c083b8090f9190424b0}{get\+Sort} ()
+\begin{DoxyCompactList}\small\item\em gets the related \hyperlink{classSort}{Sort} object \end{DoxyCompactList}\item 
+\hyperlink{structGVNode}{G\+V\+Node} \hyperlink{classGSort_a48ceb7cdbb0392344873fd88395675c4}{get\+Node} ()
+\begin{DoxyCompactList}\small\item\em gets the related Node object \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a50bd1249aaf2833987b66d950bcc86f6}{Q\+Graphics\+Text\+Item $\ast$ \hyperlink{classGSort_a50bd1249aaf2833987b66d950bcc86f6}{get\+Text} ()}\label{classGSort_a50bd1249aaf2833987b66d950bcc86f6}
+
+\begin{DoxyCompactList}\small\item\em gets the text of the sort \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a71720b5ffb72f15a896637d572d97497}{Q\+Point \hyperlink{classGSort_a71720b5ffb72f15a896637d572d97497}{getevent\+Press\+Point} ()}\label{classGSort_a71720b5ffb72f15a896637d572d97497}
+
+\begin{DoxyCompactList}\small\item\em gets the point used to record mouse press event position \end{DoxyCompactList}\item 
+Q\+Point\+F $\ast$ \hyperlink{classGSort_ae795196b315650b96660693bcc7ce877}{get\+Left\+Top\+Corner\+Point} ()
+\begin{DoxyCompactList}\small\item\em get the left top corner of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+Q\+Point\+F \hyperlink{classGSort_aaa3431ebe3238fdf1d118a98316a0396}{get\+Center\+Point} ()
+\begin{DoxyCompactList}\small\item\em get the center of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+Q\+Size $\ast$ \hyperlink{classGSort_af38ef8c716b6566c862790a9039b38c4}{get\+Size\+Rect} ()
+\begin{DoxyCompactList}\small\item\em get the size of the ellipse representing the process \end{DoxyCompactList}\item 
+vector$<$ G\+Process\+Ptr $>$ \hyperlink{classGSort_acf62f4e6978631b1c714a74cdd0a156e}{get\+G\+Processes} ()
+\begin{DoxyCompactList}\small\item\em get the simple display state \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a962c988b33337528415e98faca813bc1}{bool {\bfseries get\+Simple\+Display} ()}\label{classGSort_a962c988b33337528415e98faca813bc1}
+
+\item 
+\hypertarget{classGSort_ad2656e5a0ec4494845446839105a6a38}{void {\bfseries change\+Display\+State} ()}\label{classGSort_ad2656e5a0ec4494845446839105a6a38}
+
+\item 
+void \hyperlink{classGSort_a8fb117049ba9dd1c0a98bdfe44d2b647}{set\+Simple\+Display} (bool is\+Simple\+Display)
+\begin{DoxyCompactList}\small\item\em setters for simple\+Display attributes \end{DoxyCompactList}\item 
+\hypertarget{classGSort_acafeaec8637b62aea47c2ecb4c36e0be}{void \hyperlink{classGSort_acafeaec8637b62aea47c2ecb4c36e0be}{hide} ()}\label{classGSort_acafeaec8637b62aea47c2ecb4c36e0be}
+
+\begin{DoxyCompactList}\small\item\em hides this \hyperlink{classGSort}{G\+Sort} setting opacity to 0 \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a0d487a46aa66f74d68b68e54158b4979}{void {\bfseries actions\+Hide} ()}\label{classGSort_a0d487a46aa66f74d68b68e54158b4979}
+
+\item 
+\hypertarget{classGSort_a6cb13a9b6ef35dc7698b165ff0d34b88}{void \hyperlink{classGSort_a6cb13a9b6ef35dc7698b165ff0d34b88}{show} ()}\label{classGSort_a6cb13a9b6ef35dc7698b165ff0d34b88}
+
+\begin{DoxyCompactList}\small\item\em show the \hyperlink{classGSort}{G\+Sort} setting full opacity \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a4034d89e182ef3b925943a7502f86bea}{void {\bfseries actions\+Show} ()}\label{classGSort_a4034d89e182ef3b925943a7502f86bea}
+
+\item 
+\hypertarget{classGSort_a58e2a6099a59b26ffe7dafd90590bd3d}{bool \hyperlink{classGSort_a58e2a6099a59b26ffe7dafd90590bd3d}{is\+Visible} ()}\label{classGSort_a58e2a6099a59b26ffe7dafd90590bd3d}
+
+\begin{DoxyCompactList}\small\item\em indicates whether or not this \hyperlink{classGSort}{G\+Sort} is made visible (test based on opacity, cf. \hyperlink{classGSort_acafeaec8637b62aea47c2ecb4c36e0be}{hide()} and \hyperlink{classGSort_a6cb13a9b6ef35dc7698b165ff0d34b88}{show()}) \end{DoxyCompactList}\item 
+bool \hyperlink{classGSort_adc28cc76ca52518252608fb37ff485ea}{is\+Vertical} ()
+\begin{DoxyCompactList}\small\item\em return the value of the vertical attribute \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ab9f808442b0bc03573566deaec8fa3f8}{bool \hyperlink{classGSort_ab9f808442b0bc03573566deaec8fa3f8}{is\+Bold} ()}\label{classGSort_ab9f808442b0bc03573566deaec8fa3f8}
+
+\begin{DoxyCompactList}\small\item\em indicates whether or not this \hyperlink{classGSort}{G\+Sort} is made in bold \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a949ab093cfc0c732777eb086eab4f14d}{void \hyperlink{classGSort_a949ab093cfc0c732777eb086eab4f14d}{to\+Bold} ()}\label{classGSort_a949ab093cfc0c732777eb086eab4f14d}
+
+\begin{DoxyCompactList}\small\item\em change this \hyperlink{classGSort}{G\+Sort} to bold \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a2b6ddd556e6314b3a5be157c41be2c05}{void \hyperlink{classGSort_a2b6ddd556e6314b3a5be157c41be2c05}{Actions\+In\+To\+Bold} ()}\label{classGSort_a2b6ddd556e6314b3a5be157c41be2c05}
+
+\begin{DoxyCompactList}\small\item\em change the G\+Actions In of this \hyperlink{classSort}{Sort} to bold \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ae09c5f8af47355ef2328e28fa4d4e834}{void \hyperlink{classGSort_ae09c5f8af47355ef2328e28fa4d4e834}{Actions\+Out\+To\+Bold} ()}\label{classGSort_ae09c5f8af47355ef2328e28fa4d4e834}
+
+\begin{DoxyCompactList}\small\item\em change the G\+Actions out of this \hyperlink{classSort}{Sort} to bold \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a6db06cbba4b129e8dc437f26782ae6a1}{void \hyperlink{classGSort_a6db06cbba4b129e8dc437f26782ae6a1}{Actions\+In\+Change\+Color} ()}\label{classGSort_a6db06cbba4b129e8dc437f26782ae6a1}
+
+\begin{DoxyCompactList}\small\item\em change the G\+Actions In color \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a6a8db6207e236cef662c54b7432f7aca}{void \hyperlink{classGSort_a6a8db6207e236cef662c54b7432f7aca}{Actions\+Out\+Change\+Color} ()}\label{classGSort_a6a8db6207e236cef662c54b7432f7aca}
+
+\begin{DoxyCompactList}\small\item\em change the G\+Actions out color \end{DoxyCompactList}\item 
+\hypertarget{classGSort_afbcbe962474f11f1aa25c215c4c334dc}{void \hyperlink{classGSort_afbcbe962474f11f1aa25c215c4c334dc}{process\+Change\+Color} ()}\label{classGSort_afbcbe962474f11f1aa25c215c4c334dc}
+
+\begin{DoxyCompactList}\small\item\em change the process color \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a527cc68e3c8084562803f9411cc9f4b0}{void \hyperlink{classGSort_a527cc68e3c8084562803f9411cc9f4b0}{process\+Change\+Border\+Color} ()}\label{classGSort_a527cc68e3c8084562803f9411cc9f4b0}
+
+\begin{DoxyCompactList}\small\item\em change the process border color \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGSort_afdedfe6a6028c586a755315351eee309}{Q\+Color $\ast$ \hyperlink{classGSort_afdedfe6a6028c586a755315351eee309}{color}}\label{classGSort_afdedfe6a6028c586a755315351eee309}
+
+\begin{DoxyCompactList}\small\item\em the color used by the Actions that have this \hyperlink{classSort}{Sort} as source \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGSort_a17bdbcd4d2c88f106390628415c8dac8}{static const int {\bfseries margin\+Default} = 10}\label{classGSort_a17bdbcd4d2c88f106390628415c8dac8}
+
+\item 
+\hypertarget{classGSort_a00302d36929b2d641d11a0dbf3bca334}{static const int {\bfseries default\+Distance} = 25}\label{classGSort_a00302d36929b2d641d11a0dbf3bca334}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGSort_a52469c9320660f61947a5dbacafbf364}{void \hyperlink{classGSort_a52469c9320660f61947a5dbacafbf364}{init\+Inner\+Attributes} ()}\label{classGSort_a52469c9320660f61947a5dbacafbf364}
+
+\begin{DoxyCompactList}\small\item\em initialize inner attributes of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_afa2425ce7e23102d97a9084fb1e5eb74}{init\+Geometric\+Attributes} (Q\+Size size)
+\begin{DoxyCompactList}\small\item\em initialize geometrics attributes of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a372e86482111d1b5405a77b7cee09bff}{void \hyperlink{classGSort_a372e86482111d1b5405a77b7cee09bff}{init\+Rect\+Item} ()}\label{classGSort_a372e86482111d1b5405a77b7cee09bff}
+
+\begin{DoxyCompactList}\small\item\em initialize the \+\_\+rect item of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a72a0d9205b2ca98cd827377d5e4bb9f4}{void \hyperlink{classGSort_a72a0d9205b2ca98cd827377d5e4bb9f4}{init\+Text\+Item} ()}\label{classGSort_a72a0d9205b2ca98cd827377d5e4bb9f4}
+
+\begin{DoxyCompactList}\small\item\em initialize the label of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_adb374fdb97d1c2ed47ba46d92a7de298}{void \hyperlink{classGSort_adb374fdb97d1c2ed47ba46d92a7de298}{init\+G\+Process\+Children} ()}\label{classGSort_adb374fdb97d1c2ed47ba46d92a7de298}
+
+\begin{DoxyCompactList}\small\item\em initialize \hyperlink{classGProcess}{G\+Process} related to the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+void \hyperlink{classGSort_a74c3c052d111d72784b6ad286ff219b2}{shift\+Position} (Q\+Point\+F shift\+Vector)
+\begin{DoxyCompactList}\small\item\em shifts the \hyperlink{classGSort}{G\+Sort} according to the coordinates of a shift\+Vector \end{DoxyCompactList}\item 
+bool \hyperlink{classGSort_a43f637ea0c82b59fdda78380f3e46608}{is\+Over\+Another\+G\+Sort} ()
+\begin{DoxyCompactList}\small\item\em check if the \hyperlink{classGSort}{G\+Sort} is over another \end{DoxyCompactList}\item 
+bool \hyperlink{classGSort_a417e8b227cfb23393b44dc3b75204dbd}{is\+Over} (\hyperlink{classGSort}{G\+Sort} $\ast$other\+G\+Sort)
+\begin{DoxyCompactList}\small\item\em check if the \hyperlink{classGSort}{G\+Sort} is over a specified \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_afe21929462477faeaf61dc705e5225f0}{void \hyperlink{classGSort_afe21929462477faeaf61dc705e5225f0}{cancel\+Shift} ()}\label{classGSort_afe21929462477faeaf61dc705e5225f0}
+
+\begin{DoxyCompactList}\small\item\em set the position of the \hyperlink{classGSort}{G\+Sort} at the state before it has moved \end{DoxyCompactList}\item 
+\hypertarget{classGSort_af6e2d5c0135d55f8a152ba58fc20f9f2}{void \hyperlink{classGSort_af6e2d5c0135d55f8a152ba58fc20f9f2}{change\+Orientation} ()}\label{classGSort_af6e2d5c0135d55f8a152ba58fc20f9f2}
+
+\begin{DoxyCompactList}\small\item\em change the orientation of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_aa4c1345a701c975b34de5405bf4d1ab8}{void \hyperlink{classGSort_aa4c1345a701c975b34de5405bf4d1ab8}{change\+Color} ()}\label{classGSort_aa4c1345a701c975b34de5405bf4d1ab8}
+
+\begin{DoxyCompactList}\small\item\em change the color of the \hyperlink{classGSort}{G\+Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a2c14e5aa71f7353f18700819f038e542}{void \hyperlink{classGSort_a2c14e5aa71f7353f18700819f038e542}{change\+Orientation\+Rect} ()}\label{classGSort_a2c14e5aa71f7353f18700819f038e542}
+
+\begin{DoxyCompactList}\small\item\em change the orientation of the \hyperlink{classGSort}{G\+Sort} rectangle \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a7a98e4937870f2b5cceacebc1b3ccfff}{void \hyperlink{classGSort_a7a98e4937870f2b5cceacebc1b3ccfff}{change\+Orientation\+G\+Process} ()}\label{classGSort_a7a98e4937870f2b5cceacebc1b3ccfff}
+
+\begin{DoxyCompactList}\small\item\em change the orientation of the \hyperlink{classGProcess}{G\+Process} children \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a4250ae248bbf752f2af240d5c88e3a9b}{void {\bfseries process\+Change\+Bold} ()}\label{classGSort_a4250ae248bbf752f2af240d5c88e3a9b}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Q\+Color $\ast$ \hyperlink{classGSort_a8df1bb3e016f20eaf6f195dc3055e49e}{make\+Color} (void)
+\begin{DoxyCompactList}\small\item\em gets a new color in the palette \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGSort_a15b874bf036f285664508a85602aa037}{Q\+Point\+F $\ast$ \hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{left\+Top\+Corner}}\label{classGSort_a15b874bf036f285664508a85602aa037}
+
+\begin{DoxyCompactList}\small\item\em position of the left top corner of the rectangle representing the sort \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a621da5d2a45083b02a35bce999022079}{Q\+Size $\ast$ \hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{size\+Rect}}\label{classGSort_a621da5d2a45083b02a35bce999022079}
+
+\begin{DoxyCompactList}\small\item\em size of the rectangle representing the sort \end{DoxyCompactList}\item 
+\hypertarget{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{Q\+Graphics\+Rect\+Item $\ast$ \hyperlink{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{\+\_\+rect}}\label{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the rectangle of the \hyperlink{classSort}{Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a17c4f8eafc9402f5393e69e614f5429a}{Q\+Graphics\+Text\+Item $\ast$ \hyperlink{classGSort_a17c4f8eafc9402f5393e69e614f5429a}{text}}\label{classGSort_a17c4f8eafc9402f5393e69e614f5429a}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the text of the \hyperlink{classSort}{Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a8dea499c0b3fa30f9e9558a165a52030}{Sort\+Ptr \hyperlink{classGSort_a8dea499c0b3fa30f9e9558a165a52030}{sort}}\label{classGSort_a8dea499c0b3fa30f9e9558a165a52030}
+
+\begin{DoxyCompactList}\small\item\em the related \hyperlink{classSort}{Sort} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ae76c81595f0c9d39ef35dfc2b72cd42e}{vector$<$ G\+Process\+Ptr $>$ \hyperlink{classGSort_ae76c81595f0c9d39ef35dfc2b72cd42e}{g\+Processes}}\label{classGSort_ae76c81595f0c9d39ef35dfc2b72cd42e}
+
+\begin{DoxyCompactList}\small\item\em list of G\+Process\+Ptr contained by the sort \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{\hyperlink{structGVNode}{G\+V\+Node} \hyperlink{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{node}}\label{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}
+
+\begin{DoxyCompactList}\small\item\em the related of the skeleton\+Graph \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a0985310dc8c415f5ac015cde3a28d6a3}{Q\+Point \hyperlink{classGSort_a0985310dc8c415f5ac015cde3a28d6a3}{init\+Pos\+Point}}\label{classGSort_a0985310dc8c415f5ac015cde3a28d6a3}
+
+\begin{DoxyCompactList}\small\item\em the point used to record this \hyperlink{classGSort}{G\+Sort}'s coordinates when user clicks it (ie. starts drag\&drop) \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ad33260958b9f1fdea916b737dedc5ba7}{Q\+Point \hyperlink{classGSort_ad33260958b9f1fdea916b737dedc5ba7}{event\+Press\+Point}}\label{classGSort_ad33260958b9f1fdea916b737dedc5ba7}
+
+\begin{DoxyCompactList}\small\item\em the point used to record mouse press event position \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a92702d91a49f5a4aadf387e6b10c664a}{qreal \hyperlink{classGSort_a92702d91a49f5a4aadf387e6b10c664a}{padding\+Top}}\label{classGSort_a92702d91a49f5a4aadf387e6b10c664a}
+
+\begin{DoxyCompactList}\small\item\em the space between this \hyperlink{classGSort}{G\+Sort}'s top side and the top \hyperlink{classGProcess}{G\+Process} \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ab420d44edd3759c7afbc30fb9d6e9f4f}{bool \hyperlink{classGSort_ab420d44edd3759c7afbc30fb9d6e9f4f}{vertical}}\label{classGSort_ab420d44edd3759c7afbc30fb9d6e9f4f}
+
+\begin{DoxyCompactList}\small\item\em if the sort is vertical or not \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a58c1714d20b3eb4bec30b2989cef4a1b}{bool \hyperlink{classGSort_a58c1714d20b3eb4bec30b2989cef4a1b}{bold}}\label{classGSort_a58c1714d20b3eb4bec30b2989cef4a1b}
+
+\begin{DoxyCompactList}\small\item\em if the sort is in bold or not \end{DoxyCompactList}\item 
+\hypertarget{classGSort_ac8cb95ac18d2382bf37feb664c885175}{bool \hyperlink{classGSort_ac8cb95ac18d2382bf37feb664c885175}{simple\+Display}}\label{classGSort_ac8cb95ac18d2382bf37feb664c885175}
+
+\begin{DoxyCompactList}\small\item\em if action related to this sort has to be displayed following the simplified model \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a7d2304aa3500975d1ecb4480c5d15267}{bool \hyperlink{classGSort_a7d2304aa3500975d1ecb4480c5d15267}{is\+Right\+Button\+Pressed}}\label{classGSort_a7d2304aa3500975d1ecb4480c5d15267}
+
+\begin{DoxyCompactList}\small\item\em to know if the right button of the mouse is pressed (to prevent drag'n'drop in this case) \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a35c5f76dda2b7eca466101888f5d4a20}{\hyperlink{classPHScene}{P\+H\+Scene} $\ast$ {\bfseries scene}}\label{classGSort_a35c5f76dda2b7eca466101888f5d4a20}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ Q\+Color $>$ \hyperlink{classGSort_a5ca0e05b99745151c30e4d44b3c4564d}{palette}
+\begin{DoxyCompactList}\small\item\em the palette of colors that may be used as color member \end{DoxyCompactList}\item 
+\hypertarget{classGSort_a684c424c03a77a4f60b88f98021bb2eb}{static int \hyperlink{classGSort_a684c424c03a77a4f60b88f98021bb2eb}{palette\+Index} = 0}\label{classGSort_a684c424c03a77a4f60b88f98021bb2eb}
+
+\begin{DoxyCompactList}\small\item\em palette management index \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+contains style and layout info to draw a \hyperlink{classSort}{Sort} 
+
+Definition at line 32 of file G\+Sort.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGSort_a944275172f65a74c9e87bec7032a7637}{\index{G\+Sort@{G\+Sort}!G\+Sort@{G\+Sort}}
+\index{G\+Sort@{G\+Sort}!G\+Sort@{G\+Sort}}
+\subsubsection[{G\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}G\+Sort\+::\+G\+Sort (
+\begin{DoxyParamCaption}
+\item[{Sort\+Ptr}]{p, }
+\item[{{\bf G\+V\+Node}}]{n, }
+\item[{qreal}]{width, }
+\item[{qreal}]{height, }
+\item[{{\bf P\+H\+Scene} $\ast$}]{sc}
+\end{DoxyParamCaption}
+)}}\label{classGSort_a944275172f65a74c9e87bec7032a7637}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Sort\+Ptr} & the related \hyperlink{classSort}{Sort} object \\
+\hline
+{\em \hyperlink{structGVNode}{G\+V\+Node}} & the node of the skeleton graph containing layout info \\
+\hline
+{\em qreal} & width of the \hyperlink{classSort}{Sort} \\
+\hline
+{\em qreal} & height of the \hyperlink{classSort}{Sort} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+22                                                                         : QGraphicsRectItem(n.
+      \hyperlink{structGVNode_a2ceb3d0e7d3f164710622acd3cbea6a6}{centerPos}.x()-width/2, n.\hyperlink{structGVNode_a2ceb3d0e7d3f164710622acd3cbea6a6}{centerPos}.y()-height/2, width, height),
+      \hyperlink{classGSort_a8dea499c0b3fa30f9e9558a165a52030}{sort}(s), \hyperlink{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{node}(n),scene(sc) \{
+23 
+24     \hyperlink{classGSort_a52469c9320660f61947a5dbacafbf364}{initInnerAttributes}();
+25 
+26     \hyperlink{classGSort_afa2425ce7e23102d97a9084fb1e5eb74}{initGeometricAttributes}(QSize(width, height));
+27 
+28     \hyperlink{classGSort_a372e86482111d1b5405a77b7cee09bff}{initRectItem}();
+29 
+30     \hyperlink{classGSort_a72a0d9205b2ca98cd827377d5e4bb9f4}{initTextItem}();
+31 
+32     setCursor(QCursor(Qt::OpenHandCursor));
+33     setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
+34 
+35     \hyperlink{classGSort_adb374fdb97d1c2ed47ba46d92a7de298}{initGProcessChildren}();
+36 
+37 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGSort_aaa3431ebe3238fdf1d118a98316a0396}{\index{G\+Sort@{G\+Sort}!get\+Center\+Point@{get\+Center\+Point}}
+\index{get\+Center\+Point@{get\+Center\+Point}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+Center\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Point\+F G\+Sort\+::get\+Center\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_aaa3431ebe3238fdf1d118a98316a0396}
+
+
+get the center of the \hyperlink{classGSort}{G\+Sort} 
+
+\begin{DoxyReturn}{Returns}
+G\+Point\+F center of the \hyperlink{classGSort}{G\+Sort} 
+\end{DoxyReturn}
+
+
+Definition at line 265 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+265                               \{
+266     \textcolor{keywordflow}{return} QPoint(\hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->x()+\hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect}->width()/2.0,
+      \hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->y()+\hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect}->height()/2.0);
+267 \}
+\end{DoxyCode}
+\hypertarget{classGSort_acf62f4e6978631b1c714a74cdd0a156e}{\index{G\+Sort@{G\+Sort}!get\+G\+Processes@{get\+G\+Processes}}
+\index{get\+G\+Processes@{get\+G\+Processes}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+G\+Processes}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ G\+Process\+Ptr $>$ G\+Sort\+::get\+G\+Processes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_acf62f4e6978631b1c714a74cdd0a156e}
+
+
+get the simple display state 
+
+\begin{DoxyReturn}{Returns}
+bool value of the attribute simple\+Display 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+237                                            \{
+238     \textcolor{keywordflow}{return} this->\hyperlink{classGSort_ae76c81595f0c9d39ef35dfc2b72cd42e}{gProcesses};
+239 \}
+\end{DoxyCode}
+\hypertarget{classGSort_ae795196b315650b96660693bcc7ce877}{\index{G\+Sort@{G\+Sort}!get\+Left\+Top\+Corner\+Point@{get\+Left\+Top\+Corner\+Point}}
+\index{get\+Left\+Top\+Corner\+Point@{get\+Left\+Top\+Corner\+Point}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+Left\+Top\+Corner\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Point\+F $\ast$ G\+Sort\+::get\+Left\+Top\+Corner\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_ae795196b315650b96660693bcc7ce877}
+
+
+get the left top corner of the \hyperlink{classGSort}{G\+Sort} 
+
+\begin{DoxyReturn}{Returns}
+G\+Point\+F$\ast$ a pointer to the left\+Top\+Corner attribute 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+261                                       \{
+262     \textcolor{keywordflow}{return} this->\hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner};
+263 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a48ceb7cdbb0392344873fd88395675c4}{\index{G\+Sort@{G\+Sort}!get\+Node@{get\+Node}}
+\index{get\+Node@{get\+Node}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\+V\+Node} G\+Sort\+::get\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_a48ceb7cdbb0392344873fd88395675c4}
+
+
+gets the related Node object 
+
+\begin{DoxyReturn}{Returns}
+G\+Vnode a pointer to the related \hyperlink{classSort}{Sort} object 
+\end{DoxyReturn}
+
+
+Definition at line 249 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+249                       \{
+250     \textcolor{keywordflow}{return} this->\hyperlink{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{node};
+251 \}
+\end{DoxyCode}
+\hypertarget{classGSort_af38ef8c716b6566c862790a9039b38c4}{\index{G\+Sort@{G\+Sort}!get\+Size\+Rect@{get\+Size\+Rect}}
+\index{get\+Size\+Rect@{get\+Size\+Rect}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+Size\+Rect}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size $\ast$ G\+Sort\+::get\+Size\+Rect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_af38ef8c716b6566c862790a9039b38c4}
+
+
+get the size of the ellipse representing the process 
+
+\begin{DoxyReturn}{Returns}
+G\+Size the size of the ellipse 
+\end{DoxyReturn}
+
+
+Definition at line 269 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+269                           \{
+270     \textcolor{keywordflow}{return} this->\hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect};
+271 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a69520d78ab078c083b8090f9190424b0}{\index{G\+Sort@{G\+Sort}!get\+Sort@{get\+Sort}}
+\index{get\+Sort@{get\+Sort}!G\+Sort@{G\+Sort}}
+\subsubsection[{get\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}Sort\+Ptr G\+Sort\+::get\+Sort (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_a69520d78ab078c083b8090f9190424b0}
+
+
+gets the related \hyperlink{classSort}{Sort} object 
+
+\begin{DoxyReturn}{Returns}
+Sort\+Ptr a pointer to the related \hyperlink{classSort}{Sort} object 
+\end{DoxyReturn}
+
+
+Definition at line 245 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+245                        \{
+246     \textcolor{keywordflow}{return} this->\hyperlink{classGSort_a8dea499c0b3fa30f9e9558a165a52030}{sort};
+247 \}
+\end{DoxyCode}
+\hypertarget{classGSort_afa2425ce7e23102d97a9084fb1e5eb74}{\index{G\+Sort@{G\+Sort}!init\+Geometric\+Attributes@{init\+Geometric\+Attributes}}
+\index{init\+Geometric\+Attributes@{init\+Geometric\+Attributes}!G\+Sort@{G\+Sort}}
+\subsubsection[{init\+Geometric\+Attributes}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::init\+Geometric\+Attributes (
+\begin{DoxyParamCaption}
+\item[{Q\+Size}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGSort_afa2425ce7e23102d97a9084fb1e5eb74}
+
+
+initialize geometrics attributes of the \hyperlink{classGSort}{G\+Sort} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Size} & size of the \hyperlink{classGSort}{G\+Sort} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+54                                               \{
+55     \hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect} = \textcolor{keyword}{new} QSize(size.width(), size.height());
+56     \hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner} = \textcolor{keyword}{new} QPointF(\hyperlink{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{node}.\hyperlink{structGVNode_a2ceb3d0e7d3f164710622acd3cbea6a6}{centerPos}.x()-
+      \hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect}->width()/2,\hyperlink{classGSort_a8c14e3fef61ee8c44127f285ab04ca5b}{node}.\hyperlink{structGVNode_a2ceb3d0e7d3f164710622acd3cbea6a6}{centerPos}.y()-\hyperlink{classGSort_a621da5d2a45083b02a35bce999022079}{sizeRect}->height()/2);
+57 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a417e8b227cfb23393b44dc3b75204dbd}{\index{G\+Sort@{G\+Sort}!is\+Over@{is\+Over}}
+\index{is\+Over@{is\+Over}!G\+Sort@{G\+Sort}}
+\subsubsection[{is\+Over}]{\setlength{\rightskip}{0pt plus 5cm}bool G\+Sort\+::is\+Over (
+\begin{DoxyParamCaption}
+\item[{{\bf G\+Sort} $\ast$}]{other\+G\+Sort}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGSort_a417e8b227cfb23393b44dc3b75204dbd}
+
+
+check if the \hyperlink{classGSort}{G\+Sort} is over a specified \hyperlink{classGSort}{G\+Sort} 
+
+\begin{DoxyReturn}{Returns}
+bool the result of the checking 
+\end{DoxyReturn}
+
+
+Definition at line 332 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+332                                     \{
+333     QPointF centerSortMoving(\hyperlink{classGSort_aaa3431ebe3238fdf1d118a98316a0396}{getCenterPoint}());
+334     QPointF centerSortAround(otherGSort->\hyperlink{classGSort_aaa3431ebe3238fdf1d118a98316a0396}{getCenterPoint}());
+335     qreal distanceWidthMin = \hyperlink{classGSort_af38ef8c716b6566c862790a9039b38c4}{getSizeRect}()->width()/2 + otherGSort->
+      \hyperlink{classGSort_af38ef8c716b6566c862790a9039b38c4}{getSizeRect}()->width()/2 +defaultDistance;
+336     qreal distanceHeightMin = \hyperlink{classGSort_af38ef8c716b6566c862790a9039b38c4}{getSizeRect}()->height()/2 + otherGSort->
+      \hyperlink{classGSort_af38ef8c716b6566c862790a9039b38c4}{getSizeRect}()->height()/2 +defaultDistance;
+337 
+338     \textcolor{keywordtype}{bool} xCond = abs(centerSortMoving.x()-centerSortAround.x())<distanceWidthMin;
+339     \textcolor{keywordtype}{bool} yCond = abs(centerSortMoving.y()-centerSortAround.y())<distanceHeightMin;
+340 
+341     \textcolor{keywordflow}{return} xCond && yCond;
+342 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a43f637ea0c82b59fdda78380f3e46608}{\index{G\+Sort@{G\+Sort}!is\+Over\+Another\+G\+Sort@{is\+Over\+Another\+G\+Sort}}
+\index{is\+Over\+Another\+G\+Sort@{is\+Over\+Another\+G\+Sort}!G\+Sort@{G\+Sort}}
+\subsubsection[{is\+Over\+Another\+G\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}bool G\+Sort\+::is\+Over\+Another\+G\+Sort (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGSort_a43f637ea0c82b59fdda78380f3e46608}
+
+
+check if the \hyperlink{classGSort}{G\+Sort} is over another 
+
+\begin{DoxyReturn}{Returns}
+bool the result of the checking 
+\end{DoxyReturn}
+
+
+Definition at line 317 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+317                                \{
+318     map<string, GSortPtr> listGSorts =scene->\hyperlink{classPHScene_a4c7995ab5b0807000aa1234edbb44794}{getGSorts}();
+319     \textcolor{keywordtype}{bool} resetPosition = \textcolor{keyword}{false};
+320 
+321     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} &s : listGSorts) \{
+322         \textcolor{keywordflow}{if}(s.second.get()->getSort()->getName()!=\hyperlink{classGSort_a8dea499c0b3fa30f9e9558a165a52030}{sort}->getName()) \{
+323             \textcolor{keywordflow}{if}(\hyperlink{classGSort_a417e8b227cfb23393b44dc3b75204dbd}{isOver}(s.second.get())) \{
+324                 resetPosition = \textcolor{keyword}{true};
+325             \}
+326         \}
+327     \}
+328 
+329     \textcolor{keywordflow}{return} resetPosition;
+330 \}
+\end{DoxyCode}
+\hypertarget{classGSort_adc28cc76ca52518252608fb37ff485ea}{\index{G\+Sort@{G\+Sort}!is\+Vertical@{is\+Vertical}}
+\index{is\+Vertical@{is\+Vertical}!G\+Sort@{G\+Sort}}
+\subsubsection[{is\+Vertical}]{\setlength{\rightskip}{0pt plus 5cm}bool G\+Sort\+::is\+Vertical (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGSort_adc28cc76ca52518252608fb37ff485ea}
+
+
+return the value of the vertical attribute 
+
+\begin{DoxyReturn}{Returns}
+bool value of the vertical attribute 
+\end{DoxyReturn}
+
+
+Definition at line 499 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+499                        \{
+500     \textcolor{keywordflow}{return} \hyperlink{classGSort_ab420d44edd3759c7afbc30fb9d6e9f4f}{vertical};
+501 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a8df1bb3e016f20eaf6f195dc3055e49e}{\index{G\+Sort@{G\+Sort}!make\+Color@{make\+Color}}
+\index{make\+Color@{make\+Color}!G\+Sort@{G\+Sort}}
+\subsubsection[{make\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Color $\ast$ G\+Sort\+::make\+Color (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{classGSort_a8df1bb3e016f20eaf6f195dc3055e49e}
+
+
+gets a new color in the palette 
+
+\begin{DoxyReturn}{Returns}
+Q\+Color$\ast$ the color retrieved in the palette 
+\end{DoxyReturn}
+
+
+Definition at line 610 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+610                           \{
+611     \hyperlink{classGSort_a684c424c03a77a4f60b88f98021bb2eb}{paletteIndex} = (\hyperlink{classGSort_a684c424c03a77a4f60b88f98021bb2eb}{paletteIndex} + 1) % \hyperlink{classGSort_a5ca0e05b99745151c30e4d44b3c4564d}{palette}.size();
+612     \textcolor{keywordflow}{return} &(\hyperlink{classGSort_a5ca0e05b99745151c30e4d44b3c4564d}{palette}[\hyperlink{classGSort_a684c424c03a77a4f60b88f98021bb2eb}{paletteIndex}]);
+613 \}
+\end{DoxyCode}
+\hypertarget{classGSort_ad91eafb0a2ef415cb9b3f47f9c608da7}{\index{G\+Sort@{G\+Sort}!mouse\+Double\+Click\+Event@{mouse\+Double\+Click\+Event}}
+\index{mouse\+Double\+Click\+Event@{mouse\+Double\+Click\+Event}!G\+Sort@{G\+Sort}}
+\subsubsection[{mouse\+Double\+Click\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::mouse\+Double\+Click\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Graphics\+Scene\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)}}\label{classGSort_ad91eafb0a2ef415cb9b3f47f9c608da7}
+
+
+Handles context menu event (typically on right click) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Graphics\+Scene\+Context\+Menu\+Event} & the event to be handled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+231                                                                  \{
+232     changeDisplayState();
+233     \textcolor{keyword}{event}->accept();
+234 \}
+\end{DoxyCode}
+\hypertarget{classGSort_aad29bd2ba170cd9b89ca80edf3439367}{\index{G\+Sort@{G\+Sort}!mouse\+Move\+Event@{mouse\+Move\+Event}}
+\index{mouse\+Move\+Event@{mouse\+Move\+Event}!G\+Sort@{G\+Sort}}
+\subsubsection[{mouse\+Move\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::mouse\+Move\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Graphics\+Scene\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)}}\label{classGSort_aad29bd2ba170cd9b89ca80edf3439367}
+
+
+Handles mouse move event (handles drag) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Graphics\+Scene\+Mouse\+Event} & the event to be handled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 184 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+184                                                           \{
+185 
+186     QPen pen;
+187     pen.setWidth(5);
+188     pen.setBrush(Qt::yellow);
+189     \hyperlink{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{\_rect}->setPen(pen);
+190     QPointF eventScenePos(event->scenePos());
+191 
+192     \textcolor{keywordflow}{if} (\hyperlink{classGSort_a7d2304aa3500975d1ecb4480c5d15267}{isRightButtonPressed}) \{
+193         \textcolor{keyword}{event}->ignore();
+194         \textcolor{keywordflow}{return};
+195     \}
+196 
+197     \textcolor{comment}{// update item position}
+198 
+199     QPointF shiftPoint = eventScenePos-\hyperlink{classGSort_ad33260958b9f1fdea916b737dedc5ba7}{eventPressPoint};
+200     \hyperlink{classGSort_a74c3c052d111d72784b6ad286ff219b2}{shiftPosition}(shiftPoint);
+201 
+202     eventPressPoint.setX(event->scenePos().x());
+203     eventPressPoint.setY(event->scenePos().y());
+204 
+205     \textcolor{keyword}{event}->accept();
+206 
+207 \}
+\end{DoxyCode}
+\hypertarget{classGSort_ac3cbef2a811660668cff937f56ca37fe}{\index{G\+Sort@{G\+Sort}!mouse\+Press\+Event@{mouse\+Press\+Event}}
+\index{mouse\+Press\+Event@{mouse\+Press\+Event}!G\+Sort@{G\+Sort}}
+\subsubsection[{mouse\+Press\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::mouse\+Press\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Graphics\+Scene\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)}}\label{classGSort_ac3cbef2a811660668cff937f56ca37fe}
+
+
+Handles mouse press event (handles drag start) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Graphics\+Scene\+Mouse\+Event} & the event to be handled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+92                                                            \{
+93 
+94     QPen pen;
+95     pen.setWidth(5);
+96     pen.setBrush(Qt::yellow);
+97     \hyperlink{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{\_rect}->setPen(pen);
+98 
+99     \textcolor{keywordtype}{bool} test=\textcolor{keyword}{true};
+100     \textcolor{comment}{// change orientation on right click}
+101     \textcolor{keywordflow}{if} (event->button() == Qt::RightButton) \{
+102         QMenu menu;
+103 
+104         QMenu* editSort = menu.addMenu(\textcolor{stringliteral}{"Edit sort"});
+105         QAction* switchOrientation = editSort->addAction(\textcolor{stringliteral}{"Switch horizontal/vertical"});
+106         QAction* switchDisplay = editSort->addAction(\textcolor{stringliteral}{"Switch to detailled/simple display"});
+107         QAction* switchSortBold=editSort->addAction(\textcolor{stringliteral}{"Switch sort to bold/not bold "});
+108         QAction* switchSortColor=editSort->addAction(\textcolor{stringliteral}{"Switch sort color "});
+109         QAction* hideSort=editSort->addAction(\textcolor{stringliteral}{"Hide sort "});
+110 
+111         QMenu* editAction = menu.addMenu(\textcolor{stringliteral}{"Edit action"});
+112         QMenu* switchActionsIn=editAction->addMenu(\textcolor{stringliteral}{"Switch in actions "});
+113         QMenu* switchActionsOut=editAction->addMenu(\textcolor{stringliteral}{"Switch out actions "});
+114         QAction* switchActionsInBold=switchActionsIn->addAction(\textcolor{stringliteral}{"Switch Actions in to bold/not bold "});
+115         QAction* switchActionsInColor=switchActionsIn->addAction(\textcolor{stringliteral}{"Switch Action in color "});
+116         QAction* switchActionsOutBold=switchActionsOut->addAction(\textcolor{stringliteral}{"Switch Action out to bold/not bold "});
+117         QAction* switchActionsOutColor=switchActionsOut->addAction(\textcolor{stringliteral}{"Switch Action out color "});
+118 
+119         QMenu* editProcess=menu.addMenu(\textcolor{stringliteral}{"Edit process"});
+120         QAction* switchProcessBold=editProcess->addAction(\textcolor{stringliteral}{"Switch Process to bold/not bold "});
+121         QAction* switchProcessColor=editProcess->addAction(\textcolor{stringliteral}{"Switch Process color "});
+122         QAction* switchProcesBordersColor=editProcess->addAction(\textcolor{stringliteral}{"Switch Process border color "});
+123 
+124         QAction* selectedAction = menu.exec(QCursor::pos());
+125 
+126         \textcolor{keywordflow}{if}(selectedAction != 0) \{
+127             \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchOrientation->text())==0) \{
+128                 \hyperlink{classGSort_af6e2d5c0135d55f8a152ba58fc20f9f2}{changeOrientation}();
+129                 \textcolor{keyword}{event}->accept();
+130             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchDisplay->text())==0) \{
+131                 changeDisplayState();
+132                 \textcolor{keyword}{event}->accept();
+133             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchSortColor->text())==0) \{
+134                 \hyperlink{classGSort_aa4c1345a701c975b34de5405bf4d1ab8}{changeColor}();
+135                 \textcolor{keyword}{event}->accept();
+136             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchSortBold->text())==0) \{
+137                 \hyperlink{classGSort_a949ab093cfc0c732777eb086eab4f14d}{toBold}();
+138                 test=\textcolor{keyword}{false};
+139                 \textcolor{keyword}{event}->accept();
+140             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionsInBold->text())==0) \{
+141                 \hyperlink{classGSort_a2b6ddd556e6314b3a5be157c41be2c05}{ActionsInToBold}();
+142                 \textcolor{keyword}{event}->accept();
+143             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionsInColor->text())==0) \{
+144                 \hyperlink{classGSort_a6db06cbba4b129e8dc437f26782ae6a1}{ActionsInChangeColor}();
+145                 \textcolor{keyword}{event}->accept();
+146             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionsOutBold->text())==0) \{
+147                 \hyperlink{classGSort_ae09c5f8af47355ef2328e28fa4d4e834}{ActionsOutToBold}();
+148                 \textcolor{keyword}{event}->accept();
+149             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionsOutColor->text())==0) \{
+150                 \hyperlink{classGSort_a6a8db6207e236cef662c54b7432f7aca}{ActionsOutChangeColor}();
+151                 \textcolor{keyword}{event}->accept();
+152             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchProcessBold->text())==0) \{
+153                 processChangeBold();
+154                 \textcolor{keyword}{event}->accept();
+155             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchProcessColor->text())==0) \{
+156                 \hyperlink{classGSort_afbcbe962474f11f1aa25c215c4c334dc}{processChangeColor}();
+157                 \textcolor{keyword}{event}->accept();
+158             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),hideSort->text())==0) \{
+159                 this->actionsHide();
+160                 \textcolor{keyword}{event}->accept();
+161             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchProcesBordersColor->text())==0) \{
+162                 \hyperlink{classGSort_a527cc68e3c8084562803f9411cc9f4b0}{processChangeBorderColor}();
+163                 \textcolor{keyword}{event}->accept();
+164             \}
+165             \textcolor{keywordflow}{if}(test) \{
+166                 QPen pen;
+167                 pen.setWidth(1);
+168                 pen.setBrush(Qt::black);
+169                 \hyperlink{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{\_rect}->setPen(pen);
+170             \}
+171         \}
+172     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (event->button() == Qt::LeftButton) \{
+173         setCursor(QCursor(Qt::ClosedHandCursor));
+174         \textcolor{comment}{// record coordinates for drawing item when mouse is moved/released}
+175         \hyperlink{classGSort_a0985310dc8c415f5ac015cde3a28d6a3}{initPosPoint}.setX(pos().x());
+176         \hyperlink{classGSort_a0985310dc8c415f5ac015cde3a28d6a3}{initPosPoint}.setY(pos().y());
+177         \hyperlink{classGSort_ad33260958b9f1fdea916b737dedc5ba7}{eventPressPoint}.setX(event->scenePos().x());
+178         \hyperlink{classGSort_ad33260958b9f1fdea916b737dedc5ba7}{eventPressPoint}.setY(event->scenePos().y());
+179         \textcolor{keyword}{event}->accept();
+180     \}
+181 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a340c92716c90ad010232fdd972902ff0}{\index{G\+Sort@{G\+Sort}!mouse\+Release\+Event@{mouse\+Release\+Event}}
+\index{mouse\+Release\+Event@{mouse\+Release\+Event}!G\+Sort@{G\+Sort}}
+\subsubsection[{mouse\+Release\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::mouse\+Release\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Graphics\+Scene\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)}}\label{classGSort_a340c92716c90ad010232fdd972902ff0}
+
+
+Handles mouse release event (handles drop) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Graphics\+Scene\+Mouse\+Event} & the event to be handled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 209 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+209                                                              \{
+210 
+211     \textcolor{keywordflow}{if} (event->button() == Qt::RightButton) \{
+212         \hyperlink{classGSort_a7d2304aa3500975d1ecb4480c5d15267}{isRightButtonPressed}=\textcolor{keyword}{false};
+213     \}
+214 
+215     setCursor(QCursor(Qt::OpenHandCursor));
+216 
+217     \textcolor{keywordflow}{if}(\hyperlink{classGSort_a43f637ea0c82b59fdda78380f3e46608}{isOverAnotherGSort}()) \{
+218         \hyperlink{classGSort_afe21929462477faeaf61dc705e5225f0}{cancelShift}();
+219     \}
+220 
+221     \textcolor{keyword}{event}->accept();
+222     QPen pen;
+223     \textcolor{keywordflow}{if}(\hyperlink{classGSort_a58c1714d20b3eb4bec30b2989cef4a1b}{bold})
+224         pen.setWidth(5);
+225     \textcolor{keywordflow}{else}
+226         pen.setWidth(1);
+227     pen.setBrush(Qt::black);
+228     \hyperlink{classGSort_aa5979b4b0c0e9efbccce0de13ded38d8}{\_rect}->setPen(pen);
+229 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a8fb117049ba9dd1c0a98bdfe44d2b647}{\index{G\+Sort@{G\+Sort}!set\+Simple\+Display@{set\+Simple\+Display}}
+\index{set\+Simple\+Display@{set\+Simple\+Display}!G\+Sort@{G\+Sort}}
+\subsubsection[{set\+Simple\+Display}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::set\+Simple\+Display (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Simple\+Display}
+\end{DoxyParamCaption}
+)}}\label{classGSort_a8fb117049ba9dd1c0a98bdfe44d2b647}
+
+
+setters for simple\+Display attributes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & value to set simple\+Display to \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 278 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+278                                                  \{
+279     \textcolor{keywordflow}{if}(this->\hyperlink{classGSort_ac8cb95ac18d2382bf37feb664c885175}{simpleDisplay} != isSimpleDisplay) \{
+280         this->changeDisplayState();
+281     \}
+282 \}
+\end{DoxyCode}
+\hypertarget{classGSort_a74c3c052d111d72784b6ad286ff219b2}{\index{G\+Sort@{G\+Sort}!shift\+Position@{shift\+Position}}
+\index{shift\+Position@{shift\+Position}!G\+Sort@{G\+Sort}}
+\subsubsection[{shift\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Sort\+::shift\+Position (
+\begin{DoxyParamCaption}
+\item[{Q\+Point\+F}]{shift\+Vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGSort_a74c3c052d111d72784b6ad286ff219b2}
+
+
+shifts the \hyperlink{classGSort}{G\+Sort} according to the coordinates of a shift\+Vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Point\+F} & the shifting vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file G\+Sort.\+cpp.
+
+
+\begin{DoxyCode}
+296                                              \{
+297 
+298     \textcolor{keywordflow}{for}(GProcessPtr &p: \hyperlink{classGSort_ae76c81595f0c9d39ef35dfc2b72cd42e}{gProcesses}) \{
+299         qreal prevPosX = p->getCenterPoint()->x();
+300         qreal prevPosY = p->getCenterPoint()->y();
+301         p->getCenterPoint()->setX(prevPosX + shiftVector.x());
+302         p->getCenterPoint()->setY(prevPosY + shiftVector.y());
+303     \}
+304 
+305     \hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->setX(\hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->x() + shiftVector.x());
+306     \hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->setY(\hyperlink{classGSort_a15b874bf036f285664508a85602aa037}{leftTopCorner}->y() + shiftVector.y());
+307 
+308     setPos(x() + shiftVector.x(), y() + shiftVector.y() );
+309 
+310     scene->\hyperlink{classPHScene_a176668ca3774e8fec7ac7902e70c048e}{updateActions}();
+311 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classGSort_a5ca0e05b99745151c30e4d44b3c4564d}{\index{G\+Sort@{G\+Sort}!palette@{palette}}
+\index{palette@{palette}!G\+Sort@{G\+Sort}}
+\subsubsection[{palette}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ Q\+Color $>$ G\+Sort\+::palette\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{classGSort_a5ca0e05b99745151c30e4d44b3c4564d}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=   \{   QColor(181,137,0)
+                                            ,   QColor(220,50,47)
+                                            ,   QColor(211,54,130)
+                                            ,   QColor(108,113,196)
+                                            ,   QColor(38,139,210)
+                                            ,   QColor(42,161,152)
+                                            ,   QColor(133,153,0)
+                                      \}
+\end{DoxyCode}
+
+
+the palette of colors that may be used as color member 
+
+
+
+Definition at line 267 of file G\+Sort.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{GSort_8h}{G\+Sort.\+h}\item 
+src/gfx/G\+Sort.\+cpp\end{DoxyCompactItemize}

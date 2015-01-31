@@ -1,0 +1,4 @@
+<map id="gv_error" name="gv_error">
+<area shape="rect" id="node5" href="$structsubgraph__not__found.html" title="struct defining the exception called when the subgraph is not found extends gv_error ..." alt="" coords="56,229,195,256"/>
+<area shape="rect" id="node2" href="$structexception__base.html" title="struct defining the base of the exception " alt="" coords="69,80,182,107"/>
+</map>

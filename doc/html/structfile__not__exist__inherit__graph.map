@@ -1,0 +1,4 @@
+<map id="file_not_exist" name="file_not_exist">
+<area shape="rect" id="node2" href="$structio__error.html" title="struct defining the base of the IO errors " alt="" coords="93,155,158,181"/>
+<area shape="rect" id="node3" href="$structexception__base.html" title="struct defining the base of the exception " alt="" coords="69,80,182,107"/>
+</map>

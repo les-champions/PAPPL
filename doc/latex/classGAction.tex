@@ -1,0 +1,625 @@
+\hypertarget{classGAction}{\section{G\+Action Class Reference}
+\label{classGAction}\index{G\+Action@{G\+Action}}
+}
+
+
+contains style and layout info to draw an action  
+
+
+
+
+{\ttfamily \#include $<$G\+Action.\+h$>$}
+
+
+
+Collaboration diagram for G\+Action\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGAction__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGAction_a697f4b533d191139a1eb401c486afff9}{G\+Action} (Action\+Ptr a, \hyperlink{structGVEdge}{G\+V\+Edge} e, \hyperlink{structGVEdge}{G\+V\+Edge} f, \hyperlink{classPHScene}{P\+H\+Scene} $\ast$sc)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{classGAction_a2e56eb084652d002e5284985c70ebe3d}{G\+Action} (Action\+Ptr a, \hyperlink{classPHScene}{P\+H\+Scene} $\ast$sc)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a394daac6bc228e8105790f4493b32387}{void \hyperlink{classGAction_a394daac6bc228e8105790f4493b32387}{update} ()}\label{classGAction_a394daac6bc228e8105790f4493b32387}
+
+\begin{DoxyCompactList}\small\item\em update position of \hyperlink{classGAction}{G\+Action} \end{DoxyCompactList}\item 
+Q\+Graphics\+Item $\ast$ \hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{get\+Display\+Item} (void)
+\begin{DoxyCompactList}\small\item\em gets the display \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ac9005fd701c1362eea9d7299b95672cb}{Action\+Ptr \hyperlink{classGAction_ac9005fd701c1362eea9d7299b95672cb}{get\+Action} ()}\label{classGAction_ac9005fd701c1362eea9d7299b95672cb}
+
+\begin{DoxyCompactList}\small\item\em gets the action \end{DoxyCompactList}\item 
+G\+Process\+Ptr \hyperlink{classGAction_a4f4c104269fd0d40a61b22458db42dee}{get\+Source} ()
+\begin{DoxyCompactList}\small\item\em gets the source \hyperlink{classGProcess}{G\+Process} item \end{DoxyCompactList}\item 
+G\+Process\+Ptr \hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{get\+Target} ()
+\begin{DoxyCompactList}\small\item\em gets the target \hyperlink{classGProcess}{G\+Process} item \end{DoxyCompactList}\item 
+G\+Process\+Ptr \hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{get\+Result} ()
+\begin{DoxyCompactList}\small\item\em gets the result \hyperlink{classGProcess}{G\+Process} item \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a29954530df3ca052ba3c7ad5f56de9b3}{bool \hyperlink{classGAction_a29954530df3ca052ba3c7ad5f56de9b3}{is\+Bold} ()}\label{classGAction_a29954530df3ca052ba3c7ad5f56de9b3}
+
+\begin{DoxyCompactList}\small\item\em indicates whether or not this action is in bold \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ac50e5adaea34a8e9b358907c32f58f6a}{void \hyperlink{classGAction_ac50e5adaea34a8e9b358907c32f58f6a}{to\+Bold} ()}\label{classGAction_ac50e5adaea34a8e9b358907c32f58f6a}
+
+\begin{DoxyCompactList}\small\item\em change this \hyperlink{classGAction}{G\+Action} to bold \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ac6834abb04c34cefed63cb0515e6a712}{void \hyperlink{classGAction_ac6834abb04c34cefed63cb0515e6a712}{color\+Action} (Q\+Color)}\label{classGAction_ac6834abb04c34cefed63cb0515e6a712}
+
+\begin{DoxyCompactList}\small\item\em change this \hyperlink{classGAction}{G\+Action} color \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ade1234868fc1ba2b4c5ee1ff7c3ae998}{int \hyperlink{classGAction_ade1234868fc1ba2b4c5ee1ff7c3ae998}{get\+Action\+Color\+Number} ()}\label{classGAction_ade1234868fc1ba2b4c5ee1ff7c3ae998}
+
+\begin{DoxyCompactList}\small\item\em gets the number of color R\+G\+B to tik\+Z file \end{DoxyCompactList}\item 
+\hypertarget{classGAction_adfc489f6845c5e9ffa9d361984f5993a}{void \hyperlink{classGAction_adfc489f6845c5e9ffa9d361984f5993a}{set\+Action\+Color\+N\+Umber} (int r, int g, int b, int nb)}\label{classGAction_adfc489f6845c5e9ffa9d361984f5993a}
+
+\begin{DoxyCompactList}\small\item\em sets the number of the process color R\+G\+B to Tik\+Z file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGAction_a6509f55dc693f00abfc5d019ea244c89}{void \hyperlink{classGAction_a6509f55dc693f00abfc5d019ea244c89}{init\+Contact\+Points} ()}\label{classGAction_a6509f55dc693f00abfc5d019ea244c89}
+
+\begin{DoxyCompactList}\small\item\em init the position of source\+Point\+Line, target\+Point\+Line and result\+Point\+Line \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ac3772b10309aa6afe0e64ba40c662fcc}{void \hyperlink{classGAction_ac3772b10309aa6afe0e64ba40c662fcc}{update\+Contact\+Points} ()}\label{classGAction_ac3772b10309aa6afe0e64ba40c662fcc}
+
+\begin{DoxyCompactList}\small\item\em update the position of source\+Point\+Line, target\+Point\+Line and result\+Point\+Line \end{DoxyCompactList}\item 
+Q\+Painter\+Path \hyperlink{classGAction_a86dc08d16a482755317f4c212a853068}{create\+Hit\+Path} ()
+\begin{DoxyCompactList}\small\item\em build the line corresponding to the first part of the action \end{DoxyCompactList}\item 
+Q\+Painter\+Path \hyperlink{classGAction_a682f47e5009ea5336579928215bc6391}{create\+Bound\+Path} ()
+\begin{DoxyCompactList}\small\item\em build the arc corresponding to the second part of the action \end{DoxyCompactList}\item 
+Q\+Polygon\+F \hyperlink{classGAction_a7144bb80f0de787a60d43340c8545163}{make\+Arrow\+Head} (Q\+Painter\+Path path)
+\begin{DoxyCompactList}\small\item\em draws the head of the arrow \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a7aa759b10fae92f3052b8d5336641a03}{void \hyperlink{classGAction_a7aa759b10fae92f3052b8d5336641a03}{init\+Points\+In\+Simple\+Modele} ()}\label{classGAction_a7aa759b10fae92f3052b8d5336641a03}
+
+\begin{DoxyCompactList}\small\item\em init contact points to display the \hyperlink{classGAction}{G\+Action} in simple model \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a374e74c397d09f202c05e506413a885d}{void \hyperlink{classGAction_a374e74c397d09f202c05e506413a885d}{init\+Points\+In\+Detailled\+Model} ()}\label{classGAction_a374e74c397d09f202c05e506413a885d}
+
+\begin{DoxyCompactList}\small\item\em init contact points to display the \hyperlink{classGAction}{G\+Action} in detailled model \end{DoxyCompactList}\item 
+\hypertarget{classGAction_afd02cc0b1d7efcaf012dd9045c22f659}{void \hyperlink{classGAction_afd02cc0b1d7efcaf012dd9045c22f659}{update\+Points\+In\+Simple\+Model} ()}\label{classGAction_afd02cc0b1d7efcaf012dd9045c22f659}
+
+\begin{DoxyCompactList}\small\item\em update contact points to display the \hyperlink{classGAction}{G\+Action} in simple model \end{DoxyCompactList}\item 
+\hypertarget{classGAction_af512e122e9c332aa70e804cab303efca}{void \hyperlink{classGAction_af512e122e9c332aa70e804cab303efca}{update\+Points\+In\+Detailled\+Model} ()}\label{classGAction_af512e122e9c332aa70e804cab303efca}
+
+\begin{DoxyCompactList}\small\item\em update contact points to display the \hyperlink{classGAction}{G\+Action} in detailled model \end{DoxyCompactList}\item 
+\hypertarget{classGAction_aa03acf91fcd0c6b8eaa4fb5e610e83e5}{bool \hyperlink{classGAction_aa03acf91fcd0c6b8eaa4fb5e610e83e5}{is\+Auto\+Hit} ()}\label{classGAction_aa03acf91fcd0c6b8eaa4fb5e610e83e5}
+
+\begin{DoxyCompactList}\small\item\em check if the source and the target process are the same \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a5eb7f465ca07cb553c8d628aae1b125b}{void \hyperlink{classGAction_a5eb7f465ca07cb553c8d628aae1b125b}{init\+Points\+Normal\+Hit} ()}\label{classGAction_a5eb7f465ca07cb553c8d628aae1b125b}
+
+\begin{DoxyCompactList}\small\item\em init contact points in the case of normal hit \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a0df07896e15cc7d479d158a28c350713}{void \hyperlink{classGAction_a0df07896e15cc7d479d158a28c350713}{update\+Points\+Normal\+Hit} ()}\label{classGAction_a0df07896e15cc7d479d158a28c350713}
+
+\begin{DoxyCompactList}\small\item\em update contact points in the case of normal hit \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a31e9d06194e01e691e1ca8e1a64ad73f}{void \hyperlink{classGAction_a31e9d06194e01e691e1ca8e1a64ad73f}{init\+Points\+Auto\+Hit} ()}\label{classGAction_a31e9d06194e01e691e1ca8e1a64ad73f}
+
+\begin{DoxyCompactList}\small\item\em init contact points in the case of an auto hit \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a63727f6b50a489bc6d820055bd040adb}{void \hyperlink{classGAction_a63727f6b50a489bc6d820055bd040adb}{update\+Points\+Auto\+Hit} ()}\label{classGAction_a63727f6b50a489bc6d820055bd040adb}
+
+\begin{DoxyCompactList}\small\item\em init contact points in the case of an auto hit \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a92cac7175b3969a54197d401c13f5273}{bool \hyperlink{classGAction_a92cac7175b3969a54197d401c13f5273}{is\+Curved\+Hit} (G\+Sort\+Ptr source\+Sort, G\+Sort\+Ptr target\+Sort, G\+Process\+Ptr source, G\+Process\+Ptr target)}\label{classGAction_a92cac7175b3969a54197d401c13f5273}
+
+\begin{DoxyCompactList}\small\item\em check if the hit needs to be curved \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}{\hyperlink{classPHScene}{P\+H\+Scene} $\ast$ \hyperlink{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}{scene}}\label{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}
+
+\begin{DoxyCompactList}\small\item\em the \hyperlink{classPHScene}{P\+H\+Scene} related to the \hyperlink{classAction}{Action} \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a80fd22faf283374dd9861bf4900eafa4}{Q\+Graphics\+Item $\ast$ \hyperlink{classGAction_a80fd22faf283374dd9861bf4900eafa4}{display}}\label{classGAction_a80fd22faf283374dd9861bf4900eafa4}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the \hyperlink{classAction}{Action} \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}{Q\+Graphics\+Path\+Item $\ast$ \hyperlink{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}{hit\+Line}}\label{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}
+
+\begin{DoxyCompactList}\small\item\em line representing the first part of the action \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a2ff47768398033e52bd3b78586b1d29c}{Q\+Graphics\+Path\+Item $\ast$ \hyperlink{classGAction_a2ff47768398033e52bd3b78586b1d29c}{bound\+Arc}}\label{classGAction_a2ff47768398033e52bd3b78586b1d29c}
+
+\begin{DoxyCompactList}\small\item\em path representing the second part of the action \end{DoxyCompactList}\item 
+\hypertarget{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{Q\+Point\+F $\ast$ \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{target\+Point}}\label{classGAction_ad6992ac8b540932c370f5b46c48bbe70}
+
+\begin{DoxyCompactList}\small\item\em target Point of the line representing the first part of the action \end{DoxyCompactList}\item 
+\hypertarget{classGAction_adf67bcd561238d7626566cebeee2a151}{Q\+Point\+F $\ast$ \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{source\+Point}}\label{classGAction_adf67bcd561238d7626566cebeee2a151}
+
+\begin{DoxyCompactList}\small\item\em source Point of the line representing the first part of the action \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{Q\+Point\+F $\ast$ \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{result\+Point}}\label{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}
+
+\begin{DoxyCompactList}\small\item\em source Point of the arc representing the second part of the action \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a22f734f6fb2fade298681819341b4f75}{Action\+Ptr \hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}}\label{classGAction_a22f734f6fb2fade298681819341b4f75}
+
+\begin{DoxyCompactList}\small\item\em the related \hyperlink{classAction}{Action} \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a806d5854710a68e9d59a0b035628f7a4}{bool \hyperlink{classGAction_a806d5854710a68e9d59a0b035628f7a4}{bold}}\label{classGAction_a806d5854710a68e9d59a0b035628f7a4}
+
+\begin{DoxyCompactList}\small\item\em if the action is in bold or not \end{DoxyCompactList}\item 
+int \hyperlink{classGAction_aaa7f90de74ad249e8c0054728d1339d1}{number\+Action\+Color}
+\begin{DoxyCompactList}\small\item\em the pair of graphical items representing the tails of the arrows of the \hyperlink{classAction}{Action} \end{DoxyCompactList}\item 
+\hypertarget{classGAction_abc626fc7dc52a5f02960706c02a52db9}{pair$<$ Q\+Graphics\+Path\+Item \\*
+$\ast$, Q\+Graphics\+Path\+Item $\ast$ $>$ {\bfseries arrow\+Tails}}\label{classGAction_abc626fc7dc52a5f02960706c02a52db9}
+
+\item 
+\hypertarget{classGAction_aab9cc72a8692e0b15f19e192ab21d609}{pair$<$ Q\+Graphics\+Polygon\+Item \\*
+$\ast$, Q\+Graphics\+Polygon\+Item $\ast$ $>$ \hyperlink{classGAction_aab9cc72a8692e0b15f19e192ab21d609}{arrow\+Heads}}\label{classGAction_aab9cc72a8692e0b15f19e192ab21d609}
+
+\begin{DoxyCompactList}\small\item\em the pair of graphical items representing the heads of the arrows of the \hyperlink{classAction}{Action} \end{DoxyCompactList}\item 
+\hypertarget{classGAction_a65f9f4938e024adc07cea387079549f8}{pair$<$ \hyperlink{structGVEdge}{G\+V\+Edge}, \hyperlink{structGVEdge}{G\+V\+Edge} $>$ \hyperlink{classGAction_a65f9f4938e024adc07cea387079549f8}{edges}}\label{classGAction_a65f9f4938e024adc07cea387079549f8}
+
+\begin{DoxyCompactList}\small\item\em the edges related to the arrows \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+contains style and layout info to draw an action 
+
+Definition at line 38 of file G\+Action.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGAction_a697f4b533d191139a1eb401c486afff9}{\index{G\+Action@{G\+Action}!G\+Action@{G\+Action}}
+\index{G\+Action@{G\+Action}!G\+Action@{G\+Action}}
+\subsubsection[{G\+Action}]{\setlength{\rightskip}{0pt plus 5cm}G\+Action\+::\+G\+Action (
+\begin{DoxyParamCaption}
+\item[{Action\+Ptr}]{a, }
+\item[{{\bf G\+V\+Edge}}]{e, }
+\item[{{\bf G\+V\+Edge}}]{f, }
+\item[{{\bf P\+H\+Scene} $\ast$}]{sc}
+\end{DoxyParamCaption}
+)}}\label{classGAction_a697f4b533d191139a1eb401c486afff9}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Action\+Ptr} & the related \hyperlink{classAction}{Action} object \\
+\hline
+{\em \hyperlink{structGVEdge}{G\+V\+Edge}} & the object that contains style and layout info for hit arrow \\
+\hline
+{\em \hyperlink{structGVEdge}{G\+V\+Edge}} & the object that contains style and layout info for bounce (result) arrow \\
+\hline
+{\em \hyperlink{classPHScene}{P\+H\+Scene}} & the related scene \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGAction_a2e56eb084652d002e5284985c70ebe3d}{\index{G\+Action@{G\+Action}!G\+Action@{G\+Action}}
+\index{G\+Action@{G\+Action}!G\+Action@{G\+Action}}
+\subsubsection[{G\+Action}]{\setlength{\rightskip}{0pt plus 5cm}G\+Action\+::\+G\+Action (
+\begin{DoxyParamCaption}
+\item[{Action\+Ptr}]{a, }
+\item[{{\bf P\+H\+Scene} $\ast$}]{sc}
+\end{DoxyParamCaption}
+)}}\label{classGAction_a2e56eb084652d002e5284985c70ebe3d}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Action\+Ptr} & the related \hyperlink{classAction}{Action} object \\
+\hline
+{\em \hyperlink{classPHScene}{P\+H\+Scene}} & the related scene \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+18                                          : \hyperlink{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}{scene}(sc), \hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}(a) \{
+19     \hyperlink{classGAction_a80fd22faf283374dd9861bf4900eafa4}{display} = \textcolor{keyword}{new} QGraphicsItemGroup();
+20 
+21     \hyperlink{classGAction_a6509f55dc693f00abfc5d019ea244c89}{initContactPoints}();
+22 
+23     \hyperlink{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}{hitLine}= \textcolor{keyword}{new} QGraphicsPathItem(\hyperlink{classGAction_a86dc08d16a482755317f4c212a853068}{createHitPath}(),\hyperlink{classGAction_a80fd22faf283374dd9861bf4900eafa4}{display});
+24     \textcolor{keywordflow}{if}((\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()==\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x())&&(\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y()==
+      \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y())) \{
+25         QPen pen;
+26         pen.setWidth(2);
+27         pen.setBrush(Qt::red);
+28         \hyperlink{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}{hitLine}->setPen(pen);
+29     \} \textcolor{keywordflow}{else} \{
+30         QPen pen;
+31         pen.setWidth(1);
+32         pen.setBrush(Qt::black);
+33         \hyperlink{classGAction_a7d9568fcba3679f9ff9edc71beee92f5}{hitLine}->setPen(pen);
+34     \}
+35 
+36     \hyperlink{classGAction_a2ff47768398033e52bd3b78586b1d29c}{boundArc} = \textcolor{keyword}{new} QGraphicsPathItem(\hyperlink{classGAction_a682f47e5009ea5336579928215bc6391}{createBoundPath}(),
+      \hyperlink{classGAction_a80fd22faf283374dd9861bf4900eafa4}{display});
+37     \hyperlink{classGAction_a2ff47768398033e52bd3b78586b1d29c}{boundArc}->setPen(QPen(Qt::DashLine));
+38     \hyperlink{classGAction_aaa7f90de74ad249e8c0054728d1339d1}{numberActionColor}=-1;
+39     this->\hyperlink{classGAction_a806d5854710a68e9d59a0b035628f7a4}{bold}=\textcolor{keyword}{false};
+40 
+41 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGAction_a682f47e5009ea5336579928215bc6391}{\index{G\+Action@{G\+Action}!create\+Bound\+Path@{create\+Bound\+Path}}
+\index{create\+Bound\+Path@{create\+Bound\+Path}!G\+Action@{G\+Action}}
+\subsubsection[{create\+Bound\+Path}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Painter\+Path G\+Action\+::create\+Bound\+Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGAction_a682f47e5009ea5336579928215bc6391}
+
+
+build the arc corresponding to the second part of the action 
+
+\begin{DoxyReturn}{Returns}
+Q\+Painter\+Path the arc representing the second part of the action 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+361                                       \{
+362     QPainterPath boundPath(*\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint});
+363 
+364     \textcolor{keywordflow}{if}((\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()!=\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x())||(\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y()!=
+      \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y())) \{
+365         qreal rectCornerX;
+366         qreal rectCornerY;
+367         qreal widthRect;
+368         qreal heightRect;
+369         qreal sweepAngle;
+370         qreal startAngle;
+371         \textcolor{keywordtype}{int} invertSweep;
+372 
+373         \textcolor{keywordflow}{if}(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->getDisplayItem()->parentItem())->isVertical()) \{
+374             \textcolor{keywordflow}{if}(\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y()<\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()) \{
+375                 rectCornerY = \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y();
+376                 heightRect = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()-\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y();
+377                 startAngle = 90;
+378                 invertSweep = 1;
+379             \} \textcolor{keywordflow}{else} \{
+380                 rectCornerY = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y();
+381                 heightRect = \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y()-\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y();
+382                 startAngle = -90;
+383                 invertSweep = -1;
+384             \}
+385 
+386             \textcolor{keywordflow}{if}(\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() < \hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{getResult}()->getCenterPoint()->x()) \{
+387                 sweepAngle = 180*invertSweep;
+388             \} \textcolor{keywordflow}{else} \{
+389                 sweepAngle = -180*invertSweep;
+390             \}
+391 
+392             rectCornerX = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x()- (GProcess::sizeDefault)/2.0;
+393             widthRect = GProcess::sizeDefault;
+394         \} \textcolor{keywordflow}{else} \{
+395 
+396             \textcolor{keywordflow}{if}(\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()<\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x()) \{ \textcolor{comment}{//target point à gauche de
+       resultpoint}
+397                 rectCornerX = \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x();
+398                 widthRect = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() - \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x();
+399                 startAngle =180;
+400                 invertSweep = -1;
+401             \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{//resultpoint à gauche de targetpoint}
+402                 rectCornerX = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x();
+403                 widthRect = \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x() - \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x();
+404                 startAngle =0;
+405                 invertSweep = 1;
+406             \}
+407             \textcolor{keywordflow}{if}(\hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()<\hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{getResult}()->getCenterPoint()->y()) \{ \textcolor{comment}{//resultpoint
+       au-dessus du centre du process}
+408                 rectCornerY = \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()-(GProcess::sizeDefault)/2.0;
+409                 sweepAngle = 180*invertSweep;
+410             \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{//resultpoint en-dessus du centre du process}
+411                 rectCornerY= \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()-(GProcess::sizeDefault)/2.0;
+412                 sweepAngle = -180*invertSweep;
+413             \}
+414             heightRect = GProcess::sizeDefault;
+415         \}
+416 
+417 
+418         boundPath.arcTo(QRectF(rectCornerX,rectCornerY,widthRect,heightRect),startAngle,sweepAngle);
+419 
+420         boundPath.addPolygon(\hyperlink{classGAction_a7144bb80f0de787a60d43340c8545163}{makeArrowHead}(boundPath));
+421     \}
+422 
+423     \textcolor{keywordflow}{return} boundPath;
+424 \}
+\end{DoxyCode}
+\hypertarget{classGAction_a86dc08d16a482755317f4c212a853068}{\index{G\+Action@{G\+Action}!create\+Hit\+Path@{create\+Hit\+Path}}
+\index{create\+Hit\+Path@{create\+Hit\+Path}!G\+Action@{G\+Action}}
+\subsubsection[{create\+Hit\+Path}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Painter\+Path G\+Action\+::create\+Hit\+Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGAction_a86dc08d16a482755317f4c212a853068}
+
+
+build the line corresponding to the first part of the action 
+
+\begin{DoxyReturn}{Returns}
+Q\+Painter\+Path the line representing the first part of the action 
+\end{DoxyReturn}
+invert\+Start 
+
+Definition at line 265 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+265                                     \{
+266 
+267     GProcessPtr source = \hyperlink{classGAction_a4f4c104269fd0d40a61b22458db42dee}{getSource}();
+268     GProcessPtr target = \hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}();
+269     GProcessPtr result = \hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{getResult}();
+270     GSortPtr sourceSort = \hyperlink{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}{scene}->\hyperlink{classPHScene_ae8be020b063c06f135d644937d65147b}{getGSort}(\hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}->getSource()->getSort()->getName());
+271     GSortPtr targetSort = \hyperlink{classGAction_a5318deb6935859f5d2ebd1836ec6eb85}{scene}->\hyperlink{classPHScene_ae8be020b063c06f135d644937d65147b}{getGSort}(\hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}->getTarget()->getSort()->getName());
+272 
+273 
+274     qreal rectCornerX;
+275     qreal rectCornerY;
+276     qreal widthRect;
+277     qreal heightRect;
+278     qreal sweepAngle;
+279     qreal startAngle;
+280     \textcolor{keywordtype}{int} invertSweep;
+281     \textcolor{keywordtype}{int} invertStart;
+282     \textcolor{keywordtype}{int} wCoef=1;
+283     \textcolor{keywordtype}{int} hCoef=1;
+284 
+285     QPointF* controlPointSource;
+286     QPointF* controlPointTarget;
+287 
+288     QLineF* hitLineTemp;
+289     hitLineTemp = \textcolor{keyword}{new} QLineF(*\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint},*\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint});
+290 
+291     QPainterPath hitPath(*\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint});
+292 
+293     \textcolor{keywordflow}{if}(!\hyperlink{classGAction_aa03acf91fcd0c6b8eaa4fb5e610e83e5}{isAutoHit}()) \{
+294         \textcolor{keywordflow}{if}(\hyperlink{classGAction_a92cac7175b3969a54197d401c13f5273}{isCurvedHit}(sourceSort, targetSort, source, target) && (sourceSort->getSimpleDisplay(
+      )!=1 || targetSort->getSimpleDisplay()!=1)) \{
+295             \textcolor{keywordflow}{if}(\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() >= \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()) \{
+296                 wCoef= -1;
+297             \} \textcolor{keywordflow}{else} \{
+298                 wCoef= 1;
+299             \}
+300             \textcolor{keywordflow}{if}(\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->y() >= \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y()) \{
+301                 hCoef = 1;
+302             \} \textcolor{keywordflow}{else} \{
+303                 hCoef = -1;
+304             \}
+305             controlPointSource = \textcolor{keyword}{new} QPointF(\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() + wCoef*hitLineTemp->length()/2.0,
+      \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->y()-hCoef*hitLineTemp->length()/3.0);
+306             controlPointTarget = \textcolor{keyword}{new} QPointF(\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x() + wCoef*hitLineTemp->length()/2.0,
+      \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y() + hCoef*hitLineTemp->length()/3.0);
+307 
+308             hitPath.cubicTo(*controlPointSource,*controlPointTarget, *
+      \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint});
+309         \} \textcolor{keywordflow}{else} \{
+310             hitPath.lineTo(*\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint});
+311         \}
+312     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( (\hyperlink{classGAction_aa03acf91fcd0c6b8eaa4fb5e610e83e5}{isAutoHit}() && sourceSort->getSimpleDisplay() != 1)
+313                 ||targetSort->getSimpleDisplay()!=1) \{
+314         \textcolor{keywordflow}{if}(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem())->
+      isVertical() && \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y() > \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()) \{
+315             rectCornerY = source->getCenterPoint()->y();
+316             heightRect = (\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->y() - \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y())*2;
+317             invertSweep=1;
+318         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem())
+      ->isVertical() && \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y() < \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->y()) \{
+319             heightRect = (\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y() - \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->y())*2;
+320             rectCornerY = source->getCenterPoint()->y() - heightRect;
+321             invertSweep=-1;
+322         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem(
+      ))->isVertical())) \{
+323             heightRect = (\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->y() - \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->y())*2;
+324             rectCornerY = source->getCenterPoint()->y();
+325             invertSweep= -1;
+326         \}
+327         \textcolor{keywordflow}{if}(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem())->
+      isVertical() && \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() < \hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{getResult}()->getCenterPoint()->x()) \{
+328             widthRect = (\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() - \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x())*2;
+329             rectCornerX = \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() - widthRect;
+330             invertStart=-1;
+331         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem())
+      ->isVertical() && \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() > \hyperlink{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{getResult}()->getCenterPoint()->x()) \{
+332             rectCornerX = \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x();
+333             widthRect = (\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x() - \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x())*2;
+334             invertStart=1;
+335         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(!(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem()
+      )->isVertical()) && \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() < \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()) \{
+336             rectCornerX = source->getCenterPoint()->x();
+337             widthRect = (\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() - \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x())*2;
+338             invertStart=-1;
+339         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!(dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem(
+      ))->isVertical()) && \hyperlink{classGAction_a08d6b4a2f2d04a46861dafbe38897d8a}{resultPoint}->x() > \hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x()) \{
+340             widthRect = (\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}->x() - \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x())*2;
+341             rectCornerX = \hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}->x() - widthRect;
+342             invertStart=1;
+343         \}
+344         \textcolor{keywordflow}{if} (dynamic\_cast<GSort*>(\hyperlink{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{getTarget}()->\hyperlink{classGAction_a5092e3c2bbdd70a63c914766c0142672}{getDisplayItem}()->parentItem())->
+      isVertical()) \{
+345             startAngle = invertStart*180 ;
+346             sweepAngle = invertSweep*270;
+347         \} \textcolor{keywordflow}{else} \{
+348             startAngle = 90 ;
+349             sweepAngle = invertSweep*270 ;
+350         \}
+351 
+352         hitPath.arcTo(QRectF(rectCornerX,rectCornerY,widthRect,heightRect),startAngle,sweepAngle);
+353     \}
+354 
+355     hitPath.addPolygon(\hyperlink{classGAction_a7144bb80f0de787a60d43340c8545163}{makeArrowHead}(hitPath));
+356 
+357 
+358     \textcolor{keywordflow}{return} hitPath;
+359 \}
+\end{DoxyCode}
+\hypertarget{classGAction_a5092e3c2bbdd70a63c914766c0142672}{\index{G\+Action@{G\+Action}!get\+Display\+Item@{get\+Display\+Item}}
+\index{get\+Display\+Item@{get\+Display\+Item}!G\+Action@{G\+Action}}
+\subsubsection[{get\+Display\+Item}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Graphics\+Item $\ast$ G\+Action\+::get\+Display\+Item (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classGAction_a5092e3c2bbdd70a63c914766c0142672}
+
+
+gets the display 
+
+\begin{DoxyReturn}{Returns}
+Q\+Graphics\+Item the graphical item representing the \hyperlink{classAction}{Action} 
+\end{DoxyReturn}
+
+
+Definition at line 515 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+515                                             \{
+516     \textcolor{keywordflow}{return} \hyperlink{classGAction_a80fd22faf283374dd9861bf4900eafa4}{display};
+517 \}
+\end{DoxyCode}
+\hypertarget{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}{\index{G\+Action@{G\+Action}!get\+Result@{get\+Result}}
+\index{get\+Result@{get\+Result}!G\+Action@{G\+Action}}
+\subsubsection[{get\+Result}]{\setlength{\rightskip}{0pt plus 5cm}G\+Process\+Ptr G\+Action\+::get\+Result (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGAction_ae1ed003118c8333c6afa2e8d30e3dc07}
+
+
+gets the result \hyperlink{classGProcess}{G\+Process} item 
+
+
+\begin{DoxyParams}{Parameters}
+{\em G\+Process\+Ptr} & a pointer to the result \hyperlink{classGProcess}{G\+Process} item \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 531 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+531                                \{
+532     \textcolor{keywordflow}{return} \hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}->getResult()->getGProcess();
+533 \}
+\end{DoxyCode}
+\hypertarget{classGAction_a4f4c104269fd0d40a61b22458db42dee}{\index{G\+Action@{G\+Action}!get\+Source@{get\+Source}}
+\index{get\+Source@{get\+Source}!G\+Action@{G\+Action}}
+\subsubsection[{get\+Source}]{\setlength{\rightskip}{0pt plus 5cm}G\+Process\+Ptr G\+Action\+::get\+Source (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGAction_a4f4c104269fd0d40a61b22458db42dee}
+
+
+gets the source \hyperlink{classGProcess}{G\+Process} item 
+
+G\+Process\+Ptr a pointer to the source \hyperlink{classGProcess}{G\+Process} item 
+
+Definition at line 523 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+523                                \{
+524     \textcolor{keywordflow}{return} \hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}->getSource()->getGProcess();
+525 \}
+\end{DoxyCode}
+\hypertarget{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}{\index{G\+Action@{G\+Action}!get\+Target@{get\+Target}}
+\index{get\+Target@{get\+Target}!G\+Action@{G\+Action}}
+\subsubsection[{get\+Target}]{\setlength{\rightskip}{0pt plus 5cm}G\+Process\+Ptr G\+Action\+::get\+Target (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGAction_ac7aff6bc03be3791a8a20a914aae5b2c}
+
+
+gets the target \hyperlink{classGProcess}{G\+Process} item 
+
+\begin{DoxyReturn}{Returns}
+G\+Process\+Ptr a pointer to the target \hyperlink{classGProcess}{G\+Process} item 
+\end{DoxyReturn}
+
+
+Definition at line 527 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+527                                \{
+528     \textcolor{keywordflow}{return} \hyperlink{classGAction_a22f734f6fb2fade298681819341b4f75}{action}->getTarget()->getGProcess();
+529 \}
+\end{DoxyCode}
+\hypertarget{classGAction_a7144bb80f0de787a60d43340c8545163}{\index{G\+Action@{G\+Action}!make\+Arrow\+Head@{make\+Arrow\+Head}}
+\index{make\+Arrow\+Head@{make\+Arrow\+Head}!G\+Action@{G\+Action}}
+\subsubsection[{make\+Arrow\+Head}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Polygon\+F G\+Action\+::make\+Arrow\+Head (
+\begin{DoxyParamCaption}
+\item[{Q\+Painter\+Path}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGAction_a7144bb80f0de787a60d43340c8545163}
+
+
+draws the head of the arrow 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structGVEdge}{G\+V\+Edge}} & the edge related to the arrow \\
+\hline
+{\em Qcolor} & the color of the arrow\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+Graphics\+Polygon\+Item$\ast$ the graphical item representing the head of the arrow 
+\end{DoxyReturn}
+
+
+Definition at line 427 of file G\+Action.\+cpp.
+
+
+\begin{DoxyCode}
+427                                                   \{
+428 
+429     \textcolor{comment}{// arrow pointing to the right}
+430     QPointF p = path.pointAtPercent(1);
+431     QPointF* q = \textcolor{keyword}{new} QPointF(p.x() - 8, p.y() - 5);
+432     QPointF* r = \textcolor{keyword}{new} QPointF(p.x() - 8, p.y() + 5);
+433     QPointF* s = \textcolor{keyword}{new} QPointF(p.x() - 1, p.y());
+434     QPointF* t = \textcolor{keyword}{new} QPointF(p.x() - 7.5, p.y() + 4);
+435     QPointF* u = \textcolor{keyword}{new} QPointF(p.x() - 7.5, p.y() - 4);
+436     QPolygonF polygon;
+437     polygon.push\_back(p);
+438     polygon.push\_back(*q);
+439     polygon.push\_back(*u);
+440     polygon.push\_back(*s);
+441     polygon.push\_back(*t);
+442     polygon.push\_back(*r);
+443 
+444     \textcolor{comment}{// rotate arrow}
+445     QMatrix matrix;
+446     matrix.translate(p.x(), p.y());
+447     \textcolor{keywordflow}{if}(\hyperlink{classGAction_adf67bcd561238d7626566cebeee2a151}{sourcePoint}!=\hyperlink{classGAction_ad6992ac8b540932c370f5b46c48bbe70}{targetPoint}) \{
+448         matrix.rotate(-path.angleAtPercent(1));
+449     \} \textcolor{keywordflow}{else} \{
+450         matrix.rotate(-path.angleAtPercent(0.98));
+451     \}
+452     matrix.translate(-p.x(), -p.y());
+453     polygon = matrix.map(polygon);
+454 
+455     \textcolor{comment}{// turn into QGraphicsPolygonItem}
+456     \textcolor{keywordflow}{return} polygon;
+457 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classGAction_aaa7f90de74ad249e8c0054728d1339d1}{\index{G\+Action@{G\+Action}!number\+Action\+Color@{number\+Action\+Color}}
+\index{number\+Action\+Color@{number\+Action\+Color}!G\+Action@{G\+Action}}
+\subsubsection[{number\+Action\+Color}]{\setlength{\rightskip}{0pt plus 5cm}int G\+Action\+::number\+Action\+Color\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGAction_aaa7f90de74ad249e8c0054728d1339d1}
+
+
+the pair of graphical items representing the tails of the arrows of the \hyperlink{classAction}{Action} 
+
+color of this action 
+
+Definition at line 192 of file G\+Action.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{GAction_8h}{G\+Action.\+h}\item 
+src/gfx/G\+Action.\+cpp\end{DoxyCompactItemize}

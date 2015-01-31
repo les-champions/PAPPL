@@ -1,0 +1,6 @@
+<map id="io_error" name="io_error">
+<area shape="rect" id="node5" href="$structfile__not__exist.html" title="struct defining the exception called when the file does not exist extends io_error ..." alt="" coords="5,229,104,256"/>
+<area shape="rect" id="node6" href="$structnot__regular__file.html" title="struct defining the exception called when the format of the file is not the one expected extends io_e..." alt="" coords="129,229,239,256"/>
+<area shape="rect" id="node7" href="$structwrong__import__file.html" title="wrong_import_file" alt="" coords="263,229,387,256"/>
+<area shape="rect" id="node2" href="$structexception__base.html" title="struct defining the base of the exception " alt="" coords="127,80,241,107"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="node3" href="$classTikzEditor.html" title="TikzEditor" alt="" coords="137,81,218,108"/>
+<area shape="rect" id="node5" href="$classConnectionSettings.html" title="ConnectionSettings" alt="" coords="243,81,379,108"/>
+<area shape="rect" id="node6" href="$classFunctionForm.html" title="FunctionForm" alt="" coords="417,81,519,108"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="ph_error" name="ph_error">
+<area shape="rect" id="node5" href="$structprocess__not__found.html" title="struct defining the exception called when the process called is not found extends ph_error ..." alt="" coords="5,229,137,256"/>
+<area shape="rect" id="node6" href="$structprocess__required.html" title="struct defining the exception called when the process is not specified extends ph_error ..." alt="" coords="161,229,283,256"/>
+<area shape="rect" id="node7" href="$structsort__not__found.html" title="struct defining the exception called when the sort called are not found extends ph_error ..." alt="" coords="307,229,415,256"/>
+<area shape="rect" id="node2" href="$structexception__base.html" title="struct defining the base of the exception " alt="" coords="165,80,279,107"/>
+</map>

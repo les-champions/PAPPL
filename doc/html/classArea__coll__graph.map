@@ -1,0 +1,10 @@
+<map id="Area" name="Area">
+<area shape="rect" id="node9" href="$classTreeArea.html" title="Tree Wigets extends QWidget. " alt="" coords="545,76,619,103"/>
+<area shape="rect" id="node3" href="$classMyArea.html" title="Graph Widget extends QGraphicsView. " alt="" coords="203,107,269,134"/>
+<area shape="rect" id="node5" href="$classTextArea.html" title="Text Widget extends QTextEdit. " alt="" coords="545,190,619,216"/>
+<area shape="rect" id="node7" href="$classColorerSequences.html" title="ColorerSequences" alt="" coords="517,240,647,267"/>
+<area shape="rect" id="node10" href="$classMainWindow.html" title="Builds the main window of the program extends QMainWindow. " alt="" coords="533,342,631,368"/>
+<area shape="rect" id="node12" href="$classTikzEditor.html" title="TikzEditor" alt="" coords="195,342,277,368"/>
+<area shape="rect" id="node14" href="$classConnectionSettings.html" title="ConnectionSettings" alt="" coords="168,392,304,419"/>
+<area shape="rect" id="node15" href="$classFunctionForm.html" title="FunctionForm" alt="" coords="185,443,287,470"/>
+</map>

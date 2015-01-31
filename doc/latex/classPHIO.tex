@@ -1,0 +1,375 @@
+\hypertarget{classPHIO}{\section{P\+H\+I\+O Class Reference}
+\label{classPHIO}\index{P\+H\+I\+O@{P\+H\+I\+O}}
+}
+
+
+manages the inputs and outputs of the \hyperlink{classPH}{P\+H} files  
+
+
+
+
+{\ttfamily \#include $<$P\+H\+I\+O.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classPHIO_a6731852d98b581cce2a5df0984b21c07}{can\+Parse\+File} (string const \&path)
+\begin{DoxyCompactList}\small\item\em checks if the file exists and is recognized by the parser \end{DoxyCompactList}\item 
+static P\+H\+Ptr \hyperlink{classPHIO_a392414cadc400154232f5488fba80600}{parse\+File} (string const \&path)
+\begin{DoxyCompactList}\small\item\em parses the file if it is possible \end{DoxyCompactList}\item 
+static void \hyperlink{classPHIO_a383e5813d751f88a2c945d817a9204fd}{write\+To\+File} (string const \&path, P\+H\+Ptr ph)
+\begin{DoxyCompactList}\small\item\em saves the \hyperlink{classPH}{P\+H} object as a \hyperlink{classPH}{P\+H} file \end{DoxyCompactList}\item 
+static void \hyperlink{classPHIO_a815bbd9b063aaf8e11cd2869c950f1b4}{export\+To\+P\+N\+G} (P\+H\+Ptr ph, Q\+String name)
+\begin{DoxyCompactList}\small\item\em saves as a P\+N\+G the representation of the \hyperlink{classPH}{P\+H} file as it is displayed in the G\+U\+I \end{DoxyCompactList}\item 
+static void \hyperlink{classPHIO_acadc8f6f5a3595b41a05930dc810d26d}{export\+X\+M\+L\+Metadata} (\hyperlink{classMainWindow}{Main\+Window} $\ast$window, Q\+File \&output)
+\begin{DoxyCompactList}\small\item\em saves as an X\+M\+L file the layout and style information of the graph displayed in G\+U\+I \end{DoxyCompactList}\item 
+\hypertarget{classPHIO_a4847e266c56c53e9247c72e6dc7ac3c6}{static void {\bfseries export\+Tikz\+Metadata} (P\+H\+Ptr ph, Q\+File \&output)}\label{classPHIO_a4847e266c56c53e9247c72e6dc7ac3c6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+manages the inputs and outputs of the \hyperlink{classPH}{P\+H} files 
+
+Definition at line 21 of file P\+H\+I\+O.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPHIO_a6731852d98b581cce2a5df0984b21c07}{\index{P\+H\+I\+O@{P\+H\+I\+O}!can\+Parse\+File@{can\+Parse\+File}}
+\index{can\+Parse\+File@{can\+Parse\+File}!P\+H\+I\+O@{P\+H\+I\+O}}
+\subsubsection[{can\+Parse\+File}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+H\+I\+O\+::can\+Parse\+File (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classPHIO_a6731852d98b581cce2a5df0984b21c07}
+
+
+checks if the file exists and is recognized by the parser 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true if the file can be parsed 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file P\+H\+I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+169                                            \{
+170     \textcolor{keywordflow}{try} \{
+171         \hyperlink{classPHIO_a392414cadc400154232f5488fba80600}{parseFile}(path);
+172     \} \textcolor{keywordflow}{catch} (\hyperlink{structexception__base}{exception\_base}& x) \{
+173         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+174     \}
+175     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+176 \}
+\end{DoxyCode}
+\hypertarget{classPHIO_a815bbd9b063aaf8e11cd2869c950f1b4}{\index{P\+H\+I\+O@{P\+H\+I\+O}!export\+To\+P\+N\+G@{export\+To\+P\+N\+G}}
+\index{export\+To\+P\+N\+G@{export\+To\+P\+N\+G}!P\+H\+I\+O@{P\+H\+I\+O}}
+\subsubsection[{export\+To\+P\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+I\+O\+::export\+To\+P\+N\+G (
+\begin{DoxyParamCaption}
+\item[{P\+H\+Ptr}]{ph, }
+\item[{Q\+String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classPHIO_a815bbd9b063aaf8e11cd2869c950f1b4}
+
+
+saves as a P\+N\+G the representation of the \hyperlink{classPH}{P\+H} file as it is displayed in the G\+U\+I 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P\+H\+Ptr} & pointer to the \hyperlink{classPH}{P\+H} object of the active window \\
+\hline
+{\em Q\+String} & the name of the file saved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 186 of file P\+H\+I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+186                                              \{
+187 
+188     \textcolor{comment}{// create the image and render it}
+189     \textcolor{comment}{// TODO make margins (currently: 4 pixels) configuration variables}
+190     QImage* image = \textcolor{keyword}{new} QImage(ph->getGraphicsScene()->width()+4, ph->getGraphicsScene()->height()+4, 
+      QImage::Format\_ARGB32\_Premultiplied);
+191     QPainter* p = \textcolor{keyword}{new} QPainter();
+192     p->begin(image);
+193     p->setRenderHint(QPainter::Antialiasing);
+194     ph->getGraphicsScene()->render(p);
+195     p->end();
+196 
+197     \textcolor{comment}{// add .png to the name if necessary}
+198     \textcolor{keywordflow}{if} (name.indexOf(QString(\textcolor{stringliteral}{".png"}), 0, Qt::CaseInsensitive) < 0)
+199         name += \textcolor{stringliteral}{".png"};
+200 
+201     \textcolor{comment}{// save it}
+202     image->save(name, \textcolor{stringliteral}{"PNG"});
+203 \}
+\end{DoxyCode}
+\hypertarget{classPHIO_acadc8f6f5a3595b41a05930dc810d26d}{\index{P\+H\+I\+O@{P\+H\+I\+O}!export\+X\+M\+L\+Metadata@{export\+X\+M\+L\+Metadata}}
+\index{export\+X\+M\+L\+Metadata@{export\+X\+M\+L\+Metadata}!P\+H\+I\+O@{P\+H\+I\+O}}
+\subsubsection[{export\+X\+M\+L\+Metadata}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+I\+O\+::export\+X\+M\+L\+Metadata (
+\begin{DoxyParamCaption}
+\item[{{\bf Main\+Window} $\ast$}]{window, }
+\item[{Q\+File \&}]{output}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classPHIO_acadc8f6f5a3595b41a05930dc810d26d}
+
+
+saves as an X\+M\+L file the layout and style information of the graph displayed in G\+U\+I 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classMainWindow}{Main\+Window}} & active \hyperlink{classMainWindow}{Main\+Window} \\
+\hline
+{\em Q\+File} & the file to be written \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 207 of file P\+H\+I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+207                                                               \{
+208 
+209     QXmlStreamWriter stream(&output);
+210 
+211     \hyperlink{classArea}{Area}* area = (\hyperlink{classArea}{Area}*)window->\hyperlink{classMainWindow_a7ef4a7c09626b415053b30bc412a3b1f}{getCentraleArea}()->currentSubWindow()->widget();
+212     \hyperlink{classMyArea}{MyArea}* myarea = ((\hyperlink{classArea}{Area}*)window->\hyperlink{classMainWindow_a7ef4a7c09626b415053b30bc412a3b1f}{getCentraleArea}()->currentSubWindow()->widget
+      ())->myArea;
+213     QList<QTreeWidgetItem*> sortsFound = area->\hyperlink{classArea_a950b6ed9a4e754ef1a7879b727ea8749}{treeArea}->\hyperlink{classTreeArea_ab3cf8ca35655b0bace24a7c46170852f}{groupsTree}->findItems(\textcolor{stringliteral}{""}, 
+      Qt::MatchContains, 0);
+214     stream.setAutoFormatting(\textcolor{keyword}{true});
+215     stream.writeStartDocument();
+216 
+217     stream.writeStartElement(\textcolor{stringliteral}{"graph\_metadata"});
+218     stream.writeStartElement(\textcolor{stringliteral}{"global"});
+219 
+220     stream.writeStartElement(\textcolor{stringliteral}{"ph\_file"});
+221     stream.writeTextElement(\textcolor{stringliteral}{"name"}, window->\hyperlink{classMainWindow_a7ef4a7c09626b415053b30bc412a3b1f}{getCentraleArea}()->currentSubWindow()->
+      windowTitle());
+222     stream.writeTextElement(\textcolor{stringliteral}{"path"}, area->\hyperlink{classArea_a34549bb32869fc241c911f2c8f6e6344}{path});
+223     stream.writeEndElement(); \textcolor{comment}{// ph\_file}
+224 
+225     stream.writeStartElement(\textcolor{stringliteral}{"styles"});
+226     stream.writeTextElement(\textcolor{stringliteral}{"bg\_color"}, myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->backgroundBrush().
+      color().name());
+227     stream.writeTextElement(\textcolor{stringliteral}{"sort\_color"}, \textcolor{stringliteral}{"#073642"});
+228     stream.writeTextElement(\textcolor{stringliteral}{"process\_color"}, \textcolor{stringliteral}{"#EEE8D5"});
+229     stream.writeTextElement(\textcolor{stringliteral}{"text\_bg\_color"}, \textcolor{stringliteral}{"#0A0A0A"});
+230     stream.writeTextElement(\textcolor{stringliteral}{"sort\_font"}, \textcolor{stringliteral}{""});
+231     stream.writeTextElement(\textcolor{stringliteral}{"process\_font"}, \textcolor{stringliteral}{""});
+232     stream.writeTextElement(\textcolor{stringliteral}{"text\_font"}, \textcolor{stringliteral}{"TypeWriter"});
+233     stream.writeEndElement(); \textcolor{comment}{// styles}
+234 
+235     stream.writeStartElement(\textcolor{stringliteral}{"scene"});
+236     stream.writeTextElement(\textcolor{stringliteral}{"height"}, QString::number(window->height()));
+237     stream.writeTextElement(\textcolor{stringliteral}{"width"}, QString::number(window->width()));
+238     stream.writeEndElement(); \textcolor{comment}{//scene}
+239 
+240     stream.writeEndElement(); \textcolor{comment}{// global}
+241 
+242     stream.writeStartElement(\textcolor{stringliteral}{"sorts"});
+243     \textcolor{keywordflow}{for} (SortPtr &a: myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getSorts()) \{
+244         stream.writeStartElement(\textcolor{stringliteral}{"sort"});
+245         stream.writeAttribute(\textcolor{stringliteral}{"name"}, QString::fromStdString(a->getName()));
+246         stream.writeAttribute(\textcolor{stringliteral}{"visible"}, QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->
+      getGSort(a->getName())->\hyperlink{classGSort_a58e2a6099a59b26ffe7dafd90590bd3d}{GSort::isVisible}()));
+247 
+248         stream.writeStartElement(\textcolor{stringliteral}{"pos"});
+249         stream.writeAttribute(\textcolor{stringliteral}{"x"},QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort(
+      a->getName())->x()));
+250         stream.writeAttribute(\textcolor{stringliteral}{"y"},QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort(
+      a->getName())->y()));
+251         stream.writeAttribute(\textcolor{stringliteral}{"xcluster"},QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->
+      getGSort(a->getName())->getLeftTopCornerPoint()->x()));
+252         stream.writeAttribute(\textcolor{stringliteral}{"ycluster"},QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->
+      getGSort(a->getName())->getLeftTopCornerPoint()->y()));
+253         stream.writeEndElement(); \textcolor{comment}{// pos}
+254 
+255         stream.writeStartElement(\textcolor{stringliteral}{"size"});
+256         stream.writeAttribute(\textcolor{stringliteral}{"w"}, QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort
+      (a->getName())->boundingRect().width()));
+257         stream.writeAttribute(\textcolor{stringliteral}{"h"}, QString::number(myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort
+      (a->getName())->boundingRect().height()));
+258         stream.writeEndElement(); \textcolor{comment}{// size}
+259 
+260         stream.writeTextElement(\textcolor{stringliteral}{"color"}, myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort(a->
+      getName())->getRect()->brush().color().name());
+261 
+262         stream.writeStartElement(\textcolor{stringliteral}{"label"});
+263         stream.writeAttribute(\textcolor{stringliteral}{"text"}, myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort(a->getName()
+      )->getText()->toPlainText());
+264 
+265         stream.writeTextElement(\textcolor{stringliteral}{"font"}, myarea->\hyperlink{classMyArea_a7b94b516e730ddcee16d946c76bbc2b3}{getPHPtr}()->getGraphicsScene()->getGSort(a->getName
+      ())->getText()->font().toString());
+266 
+267         stream.writeStartElement(\textcolor{stringliteral}{"pos"});
+268         stream.writeAttribute(\textcolor{stringliteral}{"x"}, \textcolor{stringliteral}{""});
+269         stream.writeAttribute(\textcolor{stringliteral}{"y"}, \textcolor{stringliteral}{""});
+270         stream.writeEndElement(); \textcolor{comment}{//pos}
+271 
+272         stream.writeEndElement(); \textcolor{comment}{// label}
+273 
+274         stream.writeStartElement(\textcolor{stringliteral}{"processes"});
+275         stream.writeAttribute(\textcolor{stringliteral}{"nb"}, QString::number(a->getProcesses().size()));
+276 
+277         \textcolor{keywordflow}{for} (ProcessPtr &b : a->getProcesses()) \{
+278             stream.writeStartElement(\textcolor{stringliteral}{"process"});
+279             stream.writeAttribute(\textcolor{stringliteral}{"i"}, QString::number(b->getNumber()));
+280 
+281             stream.writeStartElement(\textcolor{stringliteral}{"pos"});
+282             stream.writeAttribute(\textcolor{stringliteral}{"x"}, QString::number(b->getGProcess()->getCenterPoint()->x()));
+283             stream.writeAttribute(\textcolor{stringliteral}{"y"}, QString::number(b->getGProcess()->getCenterPoint()->y()));
+284             stream.writeEndElement(); \textcolor{comment}{// pos}
+285 
+286             stream.writeStartElement(\textcolor{stringliteral}{"size"});
+287             stream.writeAttribute(\textcolor{stringliteral}{"w"}, \textcolor{stringliteral}{""});
+288             stream.writeAttribute(\textcolor{stringliteral}{"h"}, \textcolor{stringliteral}{""});
+289             stream.writeEndElement(); \textcolor{comment}{// size}
+290 
+291             stream.writeEndElement(); \textcolor{comment}{// process}
+292         \}
+293 
+294         stream.writeEndElement(); \textcolor{comment}{// processes}
+295 
+296         stream.writeEndElement(); \textcolor{comment}{// sort}
+297     \}
+298 
+299     stream.writeEndElement(); \textcolor{comment}{// sorts}
+300 
+301     stream.writeStartElement(\textcolor{stringliteral}{"sort\_groups"});
+302 
+303     \textcolor{keywordflow}{for} (QTreeWidgetItem* &a : sortsFound) \{
+304         \textcolor{keywordflow}{if} (a->parent() == NULL) \{
+305             stream.writeStartElement(\textcolor{stringliteral}{"group"});
+306             stream.writeAttribute(\textcolor{stringliteral}{"name"}, a->text(0));
+307             stream.writeAttribute(\textcolor{stringliteral}{"visible"}, QString::number(!a->font(0).italic()));
+308             stream.writeTextElement(\textcolor{stringliteral}{"color"}, a->foreground(0).color().name());
+309             \textcolor{comment}{// sorts list}
+310             \textcolor{keywordflow}{if} (a->childCount()) \{
+311                 stream.writeStartElement(\textcolor{stringliteral}{"sorts\_of\_group"});
+312                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i(0); i < a->childCount(); i++) \{
+313                     stream.writeStartElement(\textcolor{stringliteral}{"sort"});
+314                     stream.writeAttribute(\textcolor{stringliteral}{"name"}, a->child(i)->text(0));
+315                     stream.writeEndElement(); \textcolor{comment}{// sorts}
+316                 \}
+317                 stream.writeEndElement();
+318             \}
+319             stream.writeEndElement(); \textcolor{comment}{// group}
+320         \}
+321     \}
+322 
+323     stream.writeStartElement(\textcolor{stringliteral}{"debug"});
+324     stream.writeAttribute(\textcolor{stringliteral}{"debug"},\textcolor{stringliteral}{""});
+325     stream.writeEndElement();
+326 
+327 
+328     stream.writeEndElement(); \textcolor{comment}{// sort\_groups}
+329 
+330     stream.writeEndElement(); \textcolor{comment}{// graph\_metadata}
+331 
+332     stream.writeEndDocument();
+333 \}
+\end{DoxyCode}
+\hypertarget{classPHIO_a392414cadc400154232f5488fba80600}{\index{P\+H\+I\+O@{P\+H\+I\+O}!parse\+File@{parse\+File}}
+\index{parse\+File@{parse\+File}!P\+H\+I\+O@{P\+H\+I\+O}}
+\subsubsection[{parse\+File}]{\setlength{\rightskip}{0pt plus 5cm}P\+H\+Ptr P\+H\+I\+O\+::parse\+File (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classPHIO_a392414cadc400154232f5488fba80600}
+
+
+parses the file if it is possible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+H\+Ptr pointer to the \hyperlink{classPH}{P\+H} object that results form parsing 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file P\+H\+I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+136                                          \{
+137 
+138     \textcolor{comment}{// dump content using phc -l dump}
+139     \textcolor{comment}{// (this command transforms complex PH instructions in basic ones)}
+140     QString phc = \textcolor{stringliteral}{"phc"};
+141     QStringList args;
+142     args << \textcolor{stringliteral}{"-l"} << \textcolor{stringliteral}{"dump"} << \textcolor{stringliteral}{"-i"} << QString::fromUtf8(path.c\_str()) << \textcolor{stringliteral}{"--no-debug"};
+143     QProcess *phcProcess = \textcolor{keyword}{new} QProcess();
+144     phcProcess->start(phc, args);
+145     \textcolor{keywordflow}{if} (!phcProcess->waitForStarted())
+146         \textcolor{keywordflow}{throw} \hyperlink{structpint__program__not__found}{pint\_program\_not\_found}() << file\_info(\textcolor{stringliteral}{"phc"});
+147 
+148     \textcolor{comment}{// read result}
+149     QByteArray phcStandardError;
+150     QByteArray phcStandardOutput;
+151     \textcolor{comment}{// Consider phc to have timed out after 10 mins}
+152     \textcolor{keywordtype}{bool} timedOut = !phcProcess->waitForFinished(10*60*1000);
+153     phcStandardError  += phcProcess->readAllStandardError();
+154     phcStandardOutput += phcProcess->readAllStandardOutput();
+155     \textcolor{keyword}{delete} phcProcess;
+156 
+157     \textcolor{keywordflow}{if} (timedOut)
+158         \textcolor{keywordflow}{throw} \hyperlink{structpint__phc__crash}{pint\_phc\_crash}() << (parse\_info)\textcolor{stringliteral}{"Time out"};
+159 
+160     \textcolor{comment}{// parse dump}
+161     \textcolor{keywordflow}{if} (!phcStandardError.isEmpty())
+162         \textcolor{keywordflow}{throw} \hyperlink{structpint__phc__crash}{pint\_phc\_crash}() << (parse\_info)QString(phcStandardError).toStdString();
+163     \textcolor{keywordflow}{return} parse(QString(phcStandardOutput).toStdString());
+164 
+165 \}
+\end{DoxyCode}
+\hypertarget{classPHIO_a383e5813d751f88a2c945d817a9204fd}{\index{P\+H\+I\+O@{P\+H\+I\+O}!write\+To\+File@{write\+To\+File}}
+\index{write\+To\+File@{write\+To\+File}!P\+H\+I\+O@{P\+H\+I\+O}}
+\subsubsection[{write\+To\+File}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+I\+O\+::write\+To\+File (
+\begin{DoxyParamCaption}
+\item[{string const \&}]{path, }
+\item[{P\+H\+Ptr}]{ph}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classPHIO_a383e5813d751f88a2c945d817a9204fd}
+
+
+saves the \hyperlink{classPH}{P\+H} object as a \hyperlink{classPH}{P\+H} file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the path of the file \\
+\hline
+{\em P\+H\+Ptr} & pointer to the object that will be saved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 180 of file P\+H\+I\+O.\+cpp.
+
+
+\begin{DoxyCode}
+180                                                     \{
+181     \hyperlink{classIO_affdd7cd3e9c55cbf32551920e491cae6}{IO::writeFile}(path, ph->toString());
+182 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{PHIO_8h}{P\+H\+I\+O.\+h}\item 
+src/io/P\+H\+I\+O.\+cpp\end{DoxyCompactItemize}

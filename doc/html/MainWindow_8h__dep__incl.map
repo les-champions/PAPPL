@@ -1,0 +1,15 @@
+<map id="headers/MainWindow.h" name="headers/MainWindow.h">
+<area shape="rect" id="node2" href="$Area_8h_source.html" title="headers/Area.h" alt="" coords="355,80,465,107"/>
+<area shape="rect" id="node5" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="5,155,164,181"/>
+<area shape="rect" id="node6" href="$TikzEditor_8cpp_source.html" title="src/ui/TikzEditor.cpp" alt="" coords="188,155,331,181"/>
+<area shape="rect" id="node7" href="$PHIO_8h.html" title="header for the PHIO class " alt="" coords="489,80,605,107"/>
+<area shape="rect" id="node8" href="$Main_8cpp.html" title="Principal Program. " alt="" coords="1097,155,1195,181"/>
+<area shape="rect" id="node12" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="681,80,787,107"/>
+<area shape="rect" id="node13" href="$ConnectionSettings_8cpp_source.html" title="src/ui/ConnectionSettings.cpp" alt="" coords="811,80,1009,107"/>
+<area shape="rect" id="node14" href="$FunctionForm_8cpp_source.html" title="src/ui/FunctionForm.cpp" alt="" coords="1033,80,1195,107"/>
+<area shape="rect" id="node3" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="489,155,605,181"/>
+<area shape="rect" id="node4" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="355,155,465,181"/>
+<area shape="rect" id="node9" href="$Main2_8cpp_source.html" title="src/Main2.cpp" alt="" coords="790,155,894,181"/>
+<area shape="rect" id="node10" href="$PHIOTest_8cpp_source.html" title="src/test/PHIOTest.cpp" alt="" coords="918,155,1073,181"/>
+<area shape="rect" id="node11" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="630,155,766,181"/>
+</map>

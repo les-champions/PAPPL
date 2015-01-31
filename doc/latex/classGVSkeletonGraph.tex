@@ -1,0 +1,598 @@
+\hypertarget{classGVSkeletonGraph}{\section{G\+V\+Skeleton\+Graph Class Reference}
+\label{classGVSkeletonGraph}\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+}
+
+
+the object containing a libraph graph representing the skeleton (sorts+actions) of the model and its associated nodes and edges  
+
+
+
+
+{\ttfamily \#include $<$G\+V\+Skeleton\+Graph.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGVSkeletonGraph_aff5ae5626bd75ccbb40d54117d6ba379}{G\+V\+Skeleton\+Graph} (Q\+String name, Q\+Font font=Q\+Font())
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGVSkeletonGraph}{G\+V\+Skeleton\+Graph} constructor. \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_aecb6a116fbb734089ef01ab78580d2d3}{void \hyperlink{classGVSkeletonGraph_aecb6a116fbb734089ef01ab78580d2d3}{set\+Graph\+Attributes} ()}\label{classGVSkeletonGraph_aecb6a116fbb734089ef01ab78580d2d3}
+
+\begin{DoxyCompactList}\small\item\em Set the graph dpi and sep\+Value to their default values. \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}{set\+Graph\+Object\+Attributes} (void $\ast$object, Q\+String attr, Q\+String value)
+\begin{DoxyCompactList}\small\item\em set an attribute to a given value for a graph element \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a14ce57fdd94f4f5996af8be2476bf76b}{set\+Font} (Q\+Font font)
+\begin{DoxyCompactList}\small\item\em set the font used for the graph \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_ade966198333d6aef5f5f56a9849488c9}{void \hyperlink{classGVSkeletonGraph_ade966198333d6aef5f5f56a9849488c9}{apply\+Layout} ()}\label{classGVSkeletonGraph_ade966198333d6aef5f5f56a9849488c9}
+
+\begin{DoxyCompactList}\small\item\em builds the layout \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_a53073d1aaae9c5ec6a9dfa04ceb9151b}{void \hyperlink{classGVSkeletonGraph_a53073d1aaae9c5ec6a9dfa04ceb9151b}{export\+To\+Png} ()}\label{classGVSkeletonGraph_a53073d1aaae9c5ec6a9dfa04ceb9151b}
+
+\begin{DoxyCompactList}\small\item\em export the graph into the file out.\+png (for test purpose) \end{DoxyCompactList}\item 
+Q\+List$<$ \hyperlink{structGVNode}{G\+V\+Node} $>$ \hyperlink{classGVSkeletonGraph_ac74f8e4b5ad9f207a35eb2696b5740b6}{nodes} ()
+\begin{DoxyCompactList}\small\item\em tranforms the \+\_\+nodes attribute into a liste of \hyperlink{structGVNode}{G\+V\+Node} \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a51513245defe5f4fe3d63b3abc3a220a}{add\+Node} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em add a node to the graph \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a5360f1d472f7c548bcba0b7554dca649}{remove\+Node} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em remove a node from the graph \end{DoxyCompactList}\item 
+bool \hyperlink{classGVSkeletonGraph_a3488e1b4a133b330835c3c0be7caeedf}{has\+Node} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em check if a node exists in the graph \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a3a283e888b23d526974f860241f8b1cf}{set\+Node\+Size} (void $\ast$object, qreal width, qreal height)
+\begin{DoxyCompactList}\small\item\em setter for the node\+Size attribute \end{DoxyCompactList}\item 
+Agnode\+\_\+t $\ast$ \hyperlink{classGVSkeletonGraph_adce1790e44da056309d142e153cb5a24}{get\+Node} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em gets a node by its name \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_a3c1d531da3434485a6556e59c01cf2b5}{void \hyperlink{classGVSkeletonGraph_a3c1d531da3434485a6556e59c01cf2b5}{clear\+Nodes} ()}\label{classGVSkeletonGraph_a3c1d531da3434485a6556e59c01cf2b5}
+
+\begin{DoxyCompactList}\small\item\em remove all nodes of the graph \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a509442b926cbb771b3e4273574706f13}{add\+Edge} (const Q\+String \&source, const Q\+String \&target)
+\begin{DoxyCompactList}\small\item\em add a edge to the graph \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a1887eb0a40aadf726468b9baf500e58b}{remove\+Edge} (const Q\+String \&source, const Q\+String \&target)
+\begin{DoxyCompactList}\small\item\em remove a edge to the graph \end{DoxyCompactList}\item 
+void \hyperlink{classGVSkeletonGraph_a546b14e4c3c48b7d0f4eac84955fd360}{remove\+Edge} (const Q\+Pair$<$ Q\+String, Q\+String $>$ \&key)
+\begin{DoxyCompactList}\small\item\em remove a edge to the graph \end{DoxyCompactList}\item 
+bool \hyperlink{classGVSkeletonGraph_a50d801a00e3c1761c5eb8425982ed345}{connection\+Exists} (const Q\+String \&source\+Name, const Q\+String \&target\+Name)
+\begin{DoxyCompactList}\small\item\em check if an edge exists between two nodes in the graph \end{DoxyCompactList}\item 
+qreal \hyperlink{classGVSkeletonGraph_abae4623f9d7c1cf8eb078ddc974d8d67}{get\+D\+P\+I} ()
+\begin{DoxyCompactList}\small\item\em gets the D\+P\+I value \end{DoxyCompactList}\item 
+Agraph\+\_\+t $\ast$ \hyperlink{classGVSkeletonGraph_ade05624b5ad5afd0567af5a394d47011}{graph} ()
+\begin{DoxyCompactList}\small\item\em gets the graphviz graph struct of this \hyperlink{classGVSkeletonGraph}{G\+V\+Skeleton\+Graph} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGVSkeletonGraph_abb7b658c4700d007559323bc62e7c66d}{static const qreal \hyperlink{classGVSkeletonGraph_abb7b658c4700d007559323bc62e7c66d}{Dot\+Default\+D\+P\+I} =72.\+0}\label{classGVSkeletonGraph_abb7b658c4700d007559323bc62e7c66d}
+
+\begin{DoxyCompactList}\small\item\em Default D\+P\+I value used by dot (which uses points instead of pixels for coordinates) \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_ad9fe75a063cf1587f81fabeff392885e}{static const qreal \hyperlink{classGVSkeletonGraph_ad9fe75a063cf1587f81fabeff392885e}{node\+Size} = 1}\label{classGVSkeletonGraph_ad9fe75a063cf1587f81fabeff392885e}
+
+\begin{DoxyCompactList}\small\item\em Size in pixels of each node of the skeleton, related to the size of the corresponding \hyperlink{classSort}{Sort}. \end{DoxyCompactList}\item 
+\hypertarget{classGVSkeletonGraph_aa660fd51acdd78295969eeee3731339a}{static const qreal \hyperlink{classGVSkeletonGraph_aa660fd51acdd78295969eeee3731339a}{sep\+Value} = 30.\+0}\label{classGVSkeletonGraph_aa660fd51acdd78295969eeee3731339a}
+
+\begin{DoxyCompactList}\small\item\em Minimum margin around each node (in points for graphviz) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGVSkeletonGraph_a09545a121bbd9ef0c0c0a1130f5b11ee}{Q\+Font {\bfseries \+\_\+font}}\label{classGVSkeletonGraph_a09545a121bbd9ef0c0c0a1130f5b11ee}
+
+\item 
+\hypertarget{classGVSkeletonGraph_ace0fb45d3ca589997beabf430a889eb8}{G\+V\+C\+\_\+t $\ast$ {\bfseries \+\_\+context}}\label{classGVSkeletonGraph_ace0fb45d3ca589997beabf430a889eb8}
+
+\item 
+\hypertarget{classGVSkeletonGraph_abf8e96cecc53806d0fcf5733695b6f0f}{Agraph\+\_\+t $\ast$ {\bfseries \+\_\+graph}}\label{classGVSkeletonGraph_abf8e96cecc53806d0fcf5733695b6f0f}
+
+\item 
+\hypertarget{classGVSkeletonGraph_aa56918b8143b0bdb266705cb126cdab8}{Q\+Map$<$ Q\+String, Agnode\+\_\+t $\ast$ $>$ {\bfseries \+\_\+nodes}}\label{classGVSkeletonGraph_aa56918b8143b0bdb266705cb126cdab8}
+
+\item 
+\hypertarget{classGVSkeletonGraph_acbf9854e1bf81193cf0617202f2bc868}{Q\+Map$<$ Q\+Pair$<$ Q\+String, Q\+String $>$\\*
+, Agedge\+\_\+t $\ast$ $>$ {\bfseries \+\_\+edges}}\label{classGVSkeletonGraph_acbf9854e1bf81193cf0617202f2bc868}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+the object containing a libraph graph representing the skeleton (sorts+actions) of the model and its associated nodes and edges 
+
+Definition at line 27 of file G\+V\+Skeleton\+Graph.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGVSkeletonGraph_aff5ae5626bd75ccbb40d54117d6ba379}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{G\+V\+Skeleton\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}G\+V\+Skeleton\+Graph\+::\+G\+V\+Skeleton\+Graph (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{name, }
+\item[{Q\+Font}]{font = {\ttfamily QFont()}}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_aff5ae5626bd75ccbb40d54117d6ba379}
+
+
+\hyperlink{classGVSkeletonGraph}{G\+V\+Skeleton\+Graph} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & name the name given to the skeleton graph \\
+\hline
+{\em Q\+Font} & font \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+42                                                          \{
+43     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+44 
+45     \_context = gvContext();
+46     \_graph = \_agopen(name, Agstrictdirected);
+47     \hyperlink{classGVSkeletonGraph_aecb6a116fbb734089ef01ab78580d2d3}{setGraphAttributes}();
+48     \hyperlink{classGVSkeletonGraph_a14ce57fdd94f4f5996af8be2476bf76b}{setFont}(font);
+49 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGVSkeletonGraph_a509442b926cbb771b3e4273574706f13}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!add\+Edge@{add\+Edge}}
+\index{add\+Edge@{add\+Edge}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{add\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::add\+Edge (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{source, }
+\item[{const Q\+String \&}]{target}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a509442b926cbb771b3e4273574706f13}
+
+
+add a edge to the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & source the name first node related to the edge \\
+\hline
+{\em Q\+String} & target the name second node related to the edge \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 171 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+171                                                                           \{
+172     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+173 
+174     \textcolor{keywordflow}{if} (\hyperlink{classGVSkeletonGraph_a3488e1b4a133b330835c3c0be7caeedf}{hasNode}(source) && \hyperlink{classGVSkeletonGraph_a3488e1b4a133b330835c3c0be7caeedf}{hasNode}(target)) \{
+175         QPair<QString, QString> key(source, target);
+176 
+177         \textcolor{keywordflow}{if}(!\_edges.contains(key)) \{
+178             Agedge\_t *edge = agedge(\_graph, \hyperlink{classGVSkeletonGraph_adce1790e44da056309d142e153cb5a24}{getNode}(source), \hyperlink{classGVSkeletonGraph_adce1790e44da056309d142e153cb5a24}{getNode}(target), 0, 1);
+179             \_edges.insert(key, edge);
+180         \}
+181 
+182     \}
+183 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a51513245defe5f4fe3d63b3abc3a220a}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{add\+Node}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::add\+Node (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a51513245defe5f4fe3d63b3abc3a220a}
+
+
+add a node to the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & name the name of the node to add to the graph \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 119 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+119                                                  \{
+120     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+121 
+122     \textcolor{keywordflow}{if}(\_nodes.contains(name)) \hyperlink{classGVSkeletonGraph_a5360f1d472f7c548bcba0b7554dca649}{removeNode}(name);
+123 
+124     \_nodes.insert(name, \_agnode(\_graph, name));
+125 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a50d801a00e3c1761c5eb8425982ed345}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!connection\+Exists@{connection\+Exists}}
+\index{connection\+Exists@{connection\+Exists}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{connection\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool G\+V\+Skeleton\+Graph\+::connection\+Exists (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{source\+Name, }
+\item[{const Q\+String \&}]{target\+Name}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a50d801a00e3c1761c5eb8425982ed345}
+
+
+check if an edge exists between two nodes in the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & source the name first node related to the edge \\
+\hline
+{\em Q\+String} & target the name second node related to the edge \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true if the connection exists, false if it doesn't 
+\end{DoxyReturn}
+
+
+Definition at line 200 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+200                                                                                            \{
+201     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+202 
+203     QPair<QString,QString> firstPossibility(sourceName,targetName);
+204     QPair<QString,QString> secondPossibility(targetName,sourceName);
+205     \textcolor{keywordflow}{return} \_edges.contains(firstPossibility)||\_edges.contains(secondPossibility);
+206 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_abae4623f9d7c1cf8eb078ddc974d8d67}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!get\+D\+P\+I@{get\+D\+P\+I}}
+\index{get\+D\+P\+I@{get\+D\+P\+I}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{get\+D\+P\+I}]{\setlength{\rightskip}{0pt plus 5cm}qreal G\+V\+Skeleton\+Graph\+::get\+D\+P\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_abae4623f9d7c1cf8eb078ddc974d8d67}
+
+
+gets the D\+P\+I value 
+
+\begin{DoxyReturn}{Returns}
+qreal the D\+P\+I value 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+208                               \{
+209     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+210     \textcolor{keywordflow}{return} \_agget(\_graph, \textcolor{stringliteral}{"dpi"},\textcolor{stringliteral}{"96,0"}).replace(\textcolor{charliteral}{','},\textcolor{stringliteral}{"."}).toDouble();
+211 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_adce1790e44da056309d142e153cb5a24}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!get\+Node@{get\+Node}}
+\index{get\+Node@{get\+Node}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{get\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Agnode\+\_\+t $\ast$ G\+V\+Skeleton\+Graph\+::get\+Node (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_adce1790e44da056309d142e153cb5a24}
+
+
+gets a node by its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & name the name of the node to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Agnode\+\_\+t$\ast$ a pointer to the retrieved node 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+143                                                       \{
+144     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+145 
+146     \textcolor{keywordflow}{if}(\_nodes.contains(name)) \textcolor{keywordflow}{return} \_nodes[name];
+147 
+148     \textcolor{keywordflow}{return} NULL;
+149 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_ade05624b5ad5afd0567af5a394d47011}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!graph@{graph}}
+\index{graph@{graph}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{graph}]{\setlength{\rightskip}{0pt plus 5cm}Agraph\+\_\+t $\ast$ G\+V\+Skeleton\+Graph\+::graph (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_ade05624b5ad5afd0567af5a394d47011}
+
+
+gets the graphviz graph struct of this \hyperlink{classGVSkeletonGraph}{G\+V\+Skeleton\+Graph} 
+
+\begin{DoxyReturn}{Returns}
+Agraph\+\_\+t$\ast$ a pointer to the graph 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+213                                  \{
+214     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+215     \textcolor{keywordflow}{return} this->\_graph;
+216 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a3488e1b4a133b330835c3c0be7caeedf}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!has\+Node@{has\+Node}}
+\index{has\+Node@{has\+Node}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{has\+Node}]{\setlength{\rightskip}{0pt plus 5cm}bool G\+V\+Skeleton\+Graph\+::has\+Node (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a3488e1b4a133b330835c3c0be7caeedf}
+
+
+check if a node exists in the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & name the name of the node which existence is to be checked \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 136 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+136                                                  \{
+137     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+138 
+139     \textcolor{keywordflow}{if}(\_nodes.contains(name)) \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+140     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+141 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_ac74f8e4b5ad9f207a35eb2696b5740b6}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ {\bf G\+V\+Node} $>$ G\+V\+Skeleton\+Graph\+::nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_ac74f8e4b5ad9f207a35eb2696b5740b6}
+
+
+tranforms the \+\_\+nodes attribute into a liste of \hyperlink{structGVNode}{G\+V\+Node} 
+
+\begin{DoxyReturn}{Returns}
+a list Q\+List$<$\+G\+V\+Node$>$ containing nodes of the graph 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+95                                      \{
+96     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+97 
+98     QList<GVNode> list;
+99     qreal dpi = this->\hyperlink{classGVSkeletonGraph_abae4623f9d7c1cf8eb078ddc974d8d67}{getDPI}();
+100     \textcolor{keywordflow}{for}(QMap<QString, Agnode\_t*>::const\_iterator it = \_nodes.begin(); it != \_nodes.end(); ++it) \{
+101         Agnode\_t *node = it.value();
+102         \hyperlink{structGVNode}{GVNode} object;
+103         \textcolor{keywordtype}{object}.\hyperlink{structGVNode_ad1af9e7c14f0b580854ad3428f1b5c9d}{name} = ND\_label(node)->text;
+104 
+105         qreal x = ND\_coord(node).x *(dpi/\hyperlink{classGVSkeletonGraph_abb7b658c4700d007559323bc62e7c66d}{GVSkeletonGraph::DotDefaultDPI});
+106         qreal y = -ND\_coord(node).y *(dpi/\hyperlink{classGVSkeletonGraph_abb7b658c4700d007559323bc62e7c66d}{GVSkeletonGraph::DotDefaultDPI});
+107 
+108         \textcolor{keywordtype}{object}.centerPos = QPoint(x,y);
+109 
+110         \textcolor{keywordtype}{object}.height = ND\_height(node) * dpi;
+111         \textcolor{keywordtype}{object}.width  = ND\_width(node)  * dpi;
+112 
+113         list << object;
+114     \}
+115 
+116     \textcolor{keywordflow}{return} list;
+117 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a1887eb0a40aadf726468b9baf500e58b}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!remove\+Edge@{remove\+Edge}}
+\index{remove\+Edge@{remove\+Edge}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{remove\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::remove\+Edge (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{source, }
+\item[{const Q\+String \&}]{target}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a1887eb0a40aadf726468b9baf500e58b}
+
+
+remove a edge to the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & source the name first node related to the edge \\
+\hline
+{\em Q\+String} & target the name second node related to the edge \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 185 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+185                                                                              \{
+186     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+187 
+188     \hyperlink{classGVSkeletonGraph_a1887eb0a40aadf726468b9baf500e58b}{removeEdge}(QPair<QString, QString>(source, target));
+189 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a546b14e4c3c48b7d0f4eac84955fd360}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!remove\+Edge@{remove\+Edge}}
+\index{remove\+Edge@{remove\+Edge}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{remove\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::remove\+Edge (
+\begin{DoxyParamCaption}
+\item[{const Q\+Pair$<$ Q\+String, Q\+String $>$ \&}]{key}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a546b14e4c3c48b7d0f4eac84955fd360}
+
+
+remove a edge to the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Pair$<$\+Q\+String,Q\+String$>$} & key pair of nodes related to the edge \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 191 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+191                                                                    \{
+192     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+193 
+194     \textcolor{keywordflow}{if}(\_edges.contains(key)) \{
+195         agdelete(\_graph, \_edges[key]);
+196         \_edges.remove(key);
+197     \}
+198 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a5360f1d472f7c548bcba0b7554dca649}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!remove\+Node@{remove\+Node}}
+\index{remove\+Node@{remove\+Node}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{remove\+Node}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::remove\+Node (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a5360f1d472f7c548bcba0b7554dca649}
+
+
+remove a node from the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+String} & name the name of the node to remove from the graph \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 127 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+127                                                     \{
+128     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+129 
+130     \textcolor{keywordflow}{if}(\_nodes.contains(name)) \{
+131         agdelete(\_graph, \_nodes[name]);
+132         \_nodes.remove(name);
+133     \}
+134 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a14ce57fdd94f4f5996af8be2476bf76b}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!set\+Font@{set\+Font}}
+\index{set\+Font@{set\+Font}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{set\+Font}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::set\+Font (
+\begin{DoxyParamCaption}
+\item[{Q\+Font}]{font}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a14ce57fdd94f4f5996af8be2476bf76b}
+
+
+set the font used for the graph 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Font} & font the font to set for the graph \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+72                                         \{
+73     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+74 
+75     \_font = font;
+76     \hyperlink{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}{setGraphObjectAttributes}(\_graph,\textcolor{stringliteral}{"fontname"},font.family());
+77 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!set\+Graph\+Object\+Attributes@{set\+Graph\+Object\+Attributes}}
+\index{set\+Graph\+Object\+Attributes@{set\+Graph\+Object\+Attributes}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{set\+Graph\+Object\+Attributes}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::set\+Graph\+Object\+Attributes (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{object, }
+\item[{Q\+String}]{attr, }
+\item[{Q\+String}]{value}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}
+
+
+set an attribute to a given value for a graph element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & $\ast$object the element to set attribute of \\
+\hline
+{\em Q\+String} & attr the name of the attribute to set \\
+\hline
+{\em Q\+String} & value the value to set the attribute to \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+66                                                                                         \{
+67     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+68 
+69     agsafeset(\textcolor{keywordtype}{object}, const\_cast<char *>(qPrintable(attr)),const\_cast<char *>(qPrintable(value)),
+      const\_cast<char *>(qPrintable(value)));
+70 \}
+\end{DoxyCode}
+\hypertarget{classGVSkeletonGraph_a3a283e888b23d526974f860241f8b1cf}{\index{G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}!set\+Node\+Size@{set\+Node\+Size}}
+\index{set\+Node\+Size@{set\+Node\+Size}!G\+V\+Skeleton\+Graph@{G\+V\+Skeleton\+Graph}}
+\subsubsection[{set\+Node\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void G\+V\+Skeleton\+Graph\+::set\+Node\+Size (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{object, }
+\item[{qreal}]{width, }
+\item[{qreal}]{height}
+\end{DoxyParamCaption}
+)}}\label{classGVSkeletonGraph_a3a283e888b23d526974f860241f8b1cf}
+
+
+setter for the node\+Size attribute 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & \+: the node to modify \\
+\hline
+{\em width} & \+: new width of the node \\
+\hline
+{\em height} & \+: new height of the node \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 151 of file G\+V\+Skeleton\+Graph.\+cpp.
+
+
+\begin{DoxyCode}
+151                                                                          \{
+152     setlocale(LC\_NUMERIC,\textcolor{stringliteral}{"en\_US.UTF-8"});
+153 
+154     QString nodePtsWidth = QString(\textcolor{stringliteral}{"%1"}).arg(width/\_agget(\_graph,\textcolor{stringliteral}{"dpi"}, \textcolor{stringliteral}{"96,0"}).replace(\textcolor{charliteral}{','},\textcolor{stringliteral}{"."}).toDouble()
+      );
+155     \hyperlink{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}{setGraphObjectAttributes}(\textcolor{keywordtype}{object},\textcolor{stringliteral}{"width"},nodePtsWidth.replace(\textcolor{charliteral}{'.'},\textcolor{stringliteral}{","}));
+156     QString nodePtsHeight = QString(\textcolor{stringliteral}{"%1"}).arg(height/\_agget(\_graph,\textcolor{stringliteral}{"dpi"}, \textcolor{stringliteral}{"96,0"}).replace(\textcolor{charliteral}{','},\textcolor{stringliteral}{"."}).toDouble
+      ());
+157     \hyperlink{classGVSkeletonGraph_ae47e7e33a02a94658be0ab3c950172bc}{setGraphObjectAttributes}(\textcolor{keywordtype}{object},\textcolor{stringliteral}{"height"},nodePtsHeight.replace(\textcolor{charliteral}{'.'},\textcolor{stringliteral}{","}));
+158 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{GVSkeletonGraph_8h}{G\+V\+Skeleton\+Graph.\+h}\item 
+src/gviz/G\+V\+Skeleton\+Graph.\+cpp\end{DoxyCompactItemize}

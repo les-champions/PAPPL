@@ -1,0 +1,20 @@
+<map id="headers/PHIO.h" name="headers/PHIO.h">
+<area shape="rect" id="node3" href="$PH_8h.html" title="header for the PH class " alt="" coords="1022,229,1074,256"/>
+<area shape="rect" id="node33" href="$MainWindow_8h.html" title="header for the Main class " alt="" coords="2066,80,2174,107"/>
+<area shape="rect" id="node8" href="$Action_8h.html" title="header for the Action class " alt="" coords="1013,304,1083,331"/>
+<area shape="rect" id="node18" href="$PHScene_8h.html" title="header for the PHScene class " alt="" coords="1886,528,1975,555"/>
+<area shape="rect" id="node25" href="$Sort_8h.html" title="header for the Sort class " alt="" coords="1087,528,1145,555"/>
+<area shape="rect" id="node28" href="$GVSkeletonGraph_8h.html" title="header for the GVSkeletonGraph class " alt="" coords="447,453,585,480"/>
+<area shape="rect" id="node10" href="$GAction_8h.html" title="header for the GAction class " alt="" coords="1231,379,1311,405"/>
+<area shape="rect" id="node14" href="$GVEdge_8h.html" title="header for the GVEdge class " alt="" coords="620,528,703,555"/>
+<area shape="rect" id="node21" href="$GSort_8h.html" title="header for the GSort class " alt="" coords="1237,453,1304,480"/>
+<area shape="rect" id="node27" href="$GVNode_8h.html" title="header for the GVNode class " alt="" coords="727,528,809,555"/>
+<area shape="rect" id="node26" href="$Process_8h.html" title="header for the Process class " alt="" coords="995,603,1077,629"/>
+<area shape="rect" id="node35" href="$MyArea_8h.html" title="header for the MyArea class " alt="" coords="1937,155,2015,181"/>
+<area shape="rect" id="node41" href="$ConnectionSettings_8h_source.html" title="ConnectionSettings.h" alt="" coords="2397,304,2544,331"/>
+<area shape="rect" id="node47" href="$FunctionForm_8h_source.html" title="FunctionForm.h" alt="" coords="2259,304,2373,331"/>
+<area shape="rect" id="node48" href="$TikzEditor_8h_source.html" title="TikzEditor.h" alt="" coords="2119,304,2211,331"/>
+<area shape="rect" id="node44" href="$FuncFrame_8h_source.html" title="FuncFrame.h" alt="" coords="2619,379,2717,405"/>
+<area shape="rect" id="node46" href="$ChoixLigne_8h_source.html" title="ChoixLigne.h" alt="" coords="2496,379,2595,405"/>
+<area shape="rect" id="node45" href="$ArgumentFrame_8h_source.html" title="ArgumentFrame.h" alt="" coords="2379,453,2506,480"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="headers/Exceptions.h" name="headers/Exceptions.h">
+<area shape="rect" id="node2" href="$PHScene_8cpp_source.html" title="src/gfx/PHScene.cpp" alt="" coords="5,80,152,107"/>
+<area shape="rect" id="node3" href="$GVSkeletonGraph_8cpp_source.html" title="src/gviz/GVSkeletonGraph.cpp" alt="" coords="176,80,379,107"/>
+<area shape="rect" id="node4" href="$IO_8cpp_source.html" title="src/io/IO.cpp" alt="" coords="403,80,501,107"/>
+<area shape="rect" id="node5" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="525,80,641,107"/>
+<area shape="rect" id="node6" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="665,80,772,107"/>
+<area shape="rect" id="node7" href="$Sort_8cpp_source.html" title="src/ph/Sort.cpp" alt="" coords="797,80,907,107"/>
+<area shape="rect" id="node8" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="931,80,1042,107"/>
+<area shape="rect" id="node9" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="1066,80,1225,107"/>
+<area shape="rect" id="node10" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="1249,80,1385,107"/>
+</map>

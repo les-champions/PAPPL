@@ -1,0 +1,258 @@
+\hypertarget{classAction}{\section{Action Class Reference}
+\label{classAction}\index{Action@{Action}}
+}
+
+
+Represents an \hyperlink{classAction}{Action} of the process hitting.  
+
+
+
+
+{\ttfamily \#include $<$Action.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAction_a813d7e506bed06d58988b8efa46371c7}{Action} (Process\+Ptr source\+\_\+, Process\+Ptr target\+\_\+, Process\+Ptr result\+\_\+, const bool \&infinite\+Rate\+\_\+, const double \&r\+\_\+, const int \&sa\+\_\+)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+Process\+Ptr \hyperlink{classAction_a19ce83cb05f0823e2426549108b29c55}{get\+Source} ()
+\begin{DoxyCompactList}\small\item\em gets the source \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+Process\+Ptr \hyperlink{classAction_a1a6bbe7a883a55d0c446ec5e23ae36d6}{get\+Target} ()
+\begin{DoxyCompactList}\small\item\em gets the target \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+Process\+Ptr \hyperlink{classAction_ad2f1969b3f50dd235000c6788a978ba0}{get\+Result} ()
+\begin{DoxyCompactList}\small\item\em gets the result \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+string \hyperlink{classAction_a0dfc2e29fbaca7c75d60fd3cd8582052}{to\+String} (void)
+\begin{DoxyCompactList}\small\item\em gives a text representation of the \hyperlink{classProcess}{Process} (as it would be in a .ph file) \end{DoxyCompactList}\item 
+string \hyperlink{classAction_aa38afb2bcdc765b8e905a8c0af68b7a8}{to\+Dot\+String} (void)
+\begin{DoxyCompactList}\small\item\em gives a text representation of the \hyperlink{classProcess}{Process} (in .dot format, used in Graphviz) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{Process\+Ptr \hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source}}\label{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}
+
+\begin{DoxyCompactList}\small\item\em the source \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{Process\+Ptr \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}}\label{classAction_ac77168b4d172cfc7238cfbb422fa4a98}
+
+\begin{DoxyCompactList}\small\item\em the target \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classAction_a5896c6900916d296ed4220063f24b78d}{Process\+Ptr \hyperlink{classAction_a5896c6900916d296ed4220063f24b78d}{result}}\label{classAction_a5896c6900916d296ed4220063f24b78d}
+
+\begin{DoxyCompactList}\small\item\em the result \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classAction_a5107742916f82d9f529f17606ad5ab74}{bool \hyperlink{classAction_a5107742916f82d9f529f17606ad5ab74}{infinite\+Rate}}\label{classAction_a5107742916f82d9f529f17606ad5ab74}
+
+\begin{DoxyCompactList}\small\item\em Boolean that determines whether the rate of the hit is infinite or not. \end{DoxyCompactList}\item 
+\hypertarget{classAction_a87bdc737d9edb523ec57adb27adec6b6}{float \hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r}}\label{classAction_a87bdc737d9edb523ec57adb27adec6b6}
+
+\begin{DoxyCompactList}\small\item\em the rate of the hit \end{DoxyCompactList}\item 
+\hypertarget{classAction_a5832a567f356f72e4767d84ad6a6212a}{int \hyperlink{classAction_a5832a567f356f72e4767d84ad6a6212a}{sa}}\label{classAction_a5832a567f356f72e4767d84ad6a6212a}
+
+\begin{DoxyCompactList}\small\item\em the stochasticity absorption \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents an \hyperlink{classAction}{Action} of the process hitting. 
+
+Definition at line 28 of file Action.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAction_a813d7e506bed06d58988b8efa46371c7}{\index{Action@{Action}!Action@{Action}}
+\index{Action@{Action}!Action@{Action}}
+\subsubsection[{Action}]{\setlength{\rightskip}{0pt plus 5cm}Action\+::\+Action (
+\begin{DoxyParamCaption}
+\item[{Process\+Ptr}]{source\+\_\+, }
+\item[{Process\+Ptr}]{target\+\_\+, }
+\item[{Process\+Ptr}]{result\+\_\+, }
+\item[{const bool \&}]{infinite\+Rate\+\_\+, }
+\item[{const double \&}]{r\+\_\+, }
+\item[{const int \&}]{sa\+\_\+}
+\end{DoxyParamCaption}
+)}}\label{classAction_a813d7e506bed06d58988b8efa46371c7}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Process\+Ptr} & the source \hyperlink{classProcess}{Process} of the hit \\
+\hline
+{\em Process\+Ptr} & the target \hyperlink{classProcess}{Process} of the hit \\
+\hline
+{\em Process\+Ptr} & the result of the hit \\
+\hline
+{\em bool} & determines whether the rate of the hit is infinite or not \\
+\hline
+{\em double} & the rate of the hit \\
+\hline
+{\em int} & the stochasticity absorption of the hit \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+7     : \hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source}(source\_), \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}(target\_), \hyperlink{classAction_a5896c6900916d296ed4220063f24b78d}{result}(result\_), 
+      \hyperlink{classAction_a5107742916f82d9f529f17606ad5ab74}{infiniteRate}(infiniteRate\_), \hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r}(r\_), \hyperlink{classAction_a5832a567f356f72e4767d84ad6a6212a}{sa}(sa\_) \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAction_ad2f1969b3f50dd235000c6788a978ba0}{\index{Action@{Action}!get\+Result@{get\+Result}}
+\index{get\+Result@{get\+Result}!Action@{Action}}
+\subsubsection[{get\+Result}]{\setlength{\rightskip}{0pt plus 5cm}Process\+Ptr Action\+::get\+Result (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAction_ad2f1969b3f50dd235000c6788a978ba0}
+
+
+gets the result \hyperlink{classProcess}{Process} 
+
+\begin{DoxyReturn}{Returns}
+Process\+Ptr pointer to the result \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+17                              \{
+18     \textcolor{keywordflow}{return} \hyperlink{classAction_a5896c6900916d296ed4220063f24b78d}{result};
+19 \}
+\end{DoxyCode}
+\hypertarget{classAction_a19ce83cb05f0823e2426549108b29c55}{\index{Action@{Action}!get\+Source@{get\+Source}}
+\index{get\+Source@{get\+Source}!Action@{Action}}
+\subsubsection[{get\+Source}]{\setlength{\rightskip}{0pt plus 5cm}Process\+Ptr Action\+::get\+Source (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAction_a19ce83cb05f0823e2426549108b29c55}
+
+
+gets the source \hyperlink{classProcess}{Process} 
+
+\begin{DoxyReturn}{Returns}
+Process\+Ptr pointer to the source \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+11                              \{
+12     \textcolor{keywordflow}{return} \hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source};
+13 \}
+\end{DoxyCode}
+\hypertarget{classAction_a1a6bbe7a883a55d0c446ec5e23ae36d6}{\index{Action@{Action}!get\+Target@{get\+Target}}
+\index{get\+Target@{get\+Target}!Action@{Action}}
+\subsubsection[{get\+Target}]{\setlength{\rightskip}{0pt plus 5cm}Process\+Ptr Action\+::get\+Target (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAction_a1a6bbe7a883a55d0c446ec5e23ae36d6}
+
+
+gets the target \hyperlink{classProcess}{Process} 
+
+\begin{DoxyReturn}{Returns}
+Process\+Ptr pointer to the target \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+14                              \{
+15     \textcolor{keywordflow}{return} \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target};
+16 \}
+\end{DoxyCode}
+\hypertarget{classAction_aa38afb2bcdc765b8e905a8c0af68b7a8}{\index{Action@{Action}!to\+Dot\+String@{to\+Dot\+String}}
+\index{to\+Dot\+String@{to\+Dot\+String}!Action@{Action}}
+\subsubsection[{to\+Dot\+String}]{\setlength{\rightskip}{0pt plus 5cm}string Action\+::to\+Dot\+String (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classAction_aa38afb2bcdc765b8e905a8c0af68b7a8}
+
+
+gives a text representation of the \hyperlink{classProcess}{Process} (in .dot format, used in Graphviz) 
+
+\begin{DoxyReturn}{Returns}
+string the text representation of the \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+22                                 \{
+23     \textcolor{keywordtype}{string} res;
+24 
+25     res +=              \hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source}->getDotName()
+26                         + \textcolor{stringliteral}{" -> "} +  \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}->getDotName()
+27                         + \textcolor{stringliteral}{";\(\backslash\)n"};
+28     res +=              \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}->getDotName()
+29                         + \textcolor{stringliteral}{" -> "} +  \hyperlink{classAction_a5896c6900916d296ed4220063f24b78d}{result}->getDotName()
+30                         + \textcolor{stringliteral}{";\(\backslash\)n"};
+31 
+32     \textcolor{keywordflow}{return} res;
+33 \}
+\end{DoxyCode}
+\hypertarget{classAction_a0dfc2e29fbaca7c75d60fd3cd8582052}{\index{Action@{Action}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Action@{Action}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}string Action\+::to\+String (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classAction_a0dfc2e29fbaca7c75d60fd3cd8582052}
+
+
+gives a text representation of the \hyperlink{classProcess}{Process} (as it would be in a .ph file) 
+
+\begin{DoxyReturn}{Returns}
+string the text representation of the \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file Action.\+cpp.
+
+
+\begin{DoxyCode}
+37                              \{
+38 
+39     \textcolor{keywordflow}{return}      \hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source}->getSort()->getName()
+40                 +   \textcolor{stringliteral}{" "}
+41                 +   boost::lexical\_cast<\textcolor{keywordtype}{string}>(\hyperlink{classAction_a3c09a49605fcc2f51ee6eb792f7bb9b4}{source}->getNumber())
+42                 +   \textcolor{stringliteral}{" -> "}
+43                 +   \hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}->getSort()->getName()
+44                 +   \textcolor{stringliteral}{" "}
+45                 +    boost::lexical\_cast<\textcolor{keywordtype}{string}>(\hyperlink{classAction_ac77168b4d172cfc7238cfbb422fa4a98}{target}->getNumber())
+46                 +   \textcolor{stringliteral}{" "}
+47                 +    boost::lexical\_cast<string>(\hyperlink{classAction_a5896c6900916d296ed4220063f24b78d}{result}->getNumber())
+48                 +   \textcolor{stringliteral}{" @"}
+49                 +   (\hyperlink{classAction_a5107742916f82d9f529f17606ad5ab74}{infiniteRate} ?
+50                      \textcolor{stringliteral}{"Inf"}
+51                      :
+52                      (\hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r} == (\textcolor{keywordtype}{int}) \hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r}) ?
+53                      boost::lexical\_cast<\textcolor{keywordtype}{string}>(\hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r}) + \textcolor{stringliteral}{"."}
+54                      :
+55                      boost::lexical\_cast<string>(\hyperlink{classAction_a87bdc737d9edb523ec57adb27adec6b6}{r})
+56                   )
+57                 +   \textcolor{stringliteral}{"~"}
+58                 +    boost::lexical\_cast<string>(\hyperlink{classAction_a5832a567f356f72e4767d84ad6a6212a}{sa})
+59                 +   \textcolor{stringliteral}{"\(\backslash\)n"}
+60                 ;
+61 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{Action_8h}{Action.\+h}\item 
+src/ph/Action.\+cpp\end{DoxyCompactItemize}

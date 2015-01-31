@@ -1,0 +1,5 @@
+<map id="GSort" name="GSort">
+<area shape="rect" id="node3" href="$classPHScene.html" title="the graphic object representing the process hitting extends QGraphicsScene " alt="" coords="193,184,272,211"/>
+<area shape="rect" id="node6" href="$classPH.html" title="represents an entire process hitting as defined in a PH file " alt="" coords="339,95,380,121"/>
+<area shape="rect" id="node9" href="$structGVNode.html" title="struct containing the information for a GVGraph&#39;s node " alt="" coords="297,184,369,211"/>
+</map>

@@ -1,0 +1,324 @@
+\hypertarget{classGProcess}{\section{G\+Process Class Reference}
+\label{classGProcess}\index{G\+Process@{G\+Process}}
+}
+
+
+contains style and layout info to draw a process  
+
+
+
+
+{\ttfamily \#include $<$G\+Process.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGProcess_a9d2c574670ad8ba93aa174b65e403d88}{G\+Process} (Process\+Ptr p, double center\+X, double center\+Y)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ad35cae9e80b72eb324ea6372eaf03f61}{Process\+Ptr $\ast$ \hyperlink{classGProcess_ad35cae9e80b72eb324ea6372eaf03f61}{get\+Process} ()}\label{classGProcess_ad35cae9e80b72eb324ea6372eaf03f61}
+
+\begin{DoxyCompactList}\small\item\em gets the related \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_acff384353cc5b80c04d360d1ff4cbe93}{Process\+Ptr \hyperlink{classGProcess_acff384353cc5b80c04d360d1ff4cbe93}{get\+Process\+Ptr} ()}\label{classGProcess_acff384353cc5b80c04d360d1ff4cbe93}
+
+\begin{DoxyCompactList}\small\item\em gets the related \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+Q\+Graphics\+Item $\ast$ \hyperlink{classGProcess_a2f1e6d738a87a2c9330f514029c97659}{get\+Display\+Item} (void)
+\begin{DoxyCompactList}\small\item\em gets the display \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ae1fa4f2cb33483789c87bd3f70a863c4}{Q\+Graphics\+Ellipse\+Item $\ast$ \hyperlink{classGProcess_ae1fa4f2cb33483789c87bd3f70a863c4}{get\+Ellipse\+Item} ()}\label{classGProcess_ae1fa4f2cb33483789c87bd3f70a863c4}
+
+\begin{DoxyCompactList}\small\item\em gets the ellipse \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a2f5c5c661ace7a5f3499c7ddf1669018}{Q\+Graphics\+Rect\+Item $\ast$ \hyperlink{classGProcess_a2f5c5c661ace7a5f3499c7ddf1669018}{get\+Margin\+Rect} ()}\label{classGProcess_a2f5c5c661ace7a5f3499c7ddf1669018}
+
+\begin{DoxyCompactList}\small\item\em gets the rect item that represents the margin of this \hyperlink{classGProcess}{G\+Process} \end{DoxyCompactList}\item 
+Q\+Point\+F $\ast$ \hyperlink{classGProcess_af4bb806fa496a07b8996d51a400797a3}{get\+Center\+Point} ()
+\begin{DoxyCompactList}\small\item\em get the center of the ellipse representing the process \end{DoxyCompactList}\item 
+Q\+Size\+F $\ast$ \hyperlink{classGProcess_ac5d93bdd3fd14ec276453d0578cda3b8}{get\+Size\+Ellipse} ()
+\begin{DoxyCompactList}\small\item\em get the size of the ellipse representing the process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a78a16fd604b953bbfeb6a8aba5ed8712}{Q\+Graphics\+Text\+Item $\ast$ \hyperlink{classGProcess_a78a16fd604b953bbfeb6a8aba5ed8712}{get\+Text} ()}\label{classGProcess_a78a16fd604b953bbfeb6a8aba5ed8712}
+
+\begin{DoxyCompactList}\small\item\em gets the text item \end{DoxyCompactList}\item 
+void \hyperlink{classGProcess_a1bb677682c51f3e329d58eaa7646ae5e}{set\+Coords\+For\+Import} (int x, int y)
+\begin{DoxyCompactList}\small\item\em updates the related center's coordinates with a point \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a3e8049a240d5781916b4c4d71af01b40}{void \hyperlink{classGProcess_a3e8049a240d5781916b4c4d71af01b40}{color\+Process} (Q\+Color)}\label{classGProcess_a3e8049a240d5781916b4c4d71af01b40}
+
+\begin{DoxyCompactList}\small\item\em colorer les process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ad4aeb7c475dfde8f6dd3b03197999130}{void \hyperlink{classGProcess_ad4aeb7c475dfde8f6dd3b03197999130}{color\+Process\+Border} (Q\+Color color)}\label{classGProcess_ad4aeb7c475dfde8f6dd3b03197999130}
+
+\begin{DoxyCompactList}\small\item\em colorer la bordure du process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_af9ae3c70bc7db3aba93a3e938658c582}{void \hyperlink{classGProcess_af9ae3c70bc7db3aba93a3e938658c582}{to\+Bold} ()}\label{classGProcess_af9ae3c70bc7db3aba93a3e938658c582}
+
+\begin{DoxyCompactList}\small\item\em transform this process to bold \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a783c4847acfd5bd2acfd6f502d1429d1}{void \hyperlink{classGProcess_a783c4847acfd5bd2acfd6f502d1429d1}{be\+Actif\+Process} (int r, int g, int b)}\label{classGProcess_a783c4847acfd5bd2acfd6f502d1429d1}
+
+\begin{DoxyCompactList}\small\item\em transform this process to actif state \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a68cad4f4af27c756840c6995a345e0cb}{void \hyperlink{classGProcess_a68cad4f4af27c756840c6995a345e0cb}{be\+Non\+Actif\+Process} ()}\label{classGProcess_a68cad4f4af27c756840c6995a345e0cb}
+
+\begin{DoxyCompactList}\small\item\em transform this process to non actif state \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_aa1da235a0736b84881b31324a44a7728}{bool \hyperlink{classGProcess_aa1da235a0736b84881b31324a44a7728}{get\+Process\+Actif\+State} ()}\label{classGProcess_aa1da235a0736b84881b31324a44a7728}
+
+\begin{DoxyCompactList}\small\item\em gets the state of the process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_aff73c9425ab78c8b282ac5c9c1b23ac7}{void \hyperlink{classGProcess_aff73c9425ab78c8b282ac5c9c1b23ac7}{set\+Process\+Actif\+State} (bool state)}\label{classGProcess_aff73c9425ab78c8b282ac5c9c1b23ac7}
+
+\begin{DoxyCompactList}\small\item\em sets the state of the process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a2258dbe7ac135031d9b86dba9b4412a5}{int \hyperlink{classGProcess_a2258dbe7ac135031d9b86dba9b4412a5}{get\+Process\+Color\+Number} ()}\label{classGProcess_a2258dbe7ac135031d9b86dba9b4412a5}
+
+\begin{DoxyCompactList}\small\item\em gets the number of color R\+G\+B to tik\+Z file \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a7c4daece5e21e153838b0ed26cdf83fe}{void \hyperlink{classGProcess_a7c4daece5e21e153838b0ed26cdf83fe}{set\+Process\+Color\+Number} (int nb)}\label{classGProcess_a7c4daece5e21e153838b0ed26cdf83fe}
+
+\begin{DoxyCompactList}\small\item\em sets the number of the process color R\+G\+B to Tik\+Z file \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a18a028b1a1c4e1b7949e31b2bdb4466a}{bool \hyperlink{classGProcess_a18a028b1a1c4e1b7949e31b2bdb4466a}{is\+Bold} ()}\label{classGProcess_a18a028b1a1c4e1b7949e31b2bdb4466a}
+
+\begin{DoxyCompactList}\small\item\em verify if this process is bold \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGProcess_a54973973fcc0c91f496a3e2504cad5eb}{static const int {\bfseries size\+Default} = 100}\label{classGProcess_a54973973fcc0c91f496a3e2504cad5eb}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classGProcess_a8c0a68a9aa30e5233f4bb19f4d8fdcce}{init\+Geometrics\+Values} (Q\+Point\+F center\+Point, double diameter)
+\begin{DoxyCompactList}\small\item\em init geometrics characteristics of the \hyperlink{classGProcess}{G\+Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a69e373076c707aca9848cdd9bfc0cbe0}{void \hyperlink{classGProcess_a69e373076c707aca9848cdd9bfc0cbe0}{init\+Ellipse\+Item} ()}\label{classGProcess_a69e373076c707aca9848cdd9bfc0cbe0}
+
+\begin{DoxyCompactList}\small\item\em init the ellipse item \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a8e33860abac2659ec14754133f574663}{void \hyperlink{classGProcess_a8e33860abac2659ec14754133f574663}{init\+Margin\+Rect\+Item} ()}\label{classGProcess_a8e33860abac2659ec14754133f574663}
+
+\begin{DoxyCompactList}\small\item\em init the margin\+Rect item \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a8bc107d304dad64083ae5e3974c0e824}{void \hyperlink{classGProcess_a8bc107d304dad64083ae5e3974c0e824}{init\+Text\+Item} ()}\label{classGProcess_a8bc107d304dad64083ae5e3974c0e824}
+
+\begin{DoxyCompactList}\small\item\em init the text item \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGProcess_adb2d4b43a105c00b5be1f5bc405a3f43}{Process\+Ptr \hyperlink{classGProcess_adb2d4b43a105c00b5be1f5bc405a3f43}{process}}\label{classGProcess_adb2d4b43a105c00b5be1f5bc405a3f43}
+
+\begin{DoxyCompactList}\small\item\em the related \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{Q\+Point\+F $\ast$ \hyperlink{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{center}}\label{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}
+
+\begin{DoxyCompactList}\small\item\em position of the center of the ellipse representing the process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ab28a1e140b3206418b23593588d9777f}{Q\+Size\+F $\ast$ \hyperlink{classGProcess_ab28a1e140b3206418b23593588d9777f}{size}}\label{classGProcess_ab28a1e140b3206418b23593588d9777f}
+
+\begin{DoxyCompactList}\small\item\em size of the ellipse representing the process \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_afcb6a6765219d5ca69f23b89a147a7db}{Q\+Graphics\+Item $\ast$ \hyperlink{classGProcess_afcb6a6765219d5ca69f23b89a147a7db}{display}}\label{classGProcess_afcb6a6765219d5ca69f23b89a147a7db}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ac0770d84d26f835cd409cb1bbd5a2408}{Q\+Graphics\+Ellipse\+Item $\ast$ \hyperlink{classGProcess_ac0770d84d26f835cd409cb1bbd5a2408}{ellipse}}\label{classGProcess_ac0770d84d26f835cd409cb1bbd5a2408}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the ellipse of the \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a4ff36f4f6daae75d094c53d837ad4ecc}{Q\+Graphics\+Text\+Item $\ast$ \hyperlink{classGProcess_a4ff36f4f6daae75d094c53d837ad4ecc}{text}}\label{classGProcess_a4ff36f4f6daae75d094c53d837ad4ecc}
+
+\begin{DoxyCompactList}\small\item\em the graphical item representing the text of the \hyperlink{classProcess}{Process} \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a9488cf1e4bf4351233aaaa1c1bc67370}{Q\+Graphics\+Rect\+Item $\ast$ \hyperlink{classGProcess_a9488cf1e4bf4351233aaaa1c1bc67370}{margin\+Rect}}\label{classGProcess_a9488cf1e4bf4351233aaaa1c1bc67370}
+
+\begin{DoxyCompactList}\small\item\em the margin around this process, must exclude any other process' margin (cf. graphviz attribute \char`\"{}pos\char`\"{} in G\+V\+Sub\+Graph) \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_ade5c867b8715449df4c2ae5a6393b0de}{bool \hyperlink{classGProcess_ade5c867b8715449df4c2ae5a6393b0de}{bold}}\label{classGProcess_ade5c867b8715449df4c2ae5a6393b0de}
+
+\begin{DoxyCompactList}\small\item\em if this process is bold or not \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_abe553a88a9fabe701184d03abc4b9db7}{bool \hyperlink{classGProcess_abe553a88a9fabe701184d03abc4b9db7}{actif\+State}}\label{classGProcess_abe553a88a9fabe701184d03abc4b9db7}
+
+\begin{DoxyCompactList}\small\item\em if this process is bold or not \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_af97beb415b929cde6cba174baa2e9b27}{int \hyperlink{classGProcess_af97beb415b929cde6cba174baa2e9b27}{number\+Process\+Color}}\label{classGProcess_af97beb415b929cde6cba174baa2e9b27}
+
+\begin{DoxyCompactList}\small\item\em color of this process \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGProcess_a94d91ce9eef85fe8d4f97f7c3ab8ee98}{static const int \hyperlink{classGProcess_a94d91ce9eef85fe8d4f97f7c3ab8ee98}{margin\+Zone} = 10}\label{classGProcess_a94d91ce9eef85fe8d4f97f7c3ab8ee98}
+
+\begin{DoxyCompactList}\small\item\em arbitrarily-\/chosen key for \char`\"{}margin item\char`\"{} data \end{DoxyCompactList}\item 
+\hypertarget{classGProcess_a8dd5428c10ff4d7317b244630aa13012}{static const int \hyperlink{classGProcess_a8dd5428c10ff4d7317b244630aa13012}{sort\+Name} = 11}\label{classGProcess_a8dd5428c10ff4d7317b244630aa13012}
+
+\begin{DoxyCompactList}\small\item\em arbitrarily-\/chosen key for sort name data \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+contains style and layout info to draw a process 
+
+Definition at line 26 of file G\+Process.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGProcess_a9d2c574670ad8ba93aa174b65e403d88}{\index{G\+Process@{G\+Process}!G\+Process@{G\+Process}}
+\index{G\+Process@{G\+Process}!G\+Process@{G\+Process}}
+\subsubsection[{G\+Process}]{\setlength{\rightskip}{0pt plus 5cm}G\+Process\+::\+G\+Process (
+\begin{DoxyParamCaption}
+\item[{Process\+Ptr}]{p, }
+\item[{double}]{center\+X, }
+\item[{double}]{center\+Y}
+\end{DoxyParamCaption}
+)}}\label{classGProcess_a9d2c574670ad8ba93aa174b65e403d88}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Process\+Ptr} & the related \hyperlink{classProcess}{Process} object \\
+\hline
+{\em double} & center\+X position of the center of the ellipse in the x axis \\
+\hline
+{\em double} & center\+Y position of the center of the ellipse in the y axis \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 16 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+16                                                               : \hyperlink{classGProcess_adb2d4b43a105c00b5be1f5bc405a3f43}{process}(p) \{
+17 
+18     \hyperlink{classGProcess_afcb6a6765219d5ca69f23b89a147a7db}{display} = \textcolor{keyword}{new} QGraphicsItemGroup();
+19 
+20     \hyperlink{classGProcess_a8c0a68a9aa30e5233f4bb19f4d8fdcce}{initGeometricsValues}(QPointF(centerX,centerY), sizeDefault);
+21 
+22     \hyperlink{classGProcess_a69e373076c707aca9848cdd9bfc0cbe0}{initEllipseItem}();
+23 
+24     \hyperlink{classGProcess_a8e33860abac2659ec14754133f574663}{initMarginRectItem}();
+25 
+26     \hyperlink{classGProcess_a8bc107d304dad64083ae5e3974c0e824}{initTextItem}();
+27 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGProcess_af4bb806fa496a07b8996d51a400797a3}{\index{G\+Process@{G\+Process}!get\+Center\+Point@{get\+Center\+Point}}
+\index{get\+Center\+Point@{get\+Center\+Point}!G\+Process@{G\+Process}}
+\subsubsection[{get\+Center\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Point\+F $\ast$ G\+Process\+::get\+Center\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGProcess_af4bb806fa496a07b8996d51a400797a3}
+
+
+get the center of the ellipse representing the process 
+
+\begin{DoxyReturn}{Returns}
+G\+Point the center of the ellipse 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+172                                   \{
+173     \textcolor{keywordflow}{return} this->\hyperlink{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{center};
+174 \}
+\end{DoxyCode}
+\hypertarget{classGProcess_a2f1e6d738a87a2c9330f514029c97659}{\index{G\+Process@{G\+Process}!get\+Display\+Item@{get\+Display\+Item}}
+\index{get\+Display\+Item@{get\+Display\+Item}!G\+Process@{G\+Process}}
+\subsubsection[{get\+Display\+Item}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Graphics\+Item $\ast$ G\+Process\+::get\+Display\+Item (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classGProcess_a2f1e6d738a87a2c9330f514029c97659}
+
+
+gets the display 
+
+\begin{DoxyReturn}{Returns}
+Q\+Graphics\+Item the graphical item representing the \hyperlink{classProcess}{Process} 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+160                                              \{
+161     \textcolor{keywordflow}{return} \hyperlink{classGProcess_afcb6a6765219d5ca69f23b89a147a7db}{display};
+162 \}
+\end{DoxyCode}
+\hypertarget{classGProcess_ac5d93bdd3fd14ec276453d0578cda3b8}{\index{G\+Process@{G\+Process}!get\+Size\+Ellipse@{get\+Size\+Ellipse}}
+\index{get\+Size\+Ellipse@{get\+Size\+Ellipse}!G\+Process@{G\+Process}}
+\subsubsection[{get\+Size\+Ellipse}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size\+F $\ast$ G\+Process\+::get\+Size\+Ellipse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGProcess_ac5d93bdd3fd14ec276453d0578cda3b8}
+
+
+get the size of the ellipse representing the process 
+
+\begin{DoxyReturn}{Returns}
+G\+Size the size of the ellipse 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+176                                  \{
+177     \textcolor{keywordflow}{return} this->\hyperlink{classGProcess_ab28a1e140b3206418b23593588d9777f}{size};
+178 \}
+\end{DoxyCode}
+\hypertarget{classGProcess_a8c0a68a9aa30e5233f4bb19f4d8fdcce}{\index{G\+Process@{G\+Process}!init\+Geometrics\+Values@{init\+Geometrics\+Values}}
+\index{init\+Geometrics\+Values@{init\+Geometrics\+Values}!G\+Process@{G\+Process}}
+\subsubsection[{init\+Geometrics\+Values}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Process\+::init\+Geometrics\+Values (
+\begin{DoxyParamCaption}
+\item[{Q\+Point\+F}]{center\+Point, }
+\item[{double}]{diameter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classGProcess_a8c0a68a9aa30e5233f4bb19f4d8fdcce}
+
+
+init geometrics characteristics of the \hyperlink{classGProcess}{G\+Process} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Point\+F} & center point to set the \hyperlink{classGProcess}{G\+Process} \\
+\hline
+{\em double} & diameter of the \hyperlink{classGProcess}{G\+Process} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+40                                                                         \{
+41     \hyperlink{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{center} = \textcolor{keyword}{new} QPointF(centerPoint);
+42     \hyperlink{classGProcess_ab28a1e140b3206418b23593588d9777f}{size} = \textcolor{keyword}{new} QSizeF(diameter,diameter);
+43 \}
+\end{DoxyCode}
+\hypertarget{classGProcess_a1bb677682c51f3e329d58eaa7646ae5e}{\index{G\+Process@{G\+Process}!set\+Coords\+For\+Import@{set\+Coords\+For\+Import}}
+\index{set\+Coords\+For\+Import@{set\+Coords\+For\+Import}!G\+Process@{G\+Process}}
+\subsubsection[{set\+Coords\+For\+Import}]{\setlength{\rightskip}{0pt plus 5cm}void G\+Process\+::set\+Coords\+For\+Import (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{classGProcess_a1bb677682c51f3e329d58eaa7646ae5e}
+
+
+updates the related center's coordinates with a point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & x the horizontal coordinate of the node \\
+\hline
+{\em int} & y the vertical coordinate of the node \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file G\+Process.\+cpp.
+
+
+\begin{DoxyCode}
+194                                               \{
+195     \hyperlink{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{center}->setX(x);
+196     \hyperlink{classGProcess_adfaaca476a8b0f8cdee231e1ebd80b78}{center}->setY(y);
+197 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{GProcess_8h}{G\+Process.\+h}\item 
+src/gfx/G\+Process.\+cpp\end{DoxyCompactItemize}

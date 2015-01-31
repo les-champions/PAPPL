@@ -1,0 +1,376 @@
+\hypertarget{classPH}{\section{P\+H Class Reference}
+\label{classPH}\index{P\+H@{P\+H}}
+}
+
+
+represents an entire process hitting as defined in a \hyperlink{classPH}{P\+H} file  
+
+
+
+
+{\ttfamily \#include $<$P\+H.\+h$>$}
+
+
+
+Collaboration diagram for P\+H\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{classPH__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPH_ae3ab2dd87b4bfadf04c1a14c6091aebc}{\hyperlink{classPH_ae3ab2dd87b4bfadf04c1a14c6091aebc}{P\+H} ()}\label{classPH_ae3ab2dd87b4bfadf04c1a14c6091aebc}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+void \hyperlink{classPH_ad4335e01899c57e6802021f1afb83e7f}{add\+Sort} (Sort\+Ptr s)
+\begin{DoxyCompactList}\small\item\em adds a sort to the \hyperlink{classPH}{P\+H} \end{DoxyCompactList}\item 
+void \hyperlink{classPH_ae9bed9356d272f3c43f2147d6d8e5906}{add\+Action} (Action\+Ptr a)
+\begin{DoxyCompactList}\small\item\em adds an action to the \hyperlink{classPH}{P\+H} \end{DoxyCompactList}\item 
+\hypertarget{classPH_a02f1cd90c270555a50c08caa0fb2d491}{Sort\+Ptr \hyperlink{classPH_a02f1cd90c270555a50c08caa0fb2d491}{get\+Sort} (string const \&)}\label{classPH_a02f1cd90c270555a50c08caa0fb2d491}
+
+\begin{DoxyCompactList}\small\item\em getter for a sort \end{DoxyCompactList}\item 
+\hypertarget{classPH_ae3ae50b901b63902ae4fc3262661bb5b}{list$<$ Action\+Ptr $>$ \hyperlink{classPH_ae3ae50b901b63902ae4fc3262661bb5b}{get\+Actions} (void)}\label{classPH_ae3ae50b901b63902ae4fc3262661bb5b}
+
+\begin{DoxyCompactList}\small\item\em getter for the actions of the \hyperlink{classPH}{P\+H} \end{DoxyCompactList}\item 
+\hypertarget{classPH_a99fd490a23ae915881d9d73f0b4cbfc5}{list$<$ Sort\+Ptr $>$ \hyperlink{classPH_a99fd490a23ae915881d9d73f0b4cbfc5}{get\+Sorts} (void)}\label{classPH_a99fd490a23ae915881d9d73f0b4cbfc5}
+
+\begin{DoxyCompactList}\small\item\em getter for the sorts of the \hyperlink{classPH}{P\+H} \end{DoxyCompactList}\item 
+\hypertarget{classPH_a3c8c9ef16c7c10ad3ca83c633b2e6255}{list$<$ Process\+Ptr $>$ \hyperlink{classPH_a3c8c9ef16c7c10ad3ca83c633b2e6255}{get\+Processes} (void)}\label{classPH_a3c8c9ef16c7c10ad3ca83c633b2e6255}
+
+\begin{DoxyCompactList}\small\item\em getter for the processes of the \hyperlink{classPH}{P\+H} \end{DoxyCompactList}\item 
+string \hyperlink{classPH_ae870206aad796943dffaa6bab1f7f293}{to\+String} (void)
+\begin{DoxyCompactList}\small\item\em gives a text representation of the process hitting (as it would be in a .ph file) \end{DoxyCompactList}\item 
+string \hyperlink{classPH_aa0a7716cb565380f06670517609ee960}{to\+Dot\+String} (void)
+\begin{DoxyCompactList}\small\item\em gives a text representation of the process hitting (in .dot format, used in Graphviz) \end{DoxyCompactList}\item 
+void \hyperlink{classPH_af1f67304076aded44a15a30aed6dc652}{render} (void)
+\begin{DoxyCompactList}\small\item\em calls for the process hitting in its scene \end{DoxyCompactList}\item 
+G\+V\+Skeleton\+Graph\+Ptr \hyperlink{classPH_aedd3200ed6657a0a793f5ffb60dac9a5}{create\+Skeleton\+Graph} (void)
+\begin{DoxyCompactList}\small\item\em make the skeleton\+Graph related to the ph model \end{DoxyCompactList}\item 
+P\+H\+Scene\+Ptr \hyperlink{classPH_aaf75a785bb9bd06cec611f0fb69d05f6}{get\+Graphics\+Scene} (void)
+\begin{DoxyCompactList}\small\item\em outputs for display \end{DoxyCompactList}\item 
+\hypertarget{classPH_a0494ca8a53e983230a9df06fa71043e1}{int \hyperlink{classPH_a0494ca8a53e983230a9df06fa71043e1}{get\+Stochasticity\+Absorption} ()}\label{classPH_a0494ca8a53e983230a9df06fa71043e1}
+
+\begin{DoxyCompactList}\small\item\em getter for the stochasticity absorption \end{DoxyCompactList}\item 
+\hypertarget{classPH_a78fb558177760ed0e640d8a0aaf8b06a}{void \hyperlink{classPH_a78fb558177760ed0e640d8a0aaf8b06a}{set\+Stochasticity\+Absorption} (int sa)}\label{classPH_a78fb558177760ed0e640d8a0aaf8b06a}
+
+\begin{DoxyCompactList}\small\item\em setter for the stochasticity absorption \end{DoxyCompactList}\item 
+\hypertarget{classPH_aa64e3d43f773122df2329491f6abdf6c}{double \hyperlink{classPH_aa64e3d43f773122df2329491f6abdf6c}{get\+Default\+Rate} ()}\label{classPH_aa64e3d43f773122df2329491f6abdf6c}
+
+\begin{DoxyCompactList}\small\item\em getter for the default rate; \end{DoxyCompactList}\item 
+\hypertarget{classPH_ae49be2823d5a2a7c6517b6783cf9fdfa}{void \hyperlink{classPH_ae49be2823d5a2a7c6517b6783cf9fdfa}{set\+Default\+Rate} (double r)}\label{classPH_ae49be2823d5a2a7c6517b6783cf9fdfa}
+
+\begin{DoxyCompactList}\small\item\em setter for the default rate \end{DoxyCompactList}\item 
+\hypertarget{classPH_a7ede855d04ee8e3a20beb159c5520003}{bool \hyperlink{classPH_a7ede855d04ee8e3a20beb159c5520003}{get\+Infinite\+Default\+Rate} ()}\label{classPH_a7ede855d04ee8e3a20beb159c5520003}
+
+\begin{DoxyCompactList}\small\item\em getter for the Infinite Default Rate \end{DoxyCompactList}\item 
+\hypertarget{classPH_acc38a15dc0e29ddfd2c8ae7d3371f7ab}{void \hyperlink{classPH_acc38a15dc0e29ddfd2c8ae7d3371f7ab}{set\+Infinite\+Default\+Rate} (bool b)}\label{classPH_acc38a15dc0e29ddfd2c8ae7d3371f7ab}
+
+\begin{DoxyCompactList}\small\item\em setter for the Infinitite Default Rate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPH_a4833770f4b4188111f13078d108c281e}{Q\+String\+List $\ast$ {\bfseries position\+Hit}}\label{classPH_a4833770f4b4188111f13078d108c281e}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPH_abdd55c7db00c19b89de0afba20d97b24}{int \hyperlink{classPH_abdd55c7db00c19b89de0afba20d97b24}{stochasticity\+\_\+absorption}}\label{classPH_abdd55c7db00c19b89de0afba20d97b24}
+
+\begin{DoxyCompactList}\small\item\em default value for stochasticity absorption \end{DoxyCompactList}\item 
+bool \hyperlink{classPH_aa66efaf095a379c3b108a023d7c98afa}{infinite\+\_\+default\+\_\+rate}
+\begin{DoxyCompactList}\small\item\em boolean to know if the default rate is or is not infinite \end{DoxyCompactList}\item 
+\hypertarget{classPH_a7a9525bc83257efefbaf9e78d96723ca}{double \hyperlink{classPH_a7a9525bc83257efefbaf9e78d96723ca}{default\+\_\+rate}}\label{classPH_a7a9525bc83257efefbaf9e78d96723ca}
+
+\begin{DoxyCompactList}\small\item\em default value for rate \end{DoxyCompactList}\item 
+\hypertarget{classPH_a889cc129633e88e4257f56dec04c5bac}{map$<$ string, Sort\+Ptr $>$ \hyperlink{classPH_a889cc129633e88e4257f56dec04c5bac}{sorts}}\label{classPH_a889cc129633e88e4257f56dec04c5bac}
+
+\begin{DoxyCompactList}\small\item\em map of the sorts, linked with their names \end{DoxyCompactList}\item 
+\hypertarget{classPH_a730f2eb0cd79487213cac9565d746a05}{list$<$ Action\+Ptr $>$ \hyperlink{classPH_a730f2eb0cd79487213cac9565d746a05}{actions}}\label{classPH_a730f2eb0cd79487213cac9565d746a05}
+
+\begin{DoxyCompactList}\small\item\em list of the actions \end{DoxyCompactList}\item 
+\hypertarget{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{P\+H\+Scene\+Ptr \hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene}}\label{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}
+
+\begin{DoxyCompactList}\small\item\em graphical object representing the process hitting \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+represents an entire process hitting as defined in a \hyperlink{classPH}{P\+H} file 
+
+Definition at line 48 of file P\+H.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPH_ae9bed9356d272f3c43f2147d6d8e5906}{\index{P\+H@{P\+H}!add\+Action@{add\+Action}}
+\index{add\+Action@{add\+Action}!P\+H@{P\+H}}
+\subsubsection[{add\+Action}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+::add\+Action (
+\begin{DoxyParamCaption}
+\item[{Action\+Ptr}]{a}
+\end{DoxyParamCaption}
+)}}\label{classPH_ae9bed9356d272f3c43f2147d6d8e5906}
+
+
+adds an action to the \hyperlink{classPH}{P\+H} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Action\+Ptr} & the action to add \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+65                                \{
+66     \hyperlink{classPH_a730f2eb0cd79487213cac9565d746a05}{actions}.push\_back(a);
+67 \}
+\end{DoxyCode}
+\hypertarget{classPH_ad4335e01899c57e6802021f1afb83e7f}{\index{P\+H@{P\+H}!add\+Sort@{add\+Sort}}
+\index{add\+Sort@{add\+Sort}!P\+H@{P\+H}}
+\subsubsection[{add\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+::add\+Sort (
+\begin{DoxyParamCaption}
+\item[{Sort\+Ptr}]{s}
+\end{DoxyParamCaption}
+)}}\label{classPH_ad4335e01899c57e6802021f1afb83e7f}
+
+
+adds a sort to the \hyperlink{classPH}{P\+H} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Sort\+Ptr} & the sort to add \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 62 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+62                            \{
+63     \hyperlink{classPH_a889cc129633e88e4257f56dec04c5bac}{sorts}.insert(SortEntry(s->getName(), s));
+64 \}
+\end{DoxyCode}
+\hypertarget{classPH_aedd3200ed6657a0a793f5ffb60dac9a5}{\index{P\+H@{P\+H}!create\+Skeleton\+Graph@{create\+Skeleton\+Graph}}
+\index{create\+Skeleton\+Graph@{create\+Skeleton\+Graph}!P\+H@{P\+H}}
+\subsubsection[{create\+Skeleton\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}G\+V\+Skeleton\+Graph\+Ptr P\+H\+::create\+Skeleton\+Graph (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPH_aedd3200ed6657a0a793f5ffb60dac9a5}
+
+
+make the skeleton\+Graph related to the ph model 
+
+calls graphviz to calculate the optimized graph \begin{DoxyReturn}{Returns}
+G\+V\+Skeleton\+Graph\+Ptr pointer to the Graph built representing the skeleton 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+104                                                \{
+105     GVSkeletonGraphPtr gSkeleton = make\_shared<GVSkeletonGraph>(QString(\textcolor{stringliteral}{"Skeleton Graph"}));
+106     QString sortName;
+107     vector<ProcessPtr> listProcess;
+108     \textcolor{keywordtype}{int} nbProcess;
+109     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} &e : \hyperlink{classPH_a889cc129633e88e4257f56dec04c5bac}{sorts}) \{
+110         sortName = makeSkeletonNodeName(e.second->getName());
+111         listProcess = e.second->getProcesses();
+112         nbProcess = listProcess.size();
+113         \textcolor{keywordtype}{int} height = (nbProcess+1)*(GProcess::sizeDefault+2*GSort::marginDefault);
+114         \textcolor{keywordtype}{int} width = height; \textcolor{comment}{// modified to get less "vertical" graphs}
+115         gSkeleton->addNode(sortName);
+116         gSkeleton->setNodeSize(gSkeleton->getNode(sortName),width,height);
+117         gSkeleton->setGraphObjectAttributes(gSkeleton->getNode(sortName),\textcolor{stringliteral}{"fixedsize"},\textcolor{stringliteral}{"true"});
+118     \}
+119 
+120     \textcolor{keywordflow}{for} (ActionPtr &a : \hyperlink{classPH_a730f2eb0cd79487213cac9565d746a05}{actions}) \{
+121         QString sourceName = makeSkeletonNodeName(a->getSource()->getSort()->getName());
+122         QString targetName = makeSkeletonNodeName(a->getTarget()->getSort()->getName());
+123         \textcolor{keywordflow}{if}(!gSkeleton->connectionExists(sourceName,targetName)&&(QString::compare(sourceName,targetName)!=0
+      )) \{
+124             gSkeleton->addEdge(sourceName,targetName);
+125         \}
+126     \}
+127     gSkeleton->applyLayout();
+128 
+129 
+130     \textcolor{keywordflow}{return} gSkeleton;
+131 \}
+\end{DoxyCode}
+\hypertarget{classPH_aaf75a785bb9bd06cec611f0fb69d05f6}{\index{P\+H@{P\+H}!get\+Graphics\+Scene@{get\+Graphics\+Scene}}
+\index{get\+Graphics\+Scene@{get\+Graphics\+Scene}!P\+H@{P\+H}}
+\subsubsection[{get\+Graphics\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}P\+H\+Scene\+Ptr P\+H\+::get\+Graphics\+Scene (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPH_aaf75a785bb9bd06cec611f0fb69d05f6}
+
+
+outputs for display 
+
+\begin{DoxyReturn}{Returns}
+P\+H\+Scene\+Ptr pointer to the Scene built 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+33                                 \{
+34     \textcolor{keywordflow}{if} (\hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene}.use\_count() == 0)    \hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene} = make\_shared<PHScene>(\textcolor{keyword}{this});
+35     \textcolor{keywordflow}{return} \hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene};
+36 \}
+\end{DoxyCode}
+\hypertarget{classPH_af1f67304076aded44a15a30aed6dc652}{\index{P\+H@{P\+H}!render@{render}}
+\index{render@{render}!P\+H@{P\+H}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+::render (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPH_af1f67304076aded44a15a30aed6dc652}
+
+
+calls for the process hitting in its scene 
+
+time-\/expensive method, calls the to\+G\+V\+Graph method 
+
+Definition at line 27 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+27                  \{
+28     \textcolor{keywordflow}{if} (\hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene}.use\_count() == 0) \hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene} = make\_shared<PHScene>(\textcolor{keyword}{this});
+29     \hyperlink{classPH_ac8fbe29746ee4097c879be0cf75f3ad7}{scene}->drawFromSkeleton();
+30 \}
+\end{DoxyCode}
+\hypertarget{classPH_aa0a7716cb565380f06670517609ee960}{\index{P\+H@{P\+H}!to\+Dot\+String@{to\+Dot\+String}}
+\index{to\+Dot\+String@{to\+Dot\+String}!P\+H@{P\+H}}
+\subsubsection[{to\+Dot\+String}]{\setlength{\rightskip}{0pt plus 5cm}string P\+H\+::to\+Dot\+String (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPH_aa0a7716cb565380f06670517609ee960}
+
+
+gives a text representation of the process hitting (in .dot format, used in Graphviz) 
+
+\begin{DoxyReturn}{Returns}
+string the text representation of the process hitting in D\+O\+T format 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+134                             \{
+135 
+136     \textcolor{keywordtype}{string} res;
+137     res += \textcolor{stringliteral}{"digraph G \{\(\backslash\)n"};
+138     res += \textcolor{stringliteral}{"node [style=filled,color=lightgrey]\(\backslash\)n"};
+139     \textcolor{comment}{// res += "edge [samehead]\(\backslash\)n";}
+140 
+141     \textcolor{comment}{// output Sorts}
+142     res += \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)n"};
+143     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} &e : \hyperlink{classPH_a889cc129633e88e4257f56dec04c5bac}{sorts})
+144         res += e.second->toDotString() + \textcolor{stringliteral}{"\(\backslash\)n"};
+145 
+146     \textcolor{comment}{// output Actions}
+147     res += \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)n"};
+148     \textcolor{keywordflow}{for} (ActionPtr &a : \hyperlink{classPH_a730f2eb0cd79487213cac9565d746a05}{actions})
+149         res += a->toDotString() + \textcolor{stringliteral}{"\(\backslash\)n"};
+150     res += \textcolor{stringliteral}{"\}\(\backslash\)n"};
+151 
+152     \textcolor{keywordflow}{return} res;
+153 \}
+\end{DoxyCode}
+\hypertarget{classPH_ae870206aad796943dffaa6bab1f7f293}{\index{P\+H@{P\+H}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!P\+H@{P\+H}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}string P\+H\+::to\+String (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPH_ae870206aad796943dffaa6bab1f7f293}
+
+
+gives a text representation of the process hitting (as it would be in a .ph file) 
+
+\begin{DoxyReturn}{Returns}
+string the text representation of the process hitting in \hyperlink{classPH}{P\+H} format 
+\end{DoxyReturn}
+
+
+Definition at line 157 of file P\+H.\+cpp.
+
+
+\begin{DoxyCode}
+157                          \{
+158 
+159     \textcolor{keywordtype}{string} res;
+160 
+161     \textcolor{comment}{// output headers}
+162     res += \textcolor{stringliteral}{"directive default\_rate "} + (\hyperlink{classPH_aa66efaf095a379c3b108a023d7c98afa}{infinite\_default\_rate} ? \textcolor{stringliteral}{"Inf"} :
+163                                         (\hyperlink{classPH_a7a9525bc83257efefbaf9e78d96723ca}{default\_rate} == (int) 
+      \hyperlink{classPH_a7a9525bc83257efefbaf9e78d96723ca}{default\_rate}) ?
+164                                         boost::lexical\_cast<\textcolor{keywordtype}{string}>(\hyperlink{classPH_a7a9525bc83257efefbaf9e78d96723ca}{default\_rate}) + \textcolor{stringliteral}{"."}
+165                                         :   boost::lexical\_cast<string>(
+      \hyperlink{classPH_a7a9525bc83257efefbaf9e78d96723ca}{default\_rate})
+166                                        ) + \textcolor{stringliteral}{"\(\backslash\)n"};
+167     res += \textcolor{stringliteral}{"directive stochasticity\_absorption "} + boost::lexical\_cast<\textcolor{keywordtype}{string}>(
+      \hyperlink{classPH_abdd55c7db00c19b89de0afba20d97b24}{stochasticity\_absorption}) + \textcolor{stringliteral}{"\(\backslash\)n"};
+168 
+169     \textcolor{comment}{// output Sorts}
+170     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} &e : \hyperlink{classPH_a889cc129633e88e4257f56dec04c5bac}{sorts})
+171         res += e.second->toString();
+172     res += \textcolor{stringliteral}{"\(\backslash\)n"};
+173 
+174     \textcolor{comment}{// output actions}
+175     \textcolor{keywordflow}{for} (ActionPtr &a : \hyperlink{classPH_a730f2eb0cd79487213cac9565d746a05}{actions})
+176         res += a->toString();
+177     res += \textcolor{stringliteral}{"\(\backslash\)n"};
+178 
+179     \textcolor{comment}{// output initial state}
+180     \textcolor{keywordflow}{if} (!sorts.empty()) \{
+181         res += \textcolor{stringliteral}{"initial\_state "};
+182         list<string> l;
+183         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} &e : sorts)
+184             l.push\_back(e.second->getName() + \textcolor{stringliteral}{" "} + boost::lexical\_cast<\textcolor{keywordtype}{string}>(e.second->getActiveProcess(
+      )->getNumber()));
+185         res += boost::algorithm::join(l, \textcolor{stringliteral}{", "});
+186     \}
+187     res += \textcolor{stringliteral}{"\(\backslash\)n"};
+188 
+189     \textcolor{keywordflow}{return} res;
+190 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classPH_aa66efaf095a379c3b108a023d7c98afa}{\index{P\+H@{P\+H}!infinite\+\_\+default\+\_\+rate@{infinite\+\_\+default\+\_\+rate}}
+\index{infinite\+\_\+default\+\_\+rate@{infinite\+\_\+default\+\_\+rate}!P\+H@{P\+H}}
+\subsubsection[{infinite\+\_\+default\+\_\+rate}]{\setlength{\rightskip}{0pt plus 5cm}bool P\+H\+::infinite\+\_\+default\+\_\+rate\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPH_aa66efaf095a379c3b108a023d7c98afa}
+
+
+boolean to know if the default rate is or is not infinite 
+
+if true then the value of default rate makes no sense 
+
+Definition at line 181 of file P\+H.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{PH_8h}{P\+H.\+h}\item 
+src/ph/P\+H.\+cpp\end{DoxyCompactItemize}

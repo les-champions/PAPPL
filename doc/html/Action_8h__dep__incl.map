@@ -1,0 +1,31 @@
+<map id="headers/Action.h" name="headers/Action.h">
+<area shape="rect" id="node2" href="$PH_8h.html" title="header for the PH class " alt="" coords="528,80,631,107"/>
+<area shape="rect" id="node5" href="$GAction_8h.html" title="header for the GAction class " alt="" coords="358,304,489,331"/>
+<area shape="rect" id="node30" href="$Action_8cpp_source.html" title="src/ph/Action.cpp" alt="" coords="655,80,779,107"/>
+<area shape="rect" id="node3" href="$GProcess_8h.html" title="header for the GProcess class " alt="" coords="564,155,705,181"/>
+<area shape="rect" id="node7" href="$PHScene_8cpp_source.html" title="src/gfx/PHScene.cpp" alt="" coords="710,453,857,480"/>
+<area shape="rect" id="node14" href="$TikzEditor_8cpp_source.html" title="src/ui/TikzEditor.cpp" alt="" coords="144,603,287,629"/>
+<area shape="rect" id="node15" href="$PHIO_8h.html" title="header for the PHIO class " alt="" coords="904,528,1020,555"/>
+<area shape="rect" id="node17" href="$Main2_8cpp_source.html" title="src/Main2.cpp" alt="" coords="1230,603,1334,629"/>
+<area shape="rect" id="node20" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="1096,528,1202,555"/>
+<area shape="rect" id="node26" href="$MyArea_8h.html" title="header for the MyArea class " alt="" coords="54,379,182,405"/>
+<area shape="rect" id="node4" href="$GSort_8h.html" title="header for the GSort class " alt="" coords="564,229,681,256"/>
+<area shape="rect" id="node25" href="$GProcess_8cpp_source.html" title="src/gfx/GProcess.cpp" alt="" coords="705,229,854,256"/>
+<area shape="rect" id="node24" href="$GSort_8cpp_source.html" title="src/gfx/GSort.cpp" alt="" coords="644,304,769,331"/>
+<area shape="rect" id="node6" href="$PHScene_8h.html" title="header for the PHScene class " alt="" coords="537,379,676,405"/>
+<area shape="rect" id="node8" href="$TikzEditor_8h_source.html" title="headers/TikzEditor.h" alt="" coords="370,379,512,405"/>
+<area shape="rect" id="node23" href="$GAction_8cpp_source.html" title="src/gfx/GAction.cpp" alt="" coords="206,379,345,405"/>
+<area shape="rect" id="node9" href="$MainWindow_8h.html" title="header for the Main class " alt="" coords="495,453,654,480"/>
+<area shape="rect" id="node10" href="$Area_8h_source.html" title="headers/Area.h" alt="" coords="310,528,420,555"/>
+<area shape="rect" id="node13" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="451,603,610,629"/>
+<area shape="rect" id="node16" href="$Main_8cpp.html" title="Principal Program. " alt="" coords="1108,603,1206,629"/>
+<area shape="rect" id="node21" href="$ConnectionSettings_8cpp_source.html" title="src/ui/ConnectionSettings.cpp" alt="" coords="445,528,642,555"/>
+<area shape="rect" id="node22" href="$FunctionForm_8cpp_source.html" title="src/ui/FunctionForm.cpp" alt="" coords="666,528,829,555"/>
+<area shape="rect" id="node11" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="311,603,427,629"/>
+<area shape="rect" id="node12" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="634,603,744,629"/>
+<area shape="rect" id="node18" href="$PHIOTest_8cpp_source.html" title="src/test/PHIOTest.cpp" alt="" coords="769,603,924,629"/>
+<area shape="rect" id="node19" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="948,603,1084,629"/>
+<area shape="rect" id="node27" href="$TreeArea_8h_source.html" title="headers/TreeArea.h" alt="" coords="200,453,336,480"/>
+<area shape="rect" id="node29" href="$MyArea_8cpp_source.html" title="src/ui/MyArea.cpp" alt="" coords="48,453,176,480"/>
+<area shape="rect" id="node28" href="$TreeArea_8cpp_source.html" title="src/ui/TreeArea.cpp" alt="" coords="48,528,184,555"/>
+</map>

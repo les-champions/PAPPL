@@ -1,0 +1,257 @@
+\hypertarget{classPHScene}{\section{P\+H\+Scene Class Reference}
+\label{classPHScene}\index{P\+H\+Scene@{P\+H\+Scene}}
+}
+
+
+the graphic object representing the process hitting extends Q\+Graphics\+Scene  
+
+
+
+
+{\ttfamily \#include $<$P\+H\+Scene.\+h$>$}
+
+
+
+Inheritance diagram for P\+H\+Scene\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classPHScene__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for P\+H\+Scene\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPHScene__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPHScene_ab911261388ccc14254980b5d01909d61}{P\+H\+Scene} (\hyperlink{classPH}{P\+H} $\ast$\+\_\+ph)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a8c1d06d0ad738207ecb8754537954ed5}{void \hyperlink{classPHScene_a8c1d06d0ad738207ecb8754537954ed5}{draw\+From\+Skeleton} (void)}\label{classPHScene_a8c1d06d0ad738207ecb8754537954ed5}
+
+\begin{DoxyCompactList}\small\item\em create a \hyperlink{classGVSkeletonGraph}{G\+V\+Skeleton\+Graph} from the \hyperlink{classPH}{P\+H} object, then draw the P\+H\+S\+Cene from it \end{DoxyCompactList}\item 
+G\+Sort\+Ptr \hyperlink{classPHScene_ae8be020b063c06f135d644937d65147b}{get\+G\+Sort} (const string \&s)
+\begin{DoxyCompactList}\small\item\em gets a \hyperlink{classGSort}{G\+Sort} by its related \hyperlink{classSort}{Sort}'s name \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a4c7995ab5b0807000aa1234edbb44794}{map$<$ string, G\+Sort\+Ptr $>$ \hyperlink{classPHScene_a4c7995ab5b0807000aa1234edbb44794}{get\+G\+Sorts} ()}\label{classPHScene_a4c7995ab5b0807000aa1234edbb44794}
+
+\begin{DoxyCompactList}\small\item\em getter for sorts \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a89518baed691958147d7f55a25d14f9c}{std\+::vector$<$ G\+Process\+Ptr $>$ \hyperlink{classPHScene_a89518baed691958147d7f55a25d14f9c}{get\+Processes} ()}\label{classPHScene_a89518baed691958147d7f55a25d14f9c}
+
+\begin{DoxyCompactList}\small\item\em get the processes \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a4cf1a2937e804ad79a0c490f7be6ef45}{std\+::vector$<$ G\+Action\+Ptr $>$ \hyperlink{classPHScene_a4cf1a2937e804ad79a0c490f7be6ef45}{get\+Actions} ()}\label{classPHScene_a4cf1a2937e804ad79a0c490f7be6ef45}
+
+\begin{DoxyCompactList}\small\item\em get the actions \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a176668ca3774e8fec7ac7902e70c048e}{void \hyperlink{classPHScene_a176668ca3774e8fec7ac7902e70c048e}{update\+Actions} ()}\label{classPHScene_a176668ca3774e8fec7ac7902e70c048e}
+
+\begin{DoxyCompactList}\small\item\em update the position of actions \end{DoxyCompactList}\item 
+void \hyperlink{classPHScene_a4a99c9817b8ecbecf161e928d4e90984}{set\+Simple\+Display} (bool on\+Off)
+\begin{DoxyCompactList}\small\item\em switch the display mode between detailled/simplified \end{DoxyCompactList}\item 
+void \hyperlink{classPHScene_a9b080cb754ca9b12c2811d186e6f34b6}{context\+Menu\+Event} (Q\+Graphics\+Scene\+Context\+Menu\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handles mouse press event (handles drag start) \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a865f5d4e8e1a62ea4cccc9a08761f3b7}{void \hyperlink{classPHScene_a865f5d4e8e1a62ea4cccc9a08761f3b7}{Background\+Color} ()}\label{classPHScene_a865f5d4e8e1a62ea4cccc9a08761f3b7}
+
+\begin{DoxyCompactList}\small\item\em change the color of the background \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_ae49485e4ddf79c5d71aba4a4aebf147d}{void \hyperlink{classPHScene_ae49485e4ddf79c5d71aba4a4aebf147d}{Actions\+In\+Bold} ()}\label{classPHScene_ae49485e4ddf79c5d71aba4a4aebf147d}
+
+\begin{DoxyCompactList}\small\item\em change the actions in bold \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a648b16c898a66ac5e4a574e865617671}{void \hyperlink{classPHScene_a648b16c898a66ac5e4a574e865617671}{Action\+Color} ()}\label{classPHScene_a648b16c898a66ac5e4a574e865617671}
+
+\begin{DoxyCompactList}\small\item\em change the color of the action \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPHScene_a63a2e3d0f466494e545d2d8d9dea1e86}{void \hyperlink{classPHScene_a63a2e3d0f466494e545d2d8d9dea1e86}{create\+Actions} ()}\label{classPHScene_a63a2e3d0f466494e545d2d8d9dea1e86}
+
+\begin{DoxyCompactList}\small\item\em creates \hyperlink{classGAction}{G\+Action} items from graphviz graph (\hyperlink{structGVEdge}{G\+V\+Edge} structs) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPHScene_a332655cec4c6cca3153ffc3ee14eb465}{\hyperlink{classPH}{P\+H} $\ast$ \hyperlink{classPHScene_a332655cec4c6cca3153ffc3ee14eb465}{ph}}\label{classPHScene_a332655cec4c6cca3153ffc3ee14eb465}
+
+\begin{DoxyCompactList}\small\item\em the related process hitting \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{map$<$ string, G\+Sort\+Ptr $>$ \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}}\label{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}
+
+\begin{DoxyCompactList}\small\item\em map of the Sorts drawn in the scene\+: the keys are the names of the Sorts \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a392d190fc16531af5049727766582bed}{std\+::vector$<$ G\+Process\+Ptr $>$ \hyperlink{classPHScene_a392d190fc16531af5049727766582bed}{processes}}\label{classPHScene_a392d190fc16531af5049727766582bed}
+
+\begin{DoxyCompactList}\small\item\em vector of the Processes drawn in the scene \end{DoxyCompactList}\item 
+\hypertarget{classPHScene_a5802a1a674ffd883d3bf8403399365fb}{std\+::vector$<$ G\+Action\+Ptr $>$ \hyperlink{classPHScene_a5802a1a674ffd883d3bf8403399365fb}{actions}}\label{classPHScene_a5802a1a674ffd883d3bf8403399365fb}
+
+\begin{DoxyCompactList}\small\item\em vector of the Actions drawn in the scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+the graphic object representing the process hitting extends Q\+Graphics\+Scene 
+
+Definition at line 42 of file P\+H\+Scene.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPHScene_ab911261388ccc14254980b5d01909d61}{\index{P\+H\+Scene@{P\+H\+Scene}!P\+H\+Scene@{P\+H\+Scene}}
+\index{P\+H\+Scene@{P\+H\+Scene}!P\+H\+Scene@{P\+H\+Scene}}
+\subsubsection[{P\+H\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}P\+H\+Scene\+::\+P\+H\+Scene (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+H} $\ast$}]{\+\_\+ph}
+\end{DoxyParamCaption}
+)}}\label{classPHScene_ab911261388ccc14254980b5d01909d61}
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P\+H$\ast$} & the \hyperlink{classPH}{P\+H} graph to use \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 17 of file P\+H\+Scene.\+cpp.
+
+
+\begin{DoxyCode}
+17                         : \hyperlink{classPHScene_a332655cec4c6cca3153ffc3ee14eb465}{ph}(\_ph) \{
+18     \textcolor{comment}{// set background color}
+19     setBackgroundBrush(QBrush(QColor(255, 255, 255)));
+20 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPHScene_a9b080cb754ca9b12c2811d186e6f34b6}{\index{P\+H\+Scene@{P\+H\+Scene}!context\+Menu\+Event@{context\+Menu\+Event}}
+\index{context\+Menu\+Event@{context\+Menu\+Event}!P\+H\+Scene@{P\+H\+Scene}}
+\subsubsection[{context\+Menu\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+Scene\+::context\+Menu\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Graphics\+Scene\+Context\+Menu\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)}}\label{classPHScene_a9b080cb754ca9b12c2811d186e6f34b6}
+
+
+Handles mouse press event (handles drag start) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\+Graphics\+Scene\+Mouse\+Event} & the event to be handled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 93 of file P\+H\+Scene.\+cpp.
+
+
+\begin{DoxyCode}
+93                                                                     \{
+94 
+95     QPointF sorEventPressPoint;
+96     \textcolor{keywordtype}{bool} horsSorte=\textcolor{keyword}{true};
+97 
+98     \textcolor{comment}{// if other mouse buttons are pressed, do nothing}
+99     \textcolor{keywordflow}{if} (QApplication::mouseButtons() == Qt::RightButton) \{
+100         \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} &s : \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}) \{
+101             sorEventPressPoint = s.second.get()->geteventPressPoint();
+102             \textcolor{keywordflow}{if}(sorEventPressPoint.x() == \textcolor{keyword}{event}->scenePos().x() && sorEventPressPoint.y() == \textcolor{keyword}{event}->scenePos
+      ().y()) \{
+103                 horsSorte=\textcolor{keyword}{false};
+104             \}
+105         \}
+106         \textcolor{keywordflow}{if}(horsSorte) \{
+107 
+108             QMenu menu;
+109             QAction* switchToSimplifiedModel = menu.addAction(\textcolor{stringliteral}{"switch to simplified model"});
+110             QAction* switchToDetailledModel = menu.addAction(\textcolor{stringliteral}{"switch to detailled model"});
+111             QAction* switchBackgroundColor = menu.addAction(\textcolor{stringliteral}{"color background "});
+112             QAction* switchActionsInBold = menu.addAction(\textcolor{stringliteral}{"all actions in bold/ not to blod"});
+113             QAction* switchActionColor = menu.addAction(\textcolor{stringliteral}{"color all actions"});
+114 
+115             QAction* selectedAction = menu.exec(QCursor::pos());
+116             \textcolor{keywordflow}{if}(selectedAction != 0) \{
+117                 \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchBackgroundColor->text())==0) \{
+118                     \hyperlink{classPHScene_a865f5d4e8e1a62ea4cccc9a08761f3b7}{BackgroundColor}();
+119                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionsInBold->text())==0) \{
+120                     \hyperlink{classPHScene_ae49485e4ddf79c5d71aba4a4aebf147d}{ActionsInBold}();
+121                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchActionColor->text())==0) \{
+122                     \hyperlink{classPHScene_a648b16c898a66ac5e4a574e865617671}{ActionColor}();
+123                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchToSimplifiedModel->text())==0) \{
+124                     \hyperlink{classPHScene_a4a99c9817b8ecbecf161e928d4e90984}{setSimpleDisplay}(\textcolor{keyword}{true});
+125                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(QString::compare(selectedAction->text(),switchToDetailledModel->text())==0) \{
+126                     \hyperlink{classPHScene_a4a99c9817b8ecbecf161e928d4e90984}{setSimpleDisplay}(\textcolor{keyword}{false});
+127                 \}
+128 
+129             \}
+130         \}
+131     \}
+132 \}
+\end{DoxyCode}
+\hypertarget{classPHScene_ae8be020b063c06f135d644937d65147b}{\index{P\+H\+Scene@{P\+H\+Scene}!get\+G\+Sort@{get\+G\+Sort}}
+\index{get\+G\+Sort@{get\+G\+Sort}!P\+H\+Scene@{P\+H\+Scene}}
+\subsubsection[{get\+G\+Sort}]{\setlength{\rightskip}{0pt plus 5cm}G\+Sort\+Ptr P\+H\+Scene\+::get\+G\+Sort (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{s}
+\end{DoxyParamCaption}
+)}}\label{classPHScene_ae8be020b063c06f135d644937d65147b}
+
+
+gets a \hyperlink{classGSort}{G\+Sort} by its related \hyperlink{classSort}{Sort}'s name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the name of the (G)\hyperlink{classSort}{Sort} to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+G\+Sort\+Ptr pointer to the \hyperlink{classGSort}{G\+Sort} to get 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file P\+H\+Scene.\+cpp.
+
+
+\begin{DoxyCode}
+52                                            \{
+53     map<string, GSortPtr>::iterator f = \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}.find(s);
+54     \textcolor{keywordflow}{if} (f == \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}.end())
+55         \textcolor{keywordflow}{throw} \hyperlink{structsort__not__found}{sort\_not\_found}() << sort\_info(s);
+56     \textcolor{keywordflow}{return} \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}[s];
+57 \}
+\end{DoxyCode}
+\hypertarget{classPHScene_a4a99c9817b8ecbecf161e928d4e90984}{\index{P\+H\+Scene@{P\+H\+Scene}!set\+Simple\+Display@{set\+Simple\+Display}}
+\index{set\+Simple\+Display@{set\+Simple\+Display}!P\+H\+Scene@{P\+H\+Scene}}
+\subsubsection[{set\+Simple\+Display}]{\setlength{\rightskip}{0pt plus 5cm}void P\+H\+Scene\+::set\+Simple\+Display (
+\begin{DoxyParamCaption}
+\item[{bool}]{on\+Off}
+\end{DoxyParamCaption}
+)}}\label{classPHScene_a4a99c9817b8ecbecf161e928d4e90984}
+
+
+switch the display mode between detailled/simplified 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & activate or not the simplified model \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file P\+H\+Scene.\+cpp.
+
+
+\begin{DoxyCode}
+85                                          \{
+86     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} &s : \hyperlink{classPHScene_a664d48bb0ae4f95df04e7a939855cae5}{sorts}) \{
+87         s.second->setSimpleDisplay(onOff);
+88     \}
+89     \hyperlink{classPHScene_a176668ca3774e8fec7ac7902e70c048e}{updateActions}();
+90 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/\hyperlink{PHScene_8h}{P\+H\+Scene.\+h}\item 
+src/gfx/P\+H\+Scene.\+cpp\end{DoxyCompactItemize}

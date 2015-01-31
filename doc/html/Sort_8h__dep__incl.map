@@ -1,0 +1,35 @@
+<map id="headers/Sort.h" name="headers/Sort.h">
+<area shape="rect" id="node2" href="$GSort_8h.html" title="header for the GSort class " alt="" coords="1075,80,1193,107"/>
+<area shape="rect" id="node5" href="$PH_8h.html" title="header for the PH class " alt="" coords="973,304,1076,331"/>
+<area shape="rect" id="node32" href="$Process_8h.html" title="header for the Process class " alt="" coords="1322,80,1453,107"/>
+<area shape="rect" id="node34" href="$Sort_8cpp_source.html" title="src/ph/Sort.cpp" alt="" coords="1477,80,1588,107"/>
+<area shape="rect" id="node3" href="$GAction_8h.html" title="header for the GAction class " alt="" coords="917,155,1047,181"/>
+<area shape="rect" id="node31" href="$GSort_8cpp_source.html" title="src/gfx/GSort.cpp" alt="" coords="1071,155,1197,181"/>
+<area shape="rect" id="node4" href="$PHScene_8h.html" title="header for the PHScene class " alt="" coords="815,229,954,256"/>
+<area shape="rect" id="node6" href="$Action_8h.html" title="header for the Action class " alt="" coords="1113,379,1233,405"/>
+<area shape="rect" id="node29" href="$TikzEditor_8h_source.html" title="headers/TikzEditor.h" alt="" coords="91,379,233,405"/>
+<area shape="rect" id="node30" href="$GAction_8cpp_source.html" title="src/gfx/GAction.cpp" alt="" coords="978,229,1117,256"/>
+<area shape="rect" id="node28" href="$PHScene_8cpp_source.html" title="src/gfx/PHScene.cpp" alt="" coords="258,379,405,405"/>
+<area shape="rect" id="node8" href="$GProcess_8h.html" title="header for the GProcess class " alt="" coords="1259,379,1401,405"/>
+<area shape="rect" id="node10" href="$MyArea_8h.html" title="header for the MyArea class " alt="" coords="703,379,831,405"/>
+<area shape="rect" id="node16" href="$TikzEditor_8cpp_source.html" title="src/ui/TikzEditor.cpp" alt="" coords="7,603,149,629"/>
+<area shape="rect" id="node19" href="$PHIO_8h.html" title="header for the PHIO class " alt="" coords="1052,528,1168,555"/>
+<area shape="rect" id="node21" href="$Main2_8cpp_source.html" title="src/Main2.cpp" alt="" coords="1375,603,1479,629"/>
+<area shape="rect" id="node24" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="921,528,1027,555"/>
+<area shape="rect" id="node7" href="$Action_8cpp_source.html" title="src/ph/Action.cpp" alt="" coords="1113,453,1237,480"/>
+<area shape="rect" id="node9" href="$GProcess_8cpp_source.html" title="src/gfx/GProcess.cpp" alt="" coords="1261,453,1410,480"/>
+<area shape="rect" id="node11" href="$TreeArea_8h_source.html" title="headers/TreeArea.h" alt="" coords="777,453,913,480"/>
+<area shape="rect" id="node18" href="$MainWindow_8h.html" title="header for the Main class " alt="" coords="441,453,600,480"/>
+<area shape="rect" id="node27" href="$MyArea_8cpp_source.html" title="src/ui/MyArea.cpp" alt="" coords="625,453,753,480"/>
+<area shape="rect" id="node12" href="$Area_8h_source.html" title="headers/Area.h" alt="" coords="625,528,736,555"/>
+<area shape="rect" id="node17" href="$TreeArea_8cpp_source.html" title="src/ui/TreeArea.cpp" alt="" coords="761,528,897,555"/>
+<area shape="rect" id="node13" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="896,603,1012,629"/>
+<area shape="rect" id="node14" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="761,603,872,629"/>
+<area shape="rect" id="node15" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="457,603,616,629"/>
+<area shape="rect" id="node20" href="$Main_8cpp.html" title="Principal Program. " alt="" coords="640,603,737,629"/>
+<area shape="rect" id="node25" href="$ConnectionSettings_8cpp_source.html" title="src/ui/ConnectionSettings.cpp" alt="" coords="115,528,313,555"/>
+<area shape="rect" id="node26" href="$FunctionForm_8cpp_source.html" title="src/ui/FunctionForm.cpp" alt="" coords="337,528,499,555"/>
+<area shape="rect" id="node22" href="$PHIOTest_8cpp_source.html" title="src/test/PHIOTest.cpp" alt="" coords="1197,603,1351,629"/>
+<area shape="rect" id="node23" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="1037,603,1173,629"/>
+<area shape="rect" id="node33" href="$Process_8cpp_source.html" title="src/ph/Process.cpp" alt="" coords="1373,155,1508,181"/>
+</map>

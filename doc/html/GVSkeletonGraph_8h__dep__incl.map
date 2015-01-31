@@ -1,0 +1,33 @@
+<map id="headers/GVSkeletonGraph.h" name="headers/GVSkeletonGraph.h">
+<area shape="rect" id="node2" href="$PH_8h.html" title="header for the PH class " alt="" coords="681,80,783,107"/>
+<area shape="rect" id="node21" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="1652,453,1759,480"/>
+<area shape="rect" id="node32" href="$GVSkeletonGraph_8cpp_source.html" title="src/gviz/GVSkeletonGraph.cpp" alt="" coords="1753,80,1956,107"/>
+<area shape="rect" id="node3" href="$Action_8h.html" title="header for the Action class " alt="" coords="347,155,467,181"/>
+<area shape="rect" id="node8" href="$PHScene_8cpp_source.html" title="src/gfx/PHScene.cpp" alt="" coords="333,379,480,405"/>
+<area shape="rect" id="node15" href="$TikzEditor_8cpp_source.html" title="src/ui/TikzEditor.cpp" alt="" coords="547,528,690,555"/>
+<area shape="rect" id="node16" href="$PHIO_8h.html" title="header for the PHIO class " alt="" coords="1301,453,1417,480"/>
+<area shape="rect" id="node18" href="$Main2_8cpp_source.html" title="src/Main2.cpp" alt="" coords="1777,528,1881,555"/>
+<area shape="rect" id="node26" href="$GProcess_8h.html" title="header for the GProcess class " alt="" coords="25,155,167,181"/>
+<area shape="rect" id="node28" href="$MyArea_8h.html" title="header for the MyArea class " alt="" coords="943,304,1071,331"/>
+<area shape="rect" id="node4" href="$GAction_8h.html" title="header for the GAction class " alt="" coords="341,229,472,256"/>
+<area shape="rect" id="node25" href="$Action_8cpp_source.html" title="src/ph/Action.cpp" alt="" coords="194,229,318,256"/>
+<area shape="rect" id="node5" href="$PHScene_8h.html" title="header for the PHScene class " alt="" coords="337,304,476,331"/>
+<area shape="rect" id="node9" href="$TikzEditor_8h_source.html" title="headers/TikzEditor.h" alt="" coords="551,304,694,331"/>
+<area shape="rect" id="node24" href="$GAction_8cpp_source.html" title="src/gfx/GAction.cpp" alt="" coords="175,304,313,331"/>
+<area shape="rect" id="node6" href="$GSort_8h.html" title="header for the GSort class " alt="" coords="79,379,196,405"/>
+<area shape="rect" id="node7" href="$GSort_8cpp_source.html" title="src/gfx/GSort.cpp" alt="" coords="75,453,200,480"/>
+<area shape="rect" id="node10" href="$MainWindow_8h.html" title="header for the Main class " alt="" coords="826,379,985,405"/>
+<area shape="rect" id="node11" href="$Area_8h_source.html" title="headers/Area.h" alt="" coords="1166,453,1277,480"/>
+<area shape="rect" id="node14" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="859,528,1018,555"/>
+<area shape="rect" id="node17" href="$Main_8cpp.html" title="Principal Program. " alt="" coords="1042,528,1139,555"/>
+<area shape="rect" id="node22" href="$ConnectionSettings_8cpp_source.html" title="src/ui/ConnectionSettings.cpp" alt="" coords="893,453,1091,480"/>
+<area shape="rect" id="node23" href="$FunctionForm_8cpp_source.html" title="src/ui/FunctionForm.cpp" alt="" coords="656,453,819,480"/>
+<area shape="rect" id="node12" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="1163,528,1279,555"/>
+<area shape="rect" id="node13" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="1303,528,1414,555"/>
+<area shape="rect" id="node19" href="$PHIOTest_8cpp_source.html" title="src/test/PHIOTest.cpp" alt="" coords="1439,528,1593,555"/>
+<area shape="rect" id="node20" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="1617,528,1753,555"/>
+<area shape="rect" id="node27" href="$GProcess_8cpp_source.html" title="src/gfx/GProcess.cpp" alt="" coords="21,229,171,256"/>
+<area shape="rect" id="node29" href="$TreeArea_8h_source.html" title="headers/TreeArea.h" alt="" coords="1161,379,1297,405"/>
+<area shape="rect" id="node31" href="$MyArea_8cpp_source.html" title="src/ui/MyArea.cpp" alt="" coords="1009,379,1137,405"/>
+<area shape="rect" id="node30" href="$TreeArea_8cpp_source.html" title="src/ui/TreeArea.cpp" alt="" coords="1441,453,1577,480"/>
+</map>

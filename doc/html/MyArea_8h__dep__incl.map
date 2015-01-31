@@ -1,0 +1,19 @@
+<map id="headers/MyArea.h" name="headers/MyArea.h">
+<area shape="rect" id="node2" href="$TreeArea_8h_source.html" title="headers/TreeArea.h" alt="" coords="291,80,427,107"/>
+<area shape="rect" id="node9" href="$MainWindow_8h.html" title="header for the Main class " alt="" coords="520,80,679,107"/>
+<area shape="rect" id="node18" href="$MyArea_8cpp_source.html" title="src/ui/MyArea.cpp" alt="" coords="703,80,831,107"/>
+<area shape="rect" id="node3" href="$Area_8h_source.html" title="headers/Area.h" alt="" coords="304,155,415,181"/>
+<area shape="rect" id="node8" href="$TreeArea_8cpp_source.html" title="src/ui/TreeArea.cpp" alt="" coords="143,155,279,181"/>
+<area shape="rect" id="node4" href="$PHIO_8cpp_source.html" title="src/io/PHIO.cpp" alt="" coords="5,229,121,256"/>
+<area shape="rect" id="node5" href="$Area_8cpp_source.html" title="src/ui/Area.cpp" alt="" coords="145,229,256,256"/>
+<area shape="rect" id="node6" href="$MainWindow_8cpp_source.html" title="src/ui/MainWindow.cpp" alt="" coords="280,229,439,256"/>
+<area shape="rect" id="node7" href="$TikzEditor_8cpp_source.html" title="src/ui/TikzEditor.cpp" alt="" coords="463,229,605,256"/>
+<area shape="rect" id="node10" href="$PHIO_8h.html" title="header for the PHIO class " alt="" coords="541,155,657,181"/>
+<area shape="rect" id="node11" href="$Main_8cpp.html" title="Principal Program. " alt="" coords="1097,229,1195,256"/>
+<area shape="rect" id="node15" href="$PH_8cpp_source.html" title="src/ph/PH.cpp" alt="" coords="733,155,839,181"/>
+<area shape="rect" id="node16" href="$ConnectionSettings_8cpp_source.html" title="src/ui/ConnectionSettings.cpp" alt="" coords="863,155,1061,181"/>
+<area shape="rect" id="node17" href="$FunctionForm_8cpp_source.html" title="src/ui/FunctionForm.cpp" alt="" coords="1085,155,1247,181"/>
+<area shape="rect" id="node12" href="$Main2_8cpp_source.html" title="src/Main2.cpp" alt="" coords="630,229,734,256"/>
+<area shape="rect" id="node13" href="$PHIOTest_8cpp_source.html" title="src/test/PHIOTest.cpp" alt="" coords="758,229,913,256"/>
+<area shape="rect" id="node14" href="$TextArea_8cpp_source.html" title="src/ui/TextArea.cpp" alt="" coords="937,229,1073,256"/>
+</map>
