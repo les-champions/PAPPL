@@ -767,7 +767,7 @@ void FunctionForm::launchCompute() {
                 //qcombobox : liste de choix
                 //mais on ne recupère pas ce qui est affiché dans la combobox
                 //mais le paramètre associé dans le fichier xmlComputationSettings.xml
-                int num;
+                int num = -1;
                 for(int u = 0; u< (int)ConnectionSettings::tabChoix[indexFctChosen]->at(i)->size(); u++) {
                     if(ConnectionSettings::tabChoix[indexFctChosen]->at(i)->at(u)->getChoixNom()==reinterpret_cast<QComboBox*>(tabLineEdit[i])->currentText()) {
                         num=u;
@@ -889,7 +889,7 @@ void FunctionForm::testEmpty() {
 
 
 //slot : enable the field according to the ("taken into account") checkbox state
-void FunctionForm::enableForm(int state) {
+void FunctionForm::enableForm() {
     for(int i =0; i<ConnectionSettings::tabFunction[indexFctChosen]->getNbArgument().toInt() ; i++) {
         if(tabQcheckBox[i]->isChecked()) {
             tabLineEdit[i]->setEnabled(true);
@@ -1000,7 +1000,7 @@ void FunctionForm::enableForm(int state) {
 void FunctionForm::getNamePH() {
     QString a;
     a = QFileDialog::getOpenFileName(this,"Select File .ph", "/home/", tr("All Files (*.ph)"));
-    int num;
+    int num = -1;
     for(int i=0; i<(int)tabButtonFilePH.size(); i++) {
         if(tabButtonFilePH[i]==QObject::sender()) {
             num=i;
@@ -1020,7 +1020,7 @@ void FunctionForm::getNamePH() {
 void FunctionForm::getName() {
     QString a;
     a = QFileDialog::getOpenFileName(this,"Select File", "/home/");
-    int num;
+    int num = -1;
     for(int i=0; i<(int)tabButtonFile.size(); i++) {
         if(tabButtonFile[i]==QObject::sender()) {
             num=i;
@@ -1042,7 +1042,7 @@ void FunctionForm::getName() {
 void FunctionForm::getDirectoryName() {
     QString a;
     a = QFileDialog::getExistingDirectory(this,"Select Directory", "/home/");
-    int num;
+    int num = -1;
     for(int i=0; i<(int)tabButtonDirec.size(); i++) {
         if(tabButtonDirec[i]==QObject::sender()) {
             num=i;
@@ -1063,7 +1063,7 @@ void FunctionForm::getDirectoryName() {
 void FunctionForm::getDirectoryNameFileNotExisting() {
     QString a;
     a = QFileDialog::getExistingDirectory(this,"Select Directory", "/home/");
-    int num;
+    int num = -1;
     for(int i=0; i<(int)tabButtonFileNotExisting.size(); i++) {
         if(tabButtonFileNotExisting[i]==QObject::sender()) {
             num=i;

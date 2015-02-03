@@ -1144,9 +1144,8 @@ void MainWindow::computeReachability() {
 }
 
 QStringList MainWindow::wordList(const QString& text) {
-    QStringList result (text.split (QRegExp ("\\b([- .,?!':;/\"\(\)]+\\b)*"), QString::SkipEmptyParts));
-    return result;
-
+    QRegExp separator (R"(\b([- .,?!':;/"()]+\b)*)");
+    return text.split(separator, QString::SkipEmptyParts);
 }
 
 

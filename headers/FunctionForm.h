@@ -30,7 +30,7 @@ class FunctionForm : public QDialog {
 
     //manage the enable/disable functionnality according to the field "Taken into account"
     //the entry argument state is useless
-    void enableForm(int state);
+    void enableForm();
 
     //function which let us have the .ph File Name selected in a QFileDialog window
     void getNamePH();

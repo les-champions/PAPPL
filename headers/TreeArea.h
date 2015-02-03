@@ -163,7 +163,7 @@ class TreeArea : public QWidget {
       * @brief menu to show when the sort is clicked
       *
       */
-    void sortsItemClicked(const QPoint& pos);
+    void sortsItemClicked();
 
     /**
       * @brief hide a sort
@@ -196,7 +196,7 @@ class TreeArea : public QWidget {
       * @brief menu to show when the sort is clicked
       *
       */
-    void groupsItemClicked(const QPoint& pos);
+    void groupsItemClicked();
 
     /**
       * @brief hide a sort

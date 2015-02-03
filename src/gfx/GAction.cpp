@@ -277,8 +277,8 @@ QPainterPath GAction::createHitPath() {
     qreal heightRect;
     qreal sweepAngle;
     qreal startAngle;
-    int invertSweep;
-    int invertStart;
+    int invertSweep = 1;
+    int invertStart = 1;
     int wCoef=1;
     int hCoef=1;
 

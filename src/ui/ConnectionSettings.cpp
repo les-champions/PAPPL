@@ -849,26 +849,19 @@ void ConnectionSettings::choixCrea(QString param) {
 //slot appelé qd il y a modification du spinbox specifiant le nbre de ligne de choix
 void ConnectionSettings::buildChoix() {
 
-    // def de num = numero du sender
-    int num;
-    for(int i=0; i<(int)tabArgSuf.size(); i++) {
-        if(tabArgSuf[i]==QObject::sender()) {
-            num=i;
-        }
-    }
-
     // def de ici : somme des spinbox pour i < num
     //permet de savoir ou insérer la nv ligne de choix
     //dans les vecteurs : tabchoixnom, tabchoixparam, tabchoixprefix
     int ici=0;
-    for (int i=0; i<num; i++) {
-        QString a = tabArgSuf[i]->metaObject()->className();
-        if(a=="QSpinBox") {
-            ici += reinterpret_cast<QSpinBox*>(tabArgSuf[i])->text().toInt();
+    unsigned int num;
+    for (num=0; num<tabArgSuf.size(); num++) {
+        QWidget* w = tabArgSuf[num];
+        if(typeid(*w) == typeid(QSpinBox)) {
+            ici += reinterpret_cast<QSpinBox*>(tabArgSuf[num])->text().toInt();
         }
+        // On ne s'intéresse pas aux spinboxes avant le sender
+        if (w == QObject::sender()) break;
     }
-
-    ici+= reinterpret_cast<QSpinBox*>(tabArgSuf[num])->text().toInt();
 
     int indexTabTampon=0;
     int indexTabTamponParam=0;
@@ -894,7 +887,7 @@ void ConnectionSettings::buildChoix() {
             }
             tabChoixNom.clear();
 
-            for (int i=0; i< num; i++ ) {
+            for (unsigned int i=0; i< num; i++ ) {
 
                 QString a = tabArgSuf[i]->metaObject()->className();
                 int ind=0;
@@ -924,7 +917,7 @@ void ConnectionSettings::buildChoix() {
 
             tabChoixParam.clear();
 
-            for (int i=0; i< num; i++ ) {
+            for (unsigned int i=0; i< num; i++ ) {
 
                 QString a = tabArgSuf[i]->metaObject()->className();
                 int ind=0;
@@ -953,7 +946,7 @@ void ConnectionSettings::buildChoix() {
 
             tabChoixPrefix.clear();
 
-            for (int i=0; i< num; i++ ) {
+            for (unsigned int i=0; i< num; i++ ) {
 
                 QString a = tabArgSuf[i]->metaObject()->className();
                 int ind=0;
@@ -1130,7 +1123,7 @@ void ConnectionSettings::buildChoix() {
 }
 
 // contrairement au nom, permet juste de mettre des placeholdertext en focntion du type d'argument
-void ConnectionSettings::setEnability(QString param) {
+void ConnectionSettings::setEnability() {
     for(int i=0; i<(int)tabArgfacul.size(); i++) {
         /*if(tabArgType[i]->currentText()=="Argument" || tabArgType[i]->currentText()=="Current File"){
             tabArgfacul[i]->setChecked(false);

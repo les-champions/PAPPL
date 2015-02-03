@@ -58,7 +58,7 @@ class ConnectionSettings : public QDialog {
     void testNecessaryArgument();
     void choixCrea(QString param);
     void buildChoix();
-    void setEnability(QString param);
+    void setEnability();
     void prefixMaj(QString text);
 
 

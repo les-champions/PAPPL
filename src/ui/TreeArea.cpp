@@ -261,7 +261,7 @@ void TreeArea::addToGroup() {
 
 }
 
-void TreeArea::sortsItemClicked(const QPoint& pos) {
+void TreeArea::sortsItemClicked() {
     // Add a menu
     QMenu menu(this->sortsTree);
     // Add the actions to the menu
@@ -439,7 +439,7 @@ void TreeArea::changeSortRectColor(QTreeWidgetItem * item, QColor * couleur) {
     this->myPHPtr->getGraphicsScene()->getGSort(item->text(0).toStdString())->getRect()->setPen(QPen(*couleur, 4));
 }
 
-void TreeArea::groupsItemClicked(const QPoint& pos) {
+void TreeArea::groupsItemClicked() {
     // We assume that if the item clicked does not have any child, it is a group
     QTreeWidgetItem* item = this->groupsTree->currentItem();
     if (item->parent() == NULL) {
