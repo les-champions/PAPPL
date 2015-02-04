@@ -19,4 +19,5 @@ sudo apt install qt-sdk libgraphviz-dev libboost-filesystem-dev libboost-system-
 ```
 
 ### Run-time
- * phc, from [Pint](https://github.com/pauleve/pint/)
+ * phc, from [Pint](https://github.com/pauleve/pint/) is required to open files
+ * other binaries from pint have to be in the PATH in order for their functionnalities to be available in gPH
