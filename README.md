@@ -13,5 +13,10 @@ The Process Hitting is a recently introduced formalism suited for modelling qual
  * boost
  * graphviz
 
+In ubuntu/debian, you can install these dependencies with
+```
+sudo apt install qt-sdk libgraphviz-dev libboost-filesystem-dev libboost-system-dev
+```
+
 ### Run-time
  * phc, from [Pint](https://github.com/pauleve/pint/)
