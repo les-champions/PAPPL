@@ -8,6 +8,7 @@
 #include "GVSkeletonGraph.h"
 #include "locale.h"
 
+
 const qreal GVSkeletonGraph::DotDefaultDPI=72.0;
 const qreal GVSkeletonGraph::nodeSize = 1;
 const qreal GVSkeletonGraph::sepValue = 30.0;
