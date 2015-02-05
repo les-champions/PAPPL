@@ -1,8 +1,9 @@
+#define HAVE_STRING_H
 #include <iostream>
 #include <graphviz/gvc.h>
 #include <boost/make_shared.hpp>
 #include <QStringList>
-#include <QRectF>
+#include <QRectF>a
 #include "Exceptions.h"
 #include "GVSkeletonGraph.h"
 #include "locale.h"
