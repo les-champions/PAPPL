@@ -30,8 +30,10 @@ sudo apt install qt-sdk libgraphviz-dev libboost-filesystem-dev libboost-system-
  * à ```QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.9 ```
 
 ### Télécharger boost et graphviz dans /usr/local et changer des paths des bibliothèque dans .pro
+ 
  sur mon Mac, il faut bien préciser des paths des bibliothèques
  * ```LIBS 		=  /usr/local/lib/boost/libboost_filesystem.a```
+ 
  ajouter des paths des fichiers sources de boost et graphviz 
  *  ```INCLUDEPATH += /usr/local/include/boost ```
  *  ```INCLUDEPATH += /usr/local/include/graphviz ```
@@ -39,13 +41,16 @@ sudo apt install qt-sdk libgraphviz-dev libboost-filesystem-dev libboost-system-
 ### S'il compile pas(avec des erreurs de boost), essayer de les retélécharger avec Homebrew
  * ```brew boost```
  * ```brew graphviz```
-  aussi préciser des paths
+ 
+aussi préciser des paths
  * ```LIBS 		=  /usr/local/Cellar/boost/1.57.0/lib/libboost_filesystem.a```
- aussi ajouter des paths des fichiers sources de boost et graphviz 
+ 
+aussi ajouter des paths des fichiers sources de boost et graphviz 
  *  ```INCLUDEPATH += /usr/local/Cellar/graphviz/2.38.0/include/ ```
  *  ```INCLUDEPATH += /usr/local/Cellar/boost/1.57.0/include/ ```
 
 ### Pour la question ```dyld: Library not loaded ```
-  essayer 
+ 
+ essayer 
  * ```brew install libtool --universal```  
  * ```brew link libtool``` 
