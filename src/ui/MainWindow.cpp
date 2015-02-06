@@ -343,7 +343,8 @@ MyArea* MainWindow::openTab() {
 
             } catch(exception_base& argh) {
                 mb->close();
-                QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
+                //QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
+                QMessageBox::critical(this, "Error", typeid(argh).name());
                 return NULL;
             }
         } else {
@@ -1235,8 +1236,8 @@ void MainWindow::openEditor() {
     Area* view = (Area*) this->getCentraleArea()->currentSubWindow()->widget();
     // get the treeArea (left) part and call the method associated to search a sort
     view->treeArea->searchSort();
-//    EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
-//    EditorSettingsWindow->show();
+       // EditorSettingsWindow = new EditorSettings(view->treeArea->myPHPtr);
+       // EditorSettingsWindow->show();
     TikzEditorWindow=new TikzEditor(view->treeArea->myPHPtr);
     TikzEditorWindow->show();
 }

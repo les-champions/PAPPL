@@ -4,9 +4,13 @@ DESTDIR 	= bin
 OBJECTS_DIR     = .tmp
 MOC_DIR         = .moc
 
-LIBS 		= -lboost_filesystem -lboost_system \
-                  -L/usr/lib/graphviz \
-                  -lgvc -lcgraph -lpathplan -lcdt -lgvplugin_dot_layout
+LIBS 		=  /usr/local/Cellar/boost/1.57.0/lib/libboost_filesystem.a
+LIBS            +=  /usr/local/Cellar/boost/1.57.0/lib/libboost_system.a
+LIBS            +=  /usr/local/Cellar/graphviz/2.38.0/lib/libgvc.dylib
+LIBS            +=  /usr/local/Cellar/graphviz/2.38.0/lib/libcgraph.dylib
+LIBS            +=  /usr/local/Cellar/graphviz/2.38.0/lib/libpathplan.dylib
+LIBS            +=  /usr/local/Cellar/graphviz/2.38.0/lib/libcdt.dylib
+LIBS            +=  /usr/local/Cellar/graphviz/2.38.0/lib/graphviz/libgvplugin_dot_layout.dylib
 
 HEADERS 	=   headers/Action.h \
                     headers/Exceptions.h \
@@ -38,8 +42,10 @@ HEADERS 	=   headers/Action.h \
                     headers/test/ChoixLigne.h \
                     headers/GVSkeletonGraph.h \
                     headers/TikzEditor.h
-				
+
 INCLUDEPATH = headers headers/axe headers/test
+INCLUDEPATH += /usr/local/Cellar/graphviz/2.38.0/include/
+INCLUDEPATH += /usr/local/Cellar/boost/1.57.0/include/
 
 SOURCES			=   src/gfx/GProcess.cpp \
                             src/gfx/GAction.cpp \
@@ -67,6 +73,7 @@ SOURCES			=   src/gfx/GProcess.cpp \
 
 #So 2013 (needed for Axe)
 QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -stdlib=libc++
 QMAKE_CXXFLAGS += -ggdb
 
 QT += widgets
