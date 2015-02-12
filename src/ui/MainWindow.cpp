@@ -264,8 +264,8 @@ MyArea* MainWindow::openTab() {
     if(file!=NULL) {
         // Initiates timeopening calculation
         std::ofstream logFile("log_opening_time.txt",std::ios::app);
-        std::chrono::steady_clock::time_point depart, arrivee;
-        depart = std::chrono::steady_clock::now();
+        //std::chrono::steady_clock::time_point depart, arrivee;
+        //depart = std::chrono::steady_clock::now();
         QFileInfo pathInfo(file);
         std::vector<QString> allPath = this->getAllPaths();
         int size = allPath.size();
@@ -331,19 +331,19 @@ MyArea* MainWindow::openTab() {
                 mb->close();
                 this->setWindowState(Qt::WindowMaximized);
                 // putting time needed to open ph file into a "log_opening_time.txt" file
-                arrivee = std::chrono::steady_clock::now();
-                auto timeOpening =
+                //arrivee = std::chrono::steady_clock::now();
+                /*auto timeOpening =
                     std::chrono::duration_cast<std::chrono::milliseconds>
                         (arrivee - depart)
                     .count();
-                logFile << file.toStdString()+"-----"+"-----" << timeOpening;
+                logFile << file.toStdString()+"-----"+"-----" << timeOpening;*/
                 logFile << " ms\n";
                 logFile.close();
                 return area->myArea;
 
             } catch(exception_base& argh) {
                 mb->close();
-                QMessageBox::critical(this, "Error", "Extension not recognized. Only ph files are accepted.");
+                QMessageBox::critical(this, "Error", argh.what());
                 return NULL;
             }
         } else {

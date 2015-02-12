@@ -28,14 +28,14 @@ using std::vector;
 
 
 // process actual parsing, finally
-typedef const char* CCHAR;
+typedef const char* TabChar;
 PHPtr PHIO::parse (string const& input) {
 
     using namespace axe;
     PHPtr res = make_shared<PH>();
 
     // error
-    auto error = r_fail([](CCHAR i1, CCHAR i2) {});
+    auto error = r_fail([](TabChar i1, TabChar i2) {});
 
     // comment
     r_rule<const char*> comment;
@@ -54,7 +54,7 @@ PHPtr PHIO::parse (string const& input) {
     string sortName;
     int processes;
     auto sort_name = (r_alpha() | r_char('_')) & *(r_any("_'") | r_alnum());
-    auto sort_declaration = (r_str("process") & space & (sort_name >> sortName) & space & r_ufixed(processes)) >> e_ref([&](CCHAR i1, CCHAR i2) {
+    auto sort_declaration = (r_str("process") & space & (sort_name >> sortName) & space & r_ufixed(processes)) >> e_ref([&](TabChar i1, TabChar i2) {
         SortPtr s = Sort::make(sortName, processes);
         res->addSort(s);
     });
@@ -67,23 +67,23 @@ PHPtr PHIO::parse (string const& input) {
     int	actStoch;
     bool infiniteActRate = false;
     auto action_required = (sort_name >> actSort1) & space & r_ufixed(actProc1) & space & r_lit("->") & space & (sort_name >> actSort2) & space & r_ufixed(actProc2) & space & r_ufixed(actProc3);
-    auto action_rate = 	(	(infinity >> [&](CCHAR i1, CCHAR i2) {
+    auto action_rate = 	(	(infinity >> [&](TabChar i1, TabChar i2) {
         infiniteActRate = true;
     })
-    | 	(r_double(actRate) >> [&](CCHAR i1, CCHAR i2) {
+    | 	(r_double(actRate) >> [&](TabChar i1, TabChar i2) {
         infiniteActRate = false;
     })
                         );
     auto action_with_rate 	= action_required & space & r_lit("@") & space & action_rate;
     auto action_with_stoch 	= (action_with_rate & space & r_lit("~") & space & r_ufixed(actStoch));
-    auto action = 			action_with_stoch >> e_ref([&](CCHAR i1, CCHAR i2) {
+    auto action = 			action_with_stoch >> e_ref([&](TabChar i1, TabChar i2) {
         ActionPtr action = make_shared<Action>(	res->getSort(actSort1)->getProcess(actProc1)
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
                                                 ,	infiniteActRate, actRate, actStoch);
         res->addAction(action);
     })
-    |	action_with_rate >> e_ref([&](CCHAR i1, CCHAR i2) {
+    |	action_with_rate >> e_ref([&](TabChar i1, TabChar i2) {
         ActionPtr action = make_shared<Action>(	res->getSort(actSort1)->getProcess(actProc1)
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
@@ -91,7 +91,7 @@ PHPtr PHIO::parse (string const& input) {
                                                 ,	res->getStochasticityAbsorption());
         res->addAction(action);
     })
-    |	action_required >> e_ref([&](CCHAR i1, CCHAR i2) {
+    |	action_required >> e_ref([&](TabChar i1, TabChar i2) {
         ActionPtr action = make_shared<Action>(	res->getSort(actSort1)->getProcess(actProc1)
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
@@ -111,7 +111,7 @@ PHPtr PHIO::parse (string const& input) {
                                 r_lit("initial_state") & space
                                 & r_many((sort_name >> e_push_back(initSorts)) & space & (r_ufixed() >> e_push_back(initProc)), space & r_lit(",") & space)
                                 & trailing_spaces
-    ) >> e_ref([&](CCHAR i1, CCHAR i2) {
+    ) >> e_ref([&](TabChar i1, TabChar i2) {
         for (unsigned int i=0; i < initSorts.size(); i++)
             res->getSort(initSorts[i])->setActiveProcess(initProc[i]);
         initSorts.clear();

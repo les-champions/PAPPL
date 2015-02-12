@@ -56,7 +56,7 @@ string Sort::toString (void) {
 }
 
 // getters & setters
-ProcessPtr Sort::getProcess (const uint& i) {
+ProcessPtr Sort::getProcess (const unsigned int &i) {
     if (i >= processes.size())
         throw process_not_found() << process_info(i);
     return processes[i];

@@ -359,19 +359,19 @@ void Area::saveEdit(int del) {
         phcProcess->readChannel();
 
         // read result
-        QByteArray stderr;
-        QByteArray stdout;
+        QByteArray phcStandardError;
+        QByteArray phcStandardOutput;
         while (!phcProcess->waitForFinished()) {
-            stderr += phcProcess->readAllStandardError();
-            stdout += phcProcess->readAllStandardOutput();
+            phcStandardError += phcProcess->readAllStandardError();
+            phcStandardOutput += phcProcess->readAllStandardOutput();
         }
-        stderr += phcProcess->readAllStandardError();
-        stdout += phcProcess->readAllStandardOutput();
+        phcStandardError += phcProcess->readAllStandardError();
+        phcStandardOutput += phcProcess->readAllStandardOutput();
         delete phcProcess;
 
         //Use split function to only keep the line number
 
-        QStringList list = QString(stderr).split('"');
+        QStringList list = QString(phcStandardError).split('"');
         QStringList list2 = list[1].split(":");
         QStringList list3 = list2[0].split(" ");
 

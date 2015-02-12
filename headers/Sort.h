@@ -52,7 +52,7 @@ class Sort {
       * @param uint the index of the Process in processes vector
       *
       */
-    ProcessPtr getProcess (const uint&);
+    ProcessPtr getProcess (const unsigned int&);
 
     /**
       * @brief gets processes vector
