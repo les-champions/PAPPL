@@ -13,6 +13,7 @@
   *
   */
 
+class Transition;
 
 class Action;
 typedef boost::shared_ptr<Action> ActionPtr;
