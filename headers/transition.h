@@ -4,7 +4,7 @@
 #include "PH.h"
 #include "Action.h"
 #include "Process.h"
-#include <vector>
+#include <list>
 #include <boost/shared_ptr.hpp>
 
 typedef boost::shared_ptr<PH> PHPtr;
@@ -14,7 +14,7 @@ class Transition
 {
 public:
     Transition(boost::shared_ptr<Process> esrc, boost::shared_ptr<Process> edst, PHPtr);
-    std::vector<ActionPtr> getActions();
+    std::list<ActionPtr> getActions();
     ~Transition();
     boost::shared_ptr<Process> getSource();
     boost::shared_ptr<Process> getTarget();
