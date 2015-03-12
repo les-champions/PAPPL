@@ -3,9 +3,9 @@
 #include "Action.h"
 
 
-Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_)
+Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_, const PHPtr ph = NULL)
     : result(result_), infiniteRate(infiniteRate_), r(r_), sa(sa_) {
-    transitions = boost::make_shared<Transition>(source_,target_);
+    transitions = boost::make_shared<Transition>(source_,target_,ph);
 }
 
 
@@ -18,6 +18,12 @@ ProcessPtr Action::getTarget() {
 }
 ProcessPtr Action::getResult() {
     return result;
+}
+
+
+void Action::setPHPtr()
+{
+    transitions->setPh();
 }
 
 // output for DOT file
@@ -61,3 +67,4 @@ string Action::toString (void) {
                 +	"\n"
                 ;
 }
+
