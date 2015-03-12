@@ -76,19 +76,24 @@ PHPtr PHIO::parse (string const& input) {
                         );
     auto action_with_rate 	= action_required & space & r_lit("@") & space & action_rate;
     auto action_with_stoch 	= (action_with_rate & space & r_lit("~") & space & r_ufixed(actStoch));
+
+
+
+
     auto action = 			action_with_stoch >> e_ref([&](CCHAR i1, CCHAR i2) {
         ActionPtr action = make_shared<Action>(	res->getSort(actSort1)->getProcess(actProc1)
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
-                                                ,	infiniteActRate, actRate, actStoch);
-        res->addAction(action);
-    })
+                                                ,	infiniteActRate, actRate, actStoch,res);
+
+                        res->addAction(action); })
+
     |	action_with_rate >> e_ref([&](CCHAR i1, CCHAR i2) {
         ActionPtr action = make_shared<Action>(	res->getSort(actSort1)->getProcess(actProc1)
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
                                                 ,	infiniteActRate, actRate
-                                                ,	res->getStochasticityAbsorption());
+                                                ,	res->getStochasticityAbsorption(),res);
         res->addAction(action);
     })
     |	action_required >> e_ref([&](CCHAR i1, CCHAR i2) {
@@ -96,9 +101,14 @@ PHPtr PHIO::parse (string const& input) {
                                                 ,	res->getSort(actSort2)->getProcess(actProc2)
                                                 ,	res->getSort(actSort2)->getProcess(actProc3)
                                                 ,	res->getInfiniteDefaultRate(), res->getDefaultRate()
-                                                ,	res->getStochasticityAbsorption());
+                                                ,	res->getStochasticityAbsorption(),res);
         res->addAction(action);
     });
+
+
+
+
+
     auto action_line = action & trailing_spaces;
 
     // body
@@ -160,7 +170,15 @@ PHPtr PHIO::parseFile (string const& path) {
     // parse dump
     if (!phcStandardError.isEmpty())
         throw pint_phc_crash() << (parse_info)QString(phcStandardError).toStdString();
-    return parse(QString(phcStandardOutput).toStdString());
+
+    auto toBeReturned = parse(QString(phcStandardOutput).toStdString());
+
+    for(auto &i : toBeReturned->getActions())
+    {
+        i->setPHPtr();
+    }
+
+    return toBeReturned;
 
 }
 
