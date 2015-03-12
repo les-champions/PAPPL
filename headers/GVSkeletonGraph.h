@@ -1,3 +1,4 @@
+#define HAVE_STRING_H
 #pragma once
 #include <graphviz/gvc.h>
 #include <boost/shared_ptr.hpp>
