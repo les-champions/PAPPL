@@ -4,6 +4,7 @@
 #include <vector>
 #include "PH.h"
 #include "GAction.h"
+#include "transition.h"
 
 /**
   * @file Action.h
@@ -82,18 +83,6 @@ class Action {
   protected:
 
     /**
-      * @brief the source Process
-      *
-      */
-    ProcessPtr source;
-
-    /**
-      * @brief the target Process
-      *
-      */
-    ProcessPtr target;
-
-    /**
       * @brief the result Process
       *
       */
@@ -116,5 +105,8 @@ class Action {
       *
       */
     int sa;
+
+private:
+    boost::shared_ptr<Transition> transitions;
 
 };
