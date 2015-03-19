@@ -3,29 +3,37 @@
 #include "Action.h"
 
 
-Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_)
-    : source(source_), target(target_), result(result_), infiniteRate(infiniteRate_), r(r_), sa(sa_) {}
+Action::Action (ProcessPtr source_, ProcessPtr target_, ProcessPtr result_, const bool& infiniteRate_, const double& r_, const int& sa_, const PHPtr ph = NULL)
+    : result(result_), infiniteRate(infiniteRate_), r(r_), sa(sa_) {
+    transitions = boost::make_shared<Transition>(source_,target_,ph);
+}
 
 
 // getters
 ProcessPtr Action::getSource() {
-    return source;
+    return transitions->getSource();
 }
 ProcessPtr Action::getTarget() {
-    return target;
+    return transitions->getTarget();
 }
 ProcessPtr Action::getResult() {
     return result;
+}
+
+
+void Action::setPHPtr()
+{
+    transitions->setPh();
 }
 
 // output for DOT file
 string Action::toDotString (void) {
     string res;
 
-    res += 				source->getDotName()
-                        + " -> " + 	target->getDotName()
+    res += 				transitions->getSource()->getDotName()
+                        + " -> " + 	transitions->getTarget()->getDotName()
                         + ";\n";
-    res += 				target->getDotName()
+    res += 				transitions->getTarget()->getDotName()
                         + " -> " + 	result->getDotName()
                         + ";\n";
 
@@ -36,13 +44,13 @@ string Action::toDotString (void) {
 // output for PH file
 string Action::toString (void) {
 
-    return 		source->getSort()->getName()
+    return 		transitions->getSource()->getSort()->getName()
                 +	" "
-                +	boost::lexical_cast<string>(source->getNumber())
+                +	boost::lexical_cast<string>(transitions->getSource()->getNumber())
                 + 	" -> "
-                + 	target->getSort()->getName()
+                + 	transitions->getTarget()->getSort()->getName()
                 +	" "
-                +	 boost::lexical_cast<string>(target->getNumber())
+                +	 boost::lexical_cast<string>(transitions->getTarget()->getNumber())
                 +	" "
                 + 	 boost::lexical_cast<string>(result->getNumber())
                 +	" @"
@@ -59,3 +67,4 @@ string Action::toString (void) {
                 +	"\n"
                 ;
 }
+

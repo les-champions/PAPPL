@@ -4,6 +4,10 @@
 #include <vector>
 #include "PH.h"
 #include "GAction.h"
+#include "transition.h"
+
+typedef boost::shared_ptr<PH> PHPtr;
+
 
 /**
   * @file Action.h
@@ -12,6 +16,7 @@
   *
   */
 
+class Transition;
 
 class Action;
 typedef boost::shared_ptr<Action> ActionPtr;
@@ -38,11 +43,11 @@ class Action {
       * @param double the rate of the hit
       * @param int the stochasticity absorption of the hit
       */
-    Action 	(	ProcessPtr source_, ProcessPtr target_, ProcessPtr result_
+    Action 	(ProcessPtr source_, ProcessPtr target_, ProcessPtr result_
                 , 	const bool& infiniteRate_
                 , 	const double& r_
                 ,	const int& sa_
-            );
+                ,   const PHPtr ph);
 
     /**
       * @brief gets the source Process
@@ -79,19 +84,10 @@ class Action {
       */
     string toDotString (void);
 
+
+    void setPHPtr();
+
   protected:
-
-    /**
-      * @brief the source Process
-      *
-      */
-    ProcessPtr source;
-
-    /**
-      * @brief the target Process
-      *
-      */
-    ProcessPtr target;
 
     /**
       * @brief the result Process
@@ -116,5 +112,8 @@ class Action {
       *
       */
     int sa;
+
+private:
+    boost::shared_ptr<Transition> transitions;
 
 };
