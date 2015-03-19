@@ -37,3 +37,6 @@ bin/*log
 
 # Doxygen-generated documentation
 /doc
+
+#Private files
+gph.pro.user
