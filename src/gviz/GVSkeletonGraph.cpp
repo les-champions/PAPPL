@@ -1,3 +1,4 @@
+#define HAVE_STRING_H
 #include <iostream>
 #include <graphviz/gvc.h>
 #include <boost/make_shared.hpp>
@@ -6,6 +7,7 @@
 #include "Exceptions.h"
 #include "GVSkeletonGraph.h"
 #include "locale.h"
+
 
 const qreal GVSkeletonGraph::DotDefaultDPI=72.0;
 const qreal GVSkeletonGraph::nodeSize = 1;

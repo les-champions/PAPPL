@@ -102,7 +102,9 @@ list<ActionPtr> PH::getActions(void) {
 
 // build the skeleton graph of the ph model
 GVSkeletonGraphPtr PH::createSkeletonGraph(void) {
-    GVSkeletonGraphPtr gSkeleton = make_shared<GVSkeletonGraph>(QString("Skeleton Graph"));
+    GVSkeletonGraph* gSkeletonSimple = new GVSkeletonGraph(QString("Skeleton Graph"));
+    GVSkeletonGraphPtr gSkeleton(gSkeletonSimple);
+    //GVSkeletonGraphPtr gSkeleton = make_shared<GVSkeletonGraph>(QString("Skeleton Graph"));
     QString sortName;
     vector<ProcessPtr> listProcess;
     int nbProcess;

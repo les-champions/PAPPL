@@ -3,6 +3,7 @@
 #include "PH.h"
 #include "MainWindow.h"
 #include <QXmlStreamWriter>
+#include <QTextStream>
 
 /**
   * @file PHIO.h
@@ -73,6 +74,14 @@ class PHIO {
       *
       */
     static PHPtr parse (string const& input);
+
+    /**
+      * @brief preParses cooperativity before dump
+      * @param string the stream to parse
+      * @return PHPtr pointer to the PH object that results form parsing
+      *
+      */
+   static QByteArray preParse(string const& input, QByteArray *cooperativities);
 
     /**
      *Function

@@ -1,5 +1,6 @@
 #pragma GCC diagnostic ignored "-Wparentheses"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+#include "PHIO.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -14,13 +15,12 @@
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QTextStream>
-#include<math.h>
+#include <math.h>
 #include "axe.h"
 #include "Exceptions.h"
 #include "IO.h"
-#include "PHIO.h"
 #include "Area.h"
-#include<utility>
+#include <utility>
 
 using boost::make_shared;
 using std::string;
@@ -131,15 +131,108 @@ PHPtr PHIO::parse (string const& input) {
     return res;
 }
 
+// Preprocessing: creates a .ph file to be given to phc without COOPERATIVITIES, that will be parsed after
+QByteArray PHIO::preParse (string const& input, QByteArray* cooperativities) {
+
+    using namespace axe;
+    QByteArray result("");
+
+    // error
+    auto error = r_fail([](CCHAR i1, CCHAR i2) {QTextStream(stdout)<<"error\n";});
+
+    r_rule<const char*> comment;
+    comment = r_lit("(*") & *(r_any() - r_lit("*)") - r_lit("(*") | comment) & r_lit("*)");
+
+    // white space
+    auto space = *(r_any(" \t") | comment);
+    auto endl = r_any("\n\t");
+    auto trailing_spaces = space & endl;
+    auto spaceendl = space | *(endl);
+
+  
+    // process declaration
+    string sortName;
+    int processes;
+    auto sort_name = (r_alpha() | r_char('_')) & *(r_any("_'") | r_alnum());
+    auto sort_list = r_lit("[") & *(sort_name & r_lit(";")) & sort_name & r_lit("]");
+    auto value_list = r_lit("[") & *(r_numstr() & r_lit(";")) & r_numstr() & r_lit("]");
+    auto process_value_list = r_lit("[") & *(value_list & r_lit(";")) & value_list & r_lit("]");
+
+    auto expr = (sort_list & space & r_lit("in") & space & process_value_list)>>e_ref([&](CCHAR i1, CCHAR i2){QTextStream(stdout)<<"Expr found \n";});
+    r_rule<const char*> term;
+    r_rule<const char*> expression;
+    expression =
+               (r_lit("not") & space & expression)
+               | ( term & space & r_lit("and") & space & expression)
+               | (term & space & r_lit("or")  & space & expression)
+               ;
+
+    term = (r_lit("(")& expression & r_lit(")")) | expr;
+
+
+    //Cooperativity
+    string value;
+    string sortList, processValueList;
+    uint state1, state2;
+
+    auto cooperativity_v1 = (r_lit("COOPERATIVITY(") & sort_list>>sortList & space & r_lit("->") & space
+            & sort_name & space & r_ufixed(state1) & space & r_ufixed(state2) & r_lit(",")
+            & space & process_value_list>>processValueList & r_lit(")"));
+
+    auto cooperativity_v2 = (r_lit("COOPERATIVITY(")  & expr & space & r_lit("and") & space & expr & space & r_lit(",") & space & sort_name &  r_lit(",") & space &  r_ufixed(state1) &  r_lit(",") & space & r_ufixed(state2) & r_lit(")"));
+
+    auto cooperativity_line = (cooperativity_v1>>e_ref([&](CCHAR i1, CCHAR i2){QTextStream(stdout)<<"Coop 1 found \n";})|cooperativity_v2) >> value & +(endl>>e_ref([&](CCHAR i1, CCHAR i2){
+        *cooperativities+=QString(value.c_str());
+        result += QString("(* Here was a cooperativity *)\n");
+        *cooperativities += QString("\n");}));
+
+    //Left untouched
+    auto anything_else = ((r_printablestr() ) >> value) >>
+          e_ref([&](CCHAR i1, CCHAR i2) {result += QString(value.c_str()) ;}) ;
+
+    auto ignoredline = *(anything_else ) & +(endl>>e_ref([&](CCHAR i1, CCHAR i2){result += QString("\n");}));
+
+    //Complete file
+    auto line = cooperativity_line | ignoredline;
+    auto tobeparsed = +(line) | error ;
+
+    tobeparsed(input.c_str(), input.c_str() + input.length());
+    return result;
+}
+
 
 // parse file
 PHPtr PHIO::parseFile (string const& path) {
+
+    //Create intermediary files : simpler to be parsed without cooperativities, coop for cooperativities to be parsed after simpler
+    QString filename="simpler.ph";
+    QString coopFilename = "coop.ph";
+    QByteArray cooperativities;
+    QFile file( path.c_str());
+    if ( file.open(QIODevice::ReadOnly) )
+    {
+        //Open and write simpler.ph
+        QTextStream stream( &file );
+        QFile file( filename );
+        if ( file.open(QIODevice::ReadWrite) )
+        {
+            QTextStream target( &file );
+            target << preParse(stream.readAll().toStdString(), &cooperativities);
+        }        
+    }
+    //Open and write coop.ph
+    QFile coopFile( coopFilename);
+    if ( coopFile.open(QIODevice::ReadWrite) )
+    {
+        QTextStream coopTarget( &coopFile );
+        coopTarget << cooperativities;
+    }
 
     // dump content using phc -l dump
     // (this command transforms complex PH instructions in basic ones)
     QString phc = "phc";
     QStringList args;
-    args << "-l" << "dump" << "-i" << QString::fromUtf8(path.c_str()) << "--no-debug";
+    args << "-l" << "dump" << "-i" << filename << "--no-debug";
     QProcess *phcProcess = new QProcess();
     phcProcess->start(phc, args);
     if (!phcProcess->waitForStarted())
