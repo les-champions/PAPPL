@@ -48,6 +48,25 @@ class Action {
                 , 	const double& r_
                 ,	const int& sa_
                 ,   const PHPtr ph);
+                //,   bool isMultiple_);
+
+    /**
+    * @brief Action
+    * @param sources_
+    * @param target_
+    * @param result_
+    * @param infiniteRate_
+    * @param r_
+    * @param sa_
+    * @param ph
+    * @param isMultiple_
+    */
+   Action (std::vector<ProcessPtr> sources_, ProcessPtr target_, ProcessPtr result_
+            , 	const bool& infiniteRate_
+            , 	const double& r_
+            ,	const int& sa_
+            ,   const PHPtr ph);
+            //,   bool isMultiple_);
 
     /**
       * @brief gets the source Process
@@ -69,6 +88,9 @@ class Action {
       * @return ProcessPtr pointer to the result Process
       */
     ProcessPtr getResult();
+
+
+    std::vector<ProcessPtr> getSources();
 
     /**
       * @brief gives a text representation of the Process (as it would be in a .ph file)
@@ -112,6 +134,10 @@ class Action {
       *
       */
     int sa;
+
+    std::vector<ProcessPtr> processes;
+
+    bool isMultiple;
 
 private:
     boost::shared_ptr<Transition> transitions;

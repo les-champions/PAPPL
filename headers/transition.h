@@ -14,6 +14,7 @@ class Transition
 {
 public:
     Transition(boost::shared_ptr<Process> esrc, boost::shared_ptr<Process> edst, PHPtr);
+    Transition(std::vector<ProcessPtr> esrc, boost::shared_ptr<Process> edst, PHPtr phptr);
     std::list<ActionPtr> getActions();
     ~Transition();
     boost::shared_ptr<Process> getSource();

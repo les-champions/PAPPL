@@ -6,6 +6,12 @@ Transition::Transition(boost::shared_ptr<Process> esrc, boost::shared_ptr<Proces
     //phptr->getActions()
 
 }
+Transition::Transition(std::vector<ProcessPtr> esrc, boost::shared_ptr<Process> edst, PHPtr phptr):
+     dst(edst), ph(phptr)
+{
+    src=esrc[0];
+
+}
 
 Transition::~Transition()
 {
