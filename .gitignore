@@ -34,3 +34,6 @@ Makefile
 bin/*pdf
 bin/*aux
 bin/*log
+
+pint/
+pintC

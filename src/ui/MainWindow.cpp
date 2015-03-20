@@ -301,7 +301,9 @@ MyArea* MainWindow::openTab() {
 
             try {
                 // render graph
+
                 PHPtr myPHPtr = PHIO::parseFile(path);
+
                 area->myArea->setPHPtr(myPHPtr);
                 myPHPtr->render();
                 PHScenePtr scene = myPHPtr->getGraphicsScene();

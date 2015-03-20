@@ -137,30 +137,17 @@ PHPtr PHIO::parseFile (string const& path) {
 
     // dump content using phc -l dump
     // (this command transforms complex PH instructions in basic ones)
-    QString phc = "phc";
-    QStringList args;
-    args << "-l" << "dump" << "-i" << QString::fromUtf8(path.c_str()) << "--no-debug";
-    QProcess *phcProcess = new QProcess();
-    phcProcess->start(phc, args);
-    if (!phcProcess->waitForStarted())
-        throw pint_program_not_found() << file_info("phc");
+    QString validPath =  QString::fromUtf8(path.c_str());
+    QString phcStandardOutput;
 
-    // read result
-    QByteArray phcStandardError;
-    QByteArray phcStandardOutput;
-    // Consider phc to have timed out after 10 mins
-    bool timedOut = !phcProcess->waitForFinished(10*60*1000);
-    phcStandardError  += phcProcess->readAllStandardError();
-    phcStandardOutput += phcProcess->readAllStandardOutput();
-    delete phcProcess;
+    QFile file(validPath);
 
-    if (timedOut)
-        throw pint_phc_crash() << (parse_info)"Time out";
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {}
+        else{
+        phcStandardOutput = QString(file.readAll());}
 
-    // parse dump
-    if (!phcStandardError.isEmpty())
-        throw pint_phc_crash() << (parse_info)QString(phcStandardError).toStdString();
-    return parse(QString(phcStandardOutput).toStdString());
+    return parse(phcStandardOutput.toStdString());
 
 }
 
