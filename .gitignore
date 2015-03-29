@@ -37,3 +37,6 @@ bin/*log
 
 pint/
 pintC
+
+# Doxygen-generated documentation
+/doc
